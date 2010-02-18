@@ -70,7 +70,7 @@ PRINTING
 	Firefox Portable should come pre-set to suppress the printer dialog box when users print receipts. If you are configuring
 	your own Firefox, do the following (in Firefox) to get rid of it:
 	1. type "about:config" in the address bar 
-	2. right click to add a new Boolean preference item named 'print.always_print_silent'
+	2. right click to add a new Boolean preference item named 'print.always_print_silent
 	3. set value of the newly-added item to 'true'.
 -Printer
 	We are using an Epson receipt printer with a cutter. Firefox should make the receipt shrink to fit whatever printer 
