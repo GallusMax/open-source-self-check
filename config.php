@@ -31,7 +31,7 @@ $sip_password='';
 $show_fines=true;
 $show_available_holds=true;
 $allow_email_receipts=false;
-$display_php_errors='Off'; //off or on
+$display_php_errors='off'; //off or on
 $hide_cursor_pointer=false; //hides default cursor pointer -should probably set to true on live self check
 
 
