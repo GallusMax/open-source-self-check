@@ -1,0 +1,670 @@
+FONT		{FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-SIZE: 12px}
+TD		{FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-SIZE: 12px}
+BODY		{FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-SIZE: 12px;}
+P		{FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-SIZE: 12px}
+DIV		{FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-SIZE: 12px}
+INPUT, SELECT		{FONT-FAMILY: Arial, Helvetica, sans-serif !important; FONT-SIZE: 12px !important}
+TEXTAREA	{FONT-FAMILY: Arial, Helvetica, sans-serif !important; FONT-SIZE: 12px !important}
+FORM 		{FONT-FAMILY: Arial, Helvetica, sans-serif !important; FONT-SIZE: 12px !important}
+A:link          {BACKGROUND: none; COLOR: #00C; TEXT-DECORATION: none}
+A:active        {BACKGROUND: none; COLOR: #00C; TEXT-DECORATION: none}
+A:visited       {BACKGROUND: none; COLOR: #00C; TEXT-DECORATION: none}
+A:hover         {BACKGROUND: none; COLOR: #333; TEXT-DECORATION: underline}
+.title 		{BACKGROUND: none; COLOR: #009; FONT-SIZE: 20px; FONT-WEIGHT: bold; FONT-FAMILY: Georgia, "Times New Roman", serif; TEXT-DECORATION: none}
+.content 	{BACKGROUND: none; COLOR: #333; FONT-SIZE: 12px; FONT-FAMILY: Arial, Helvetica, sans-serif}
+.storytitle 	{BACKGROUND: none; COLOR: #333; FONT-SIZE: 16px; FONT-WEIGHT: bold; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none}
+.storycat	{BACKGROUND: none; COLOR: #666; FONT-SIZE: 12px; FONT-WEIGHT: bold; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: underline}
+.boxtitle 	{BACKGROUND: none; COLOR: #333; FONT-SIZE: 12px; FONT-WEIGHT: bold; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none}
+.boxcontent 	{BACKGROUND: none; COLOR: #333; FONT-SIZE: 12px; FONT-FAMILY: VArial, Helvetica, sans-serif}
+.option 	{BACKGROUND: none; COLOR: #333; FONT-SIZE: 12px; FONT-WEIGHT: bold; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none}
+.tiny		{BACKGROUND: none; COLOR: #666; FONT-SIZE: 10px; FONT-WEIGHT: normal; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none}
+.footmsg        {BACKGROUND: none; COLOR: #CCCCCC; FONT-SIZE: 10px; FONT-WEIGHT: normal; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none}
+.footmsg_l	{BACKGROUND: none; COLOR: #CCCCCC; FONT-SIZE: 10px; FONT-WEIGHT: normal; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: underline}
+.box		{FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-SIZE: 12px; border: 1px solid #DDD; background-color: #FFFFFF}
+
+
+  /* ------------------------------------ */
+ /* MAIN STYLES (around the forum table) */
+/* ------------------------------------ */
+
+/* HTML ELEMENTS */
+
+html, body {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body {
+	background: #59769F url(../images/lgf-page-bg.png) center 15px repeat-x;
+}
+
+select { font: 1em Arial, Helvetica, sans-serif; }
+
+/* TOPBAR */
+
+#topbar {
+    top: 0;
+    left: 0;
+	position: absolute;
+	height: 21px !important;
+	width: 100% !important;
+	padding: 5px 0 19px;
+	background: url("../images/topbar-bg.png") repeat-x left bottom;
+	text-align: center;
+	z-index: 999;
+}
+
+#topbar-inner {
+	width: 1060px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+#topbar ul {
+	float: left;
+	padding: 2px 0 0 0;
+	margin: 0 !important;
+	list-style: none;
+}
+
+#topbar ul li {
+	float: left;
+	margin-right: 20px;
+	font-size: 11px;
+	line-height: 16px;
+	text-transform: uppercase;
+}
+
+#topbar ul li a:link, #topbar ul li a:visited, #topbar ul li a:active {
+	display: block;
+	color: #666;
+	text-decoration: none;
+	padding: 1px 0 1px 21px;
+}
+
+#topbar ul li a:hover {
+	color: #999;
+	text-decoration: none;
+}
+
+#topbar-subscribe {
+	background: url("../images/icon-feed.gif") no-repeat 0 50%;
+}
+
+#topbar-share {
+	display: inline;
+}
+
+#subscribe, #share {
+	display: none;
+	position: absolute;
+	top: 31px;
+	left: 50%;
+	width: 220px;
+	padding: 10px 19px;
+	font: 1.2em Arial, Helvetica, Geneva, sans-serif;
+	text-align: left;
+	background: url("../images/topbar-dropdown.png") no-repeat 0 100%;
+}
+
+#subscribe {
+	position: fixed;
+	margin: -1px 0 0 -469px;
+}
+
+#share {
+	position: fixed;
+	margin: -1px 0 0 -373px;
+}
+
+#subscribe ul {
+	
+}
+
+#subscribe li, #share li {
+	float: left;
+	width: 46%;
+	height: 20px;
+	margin: 0 2% 10px 0;
+	font-size: .95em;
+}
+
+#subscribe a:link, #subscribe a:active, #subscribe a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+#subscribe li a.feed {
+	padding: 1px 0 1px 19px;
+	background: url("../images/icon-feed.gif") no-repeat 0 50%;
+}
+
+#share a:link, #share a:active, #share a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+#subscribe a:hover, #share a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+#subscribe form {
+	clear: left;
+	margin-bottom: 10px;
+	color: #666;
+}
+
+#subscribe input {
+	margin-bottom: 5px;
+}
+
+#topbar-share,
+#topbar-home {
+	background: url("../images/topbar-wp.gif") no-repeat 0 50%;
+}
+
+#topbar-admin {
+	background: url("../images/topbar-wp.gif") no-repeat 0 50%;
+}
+
+#search {
+	float: right;
+}
+
+#search #s {
+	float: left;
+	width: 134px;
+	margin: 1px 5px 0 0;
+	padding: 2px 3px;
+	font-size: 11px !important;
+	color: #666;
+	background: #fff url("../images/search-input.gif") repeat-x 0 0;
+	border-width: 1px;
+}
+
+#search-button {
+	float: left;
+}
+
+
+/* HEADER */
+
+#lgfHead {
+	background: url(../images/lgf-nav-bg.png) 0 160px no-repeat;
+	float: left;
+	height: 210px;
+	position: relative;
+	width: 1100px;
+}
+
+	#lgfHeadTitle {
+		background: url(../images/lgf-logo.png) left center no-repeat;
+		bottom: 58px;
+		font-family: Georgia, "Times New Roman", serif;
+		font-size: 60px !important;
+		font-style: italic;
+		font-weight: normal;
+		left: 5px;
+		margin: 0;
+		height: 90px;
+		position: absolute;
+		width: 200px;
+	}
+	
+		#lgfHeadTitle a {
+			color: #FFF;
+			display: block;
+			padding: 3px 0 0 92px;
+		}
+		
+			#lgfHeadTitleTEXT {
+		Xbackground: url(../images/lgf-logo.png) left center no-repeat;
+		padding-left: 100px;
+		bottom: 58px;
+		font-family: Georgia, "Times New Roman", serif;
+		font-size: 60px !important;
+		font-style: italic;
+		font-weight: normal;
+		left: 5px;
+		margin: 0;
+		height: 90px;
+		position: absolute;
+		width: 200px;
+		color: #FFF;
+	}
+	
+	/* fix a display bug where help! was shifting to the left */
+	a#lgfHeadTitleTEXT { padding-left: 100px; color: white;}
+	
+		#lgfHeadTitleTEXT a {
+			color: #FFF;
+			display: block;
+			padding: 3px 0 0 92px;
+		}
+	
+	#lgfHeadAd {
+		bottom: 60px;
+		position: absolute;
+		right: 10px;
+		width: 728px;
+	}
+	
+		#lgfHeadAd center {
+			text-align: left;
+		}
+	
+	#lgfMainMenu {
+		bottom: 0;
+		font-size: 13px;
+		height: 42px;
+		left: 10px;
+		list-style: none;
+		margin: 0 !important;
+		padding: 0 !important;
+		position: absolute;
+		text-transform: uppercase;
+	}
+	
+		#lgfMainMenu li {
+			float: left;
+		}
+		
+			#lgfMainMenu li a {
+				color: #CCC;
+				float: left;
+				padding: 14px 13px;
+			}
+			
+			#lgfMainMenu li a:hover {
+				color: #FFF;
+			}
+
+
+/* BODY */
+
+#lgfBody {
+	background: url(../images/lgf-body-bg.png) repeat-y;
+}
+
+
+/* CONTENT */
+
+/*
+#lgfContent {
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 20px 0 0;
+	width: 880px;
+} */
+
+#lgfContent {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    width: 880px;
+}
+
+    #lgfContent h1 {
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.2em;
+    }
+
+
+/* PUBLIC MESSAGE */
+
+#lgfPublicMessage {}
+
+
+/* BLOCKS */
+
+#lgfLeftBar, #lgfRightBar {
+}
+
+#lgfLeftBar { padding-left: 20px; }
+#lgfRightBar { padding-right: 20px; }
+
+	.lgf-block {
+		background-color: #F6F6F6;
+		margin-bottom: 0;
+		margin-top: 0;
+		padding: 20px 0;
+		width: 179px;
+	}
+	
+		.lgf-block .lgf-block-title {
+			border-bottom: #DDD 1px solid;
+			color: #009;
+			font-family: Georgia, "Times New Roman", serif;
+			font-size: 13px;
+			margin: 0 10px 15px;
+			padding-bottom: 5px;
+			text-transform: uppercase;
+		}
+		
+		.lgf-block .lgf-block-content {
+			margin: 0 10px;
+		}
+	
+	#lgfLeftBar .lgf-block {
+		border-right: #DDD 1px solid;
+	}
+	
+	#lgfRightBar .lgf-block {
+		border-left: #DDD 1px solid;
+	}
+	
+	#lgfRightBarAd {
+		background-color: #F6F6F6;
+		border-left: #DDD 1px solid;
+		XXheight: 600px;
+		margin-bottom: 0;
+		margin-top: 0;
+		padding: 20px 9px 20px 9px;
+		width: 160px;
+	}
+
+
+/* FOOTER */
+
+ #lgfFooter {
+ 	background: #59769F url(../images/lgf-footer-bg.png) no-repeat;
+	color: #666;
+ 	font-size: 11px;
+	height: 44px;
+	padding: 28px 35px 30px;
+ }
+ 
+ 	#lgfFooterPrimary {
+ 		float: left;
+ 	}
+	
+		#lgfFooterPrimary a {
+			margin-right: 0.5em;
+		}
+	
+	#lgfFooterSecondary {
+ 		float: right;
+ 	}
+	
+		#lgfFooterSecondary a {
+			margin-left: 0.5em;
+		}
+	
+	#lgfFooter a {
+		border-bottom: #333 1px solid;
+		color: #999;
+	}
+	
+	#lgfFooter a:hover {
+		border-bottom: #666 1px solid;
+		color: #CCC;
+		text-decoration: none;
+	}
+
+
+/* bottom iframe */
+
+iframe[name="google_conversion_frame"] {
+	font-size: 0 !important;
+	border: none !important;
+	height: 0 !important;
+}
+
+
+  /* ------------------------------- */
+ /* FORUM STYLES (the forum itself) */
+/* ------------------------------- */
+
+/* General font families for common tags */
+#lgfContent font, #lgfContent th, #lgfContent td, #lgfContent p { font-family: Arial, Helvetica, sans-serif !important; }
+a:link, a:active, a:visited {}
+a:hover	{}
+hr { height: 0px; border: none; }
+
+.rounded-corners {}
+
+/* This is the border line & background colour round the entire page */
+.bodyline	{ background-color: transparent; border: none !important; text-align: center; }
+	.bodyline table { margin: 0 auto; }
+
+/* This is the outline round the main forum tables */
+.forumline	{
+	background-color: transparent;
+	border-collapse: collapse !important;
+	border-top: #DDD 1px solid !important;
+	margin: 5px 0;
+}
+
+/* Main table cell colours and backgrounds */
+td.row1	{ background-color: #FFF !important; }
+td.row2	{ background-color: #FFF !important; }
+td.row3	{ background-color: #FFF !important; }
+
+/*
+  This is for the table cell above the Topics, Post & Last posts on the index.php page
+  By default this is the fading out gradiated silver background.
+  However, you could replace this with a bitmap specific for each forum
+*/
+td.rowpic {
+		background-color: #F6F6F6 !important;
+		background-image: none !important;
+		background-repeat: repeat-y;
+}
+
+/* Header cells - the blue and silver gradient backgrounds */
+#lgfContent th	{
+	color: #FFF !important; font-family: Georgia, "Times New Roman", serif !important;
+	font-size: 12px !important; font-weight: bold; text-transform: uppercase;
+	background-color: #59769F; height: auto !important;
+	background-image: none !important;
+	padding: 6px 3px;
+}
+
+#lgfContent td.cat, #lgfContent td.catHead, #lgfContent td.catSides,
+#lgfContent td.catLeft, #lgfContent td.catRight, #lgfContent td.catBottom {
+			background-image: none !important;
+			background-color:#F6F6F6 !important; border: none !important; height: auto !important;
+			font-weight: normal !important;
+			padding: 6px;
+}
+
+/*
+  Setting additional nice inner borders for the main table cells.
+  The names indicate which sides the border will be on.
+  Don't worry if you don't understand this, just ignore it :-)
+*/
+td.cat,td.catHead,td.catBottom {
+	height: auto !important;
+	padding: 6px !important;
+	border-width: 0px 0px 0px 0px !important;
+	background-color: #59769F !important;
+}
+th.thHead,th.thSides,th.thTop,th.thLeft,th.thRight,th.thBottom,th.thCornerL,th.thCornerR {
+	font-weight: bold; border: #FFFFFF; border-style: solid; height: 28px;
+}
+td.row3Right,td.spaceRow {
+	background-color: #FFF !important; border: #FFFFFF; border-style: solid;
+}
+
+td.spaceRow {
+	background-color: #F6F6F6 !important;
+}
+
+/* RESET BORDERS */
+#lgfContent th, #lgfContent td {
+	border: 0 !important;
+}
+
+/* CREATE BOTTOM BORDERS FOR CERTAIN ROWS */
+
+#lgfContent table.forumline td.catLeft,
+#lgfContent table.forumline td.rowpic,
+#lgfContent table.forumline td.row1,
+#lgfContent table.forumline td.row2,
+#lgfContent table.forumline td.row3,
+#lgfContent table.forumline td.catHead,
+#lgfContent table.forumline td.row3Right,
+#lgfContent table.forumline td.catBottom,
+#lgfContent table.forumline td.spaceRow,
+#lgfContent table.forumline td.catRight {
+	border-bottom: #DDD 1px solid !important;
+}
+
+#lgfContent th	{
+	border: #59769F 1px solid !important;
+	border-width: 2px 1px 1px 1px !important;
+}
+
+#lgfContent table.forumline table td.row1 {
+	border-bottom: none !important;
+}
+
+#lgfRelatedTopics {
+	margin-right: 10px;
+	padding-top: 2.333em;
+	width: 150px;
+}
+
+	#lgfRelatedTopics table {
+		table-layout: fixed;
+	}
+	
+		#lgfRelatedTopics table td {
+			padding: 6px !important;
+		}
+
+	#lgfRelatedTopics .lgf-related-topic {
+		font-size: 11px;
+	}
+
+/* The largest text used in the index page title and toptic title etc. */
+.maintitle	{
+	font-weight: normal; font-size: 24px !important; font-family: Georgia, "Times New Roman", serif !important;
+	text-decoration: none; line-height : 120%;
+}
+
+/* General text */
+.gen { font-size: 12px !important; }
+.genmed { font-size: 12px !important; }
+.gensmall { font-size: 12px !important; color: #666 !important; }
+.gen, .genmed { color: #333; }
+a.gen,a.genmed,a.gensmall { text-decoration: none; }
+a.gen:hover,a.genmed:hover,a.gensmall:hover	{ text-decoration: underline; }
+
+td.catBottom .gensmall { font-size: 12px !important; color: #333 !important; }
+
+/* The register, login, search etc links at the top of the page */
+.mainmenu		{ color: #FFF !important; font-size : 12px !important; font-weight: bold; margin: 0 0.25em; }
+	.mainmenu img { display: none; }
+a.mainmenu		{ text-decoration: none;  }
+a.mainmenu:hover{ text-decoration: underline; }
+
+/* Forum category titles */
+.cattitle		{ font-weight: bold; font-size: 12px !important; letter-spacing: 0 !important; text-transform: uppercase; }
+a.cattitle		{ text-decoration: none; }
+a.cattitle:hover{ text-decoration: underline; }
+
+/* Forum title: Text and link to the forums used in: index.php */
+.forumlink		{ font-weight: bold; font-size: 12px; }
+a.forumlink 	{ text-decoration: none; }
+a.forumlink:hover{ text-decoration: underline; }
+
+/* Used for the navigation text, (Page 1,2,3 etc) and the navigation bar when in a forum */
+.nav			{ font-weight: normal !important; font-size: 12px !important; }
+a.nav			{ text-decoration: none; }
+a.nav:hover		{ text-decoration: underline; }
+
+/* titles for the topics: could specify viewed link colour too */
+.topictitle, h2	{ font-weight: bold; font-size: 12px !important; }
+h1 { font-weight: normal; font-size: 22px !important; }
+a.topictitle:link   { text-decoration: none; }
+a.topictitle:visited { text-decoration: none; }
+a.topictitle:hover	{ text-decoration: underline; }
+
+/* Name of poster in viewmsg.php and viewtopic.php and other places */
+.name			{ font-size : 11px; }
+
+/* Location, number of posts, post date etc */
+.postdetails		{ font-size : 11px !important; color: #666; }
+
+/* The content of the posts (body of text) */
+/* steve, changed 548px to 672+5  (672 is two goog's) */
+span.postbody { font-size : 12px; line-height: 18px; display: block; width: 677px; margin: 0; overflow-x: auto; padding-bottom: 1.5em; }
+span.postbody a:link, span.postbody a:visited { color: black; }
+span.postbody a:hover { color: orange; }
+
+a.postlink:link	{ text-decoration: underline;  }
+a.postlink:visited { text-decoration: underline; }
+a.postlink:hover { text-decoration: underline; color: orange; }
+
+/* Quote & Code blocks */
+.code {
+	font-family: Courier, 'Courier New', sans-serif; font-size: 11px; color: #006600;
+	background-color: #FAFAFA; border: #D1D7DC; border-style: solid;
+	border-left-width: 1px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px
+}
+
+.quote {
+	font-family: Arial, Helvetica, sans-serif !important; font-size: 11px; color: #666 !important; line-height: 125%;
+	background-color: #FAFAFA; border: #D1D7DC; border-style: solid;
+	border-left-width: 1px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px
+}
+
+/* Copyright and bottom info */
+.copyright		{ font-size: 10px; font-family: Arial, Helvetica, sans-serif !important; color: #666 !important; letter-spacing: 0 !important;}
+a.copyright		{ color: #444444; text-decoration: none;}
+a.copyright:hover { text-decoration: underline;}
+
+/* The text input fields background colour */
+input.post, textarea.post, select, Xiframe {
+	background-color : #FFFFFF;
+	border-bottom: #DDD 1px solid;
+	border-left: #BBB 1px solid;
+	border-right: #BBB 1px solid;
+	border-top: #777 1px solid;
+}
+
+input { text-indent : 2px; }
+
+/* The buttons used for bbCode styling in message post */
+input.button {
+	background-color : #EFEFEF;
+	border-bottom: #777 1px solid;
+	border-left: #BBB 1px solid;
+	border-right: #BBB 1px solid;
+	border-top: #DDD 1px solid;
+	color: #333;
+	font-size: 12px; font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* The main submit button option */
+input.mainoption {
+	background-color : #FAFAFA;
+	font-weight : bold;
+	border-bottom: #777 1px solid;
+	border-left: #BBB 1px solid;
+	border-right: #BBB 1px solid;
+	border-top: #DDD 1px solid;
+}
+
+/* None-bold submit button */
+input.liteoption {
+	background-color : #FAFAFA;
+	font-weight : normal;
+	border-bottom: #777 1px solid;
+	border-left: #BBB 1px solid;
+	border-right: #BBB 1px solid;
+	border-top: #DDD 1px solid;
+}
+
+/* This is the line in the posting page which shows the rollover
+  help line. This is actually a text box, but if set to be the same
+  colour as the background no one will know ;)
+*/
+.helpline { background-color: #DEE3E7; border-style: none; }
+
+td.nexttopic, td.nexttopic a:link, td.nexttopic a:visited { font-size : 11px; color: black; }
+td.nexttopic a:hover { font-size : 11px; color: orange; }
+
+a.moreinfo:link, a.moreinfo:visited { color: gray; font-size : 11px; text-decoration: underline; }
+a.moreinfo:hover { color: orange; font-size : 11px; }

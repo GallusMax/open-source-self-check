@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>{ee56ecf0-6e7a-479a-8162-e123a991c7e7}</em:id>
+    <em:name>autoHideStatusbar</em:name>
+    <em:version>0.4.4</em:version>
+    <em:description>auto-hide Firefox status-bar</em:description>
+    <em:creator>Régis Caspar</em:creator>
+    <em:iconURL>chrome://autohidestatusbar/skin/icon.png</em:iconURL>
+    <em:optionsURL>chrome://autohidestatusbar/content/prefs.xul</em:optionsURL>
+    <em:homepageURL>http://caspar.regis.free.fr/ahs/</em:homepageURL>
+    <!-- Translators -->
+    <em:translator>MatrixIsAllOver by BabelZilla (Italian translation)</em:translator>
+    <em:translator>Victory (Japanese translation)</em:translator>
+    <em:translator>Urko (Spanish [Spain] translation)</em:translator>
+    <em:translator>ReinekeFux (German translation)</em:translator>
+    <em:translator>Fux (German translation)</em:translator>
+    <em:translator>ErkanKaplan (Turkish translation)</em:translator>
+    <em:translator>Fang5566 (Chinese [Simplified] translation)</em:translator>
+    <em:translator>SlovakSoft (Slovak translation)</em:translator>
+    <em:translator>Flactal (Korean translation)</em:translator>
+    <em:translator>Teboga (Portuguese [Brazilian] translation)</em:translator>
+    <em:translator>Winiah (Chinese [Traditional] translation)</em:translator>
+    <em:translator>Sergeys (Russian translation)</em:translator>
+    <em:translator>AlleyKat (Danish translation)</em:translator>
+    <em:translator>Ge0rge (Czech translation)</em:translator>
+    <em:translator>Pitdicker (Dutch translation)</em:translator>
+    <em:translator>L0stintranslation (Italian translation)</em:translator>
+    <em:translator>Team erweiterungen.de (German translation)</em:translator>
+    <em:translator>Seabow (Japanese translation)</em:translator>
+    <em:translator>Acushnir (Spanish [Argentina] translation)</em:translator>
+    <em:translator>Kustodian (Serbian [Yugoslavia] translation)</em:translator>
+    <em:translator>Siiie (Hebrew translation)</em:translator>
+    <em:translator>Mikkis (Finnish translation)</em:translator>
+    <em:translator>El_libre (Catalan translation)</em:translator>
+    <em:translator>Rfarinha (Portuguese [Portugal] translation)</em:translator>
+    <em:translator>Krcko (Croatian translation)</em:translator>
+    <em:translator>Momus (Polish Translation)</em:translator>
+    <em:translator>Sappa (Ukrainian translation)</em:translator>
+    <em:translator>DakSrbija (Serbian [Yugoslavia] translation)</em:translator>
+    <em:translator>Hunimini (Korean translation)</em:translator>
+    <em:translator>Stoyan (Bulgarian translation)</em:translator>
+    <!-- Contributors -->
+    <em:contributor>Robert Lehardy (OS X testing of the spinners)</em:contributor>
+    <em:contributor>Ben Goodger (Code base for "about" dialog)</em:contributor>
+    <em:contributor>Philip Chee (Seamonkey support)</em:contributor>
+    <em:contributor>ShareBird (CSS advices)</em:contributor>
+    <em:contributor>Leszek(teo)Życzkowski (Code contribution)</em:contributor>
+    <em:contributor>Ben Lerner (Code contribution)</em:contributor>
+
+    <!-- type=extension --> 
+    <em:type>2</em:type> 
+
+    <em:targetApplication>
+      <!-- Firefox -->
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+        <em:maxVersion>3.6a1pre</em:maxVersion>
+        <em:minVersion>2.0</em:minVersion>
+      </Description>
+    </em:targetApplication>
+
+  </Description>
+</RDF>

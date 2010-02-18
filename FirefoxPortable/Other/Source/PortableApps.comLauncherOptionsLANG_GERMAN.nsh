@@ -1,0 +1,8 @@
+LangString LauncherOptionsHeader ${LANG_GERMAN} "Setup Typ"
+LangString LauncherOptionsHeader2 ${LANG_GERMAN} "Bitte wählen Sie die Setup Optionen"
+LangString LauncherOptionsIntro ${LANG_GERMAN} "Firefox's Session Speicherung erlaubt es Ihnen Ihre Fenster, Tabs und den Text in Formularen während der Browser-Sessions zu speichern. Dies kann aber eventuell zu Performance-Problemen auf langsameren Laufwerken führen."
+LangString LauncherOptionsOption1 ${LANG_GERMAN} "Session Speicherung aktivieren (Standard)"
+LangString LauncherOptionsOption1Description ${LANG_GERMAN} "Empfohlen für Festplatten und schnelle Flash-Laufwerke"
+LangString LauncherOptionsOption2 ${LANG_GERMAN} "Session Speicherung deaktivieren"
+LangString LauncherOptionsOption2Description ${LANG_GERMAN} "Empfohlen für langsamere Flash-Laufwerke"
+LangString LauncherOptionsOutro ${LANG_GERMAN} "Sie können die Session-Speicherung auch jederzeit später aktivieren oder deaktivieren, indem Sie den Anweisungen folgen, die Sie auf der Mozilla Firefox, Portable Edition Support Seite finden."

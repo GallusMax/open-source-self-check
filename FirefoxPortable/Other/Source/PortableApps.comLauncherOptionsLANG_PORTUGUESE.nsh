@@ -1,0 +1,8 @@
+LangString LauncherOptionsHeader ${LANG_ENGLISH} "Setup Type"
+LangString LauncherOptionsHeader2 ${LANG_ENGLISH} "Choose setup options"
+LangString LauncherOptionsIntro ${LANG_ENGLISH} "Firefox's Session Store allows you to save your windows, tabs and text in forms between browsing sessions, but can cause performance issues on slower devices."
+LangString LauncherOptionsOption1 ${LANG_ENGLISH} "Enable Session Store (Default)"
+LangString LauncherOptionsOption1Description ${LANG_ENGLISH} "Recommended for hard drives and faster flash drives"
+LangString LauncherOptionsOption2 ${LANG_ENGLISH} "Disable Session Store"
+LangString LauncherOptionsOption2Description ${LANG_ENGLISH} "Recommended for slower flash drives"
+LangString LauncherOptionsOutro ${LANG_ENGLISH} "You can also enable or disable Session Store later by following the instructions on the Mozilla Firefox, Portable Edition Support Page."

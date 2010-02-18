@@ -1,0 +1,8 @@
+LangString LauncherOptionsHeader ${LANG_JAPANESE} "セットアップタイプ"
+LangString LauncherOptionsHeader2 ${LANG_JAPANESE} "セットアップオプションの選択"
+LangString LauncherOptionsIntro ${LANG_JAPANESE} "Firefoxのセッションストア機能はブラウジング中のウィンドウやタブ、フォーム中のテキストなどを保存可能にしますが、低速デバイスでは性能上の問題を起こす可能性があります。"
+LangString LauncherOptionsOption1 ${LANG_JAPANESE} "セッションストアを有効にする（標準）"
+LangString LauncherOptionsOption1Description ${LANG_JAPANESE} "ハードディスクや高速なフラッシュメモリデバイスにおすすめ"
+LangString LauncherOptionsOption2 ${LANG_JAPANESE} "セッションストアを無効にする"
+LangString LauncherOptionsOption2Description ${LANG_JAPANESE} "低速なフラッシュメモリデバイスにおすすめ"
+LangString LauncherOptionsOutro ${LANG_JAPANESE} "この設定は後から変更可能です。Mozilla Firefox Portable EditionのサポートWebページにその方法の記載があります。"

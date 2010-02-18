@@ -1,0 +1,31 @@
+locale autohidestatusbar pt-BR jar:chrome/autoHideStatusbar.jar!/locale/pt-BR/
+overlay chrome://browser/content/browser.xul chrome://autohidestatusbar/content/overlay.xul
+content  autohidestatusbar jar:chrome/autoHideStatusbar.jar!/content/
+locale autohidestatusbar ja-JP jar:chrome/autoHideStatusbar.jar!/locale/ja-JP/
+locale autohidestatusbar en-US jar:chrome/autoHideStatusbar.jar!/locale/en-US/
+locale autohidestatusbar da-DK jar:chrome/autoHideStatusbar.jar!/locale/da-DK/
+locale autohidestatusbar ca-AD jar:chrome/autoHideStatusbar.jar!/locale/ca-AD/
+locale autohidestatusbar fi-FI jar:chrome/autoHideStatusbar.jar!/locale/fi-FI/
+skin autohidestatusbar classic/1.0 jar:chrome/autoHideStatusbar.jar!/skin/
+locale autohidestatusbar es-AR jar:chrome/autoHideStatusbar.jar!/locale/es-AR/
+locale autohidestatusbar zh-CN jar:chrome/autoHideStatusbar.jar!/locale/zh-CN/
+locale autohidestatusbar pl-PL jar:chrome/autoHideStatusbar.jar!/locale/pl-PL/
+locale autohidestatusbar nl-NL jar:chrome/autoHideStatusbar.jar!/locale/nl-NL/
+overlay chrome://mozapps/content/extensions/about.xul chrome://autohidestatusbar/content/about_overlay.xul
+locale autohidestatusbar pt-PT jar:chrome/autoHideStatusbar.jar!/locale/pt-PT/
+locale autohidestatusbar bg-BG jar:chrome/autoHideStatusbar.jar!/locale/bg-BG/
+locale autohidestatusbar es-ES jar:chrome/autoHideStatusbar.jar!/locale/es-ES/
+locale autohidestatusbar sk-SK jar:chrome/autoHideStatusbar.jar!/locale/sk-SK/
+locale autohidestatusbar he-IL jar:chrome/autoHideStatusbar.jar!/locale/he-IL/
+locale autohidestatusbar uk-UA jar:chrome/autoHideStatusbar.jar!/locale/uk-UA/
+locale autohidestatusbar hr-HR jar:chrome/autoHideStatusbar.jar!/locale/hr-HR/
+locale autohidestatusbar fr-FR jar:chrome/autoHideStatusbar.jar!/locale/fr-FR/
+locale autohidestatusbar cs-CZ jar:chrome/autoHideStatusbar.jar!/locale/cs-CZ/
+locale autohidestatusbar tr-TR jar:chrome/autoHideStatusbar.jar!/locale/tr-TR/
+locale autohidestatusbar de-DE jar:chrome/autoHideStatusbar.jar!/locale/de-DE/
+locale autohidestatusbar ko-KR jar:chrome/autoHideStatusbar.jar!/locale/ko-KR/
+locale autohidestatusbar ru-RU jar:chrome/autoHideStatusbar.jar!/locale/ru-RU/
+overlay chrome://global/content/customizeToolbar.xul chrome://autohidestatusbar/content/overlay.xul
+locale autohidestatusbar zh-TW jar:chrome/autoHideStatusbar.jar!/locale/zh-TW/
+locale autohidestatusbar sr-YU jar:chrome/autoHideStatusbar.jar!/locale/sr-YU/
+locale autohidestatusbar it-IT jar:chrome/autoHideStatusbar.jar!/locale/it-IT/

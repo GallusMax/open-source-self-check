@@ -1,0 +1,30 @@
+content dotnetassistant jar:chrome/chrome_user.jar!/content/
+
+overlay chrome://mozapps/content/downloads/unknownContentType.xul chrome://dotnetassistant/content/contenttype.xul
+overlay chrome://browser/content/browser.xul chrome://dotnetassistant/content/useragent.xul
+
+locale dotnetassistant en-US jar:chrome/chrome_user.jar!/locale/en-US/
+locale dotnetassistant ar-SA jar:chrome/chrome_user.jar!/locale/ar-SA/
+locale dotnetassistant zh-CN jar:chrome/chrome_user.jar!/locale/zh-CN/
+locale dotnetassistant zh-TW jar:chrome/chrome_user.jar!/locale/zh-TW/
+locale dotnetassistant cs-CZ jar:chrome/chrome_user.jar!/locale/cs-CZ/
+locale dotnetassistant da-DK jar:chrome/chrome_user.jar!/locale/da-DK/
+locale dotnetassistant de-DE jar:chrome/chrome_user.jar!/locale/de-DE/
+locale dotnetassistant el-GR jar:chrome/chrome_user.jar!/locale/el-GR/
+locale dotnetassistant es-ES jar:chrome/chrome_user.jar!/locale/es-ES/
+locale dotnetassistant fi-FI jar:chrome/chrome_user.jar!/locale/fi-FI/
+locale dotnetassistant fr-FR jar:chrome/chrome_user.jar!/locale/fr-FR/
+locale dotnetassistant he-IL jar:chrome/chrome_user.jar!/locale/he-IL/
+locale dotnetassistant hu-HU jar:chrome/chrome_user.jar!/locale/hu-HU/
+locale dotnetassistant it-IT jar:chrome/chrome_user.jar!/locale/it-IT/
+locale dotnetassistant ja-JP jar:chrome/chrome_user.jar!/locale/ja-JP/
+locale dotnetassistant ko-KR jar:chrome/chrome_user.jar!/locale/ko-KR/
+locale dotnetassistant nl-NL jar:chrome/chrome_user.jar!/locale/nl-NL/
+locale dotnetassistant nb-NO jar:chrome/chrome_user.jar!/locale/nb-NO/
+locale dotnetassistant pl-PL jar:chrome/chrome_user.jar!/locale/pl-PL/
+locale dotnetassistant pt-BR jar:chrome/chrome_user.jar!/locale/pt-BR/
+locale dotnetassistant pt-PT jar:chrome/chrome_user.jar!/locale/pt-PT/
+locale dotnetassistant ru-RU jar:chrome/chrome_user.jar!/locale/ru-RU/
+locale dotnetassistant sv-SE jar:chrome/chrome_user.jar!/locale/sv-SE/
+locale dotnetassistant tr-TR jar:chrome/chrome_user.jar!/locale/tr-TR/
+

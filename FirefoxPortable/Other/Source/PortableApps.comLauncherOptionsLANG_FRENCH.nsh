@@ -1,0 +1,8 @@
+LangString LauncherOptionsHeader ${LANG_FRENCH} "Type d'installation"
+LangString LauncherOptionsHeader2 ${LANG_FRENCH} "Veuillez sélectionner les options d'installation"
+LangString LauncherOptionsIntro ${LANG_FRENCH} "Le Session Store de Firefox vous permet de sauvegarder vos fenêtres, vos onglets et votre texte entre sessions de navigation, mais cela pourrait causer des problèmes de performance pour les ordinateurs lents."
+LangString LauncherOptionsOption1 ${LANG_FRENCH} "Activer Session Store (Configuration par défaut)"
+LangString LauncherOptionsOption1Description ${LANG_FRENCH} "Recommandé pour les disque durs et les clés USB rapides"
+LangString LauncherOptionsOption2 ${LANG_FRENCH} "Désactiver Session Store"
+LangString LauncherOptionsOption2Description ${LANG_FRENCH} "Recommandé pour les clés USB lents"
+LangString LauncherOptionsOutro ${LANG_FRENCH} "Vous pouvez également activer ou desactiver Session Store plus tard en suivant les instructions sur la page Mozilla Firefox, Edition Portable."

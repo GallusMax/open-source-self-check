@@ -1,0 +1,8 @@
+LangString LauncherOptionsHeader ${LANG_SIMPCHINESE} "安装类型"
+LangString LauncherOptionsHeader2 ${LANG_SIMPCHINESE} "选择安装选项"
+LangString LauncherOptionsIntro ${LANG_SIMPCHINESE} "Firefox的进程存储功能允许你在浏览网页时保存你的窗口,标签和文字，但在较慢的设备上可能会产生性能问题."
+LangString LauncherOptionsOption1 ${LANG_SIMPCHINESE} "启用进程存储 (默认)"
+LangString LauncherOptionsOption1Description ${LANG_SIMPCHINESE} "建议用于硬盘驱动器和较快的闪存驱动器上"
+LangString LauncherOptionsOption2 ${LANG_SIMPCHINESE} "禁用进程存储"
+LangString LauncherOptionsOption2Description ${LANG_SIMPCHINESE} "建议用于较慢的闪存驱动器上"
+LangString LauncherOptionsOutro ${LANG_SIMPCHINESE} "你也可以按照Mozilla Firefox便携版支持主页上的说明，在以后启用或禁用进程存储功能."

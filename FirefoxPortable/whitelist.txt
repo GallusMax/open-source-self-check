@@ -1,0 +1,13 @@
+# Here is a sample URL whitelist file
+# This is a comment
+# STRICT - only an exact URL match will be let through, though it is tolerant of trailing slashes
+# brooklynmuseum.org = www.brooklynmuseum.org
+# ALL - all pages from a specified path will be let through
+#     - The * wildcard will do a domain match, but only with the ALL filter
+
+# Some sample entries:
+allowed[*kplcatalog.ankenyiowa.gov*, ALL];
+allowed[*ankenyiowa.gov*, ALL];
+allowed[*ci.ankeny.ia.us*, ALL];
+allowed[*kplcatalog.ci.ankeny.ia.us:81*, ALL];
+allowed[*kplcatalog.ankenyiowa.gov:81*, ALL];

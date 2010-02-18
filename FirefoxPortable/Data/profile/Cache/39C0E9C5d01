@@ -1,0 +1,430 @@
+﻿// JScript File
+
+ 
+google_ad_client = 'pub-8682474657542641'; // substitute your client_id (pub-#)
+google_ad_channel = '';
+google_ad_output = 'js';
+google_max_num_ads = '5';
+google_ad_type = 'text';
+google_feedback = 'on';
+
+google_adnum = 0;
+
+var isSmallScreen = false;
+ 
+
+function SetAdChannels()
+{
+ 
+}
+
+function SetAdChannel(divName)
+{
+
+    var div = document.getElementById(divName);
+    if (div == null) { return false; }
+
+    google_ad_channel = Trim(div.innerHTML);
+    div.innerHTML = '';
+    div.style.visibility = 'visible';
+
+    return true;
+}
+ 
+function google_ad_request_done(ads)
+{
+    var div;
+    var count = ads.length;
+    var nextAdIndex = 0;
+    var adsToRender = 5;
+    
+   try
+  {
+ 
+    if (count == 0) { return; }
+    if (ads[0].type == "flash") { return; }
+    if (ads[0].type == "image") { return; }
+    if (ads[0].type == "html") { return; }
+
+    if (screen.width <= 1024)  isSmallScreen = true;
+
+  //  isSmallScreen = true;
+    google_adnum = count;
+
+    if (count > adsToRender)
+    {
+         adsToRender = count; 
+    }
+
+ 
+ 
+    div = document.getElementById('DivAdRightNav');
+    if ((div != null) && (Trim(div.innerHTML) == '')) { div.innerHTML = GetRemoteAd300(ads, nextAdIndex, count, adsToRender); return; }
+
+    div = document.getElementById('DivAdArticle');
+    if ((div != null) && (Trim(div.innerHTML) == ''))  { div.innerHTML = GetRemoteAd300Alt(ads, nextAdIndex, count, adsToRender); return; }
+ 
+    div = document.getElementById('DivAdFAQ');
+    if ((div != null) && (Trim(div.innerHTML) == ''))  { div.innerHTML = GetRemoteAd300Alt(ads, nextAdIndex, count, adsToRender); return; }
+ 
+    div = document.getElementById('DivAdArticleFooter');
+    if ((div != null) && (Trim(div.innerHTML) == '')) {  div.innerHTML = GetRemoteAd300Alt(ads, nextAdIndex, count, adsToRender); return; }
+ 
+    div = document.getElementById('DivAdNewsGroup1');
+    if ((div != null) && (Trim(div.innerHTML) == ''))   {  div.innerHTML = GetRemoteAd300Alt(ads, nextAdIndex, count, adsToRender);return; }
+ 
+    div = document.getElementById('DivAdVendorPage');
+    if ((div != null) && (Trim(div.innerHTML) == ''))   { div.innerHTML = GetRemoteAd300Alt(ads, nextAdIndex, count, adsToRender); return; }
+ 
+    div = document.getElementById('DivAdVendorPageBottom');
+    if ((div != null) && (Trim(div.innerHTML) == ''))  {  div.innerHTML = GetRemoteAd300Alt(ads, nextAdIndex, count, adsToRender); return; }
+ 
+    div = document.getElementById('DivAdVendorPagingGrid');
+    if ((div != null) && (Trim(div.innerHTML) == ''))  {  div.innerHTML = GetRemoteAd300WithBorder(ads, nextAdIndex, count, adsToRender);return; }
+ 
+    div = document.getElementById('DivAdForumPost');
+    if ((div != null) && (Trim(div.innerHTML) == ''))   {  div.innerHTML = GetRemoteAdsForumPost(ads, nextAdIndex, count, adsToRender); return; }
+
+    div = document.getElementById('DivAdForumPost2');
+    if ((div != null) && (Trim(div.innerHTML) == ''))    {  div.innerHTML = GetRemoteAdsForumPost(ads, nextAdIndex, count, adsToRender);return; }
+ 
+    div = document.getElementById('DivAdFeedBackPost');
+    if ((div != null) && (Trim(div.innerHTML) == ''))  {  div.innerHTML = GetRemoteAd300(ads, nextAdIndex, count, 2); return; }
+  
+    div = document.getElementById('DivAdForumPostPagingGrid');
+    if ((div != null) && (Trim(div.innerHTML) == ''))  {  div.innerHTML = GetRemoteAd300WithBorder(ads, nextAdIndex, count, adsToRender); return; }
+
+    div = document.getElementById('DivAdForumPostPagingGrid2');
+    if ((div != null) && (Trim(div.innerHTML) == ''))  {  div.innerHTML = GetRemoteAd300WithBorder(ads, nextAdIndex, count, adsToRender); return; }
+ 
+    div = document.getElementById('DivAdArticlePagingGrid');
+    if ((div != null) && (Trim(div.innerHTML) == ''))  {  div.innerHTML = GetRemoteAd300WithBorder(ads, nextAdIndex, count, adsToRender); return; }
+ 
+    div = document.getElementById('DivAdFAQPagingGrid');
+    if ((div != null) && (Trim(div.innerHTML) == ''))   {  div.innerHTML = GetRemoteAd300WithBorder(ads, nextAdIndex, count, adsToRender); return; }
+
+    div = document.getElementById('DivAdFAQPagingGrid2');
+    if ((div != null) && (Trim(div.innerHTML) == ''))   {  div.innerHTML = GetRemoteAd300WithBorder(ads, nextAdIndex, count, adsToRender); return; }
+ 
+     div = document.getElementById('DivAdNewsGroupPagingGrid');
+     if ((div != null) && (Trim(div.innerHTML) == ''))   {  div.innerHTML = GetRemoteAd300WithBorder(ads, nextAdIndex, count, adsToRender); return; }
+
+     div = document.getElementById('DivAdNewsGroupPagingGrid2');
+     if ((div != null) && (Trim(div.innerHTML) == ''))   {  div.innerHTML = GetRemoteAd300WithBorder(ads, nextAdIndex, count, adsToRender); return; }
+ 
+    div = document.getElementById('DivAdSearch');
+    if ((div != null) && (Trim(div.innerHTML) == ''))  { div.innerHTML = GetRemoteAd300(ads, nextAdIndex, count, adsToRender);  return; }
+    
+     div = document.getElementById('DivAdNewsGroup2');
+    if ((div != null) && (Trim(div.innerHTML) == '')) { div.innerHTML = GetRemoteAd300Alt(ads, nextAdIndex, count, adsToRender); return; }
+
+  div = document.getElementById('DivAdTopHeader');
+
+  if ((div != null) && (Trim(div.innerHTML) == ''))
+  {
+      var s = new Array();
+      var ad = ads[0];
+     
+      s.push('<table cellpadding="0" cellspacing="0" border="0" width="100%">');
+      s.push('<tr>');
+      s.push('<td align="center" valign="bottom" width="45"><img src=\"/images/template/homepage02c.png\" border=\"0\"/></td>');
+      s.push('<td align="left" valign="middle">');
+      s.push('<table cellpadding="0" cellspacing="0" border="0" align="left" width="100%">');
+      s.push('<tr><td align="left" valign="bottom"><a href=\"' + google_info.feedback_url + '\" class="headeradlogo">Ads by Google</a></td></tr>');
+      s.push('<tr><td align="left" valign="middle" nowrap class="AdText">');
+      s.push('<a style="font-size: 14px" class="headeradtext1" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.line1 + '</a>&nbsp;&nbsp;&nbsp;&nbsp;');
+      s.push(ad.line2 + ' ' + ad.line3 + '&nbsp;&nbsp;&nbsp; ');
+      s.push('<a style="font-size: 12px" class="AdBottomUrl" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + CleanUrlPath(ad.visible_url) + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+      s.push('</td>');
+      s.push('</tr>');    
+      s.push('</table>');
+      s.push('</td>');
+      s.push('</tr></table>');
+      div.innerHTML = s.join(' ');
+      return;
+
+  }
+     
+
+    
+  }
+  catch (e) {   }
+  return;
+}
+
+function GetRemoteAdsForumPost(ads, nextAdIndex, count, adsToRender)
+{
+   var s = new Array();
+   s.push('<div style="border-top:solid 1px #CFDADD;border-left:solid 1px #CFDADD;border-bottom:solid 1px #CFDADD;border-right:solid 1px #CFDADD; padding: 0px 0px 0px 0px; height:100%;overflow:auto">');
+   s.push('<table border="0" cellpadding="0" cellspacing="0" width="100%">');
+   s.push('<tr>');
+   s.push('<td align="left" width="100%">');
+   s.push(GetRemoteAd300Alt(ads, nextAdIndex, count, adsToRender));
+   s.push('</td></tr></table>');
+   s.push('</div>');
+   return s.join(' ');
+}
+ 
+
+function CleanUrlPath(url)
+{
+   var e=url.indexOf("/");
+   if (e<=0)
+   {
+	   return url.replace('www.','');
+   }
+   url = url.substring(0,e);
+   return url.replace('www.','');
+}
+
+function GetRemoteAdDivTagWithBorder()
+{
+    return '<div style="border-top:solid 1px #CFDADD; padding: 10px 5px 10px 5px; height:100%">';
+}
+
+function GetRemoteAdDivTag()
+{
+    return '<div style="border:solid 0px #CFDADD; padding: 1px 1px 1px 1px;">';
+}
+
+function GetRemoteAdLogo()
+{
+  return '<a href=\"' + google_info.feedback_url + '\" class="AdLogoUrl">' + 'Ads by Google' + '</a>';
+}
+
+function GetStatusEvents(url)
+{
+  return ' onmouseout="window.status=\'\'" onmouseover="window.status=\'go to ' + url + '\';return true"';
+}
+ 
+
+
+
+
+function GetRemoteAd300AltRow(ad,index)
+{
+    var s = new Array();
+    var css = 'AdTopUrlAlt';
+
+    if (index == 0)
+    {
+ //      css = 'AdTopUrlAltBright';
+    }
+ 
+        s.push('<tr>');
+        s.push('<td valign="middle" nowrap>&nbsp;<a style="font-size: 13px" class="' + css + '" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.line1 + '</a>&nbsp;&nbsp;</td>');
+        s.push('<td valign="middle" nowrap style="font-size: 13px" class="AdText">' + ad.line2 + ' ' + ad.line3 + '&nbsp;&nbsp;</td>');
+        s.push('<td align="left" valign="middle" nowrap><a style="font-size: 13px" class="AdBottomUrl" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.visible_url + '</a></td>');
+        s.push('</tr>');
+ 
+  return s.join(' ');
+}
+
+function GetRemoteAd300AltRowSmall(ad)
+{
+    var s = new Array();
+
+    s.push('<tr>');
+    s.push('<td valign="middle" nowrap>&nbsp;<a style="font-size: 11px" class="AdTopUrlAlt" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.line1 + '</a>&nbsp;&nbsp;</td>');
+    s.push('<td valign="middle" nowrap style="font-size: 10px" class="AdText">' + ad.line2 + ' ' + ad.line3 + '&nbsp;&nbsp;</td>');
+    s.push('<td align="left" valign="middle" nowrap><a style="font-size: 9px" class="AdBottomUrl" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.visible_url + '</a></td>');
+    s.push('</tr>');
+ 
+    return s.join(' ');
+}
+
+function GetRemoteAd300Row(ad)
+{
+  var s = new Array();
+  s.push('<tr><td style="font-size: 13px"><a class="AdTopUrlAlt" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.line1 + '</a></td></tr>');
+  s.push('<tr><td style="font-size: 13px" valign="middle" class="AdText">' + ad.line2 + ' ' + ad.line3 + '</td></tr>');
+  s.push('<tr><td style="font-size: 12px" align="left" valign="middle"><a class="AdBottomUrl" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.visible_url + '</a></td></tr>');
+  return s.join(' ');
+}
+
+function GetRemoteAd300x250(ads,start,end,max)
+{
+  var s = new Array();
+  var x = 0;
+
+  s.push('<div style="border-top: dashed 0px #159BB6;border-right: dashed 0px #159BB6;border-bottom: dashed 0px #159BB6;border-left: dashed 0px #159BB6; padding: 5px 5px 5px 5px; height:100%">');
+  s.push('<table class="AdTable" cellpadding="1" border="0" cellspacing="0">');
+  s.push('<tr><td align="left">' + GetRemoteAdLogo() + '</td></tr>');
+  
+  for(y=start;y<end;y++)
+  {
+    if (x<max)
+    {
+      s.push(GetRemoteAd300Row(ads[y]));
+      s.push('<tr><td><br/></td></tr>');
+      x++;
+    }
+  }
+
+  s.push('</table>');
+  s.push('</div><br/><br/>');
+  return s.join(' ');
+}
+
+function GetRemoteAdLeftNav(ads,start,end,max)
+{
+  var s = new Array();
+  var x = 0;
+
+  var css = 'AdTopUrlAltBright';
+
+
+
+  s.push('<div style="border-top: dashed 0px #159BB6;border-right: dashed 0px #159BB6;border-bottom: dashed 0px #159BB6;border-left: dashed 0px #159BB6; padding: 5px 5px 5px 5px; height:100%">');
+  s.push('<table class="AdTable" cellpadding="1" border="0" cellspacing="0">');
+  s.push('<tr><td align="left">' + GetRemoteAdLogo() + '</td></tr>');
+  
+  for(y=start;y<end;y++)
+  {
+    if (x<max)
+    {
+    if (y >0)
+    {
+       css = 'AdTopUrlAlt';
+    }
+       var ad = ads[y];
+       s.push('<tr><td style="font-size: 13px"><a class="' + css + '" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.line1 + '</a></td></tr>');
+       s.push('<tr><td style="font-size: 11px" valign="middle" class="AdText">' + ad.line2 + ' ' + ad.line3 + '</td></tr>');
+       s.push('<tr><td style="font-size: 11px" align="left" valign="middle"><a class="AdBottomUrl" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.visible_url + '</a></td></tr>');
+
+      s.push('<tr><td><br/></td></tr>');
+      x++;
+    }
+  }
+
+  s.push('</table>');
+  s.push('</div>');
+  return s.join(' ');
+}
+ 
+
+function GetRemoteAd300(ads,start,end,max)
+{
+  var s = new Array();
+  var x = 0;
+
+  s.push('<div style="border-color:solid 0px #CFDADD; padding: 10px 5px 10px 5px; height:100%">');
+  s.push('<table class="AdTable" cellpadding="0" border="0" cellspacing="0" width="100%">');
+  s.push('<tr><td align="left" colspan="3">' + GetRemoteAdLogo() + '</td></tr>');
+  
+  for(y=start;y<end;y++)
+  {
+    if (x<max)
+    {
+      s.push(GetRemoteAd300Row(ads[y]));
+      s.push('<tr><td colspan="3"><br/></td></tr>');
+      x++;
+    }
+  }
+
+  s.push('</table>');
+  s.push('</div>');
+  return s.join(' ');
+}
+
+function GetRemoteAd300Alt(ads,start,end,max)
+{
+  var s = new Array();
+  var x = 0;
+
+  s.push(GetRemoteAdDivTag());
+  s.push('<table class="AdTableBackground" cellpadding="1" border="0" cellspacing="0" width="100%">');
+ 
+  s.push('<tr><td align="left" colspan="3">' + GetRemoteAdLogo() + '</td></tr>');
+  
+  for(y=start;y<end;y++)
+  {
+      if (x < max) 
+     {
+        
+        if (!isSmallScreen)
+        {
+            s.push(GetRemoteAd300AltRow(ads[y],y));
+         }
+        else
+       {
+            s.push(GetRemoteAd300AltRowSmall(ads[y]));
+        }
+         
+      x++;
+    }
+  }
+ // s.push('<tr><td colspan="3"><br/></td></tr>');
+  s.push('</table><br/>');
+  s.push('</div>');
+  return s.join(' ');
+}
+
+function GetRemoteAd300WithBorder(ads, start, end, max)
+{
+    var s = new Array();
+    var x = 0;
+    var ad; 
+    var css = 'AdTopUrlAlt';
+
+    if (start >=end)
+    {
+		return '';
+    }
+    s.push(GetRemoteAdDivTag());
+    s.push('<table class="AdTableBackground" cellpadding="1" border="0" cellspacing="1" width="100%">');
+    s.push('<tr><td align="left" colspan="3">' + GetRemoteAdLogo() + '</td></tr>');
+
+    for (y = start; y < end; y++)
+    {
+        if (x < max)
+        {
+            ad = ads[y];
+            if (!isSmallScreen)
+            {
+                s.push('<tr>');
+                s.push('<td valign="middle" nowrap>&nbsp;<a style="font-size: 12px" class="' + css + '" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.line1 + '</a>&nbsp;&nbsp;</td>');
+                s.push('<td valign="middle" nowrap style="font-size: 12px" class="AdText">' + ad.line2 + ' ' + ad.line3 + '&nbsp;&nbsp;</td>');
+                s.push('<td align="left" valign="middle" nowrap><a style="font-size: 12px" class="AdBottomUrl" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.visible_url + '</a></td>');
+                s.push('</tr>');
+            }
+            else
+            {
+                s.push('<tr>');
+                s.push('<td valign="middle" nowrap>&nbsp;<a style="font-size: 9px" class="' + css + '" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.line1 + '</a>&nbsp;&nbsp;</td>');
+                s.push('<td valign="middle" nowrap style="font-size: 9px" class="AdText">' + ad.line2 + ' ' + ad.line3 + '&nbsp;&nbsp;</td>');
+                s.push('<td align="left" valign="middle" nowrap><a style="font-size: 9px" class="AdBottomUrl" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.visible_url + '</a></td>');
+                s.push('</tr>');
+            }
+            if (css == 'AdTopUrlAltBright')
+            {
+                  css = 'AdTopUrlAlt';
+            }
+            x++;
+        }
+    }
+    s.push('</table>');
+    s.push('</div>');
+    return s.join(' ');
+}
+
+ 
+ 
+function GetRemoteAdPagingGridItem(ads,index)
+{
+  var s = new Array();
+ 
+  if (index >= ads.length) { return ''; }
+  var ad = ads[index];
+     
+ s.push('<div style="padding: 5px 2px 5px 5px; height:100%;">');
+ s.push('<table class="AdTable" cellpadding="1" cellspacing="0" border="0" align="left" width="100%">');
+ s.push('<tr><td align="left" valign="bottom"><a href=\"' + google_info.feedback_url + '\" class="headeradlogo">Ads by Google</a></td></tr>');
+ s.push('<tr><td style="font-size: 12px"><a class="AdTopUrl" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.line1 + '</a></td></tr>');
+ s.push('<tr><td  align="left" valign="middle" style="font-size: 12px" class="AdText">' + ad.line2 + ' ' + ad.line3 + '</td></tr>');
+ s.push('<tr><td style="font-size: 10px" align="left" valign="middle"><a class="AdBottomUrl" href="' + ad.url + '"' + GetStatusEvents(ad.visible_url) + '>' + ad.visible_url + '</a></td></tr>');
+ s.push('</table>');
+ s.push('</div>');
+  return s.join(' ');
+}
+ 

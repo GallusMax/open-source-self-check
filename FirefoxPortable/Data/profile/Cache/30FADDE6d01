@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8" ?><addons>
+<addon>
+        <name>WOT - Safe Browsing Tool</name>
+    <type id='1'>Extension</type>
+    <guid>{a0d7ccb3-214d-498b-b4aa-0e8fda9a7bf7}</guid>
+    <version>20091028</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>WOT Services</author>
+    </authors>      
+    <summary>Web of Trust warns you about risky sites that cheat customers, deliver malware or send spam. Millions of members of the WOT community rate sites based on their experience, giving you an extra layer of protection when browsing or searching the Web.</summary>
+    <description>Web of Trust is one of Mozilla’s most popular add-ons. Our community-based safe surfing tool uses a traffic-light style rating system to help you stay safe when you search, browse and shop online. The WOT add-on provides reputation ratings to search results when you use Google, Yahoo!, Bing, Wikipedia  and other popular sites, helping you  protect your computer and personal information. Your online email account – Google Mail, Yahoo! Mail and Hotmail is also protected.Website ratings are continuously updated by millions of members of the WOT community and from trusted sources, like Panda Security and PhishTank.  WOT is one of Mozilla’s most popular add-ons because it really works. WOT has been recommended by CNET, PC World, Kim Komando, Tech Republic, PC Welt and many other respected authorities. Download WOT for your browser today and surf safer! Thank you!</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/3456/1265278270</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>1.5</min_version>
+            <max_version>3.7a1pre</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+             <application>
+            <name>SeaMonkey</name>
+            <application_id>59</application_id>
+            <min_version>2.0b2</min_version>
+            <max_version>2.1a1pre</max_version>
+            <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/20473/1210145427</thumbnail>
+    <rating>5</rating>
+    <learnmore>https://addons.mozilla.org/addon/3456?src=api</learnmore>
+             <install hash='sha256:c8caff4f09a0c71d7814e9a4aa85a7308ae1d31a079c0530f3992821b371cb4f'
+              os='ALL'>https://addons.mozilla.org/downloads/file/68023/wot-20091028-fx+sm.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>Stylish</name>
+    <type id='1'>Extension</type>
+    <guid>{46551EC9-40F0-4e47-8E18-8E5CF550CFB8}</guid>
+    <version>1.0.7</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>Jason Barnabe</author>
+    </authors>      
+    <summary>Restyle the web with Stylish, a user styles manager. Stylish lets you easily install themes and skins for Google, Facebook, YouTube, Orkut, and many, many other sites. You can even customize Firefox and other programs themselves.</summary>
+    <description>User styles are themes for web sites. User styles empower your browsing experience by letting you customize web sites. Take out irrelevant content, change colors, or completely redesign the entire site. You can even use user styles as themes on the interface of Firefox, Thunderbird, and SeaMonkey themselves.Stylish lets you easily manage user styles. Add, delete, enable, disable, and organize with a few clicks of a mouse, no code to edit, no obscure configuration to find. Stylish&#39;s companion website, userstyles.org, hosts tens of thousands of user styles made by other Stylish users that you can try.For you technical types out there, think of it this way: Stylish and userstyles.org are to CSS as Greasemonkey and userscripts.org are to JavaScript.</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/2108/1256777214</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>3.0</min_version>
+            <max_version>3.7a1pre</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+             <application>
+            <name>Thunderbird</name>
+            <application_id>18</application_id>
+            <min_version>3.0a1</min_version>
+            <max_version>3.0.*</max_version>
+            <appID>{3550f703-e582-4d05-9a08-453d09bdfdc6}</appID>
+             </application>
+             <application>
+            <name>SeaMonkey</name>
+            <application_id>59</application_id>
+            <min_version>2.0a1</min_version>
+            <max_version>2.0.*</max_version>
+            <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/38366/1256775951</thumbnail>
+    <rating>5</rating>
+    <learnmore>https://addons.mozilla.org/addon/2108?src=api</learnmore>
+             <install hash='sha256:18dcbf5e13f4b4d0db03b4b033dc181b4f2daef116ed68864c831ab9fae96ae2'
+              os='ALL'>https://addons.mozilla.org/downloads/file/68059/stylish-1.0.7-fx+tb+sm.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>Read It Later</name>
+    <type id='1'>Extension</type>
+    <guid>isreaditlater@ideashower.com</guid>
+    <version>2.0.3</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>Idea Shower</author>
+    </authors>      
+    <summary>Read It Later allows you to save pages of interest to read later. It eliminates cluttering of bookmarks with sites that are merely of a one-time interest.</summary>
+    <description>• Save pages to a reading list to read when you have time• Offline Reading Mode - Read the items you’ve saved for later on the plane, train, or anywhere• Access Anywhere - Manage your list in any browser, on any device.  Your list is saved on &lt;a href=&quot;http://readitlaterlist.com&quot;&gt;readitlaterlist.com&lt;/a&gt; for web access.• RSS Feeds - View your list from anywhere with automatic rss feeds of your items• Sync Between Computers - Sync your reading list with any number of computers, work or home• After reading, bookmark pages on your preferred bookmarking service• Click to Save Mode - Quickly batch a reading list just by clicking on interesting linksFor more details and a demo video, take a look at Read It Later&#39;s homepage listed below.&lt;b&gt;------------&lt;/b&gt;&lt;b&gt;If you have a question or a problem:&lt;/b&gt; Please post feedback at the &lt;a href=&quot;http://readitlaterlist.com/support/&quot;&gt;Support Site&lt;/a&gt;.  If you leave feedback in a review below, I cannot respond to you there!  Thanks!</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/7661/1261708205</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>3.5</min_version>
+            <max_version>3.7a1pre</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/22117/1223306488</thumbnail>
+    <rating>4</rating>
+    <learnmore>https://addons.mozilla.org/addon/7661?src=api</learnmore>
+             <install hash='sha256:a0de832991d6cd499373e6181e62e18989213a22b31e2febe01cd641ba6193cd'
+              os='ALL'>https://addons.mozilla.org/downloads/file/73703/read_it_later-2.0.3-fx.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>ImTranslator</name>
+    <type id='1'>Extension</type>
+    <guid>{9AA46F4F-4DC7-4c06-97AF-5035170634FE}</guid>
+    <version>3.3.3</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>Smart Link Corporation</author>
+    </authors>      
+    <summary>ImTranslator includes Online Translator in 1640 language combinations for Albanian, Arabic, Bulgarian, Catalan, Chinese (Simp.), Chinese (trad.), Croatian, Czech, Danish, Dutch, English, Estonian, Filipino, Finnish, French, Galician, German, Greek, Hebrew, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Latvian, Lithuanian, Maltese, Norwegian, Polish, Portuguese, Romanian, Russian, Serbian, Slovak, Slovenian, Spanish, Swedish, Thai, Turkish, Ukrainian, Vietnamese; Spell Checker for English, French, German, Italian, Portuguese, Russian, Spanish, and Ukrainian; TTS (Text to Speech) for English, Chinese, French, German, Italian, Japanese, Korean, Brazilian Portuguese, Russian and Spanish; Multilingual Dictionary for English, French, German, Italian, Portuguese, Russian, Spanish; Virtual Keyboard for more than 40 languages; Russian Decoder; Interface localization in 11 languages; other multilingual tools.</summary>
+    <description>What is ImTranslator?Online Translator performs real-time translation for Albanian, Arabic, Bulgarian, Catalan, Chinese (Simp.), Chinese (trad.), Croatian, Czech, Danish, Dutch, English, Estonian, Filipino, Finnish, French, Galician, German, Greek, Hebrew, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Latvian, Lithuanian, Maltese, Norwegian, Polish, Portuguese, Romanian, Russian, Serbian, Slovak, Slovenian, Spanish, Swedish, Thai, Turkish, Ukrainian, Vietnamese languages and their combinations.TTS Voice presented by animated speaking characters will read the text in the most realistic, human-sounding way in a variety of languages: English U.S., Chinese, French, German, Italian, Japanese, Korean, Brazilian Portuguese, Russian and European Spanish.Spell Checker delivers full-featured high-quality spell-checking tool for accurate input of information in English, French, German, Italian, Portuguese, Russian, Spanish, and Ukrainian languages.Multilingual Dictionary provides the translation of single words, common phrases and idiomatic expressions for English, French, German, Italian, Portuguese, Russian, Spanish languages and their combinations.Virtual Keyboard supports multilingual text input in Arabic, Bulgarian, Czech, Danish, Dutch, Estonian, Farsi, Finish, French, German, Greek, Hebrew, Hindi, Hungarian, Icelandic, Irish, Italian, Latvian, Lithuanian, Norwegian, Portuguese, Polish, Romanian, Russian, Slovak, Slovenian, Spanish, Swedish, Turkish, Ukrainian, and Urdu languages.Russian Decoder identifies the encoding of a Russian text, and converts it, if needed, into the Cyrillic (Windows) standard encoding. Decoder can also be used to convert the Russian text into Latin characters (transliterate).The interface of ImTranslator is localized for English, Chinese, Dutch, French, German, Italian, Japanese, Korean, Portuguese, Russian and Spanish languages. (coming soon: Czech, Danish, Finnish, Greek, Hebrew, Hindi, Latvian, Lithuanian, Norwegian, Polish, Romanian, Swedish, Turkish, Ukrainian)</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/2257/1262842194</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>1.0</min_version>
+            <max_version>3.6.*</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/9789/1238427956</thumbnail>
+    <rating>4</rating>
+    <learnmore>https://addons.mozilla.org/addon/2257?src=api</learnmore>
+             <install hash='sha256:a87afa27baedd33a2e0d8ecb2330daed2717191bdcf5c785a7f645846fd1c34f'
+              os='ALL'>https://addons.mozilla.org/downloads/file/74814/imtranslator-3.3.3-fx.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>FoxyProxy Standard</name>
+    <type id='1'>Extension</type>
+    <guid>foxyproxy@eric.h.jung</guid>
+    <version>2.18.1</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>Eric H. Jung</author>
+    </authors>      
+    <summary>FoxyProxy is an advanced proxy management tool that completely replaces Firefox&#39;s limited proxying capabilities. It offers more features than SwitchProxy, ProxyButton, QuickProxy, xyzproxy, ProxyTex, TorButton, etc.</summary>
+    <description>FoxyProxy is a Firefox extension which automatically switches an internet connection across one or more proxy servers based on URL patterns. Put simply, FoxyProxy automates the manual process of editing Firefox&#39;s Connection Settings dialog. Proxy server switching occurs based on the loading URL and the switching rules you define.Animated icons show you when a proxy is in use. Advanced logging shows you which proxies were used and when. QuickAdd makes it a snap to create new URL patterns on-the-fly. FoxyProxy is fully compatible with Portable Firefox, has better support for PAC files than Firefox itself, and is translated into more than 25 languages.Home: http://foxyproxy.mozdev.orgForums: http://foxyproxy.mozdev.org/drupal</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/2464/1264696924</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>3.0a1</min_version>
+            <max_version>3.7a1pre</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+             <application>
+            <name>Thunderbird</name>
+            <application_id>18</application_id>
+            <min_version>3.0a1pre</min_version>
+            <max_version>3.2a1pre</max_version>
+            <appID>{3550f703-e582-4d05-9a08-453d09bdfdc6}</appID>
+             </application>
+             <application>
+            <name>SeaMonkey</name>
+            <application_id>59</application_id>
+            <min_version>2.0a</min_version>
+            <max_version>2.1a1pre</max_version>
+            <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/5857/</thumbnail>
+    <rating>5</rating>
+    <learnmore>https://addons.mozilla.org/addon/2464?src=api</learnmore>
+             <install hash='sha256:eb84072a7b63ddb6c8d6e262b5f1e7d0dbcfbc2905f06a0ee30b48e258352969'
+              os='ALL'>https://addons.mozilla.org/downloads/file/77797/foxyproxy_standard-2.18.1-fx+sm+tb.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>Cooliris</name>
+    <type id='1'>Extension</type>
+    <guid>piclens@cooliris.com</guid>
+    <version>1.11.6</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>The Cooliris Team</author>
+    </authors>      
+    <summary>The Cooliris 3D Wall -- Simply the fastest and most stunning way to browse photos and videos from the Web or your desktop. Effortlessly scroll an infinite &quot;3D Wall&quot; of your content from Facebook, Google Images, YouTube, Flickr, and hundreds more.</summary>
+    <description>Meet Cooliris, the 3D Wall that speeds up search on Google Images, YouTube, Flickr, and more. Enjoy the richest way to view photos from Facebook, Picasa, and even your own computer. On our infinite 3D Wall, you can effortlessly scroll though thousands of images and videos in seconds without having to click from page to page. Our Channels feature even lets you surf the latest news, TV episodes, and more. For details see: http://www.cooliris.com--------------------------------------------------------------------------------------------------------------------------Mac OS X 10.4 and Mac PowerPC are not supported on Cooliris v1.11.1+ To use Cooliris version 1.10 or earlier, please visit https://addons.mozilla.org/en-US/firefox/addons/versions/5579--------------------------------------------------------------------------------------------------------------------------HOW TO USE COOLIRIS Launch Cooliris any from your browser toolbar, or visit one of many hundreds of supported sites and click the Cooliris icon that appears as you mouseover images and videos. For example, to enjoy Cooliris on Google Images:1. Go to http://images.google.com2. Search as you normally do, e.g. &quot;mountains&quot; 3. Mouseover any thumbnail image from your search results4. Click the Cooliris icon that appears (or just click the Cooliris toolbar icon).Cooliris also works on Facebook, Flickr, YouTube, MySpace, Picasa Web Albums, and many more. See http://www.cooliris.com/product/supported. You can also search major providers within Cooliris with the built-in search box in the top right corner of the Cooliris interface.To lay back to watch TV episodes or the latest news in our Channels feature, just click the Cooliris icon on your browser toolbar and click the Channels button.TIPS &amp; TRICKS- For the best experience, use Firefox 3.5.2+ - Open items from the Wall to a new tab by CTRL-clicking &quot;go to webpage&quot; icon- Hide/show the Cooliris menu bars by pressing F8 (for PC) or Alt+Esc (for Mac)- Share your 3D Wall view by cutting and pasting its URL- Save your favorite 3D Wall view to your browser&#39;s bookmarks or set it as your homepage  SPREAD THE LOVE!Tell a friend or post about Cooliris at http://www.cooliris.com/inviteOr, if you&#39;re interested in what&#39;s coming next, join our beta community at http://cooliris.com/beta/signup------------------------By downloading Cooliris from Firefox Add-ons, you agree to the terms of our EULA and Privacy Policy. To see our current EULA and Privacy Policy, please visit http://www.cooliris.com/legal/.</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/5579/1262830598</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>3.0</min_version>
+            <max_version>3.6.*</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>Darwin</os><os>WINNT</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/21903/1229074254</thumbnail>
+    <rating>4</rating>
+    <learnmore>https://addons.mozilla.org/addon/5579?src=api</learnmore>
+             <install hash='sha256:4c452bdd6cbcb3bfe5dab263a0d0523acaac8fc1ee0dcab964f7885086b9705f'
+              os='Darwin'>https://addons.mozilla.org/downloads/file/74797/cooliris-1.11.6-fx-macosx.xpi?src=api</install>          
+                      <install hash='sha256:9191425632dc9da37cf2fb9783d00b6955de4b377b568c99c8ef309697f08469'
+              os='WINNT'>https://addons.mozilla.org/downloads/file/74800/cooliris-1.11.6-fx-win.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>ScrapBook</name>
+    <type id='1'>Extension</type>
+    <guid>{53A03D43-5363-4669-8190-99061B2DEBA5}</guid>
+    <version>1.3.6</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>Gomita</author>
+    </authors>      
+    <summary>Helps you to save Web pages and organize the collection.</summary>
+    <description>ScrapBook is a Firefox extension, which helps you to save Web pages and easily manage collections. Key features are lightness, speed, accuracy and multi-language support. Major features are:* Save Web page* Save snippet of Web page* Save Web site* Organize the collection in the same way as Bookmarks* Full text search and quick filtering search of the collection* Editing of the collected Web page* Text/HTML edit feature resembling Opera&#39;s Notes</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/427/1260454936</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>3.0</min_version>
+            <max_version>3.6.*</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>Darwin</os><os>WINNT</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/17387/1195666192</thumbnail>
+    <rating>5</rating>
+    <learnmore>https://addons.mozilla.org/addon/427?src=api</learnmore>
+             <install hash='sha256:811d9cd3a8c4cad81d6371a78afc0a0e13b1a92ba3c914bdf7f365634f7372e9'
+              os='ALL'>https://addons.mozilla.org/downloads/file/72331/scrapbook-1.3.6-fx.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>FireFTP</name>
+    <type id='1'>Extension</type>
+    <guid>{a7c6cf7f-112c-4500-a7ea-39801a327e5f}</guid>
+    <version>1.0.7</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>Mime Cuvalo</author>
+    </authors>      
+    <summary>FireFTP is a free, secure, cross-platform FTP client for Mozilla Firefox which provides easy and intuitive access to FTP servers.</summary>
+    <description>Along with transferring your files quickly and efficiently, FireFTP also includes more advanced features such as: directory comparison, syncing directories while navigating, SFTP, SSL encryption, search/filtering, integrity checks, remote editing, drag &amp; drop, file hashing, and much more!</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/684/1260119936</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>3.5</min_version>
+            <max_version>3.6.*</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>Darwin</os><os>WINNT</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/15960/1187953401</thumbnail>
+    <rating>5</rating>
+    <learnmore>https://addons.mozilla.org/addon/684?src=api</learnmore>
+             <install hash='sha256:1d5260fbac103f380528895f4300e282be0c2f8b7fcf3c54710f67e82a4865dd'
+              os='ALL'>https://addons.mozilla.org/downloads/file/71956/fireftp-1.0.7-fx.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>Xmarks Bookmark and Password Sync</name>
+    <type id='1'>Extension</type>
+    <guid>foxmarks@kei.com</guid>
+    <version>3.4.10</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>Xmarks Inc.</author>
+    </authors>      
+    <summary>Xmarks is the #1 bookmarking add-on. Install it on all your computers to keep your bookmarks and (optionally) passwords backed up and synchronized. Xmarks also helps you uncover the best of the web based on what millions of people are bookmarking.</summary>
+    <description>Xmarks is the #1 bookmarking add-on. It takes only a moment to get up and running with Xmarks. After you install the add-on, click on the notification to set up Xmarks and start backing up and synchronizing your bookmarks. Install Xmarks on each computer you use, and it seamlessly integrates with your web browser and keeps your bookmarks safely backed up and in sync.Xmarks will sync across browsers too. Today we support Firefox, Internet Explorer, and Safari (Mac OS). Please visit our website at xmarks.com for details.Secure Password Sync is an optional Xmarks feature. If you&#39;d like to learn more about how it works, visit: http://www.xmarks.com/about/features/secure_password_syncXmarks provides seamless bookmark synchronization between your computers and browsers via our synchronization server.  Your bookmark (and optionally password) data is securely stored and backed up on our servers.Our discovery services help you assess the quality of websites you visit, as well as find similar sites with a single click. For example, when you search on Google or other search engines, we compare your search results against data on our servers in order to recommend sites that have been frequently bookmarked.  Our discovery services are powered by analyzing anonymously and in aggregate the millions of bookmarks on our servers--in this way we are leveraging the wisdom of crowds to powerfully enhance your searching and browsing experience.In order to continuously improve the utility of Xmarks, we may collect certain data such as which features are enabled or disabled, and how our features are being used.  Details may be found in our privacy policy:  http://www.xmarks.com/about/privacyTo learn about many more features of Xmarks, visit our feature pages: http://www.xmarks.com/about/featuresGet the latest news about Xmarks at our blog: http://blog.xmarks.com/Xmarks was formerly known as Foxmarks.</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/2410/1264713479</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>3.0</min_version>
+            <max_version>3.6.*</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>Darwin</os><os>WINNT</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/19473/1239408898</thumbnail>
+    <rating>4</rating>
+    <learnmore>https://addons.mozilla.org/addon/2410?src=api</learnmore>
+             <install hash='sha256:875a7b7e15e88a8e8b625060e2618ccfd13c4dbfec177e25eeed71eeaf099883'
+              os='ALL'>https://addons.mozilla.org/downloads/file/77834/xmarks-3.4.10-fx.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>Google Shortcuts - All Google Services at a glance</name>
+    <type id='1'>Extension</type>
+    <guid>{5C46D283-ABDE-4dce-B83C-08881401921C}</guid>
+    <version>1.8.5</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>Soeren Rinne</author>
+    </authors>      
+    <summary>Display all of your Google Services as buttons just next to your addressbar or anywhere you like it.I am currently looking for people who want to write localizations. If you are interested, please visit http://www.babelzilla.org</summary>
+    <description>Display all of your Google Services as buttons just next to your addressbar or anywhere you like it!You can go to settings to change which services should be available for you as buttons.Left click on a button opens the service in the current tab, MIDDLE CLICK opens a new tab.If you like you can change the main appearance from a Toolbar with all buttons you&#39;ve selected to a single Dropdown Menu.If you don&#39;t see any buttons:Add the buttons on menu, view, toolbars, customize! Or install version &gt;1.7.2 which adds Google Shortcuts automatically.The extension is currently available in en-US, de-DE, fr-FR, ca-ES, es-ES, uk-UA, it-IT, tr-TR, hi-IN, pl-PL, ru-RU, zh-CN.</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/3576/1263046425</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>2.0a1</min_version>
+            <max_version>3.6.*</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>Darwin</os><os>WINNT</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/38631/1257364588</thumbnail>
+    <rating>5</rating>
+    <learnmore>https://addons.mozilla.org/addon/3576?src=api</learnmore>
+             <install hash='sha256:c6281a13fc6cf9fdefdf2d40eb4b80dd525dc0fa45f8f9e0b8bb0af51a83e60b'
+              os='ALL'>https://addons.mozilla.org/downloads/file/75084/google_shortcuts-1.8.5-fx.xpi?src=api</install>          
+         </addon>
+</addons>
+ 

@@ -1,0 +1,4 @@
+content	bmakiosk	jar:chrome/bmakiosk.jar!/content/
+skin	  bmakiosk	classic/1.0	jar:chrome/bmakiosk.jar!/skin/
+locale	bmakiosk	en-US	jar:chrome/bmakiosk.jar!/locale/en-US/
+overlay chrome://browser/content/browser.xul chrome://bmakiosk/content/overlay/bmakioskOverlay.xul
