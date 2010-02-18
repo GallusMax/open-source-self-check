@@ -1,6 +1,8 @@
 <?php
 /* 
+
 get your system's sip2 repsonse messages for particular transactions
+
 */
 include_once('config.php');
 include_once('includes/sip2.php');
