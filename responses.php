@@ -47,12 +47,14 @@ if (!empty($_POST['form1']) OR !empty($_POST['sc_policies'])){
 			// Identify a patron
 			$mysip->patron = $_POST['patron'];
 			
+			// connect to SIP server
+			$mysip->connect();
+			
 			if(!empty($sip_login)){
 				$sc_login=$mysip->msgLogin($sip_login,$sip_password);
 				$mysip->parseLoginResponse($mysip->get_message($sc_login));
 			}
-			// connect to SIP server
-			$mysip->connect();
+			
 			
 			$cko = $mysip->msgCheckout($_POST['item']);
 			
