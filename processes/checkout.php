@@ -97,7 +97,7 @@ if (!empty($checkout['variable']['AJ'][0])){
 }
 
 if ($OK==1){
-	if ($use_mysql_logging){ //the item got checkd out. should we load this cko in the stats table in the database?
+	if ($use_mysql_logging){ //the item got checked out. should we load this cko in the stats table in the database?
 		
 		$mysql_connection = mysql_pconnect($dbhostname, $dbusername, $dbpassword) or trigger_error(mysql_error(),E_USER_ERROR); 
 
@@ -129,9 +129,9 @@ if ($OK==1){
 			
 }
 
-$ptrnmsg = $mysip->msgPatronInformation('charged'); //get current checkouts again
+$ptrnmsg = $mysip->msgPatronInformation('charged'); //get checkout count again
 
-$patron_info = $mysip->parsePatronInfoResponse( $mysip->get_message($ptrnmsg)); //get current checkouts again
+$patron_info = $mysip->parsePatronInfoResponse( $mysip->get_message($ptrnmsg));
 
 $_SESSION['checkouts']=$patron_info['fixed']['ChargedCount']; //checkouts
 $_SESSION['checkouts_this_session']=$_SESSION['checkouts_this_session']+1;
@@ -165,21 +165,20 @@ if (!empty($action_balloon[$item_type]) && $action_balloon[$item_type]['trigger'
 }
 	
 if (!empty($action_message)){
-	if (empty($_SESSION['action_balloon_count'])){ 	/*determine which side of the screen to show the action balloon (they'd 
-									overlap if consecutive items were to trigger balloons on the same side) */
+	if (empty($_SESSION['action_balloon_count'])){ 	/*determine which side of the screen to show the action balloon (they'd overlap if consecutive items were to trigger balloons on the same side) */
 		echo "$('.qtip').remove();"; //get rid on any existing balloons
-		$action_balloon_position='target: "leftMiddle", tooltip: "rightMiddle"'; //if no previous action balloons put it the balloon on the left
+		$action_balloon_position='target: "leftMiddle", tooltip: "rightMiddle"'; //if no previous action balloons put the balloon on the left
 		$action_balloon_corner='rightMiddle';
-		$_SESSION['action_balloon_count']=1; //set this variable so we now next time if there's an existing balloon
-		$atach_to_element_id='item_left_'.$item_barcode.'_'.$_SESSION['checkouts_this_session'];
+		$_SESSION['action_balloon_count']=1; //set this variable so we know next time if there's an existing balloon
+		$attach_to_element_id='item_left_'.$item_barcode.'_'.$_SESSION['checkouts_this_session'];
 	} else {
 		$action_balloon_position='target: "rightMiddle", tooltip: "leftMiddle"';
 		$action_balloon_corner='leftMiddle';
 		$_SESSION['action_balloon_count']=''; //reset balloon count
-		$atach_to_element_id='item_right_'.$item_barcode.'_'.$_SESSION['checkouts_this_session'];
+		$attach_to_element_id='item_right_'.$item_barcode.'_'.$_SESSION['checkouts_this_session'];
 	}
 echo '
-	$("#'.$atach_to_element_id.'").qtip( {
+	$("#'.$attach_to_element_id.'").qtip( {
 		content: "<p style=\'text-align:center;font-weight:bold;color:#333\'>'.str_replace('"','\"',$action_message).'</p>",
 		show: { ready: true,effect:{type:"fade",length:0}},
 		hide: { when: "never"},
