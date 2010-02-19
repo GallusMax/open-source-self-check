@@ -5,7 +5,7 @@
 session_start();
 include_once('../config.php');
 include_once('../includes/sip2.php');
-include_once('../includes/json_encode');
+include_once('../includes/json_encode.php');
 
 if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length OR empty($patron_id_length))){ //check that the barcode was posted and matches the length set in config.php 
 
