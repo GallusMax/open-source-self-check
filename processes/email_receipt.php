@@ -31,7 +31,7 @@ $mail->From = $email_from_address;//sender addy
 $mail->AddAddress($_SESSION['email']);//recip. email addy
 
 $mail->Subject = $email_subject;
-$mail->Body = str_replace('Title:',"\n\nTitle:",$receipt_text)."\n\n\n\nPlease respond to this email with comments or suggestions regarding the self-checkout station.";
+$mail->Body = str_replace('Title:',"\n\nTitle:",$receipt_text)."\n\n\n\nPlease respond to this email with comments or suggestions regarding the ".$module_name.".";
 $mail->WordWrap = 70;
 $mail->Send(); 
 ?>
@@ -39,6 +39,6 @@ $mail->Send();
 setTimeout(
 	function(){
 		window.location.href="processes/logout.php";
-		},
+	},
 (1700));
 </script>
