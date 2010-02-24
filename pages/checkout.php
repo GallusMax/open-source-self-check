@@ -169,6 +169,7 @@ $("#no_print").click( //no print function
 });
 //////////////////post checkouts function
 $('form').submit(function(){
+	tb_remove();
 	inactive_notice();
 	$("#loading").show();
 	$barcode=$('#barcode');
