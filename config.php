@@ -17,7 +17,7 @@
 *	@author     	Eric Melton <ericmelton@gmail.com>
 * 	@licence    	http://opensource.org/licenses/gpl-3.0.html
 * 	@copyright  	Eric Melton <ericmelton@gmail.com>
-*	@version    	1.0
+*	@version    	1.04
 */
 
 //========================== SIP2 =================================
@@ -28,7 +28,7 @@ $sip_password='';
 
 
 //========================== Site Rules ==============================
-$sc_location='';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your ILS's SIP2 logs
+$sc_location='';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs
 $allow_manual_userid_entry=true;
 $show_fines=true;
 $show_available_holds=true;
@@ -42,13 +42,13 @@ $hide_cursor_pointer=false; //hides default cursor pointer -should probably set 
 	use the query below to setup the mysql table (if you change the table name set 
 	the variable $log_table_name below equal to that new table name)
 	
-	CREATE TABLE IF NOT EXISTS `self_check_stats` (
-	  `id` int(11) NOT NULL AUTO_INCREMENT,
-	  `count` int(11) NOT NULL DEFAULT '0',
-	  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	  PRIMARY KEY (`id`),
-	  KEY `date` (`count`)
-	)  ;
+CREATE TABLE IF NOT EXISTS `self_check_stats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `location` varchar(50) DEFAULT NULL,
+  `count` int(11) NOT NULL DEFAULT '0',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+)
 */
 //====================================================================
 $use_mysql_logging=false;	/* log your selfcheck checkout count by month? 

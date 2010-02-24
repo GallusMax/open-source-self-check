@@ -102,17 +102,17 @@ if ($OK==1){
 		$mysql_connection = mysql_pconnect($dbhostname, $dbusername, $dbpassword) or trigger_error(mysql_error(),E_USER_ERROR); 
 
 		mysql_select_db($database, $mysql_connection);
-		$find_last_month_year_entered=q("select DATE_FORMAT(timestamp, '%m-%Y') from ".$log_table_name." order by timestamp desc limit 0,1");
+		$find_last_month_year_entered=q("select DATE_FORMAT(timestamp, '%m-%Y') from ".$log_table_name." where location='".str_replace("'","\'",$sc_location)."' order by timestamp desc limit 0,1");
 	
 			if ($find_last_month_year_entered!=date('m-Y')){
 		
 				mysql_select_db($database, $mysql_connection);
-				q("insert into ".$log_table_name." (count,timestamp) values (1,now())");
+				q("insert into ".$log_table_name." (count,timestamp,location) values (1,now(),'".str_replace("'","\'",$sc_location)."')");
 	
 			} else {
 	
 				mysql_select_db($database, $mysql_connection);
-				q("update ".$log_table_name." set timestamp=now(), count=count+1 where DATE_FORMAT(timestamp, '%m-%Y')='".$find_last_month_year_entered."'");
+				q("update ".$log_table_name." set timestamp=now(), count=count+1 where location='".str_replace("'","\'",$sc_location)."' and DATE_FORMAT(timestamp, '%m-%Y')='".$find_last_month_year_entered."'");
 		
 			}
 	}
