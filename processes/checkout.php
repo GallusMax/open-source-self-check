@@ -54,11 +54,11 @@ if(!empty($sip_login)){
 
 // get either renewal or checkout response
 if (!empty($_POST['renew'])){ //is this a renewal or no?
-	$cko = $mysip->msgRenew($item_barcode);
+	$cko = $mysip->msgRenew($item_barcode, $sc_location);
 	// parse the raw response into an array
 	$checkout = $mysip->parseRenewResponse($mysip->get_message($cko));
 } else {
-	$cko = $mysip->msgCheckout($item_barcode);
+	$cko = $mysip->msgCheckout($item_barcode, $sc_location);
 	// parse the raw response into an array
 	$checkout = $mysip->parseCheckoutResponse($mysip->get_message($cko));
 }

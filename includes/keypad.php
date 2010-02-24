@@ -6,7 +6,7 @@
 	    		<p>enter</p>
 	    		<p>your id</p>
 	    	</td>
-	    	<td onclick="show_keypad()" style="width:5px"><img src="images/keypad_icon.gif"/></td>
+	    	<td onclick="show_keypad()" style="width:5px;"><img src="images/keypad_icon.gif"/></td>
 	    </tr>
 	</table>
 </div>

@@ -28,6 +28,7 @@ $sip_password='';
 
 
 //========================== Site Rules ==============================
+$sc_location='';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your ILS's SIP2 logs
 $allow_manual_userid_entry=true;
 $show_fines=true;
 $show_available_holds=true;

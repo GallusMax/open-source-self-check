@@ -131,8 +131,8 @@ class sip2 {
             /* override default location */
             $this->_addVarOption('AO',$this->AO);
         } else {
+            /* override default location */
          	$this->_addVarOption('AO', $location);
-
         }
         $this->_addVarOption('AO',$this->AO);
         $this->_addVarOption('AA',$this->patron);
@@ -391,7 +391,7 @@ class sip2 {
 
     }
 
-    function msgRenew($item = '', $title = '', $nbDueDate = '', $itmProp = '', $fee= 'N', $noBlock = 'N', $thirdParty = 'N') {
+    function msgRenew($item = '', $location='', $title = '', $nbDueDate = '', $itmProp = '', $fee= 'N', $noBlock = 'N', $thirdParty = 'N') {
         /* renew a single item (29) - untested */
         $this->_newMessage('29');
         $this->_addFixedOption($thirdParty, 1);
@@ -404,7 +404,12 @@ class sip2 {
             /* send a blank date due to allow ACS to use default date due computed for item */
             $this->_addFixedOption('', 18);
         }
-        $this->_addVarOption('AO',$this->AO);
+        if (empty($location)) {
+            $this->_addVarOption('AO',$this->AO);
+        } else {
+       		 /* override default location */
+         	$this->_addVarOption('AO', $location);
+        }        
         $this->_addVarOption('AA',$this->patron);
         $this->_addVarOption('AD',$this->patronpwd, true);
         $this->_addVarOption('AB',$item, true);
