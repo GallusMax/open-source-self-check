@@ -1,222 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?><addons>
 <addon>
-        <name>WOT - Safe Browsing Tool</name>
-    <type id='1'>Extension</type>
-    <guid>{a0d7ccb3-214d-498b-b4aa-0e8fda9a7bf7}</guid>
-    <version>20091028</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>WOT Services</author>
-    </authors>      
-    <summary>Web of Trust warns you about risky sites that cheat customers, deliver malware or send spam. Millions of members of the WOT community rate sites based on their experience, giving you an extra layer of protection when browsing or searching the Web.</summary>
-    <description>Web of Trust is one of Mozilla’s most popular add-ons. Our community-based safe surfing tool uses a traffic-light style rating system to help you stay safe when you search, browse and shop online. The WOT add-on provides reputation ratings to search results when you use Google, Yahoo!, Bing, Wikipedia  and other popular sites, helping you  protect your computer and personal information. Your online email account – Google Mail, Yahoo! Mail and Hotmail is also protected.Website ratings are continuously updated by millions of members of the WOT community and from trusted sources, like Panda Security and PhishTank.  WOT is one of Mozilla’s most popular add-ons because it really works. WOT has been recommended by CNET, PC World, Kim Komando, Tech Republic, PC Welt and many other respected authorities. Download WOT for your browser today and surf safer! Thank you!</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/3456/1265278270</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>1.5</min_version>
-            <max_version>3.7a1pre</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-             <application>
-            <name>SeaMonkey</name>
-            <application_id>59</application_id>
-            <min_version>2.0b2</min_version>
-            <max_version>2.1a1pre</max_version>
-            <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/20473/1210145427</thumbnail>
-    <rating>5</rating>
-    <learnmore>https://addons.mozilla.org/addon/3456?src=api</learnmore>
-             <install hash='sha256:c8caff4f09a0c71d7814e9a4aa85a7308ae1d31a079c0530f3992821b371cb4f'
-              os='ALL'>https://addons.mozilla.org/downloads/file/68023/wot-20091028-fx+sm.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>Stylish</name>
-    <type id='1'>Extension</type>
-    <guid>{46551EC9-40F0-4e47-8E18-8E5CF550CFB8}</guid>
-    <version>1.0.7</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>Jason Barnabe</author>
-    </authors>      
-    <summary>Restyle the web with Stylish, a user styles manager. Stylish lets you easily install themes and skins for Google, Facebook, YouTube, Orkut, and many, many other sites. You can even customize Firefox and other programs themselves.</summary>
-    <description>User styles are themes for web sites. User styles empower your browsing experience by letting you customize web sites. Take out irrelevant content, change colors, or completely redesign the entire site. You can even use user styles as themes on the interface of Firefox, Thunderbird, and SeaMonkey themselves.Stylish lets you easily manage user styles. Add, delete, enable, disable, and organize with a few clicks of a mouse, no code to edit, no obscure configuration to find. Stylish&#39;s companion website, userstyles.org, hosts tens of thousands of user styles made by other Stylish users that you can try.For you technical types out there, think of it this way: Stylish and userstyles.org are to CSS as Greasemonkey and userscripts.org are to JavaScript.</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/2108/1256777214</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>3.0</min_version>
-            <max_version>3.7a1pre</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-             <application>
-            <name>Thunderbird</name>
-            <application_id>18</application_id>
-            <min_version>3.0a1</min_version>
-            <max_version>3.0.*</max_version>
-            <appID>{3550f703-e582-4d05-9a08-453d09bdfdc6}</appID>
-             </application>
-             <application>
-            <name>SeaMonkey</name>
-            <application_id>59</application_id>
-            <min_version>2.0a1</min_version>
-            <max_version>2.0.*</max_version>
-            <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/38366/1256775951</thumbnail>
-    <rating>5</rating>
-    <learnmore>https://addons.mozilla.org/addon/2108?src=api</learnmore>
-             <install hash='sha256:18dcbf5e13f4b4d0db03b4b033dc181b4f2daef116ed68864c831ab9fae96ae2'
-              os='ALL'>https://addons.mozilla.org/downloads/file/68059/stylish-1.0.7-fx+tb+sm.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>Read It Later</name>
-    <type id='1'>Extension</type>
-    <guid>isreaditlater@ideashower.com</guid>
-    <version>2.0.3</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>Idea Shower</author>
-    </authors>      
-    <summary>Read It Later allows you to save pages of interest to read later. It eliminates cluttering of bookmarks with sites that are merely of a one-time interest.</summary>
-    <description>• Save pages to a reading list to read when you have time• Offline Reading Mode - Read the items you’ve saved for later on the plane, train, or anywhere• Access Anywhere - Manage your list in any browser, on any device.  Your list is saved on &lt;a href=&quot;http://readitlaterlist.com&quot;&gt;readitlaterlist.com&lt;/a&gt; for web access.• RSS Feeds - View your list from anywhere with automatic rss feeds of your items• Sync Between Computers - Sync your reading list with any number of computers, work or home• After reading, bookmark pages on your preferred bookmarking service• Click to Save Mode - Quickly batch a reading list just by clicking on interesting linksFor more details and a demo video, take a look at Read It Later&#39;s homepage listed below.&lt;b&gt;------------&lt;/b&gt;&lt;b&gt;If you have a question or a problem:&lt;/b&gt; Please post feedback at the &lt;a href=&quot;http://readitlaterlist.com/support/&quot;&gt;Support Site&lt;/a&gt;.  If you leave feedback in a review below, I cannot respond to you there!  Thanks!</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/7661/1261708205</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>3.5</min_version>
-            <max_version>3.7a1pre</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/22117/1223306488</thumbnail>
-    <rating>4</rating>
-    <learnmore>https://addons.mozilla.org/addon/7661?src=api</learnmore>
-             <install hash='sha256:a0de832991d6cd499373e6181e62e18989213a22b31e2febe01cd641ba6193cd'
-              os='ALL'>https://addons.mozilla.org/downloads/file/73703/read_it_later-2.0.3-fx.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>ImTranslator</name>
-    <type id='1'>Extension</type>
-    <guid>{9AA46F4F-4DC7-4c06-97AF-5035170634FE}</guid>
-    <version>3.3.3</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>Smart Link Corporation</author>
-    </authors>      
-    <summary>ImTranslator includes Online Translator in 1640 language combinations for Albanian, Arabic, Bulgarian, Catalan, Chinese (Simp.), Chinese (trad.), Croatian, Czech, Danish, Dutch, English, Estonian, Filipino, Finnish, French, Galician, German, Greek, Hebrew, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Latvian, Lithuanian, Maltese, Norwegian, Polish, Portuguese, Romanian, Russian, Serbian, Slovak, Slovenian, Spanish, Swedish, Thai, Turkish, Ukrainian, Vietnamese; Spell Checker for English, French, German, Italian, Portuguese, Russian, Spanish, and Ukrainian; TTS (Text to Speech) for English, Chinese, French, German, Italian, Japanese, Korean, Brazilian Portuguese, Russian and Spanish; Multilingual Dictionary for English, French, German, Italian, Portuguese, Russian, Spanish; Virtual Keyboard for more than 40 languages; Russian Decoder; Interface localization in 11 languages; other multilingual tools.</summary>
-    <description>What is ImTranslator?Online Translator performs real-time translation for Albanian, Arabic, Bulgarian, Catalan, Chinese (Simp.), Chinese (trad.), Croatian, Czech, Danish, Dutch, English, Estonian, Filipino, Finnish, French, Galician, German, Greek, Hebrew, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Latvian, Lithuanian, Maltese, Norwegian, Polish, Portuguese, Romanian, Russian, Serbian, Slovak, Slovenian, Spanish, Swedish, Thai, Turkish, Ukrainian, Vietnamese languages and their combinations.TTS Voice presented by animated speaking characters will read the text in the most realistic, human-sounding way in a variety of languages: English U.S., Chinese, French, German, Italian, Japanese, Korean, Brazilian Portuguese, Russian and European Spanish.Spell Checker delivers full-featured high-quality spell-checking tool for accurate input of information in English, French, German, Italian, Portuguese, Russian, Spanish, and Ukrainian languages.Multilingual Dictionary provides the translation of single words, common phrases and idiomatic expressions for English, French, German, Italian, Portuguese, Russian, Spanish languages and their combinations.Virtual Keyboard supports multilingual text input in Arabic, Bulgarian, Czech, Danish, Dutch, Estonian, Farsi, Finish, French, German, Greek, Hebrew, Hindi, Hungarian, Icelandic, Irish, Italian, Latvian, Lithuanian, Norwegian, Portuguese, Polish, Romanian, Russian, Slovak, Slovenian, Spanish, Swedish, Turkish, Ukrainian, and Urdu languages.Russian Decoder identifies the encoding of a Russian text, and converts it, if needed, into the Cyrillic (Windows) standard encoding. Decoder can also be used to convert the Russian text into Latin characters (transliterate).The interface of ImTranslator is localized for English, Chinese, Dutch, French, German, Italian, Japanese, Korean, Portuguese, Russian and Spanish languages. (coming soon: Czech, Danish, Finnish, Greek, Hebrew, Hindi, Latvian, Lithuanian, Norwegian, Polish, Romanian, Swedish, Turkish, Ukrainian)</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/2257/1262842194</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>1.0</min_version>
-            <max_version>3.6.*</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/9789/1238427956</thumbnail>
-    <rating>4</rating>
-    <learnmore>https://addons.mozilla.org/addon/2257?src=api</learnmore>
-             <install hash='sha256:a87afa27baedd33a2e0d8ecb2330daed2717191bdcf5c785a7f645846fd1c34f'
-              os='ALL'>https://addons.mozilla.org/downloads/file/74814/imtranslator-3.3.3-fx.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>FoxyProxy Standard</name>
-    <type id='1'>Extension</type>
-    <guid>foxyproxy@eric.h.jung</guid>
-    <version>2.18.1</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>Eric H. Jung</author>
-    </authors>      
-    <summary>FoxyProxy is an advanced proxy management tool that completely replaces Firefox&#39;s limited proxying capabilities. It offers more features than SwitchProxy, ProxyButton, QuickProxy, xyzproxy, ProxyTex, TorButton, etc.</summary>
-    <description>FoxyProxy is a Firefox extension which automatically switches an internet connection across one or more proxy servers based on URL patterns. Put simply, FoxyProxy automates the manual process of editing Firefox&#39;s Connection Settings dialog. Proxy server switching occurs based on the loading URL and the switching rules you define.Animated icons show you when a proxy is in use. Advanced logging shows you which proxies were used and when. QuickAdd makes it a snap to create new URL patterns on-the-fly. FoxyProxy is fully compatible with Portable Firefox, has better support for PAC files than Firefox itself, and is translated into more than 25 languages.Home: http://foxyproxy.mozdev.orgForums: http://foxyproxy.mozdev.org/drupal</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/2464/1264696924</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>3.0a1</min_version>
-            <max_version>3.7a1pre</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-             <application>
-            <name>Thunderbird</name>
-            <application_id>18</application_id>
-            <min_version>3.0a1pre</min_version>
-            <max_version>3.2a1pre</max_version>
-            <appID>{3550f703-e582-4d05-9a08-453d09bdfdc6}</appID>
-             </application>
-             <application>
-            <name>SeaMonkey</name>
-            <application_id>59</application_id>
-            <min_version>2.0a</min_version>
-            <max_version>2.1a1pre</max_version>
-            <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/5857/</thumbnail>
-    <rating>5</rating>
-    <learnmore>https://addons.mozilla.org/addon/2464?src=api</learnmore>
-             <install hash='sha256:eb84072a7b63ddb6c8d6e262b5f1e7d0dbcfbc2905f06a0ee30b48e258352969'
-              os='ALL'>https://addons.mozilla.org/downloads/file/77797/foxyproxy_standard-2.18.1-fx+sm+tb.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>Cooliris</name>
-    <type id='1'>Extension</type>
-    <guid>piclens@cooliris.com</guid>
-    <version>1.11.6</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>The Cooliris Team</author>
-    </authors>      
-    <summary>The Cooliris 3D Wall -- Simply the fastest and most stunning way to browse photos and videos from the Web or your desktop. Effortlessly scroll an infinite &quot;3D Wall&quot; of your content from Facebook, Google Images, YouTube, Flickr, and hundreds more.</summary>
-    <description>Meet Cooliris, the 3D Wall that speeds up search on Google Images, YouTube, Flickr, and more. Enjoy the richest way to view photos from Facebook, Picasa, and even your own computer. On our infinite 3D Wall, you can effortlessly scroll though thousands of images and videos in seconds without having to click from page to page. Our Channels feature even lets you surf the latest news, TV episodes, and more. For details see: http://www.cooliris.com--------------------------------------------------------------------------------------------------------------------------Mac OS X 10.4 and Mac PowerPC are not supported on Cooliris v1.11.1+ To use Cooliris version 1.10 or earlier, please visit https://addons.mozilla.org/en-US/firefox/addons/versions/5579--------------------------------------------------------------------------------------------------------------------------HOW TO USE COOLIRIS Launch Cooliris any from your browser toolbar, or visit one of many hundreds of supported sites and click the Cooliris icon that appears as you mouseover images and videos. For example, to enjoy Cooliris on Google Images:1. Go to http://images.google.com2. Search as you normally do, e.g. &quot;mountains&quot; 3. Mouseover any thumbnail image from your search results4. Click the Cooliris icon that appears (or just click the Cooliris toolbar icon).Cooliris also works on Facebook, Flickr, YouTube, MySpace, Picasa Web Albums, and many more. See http://www.cooliris.com/product/supported. You can also search major providers within Cooliris with the built-in search box in the top right corner of the Cooliris interface.To lay back to watch TV episodes or the latest news in our Channels feature, just click the Cooliris icon on your browser toolbar and click the Channels button.TIPS &amp; TRICKS- For the best experience, use Firefox 3.5.2+ - Open items from the Wall to a new tab by CTRL-clicking &quot;go to webpage&quot; icon- Hide/show the Cooliris menu bars by pressing F8 (for PC) or Alt+Esc (for Mac)- Share your 3D Wall view by cutting and pasting its URL- Save your favorite 3D Wall view to your browser&#39;s bookmarks or set it as your homepage  SPREAD THE LOVE!Tell a friend or post about Cooliris at http://www.cooliris.com/inviteOr, if you&#39;re interested in what&#39;s coming next, join our beta community at http://cooliris.com/beta/signup------------------------By downloading Cooliris from Firefox Add-ons, you agree to the terms of our EULA and Privacy Policy. To see our current EULA and Privacy Policy, please visit http://www.cooliris.com/legal/.</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/5579/1262830598</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>3.0</min_version>
-            <max_version>3.6.*</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>Darwin</os><os>WINNT</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/21903/1229074254</thumbnail>
-    <rating>4</rating>
-    <learnmore>https://addons.mozilla.org/addon/5579?src=api</learnmore>
-             <install hash='sha256:4c452bdd6cbcb3bfe5dab263a0d0523acaac8fc1ee0dcab964f7885086b9705f'
-              os='Darwin'>https://addons.mozilla.org/downloads/file/74797/cooliris-1.11.6-fx-macosx.xpi?src=api</install>          
-                      <install hash='sha256:9191425632dc9da37cf2fb9783d00b6955de4b377b568c99c8ef309697f08469'
-              os='WINNT'>https://addons.mozilla.org/downloads/file/74800/cooliris-1.11.6-fx-win.xpi?src=api</install>          
-         </addon>
-<addon>
         <name>ScrapBook</name>
     <type id='1'>Extension</type>
     <guid>{53A03D43-5363-4669-8190-99061B2DEBA5}</guid>
@@ -238,13 +21,191 @@
              </application>
          </compatible_applications>      
         <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>Darwin</os><os>WINNT</os><os>ALL</os>        </all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
         <eula></eula>
     <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/17387/1195666192</thumbnail>
     <rating>5</rating>
     <learnmore>https://addons.mozilla.org/addon/427?src=api</learnmore>
              <install hash='sha256:811d9cd3a8c4cad81d6371a78afc0a0e13b1a92ba3c914bdf7f365634f7372e9'
               os='ALL'>https://addons.mozilla.org/downloads/file/72331/scrapbook-1.3.6-fx.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>Yoono - Twitter, Facebook, LinkedIn, MySpace, Flickr, AIM, MSN, GTalk...</name>
+    <type id='1'>Extension</type>
+    <guid>{d9284e50-81fc-11da-a72b-0800200c9a66}</guid>
+    <version>7.0.6</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>Yoono </author>
+    </authors>      
+    <summary>All your social networks and instant messaging in one easy to use app - it&#39;s the #1 downloaded social networking add-on for Firefox. Get all your updates, update your status and share across Facebook, Twitter, LinkedIn and more - all at once! </summary>
+    <description>*** Note: &lt;strong&gt;Yoono 7.1.0 is available on http://www.yoono.com &lt;/strong&gt;and includes brand new features such as support for multiple columns (dashboard view), other new features, and fixes for an incompatibility with the Tab Mix Plus add-on and a LinkedIn connection issue.  We hope to have this new version here in the Add-ons directory shortly.***Yoono is a powerful but easy to use sidebar for Firefox that helps you simplify your online social life by connecting you to Facebook, MySpace, Twitter, LinkedIn, Flickr, Friendfeed, AIM, Yahoo IM and more...all in one place.  Yoono is also the easiest way to share stuff with all your social networks - share links, images and video from the page you&#39;re viewing across all your networks simultaneously.  &lt;ul&gt;&lt;li&gt;&lt;strong&gt;Connect to all your social networks&lt;/strong&gt; and never miss another status update from friends or family. You&#39;re connected wherever you are on the web.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Update your status&lt;/strong&gt; across all your social networks at the same time.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;All your IM services right in your browser sidebar&lt;/strong&gt; to easily chat while your surf the web - no more logging on to multiple services. &lt;/li&gt;&lt;li&gt;&lt;strong&gt;Easily share links, images, and video&lt;/strong&gt; from the page you are viewing with all your social networks at the same time.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Discover cool stuff&lt;/strong&gt; with the discovery widget that shows you related websites, images, videos and more as you browse.&lt;/ul&gt;&lt;strong&gt;YOONO 7 ENHANCEMENTS:&lt;/strong&gt;We are committed to giving you regular updates and improvements to Yoono - version 7.0.6 includes:  * LinkedIn support  * Support for Twitter lists (view in Yoono - more support coming soon)  * Improved performance - we&#39;ve rewritten a lot of the underlying code to make this the fastest and least resource intensive version of Yoono yet.  * Support for multiple account set up for Twitter, Facebook, MySpace, and more.  * Profile selector that enables switching between user profiles (i.e. Twitter accounts) within browser tabs via a profile selector to the left of the URL bar.  * Groups - you can create Yoono groups and add users from any service (Facebook, Twitter, LinkedIn, etc.) to your group, then filter your stream by group.    * Support for Facebook Inbox Messages and Notifications  * Support for Twitter&#39;s new retweet functionality  * Upload pics and more from your computer via our new partner yFrog (or other hosting services)  * Full text search of your updates stream so you can see what your friends are saying about a particular topic.  We&#39;re leveraging SQLite in HTML 5 to create a client side store of your updates and can store up to 25,000 of your recent updates.  * Connection improvements for Twitter, Facebook, and instant messaging services  * Spell check  * Improved pop up alert design &amp; configuration options  * New default skin &amp; UI design enhancements  * Simplified Read/Unread indicator (yellow background for new updates, fades away when read)  * Sign In/Out - you can now sign out of Yoono for more privacy.  If you are using as an unregistered user there is no password protection but you can disconnect from all services.  If you are a registered user you can password protect Yoono.  * Font size selection capability  * Bug fixes&lt;strong&gt;ALSO NEW FROM YOONO – UPDATED YOONO DESKTOP v1.6!&lt;/strong&gt;We have also updated our Yoono Desktop application with the features above – it&#39;s everything you love about Yoono as a standalone desktop client.  Available as a beta for Windows and Mac at http://www.yoono.com/desktop_features.html .  Give it a try!&lt;strong&gt;WHAT PEOPLE ARE SAYING ABOUT YOONO:&lt;/strong&gt;“The Social Network Plugin You’ve Been Waiting For” &lt;strong&gt;- Techcrunch&lt;/strong&gt;&quot;If you&#39;ve got a good reason to have an account at several places, and want to look at them all easily, Yoono is the way to go.&quot; &lt;strong&gt;- PCWorld&lt;/strong&gt;“Yoono now offering an elegant solution to social networking clutter” &lt;strong&gt;-Webware&lt;/strong&gt;See what users are saying at: http://search.twitter.com/search?q=yoonoAvailable for Windows, Mac and Linux.</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/1833/1266712537</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>3.0</min_version>
+            <max_version>3.7a2pre</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/27420/1262644697</thumbnail>
+    <rating>5</rating>
+    <learnmore>https://addons.mozilla.org/addon/1833?src=api</learnmore>
+             <install hash='sha256:2252df4d55bd04fb09fe3f981763f1c3013e7a40aa928976e8515cd4b3533a5e'
+              os='ALL'>https://addons.mozilla.org/downloads/file/72951/yoono-7.0.6-fx.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>CoolPreviews</name>
+    <type id='1'>Extension</type>
+    <guid>{CE6E6E3B-84DD-4cac-9F63-8D2AE4F30A4B}</guid>
+    <version>3.0.1</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>The Cooliris Team</author>
+    </authors>      
+    <summary>Browse faster -- Preview links and images without leaving your current page or tab. Just mouseover any link, and a separate preview window appears to show you the content. (TIP: Mouseover subsequent links while the preview window is still open!)</summary>
+    <description>CoolPreviews is all about browsing faster. The customizable preview window lets you preview or browse just about any link without ever leaving your current page or tab. No more need to click in and out of tabs.&lt;strong&gt;FULLY CUSTOMIZABLE&lt;/strong&gt;-----------------------------------------------------------------------------------------------------------------------------------    * Control how the preview window opens, i.e. speed, activation method, etc.     * Control the sensitivity of the preview window     * Toggle previews on/off on any specific site (click our icon on your browser status bar)    * Many more ...&lt;strong&gt;FEATURES&lt;/strong&gt;-----------------------------------------------------------------------------------------------------------------------------------    * Preview web links, images, and videos without leaving your current page or tab.    * Automatically subsearch Google, Wikipedia, and others     * Temporarily bookmark items to the right column with our unique &quot;stacks&quot; feature    * Instantly send links to friends and family with just a click.    * Effortlessly scroll Google Image search results on an &quot;infinite 3D Wall&quot; (Cooliris addon required).  Brought to you by the developers of Cooliris, the popular addon that transforms your browser into a 3D Wall for simply the fastest way to browse photos and videos.</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/2207/1264873835</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>3.0</min_version>
+            <max_version>3.6.*</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/30208/1263595362</thumbnail>
+    <rating>5</rating>
+    <learnmore>https://addons.mozilla.org/addon/2207?src=api</learnmore>
+             <install hash='sha256:38e5a122744322023c36c8b4c1a793f42013504a3ae1671af365912090092068'
+              os='ALL'>https://addons.mozilla.org/downloads/file/78065/coolpreviews-3.0.1-fx+mz.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>WiseStamp - Email Signature</name>
+    <type id='1'>Extension</type>
+    <guid>wisestamp@wisestamp.com</guid>
+    <version>1.3.5</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>The WiseStamp Team</author>
+    </authors>      
+    <summary>☛WiseStamp- Empower your email signatures in Gmail, Google Apps, Yahoo! Mail, Hotmail or AOL...✔Multiple signatures ✔Auto insert ✔Add IM &amp; Social profiles (Twitter, Facebook, Digg, LinkedIn...) ✔Add Feeds ✔Easily add Logo or HTML &amp; more...Get it now!</summary>
+    <description>______________________________________________________________________________________    &lt;b&gt;SUPPORT WiseStamp -&amp;nbsp;&lt;/b&gt;    * Share WiseStamp with your friends -&amp;nbsp;&lt;a class=&quot;uniquify&quot; href=&quot;https://addons.mozilla.org/en-US/firefox/addon/share/8206?service=facebook&quot; target=&quot;_blank&quot;&gt;Facebook&lt;/a&gt;,&amp;nbsp;&lt;a class=&quot;uniquify&quot; href=&quot;https://addons.mozilla.org/en-US/firefox/addon/share/8206?service=twitter&quot; target=&quot;_blank&quot;&gt;Twitter&amp;nbsp;&lt;/a&gt;&amp;nbsp;&amp;amp;&amp;nbsp;&lt;a class=&quot;uniquify&quot; href=&quot;https://addons.mozilla.org/en-US/firefox/addon/share/8206?service=digg&quot; target=&quot;_blank&quot;&gt;Digg&lt;/a&gt;.    * Donate using&amp;nbsp;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=9813849&quot; title=&quot;Paypal&quot;&gt;Paypal&lt;/a&gt; (no Paypal account required)______________________________________________________________________________________Empower your webmail signatures in Gmail, Google Apps, Yahoo!, Hotmail, and AOL.&lt;a href=&quot;http://www.wisestamp.com&quot;&gt;WiseStamp Email Signature&lt;/a&gt; is a signature creator that includes many exciting and improved webmail signature features such as:New Features:✔ Add your personal feeds (rss)- Automatically Share blog posts, bookmarks, videos, social feeds or daily quotes in your signature.✔ Renaming signaturesFeatures:✔ Personally designed signatures ✔ Easy setup and configuration interface✔ Automatic signature insertion✔ Multiple email signatures (Business and Personal) ✔ Add logo or image to signature ✔ Easily link to social services - links &amp;amp; Profiles + icons ✔ Easily include IM (Instant Messaging) ID&#39;s + icons And more..✔ Signature Rich Text editor (WYSIWYG Editor - choose color and font) ✔ Supports all webmail functions - Compose Mail, Reply, and Forward.✔ Preview while editing Signature✔ Simple control- switch signature on/off ✔ Support for special characters ✔ Option to treat each signature as HTML ✔ Full Ltr &amp;amp; Rtl language support ✔ Add your personal signature to any online Html supported page (Google Docs, etc.) ✔ Supports Firefox 2 &amp;amp; Firefox 3.6 !! Useful Links:☛ FAQ Troubleshooting &amp;amp; Support- http://www.wisestamp.com/usage-faq☛ Get more feed idea&#39;s for your signature at- http://www.wisestamp.com/get-more-feed-ideas☛ Learn more at http://www.wisestamp.comWe currently support:Amazon, Bebo, Blogger, del.icio.us, DeviantART, Digg, Ebay, Facebook, Flickr, Flixster, Friendfeed, Google, Google Wave, Linkedin, Livejournal, Meetup, MyBlogLog, MySpace, Netflix, Netvibes, Orkut, Photobucket, Picasa, Plaxo, Plurk, Reddit, Seesmic, Slideshare, Stumbleupon, Technorati, Tumblr, Twitter, Typepad, Upcoming, Vimeo, VisualCV, Wordpress, Xanga, Xing, Yahoo, Yedda, Yelp, Youtube.See full updated list:☛ http://www.wisestamp.com/features#Social_services</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/8206/1266145342</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>0.3</min_version>
+            <max_version>3.6.*</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+             <application>
+            <name>Thunderbird</name>
+            <application_id>18</application_id>
+            <min_version>0.8</min_version>
+            <max_version>3.0.*</max_version>
+            <appID>{3550f703-e582-4d05-9a08-453d09bdfdc6}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/23711/1216646885</thumbnail>
+    <rating>5</rating>
+    <learnmore>https://addons.mozilla.org/addon/8206?src=api</learnmore>
+             <install hash='sha256:97da57ba3a812e062b0afd29ed9ba2a1d0721484632d8deb1117475f33bd99a6'
+              os='ALL'>https://addons.mozilla.org/downloads/file/79216/wisestamp-1.3.5-fx+tb.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>Flagfox</name>
+    <type id='1'>Extension</type>
+    <guid>{1018e4d6-728f-4b20-ad56-37578a4de76b}</guid>
+    <version>4.0.0</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>Dave.G</author>
+    </authors>      
+    <summary>Displays a country flag depicting the location of the current website&#39;s server and provides a multitude of tools such as site safety checks, whois, translation, similar sites, validation, URL shortening, and more...</summary>
+    <description>Flagfox is an extension that displays a flag icon indicating the current webserver&#39;s physical location. Knowing where you&#39;re connected to adds an extra layer of awareness to your browsing and can be useful to indicate the native languages and legal jurisdictions that may apply. Additional information can be obtained via a multitude of external lookups and users can add their own custom actions. All actions can be added to the flag icon&#39;s context menu and set to icon click or keyboard shortcuts for quick access.Clicking the flag icon loads our default action, &lt;a href=&quot;http://geotool.flagfox.net/&quot;&gt;Geotool&lt;/a&gt;, which gives a detailed map showing the city the server is in and other useful information such as its local time and &lt;abbr title=&quot;Internet Service Provider&quot;&gt;ISP&lt;/abbr&gt;. Many other actions are available for a wide range of uses such as:* Site safety and malware checks* Finding similar sites and reviews* Automatic translation to your language* &lt;abbr title=&quot;Search Engine Optimization&quot;&gt;SEO&lt;/abbr&gt; and web development research* Diagnostics like pings and traceroutes* Whois and &lt;abbr title=&quot;Domain Name Service&quot;&gt;DNS&lt;/abbr&gt; information* Page code validation* Quick URL shortening* Copying a server&#39;s &lt;abbr title=&quot;Internet Protocol&quot;&gt;IP&lt;/abbr&gt; address or other info* or you can create your own custom actions!Flagfox is simple, unobtrusive, and uses relatively little resources. In order to protect your privacy, country lookups are done locally rather than asking an external server about every page you browse to. It works by accessing an internal IP address location database, basically a rough map of the physical layout of the Internet, based on data provided by &lt;a href=&quot;http://maxmind.com/&quot;&gt;Maxmind&lt;/a&gt;. This gives a flag for the nationality of the actual location of the server you&#39;re connected to, rather than just the nationality of the domain name which may be different. Flagfox updates are provided on a monthly basis to keep this internal database accurate.</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/5791/1266832444</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>3.0</min_version>
+            <max_version>3.7a2pre</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+             <application>
+            <name>SeaMonkey</name>
+            <application_id>59</application_id>
+            <min_version>2.0</min_version>
+            <max_version>2.0.*</max_version>
+            <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/42668/1266983359</thumbnail>
+    <rating>5</rating>
+    <learnmore>https://addons.mozilla.org/addon/5791?src=api</learnmore>
+             <install hash='sha256:0b78cc2e3032dec3f3de19d8c0d8e8b9221a999acd65890023208ef1a8ba95ae'
+              os='ALL'>https://addons.mozilla.org/downloads/file/80834/flagfox-4.0.0-fx+sm.xpi?src=api</install>          
+         </addon>
+<addon>
+        <name>Weave Sync</name>
+    <type id='1'>Extension</type>
+    <guid>{340c2bbc-ce74-4362-90b5-7c26312808ef}</guid>
+    <version>1.0.1</version>
+    <status id='4'>Public</status>
+    <authors>
+          <author>Mozilla Labs</author>
+    </authors>      
+    <summary>Synchronize your bookmarks, history, tabs and passwords wherever you go. Whether you use Firefox on your phone, laptop, or desktop, securely access all your data. </summary>
+    <description>The Weave Sync add-on lets you securely take your Firefox experience with you wherever you go. You can now surf the Web on your PC, get up and go, and have everything waiting for you on your phone: your history, open tabs, bookmarks, the Awesome Bar – just as you had left it. This add-on is a part of the Mozilla Labs Weave project which aims to integrate services more closely with the browser.Weave Sync currently supports continuous synchronization of your bookmarks, browsing history, saved passwords and tabs. * Get the same results on the Smart Location Bar across your devices, so you can get to your favorite sites with just a few keystrokes* Get up and go. You can continue what you were doing: have the ability to open any tab you have open on all your devices.* Keep the same list of bookmarks on all your devices.* Typing is hard. Now, you can easily sign in to all your favorite sites using your saved passwords (this is especially handy on mobile phones, where it’s hard to type in complex passwords)* Do it all securely: Weave Sync encrypts user data before uploading it to Mozilla’s servers, so that only you can access your data</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/10868/1266008544</icon>
+    <compatible_applications>
+        <application>
+            <name>Firefox</name>
+            <application_id>1</application_id>
+            <min_version>3.5</min_version>
+            <max_version>3.7a2pre</max_version>
+            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+             </application>
+             <application>
+            <name>Fennec</name>
+            <application_id>60</application_id>
+            <min_version>1.0b6pre</min_version>
+            <max_version>1.1a2pre</max_version>
+            <appID>{a23983c0-fd0e-11dc-95ff-0800200c9a66}</appID>
+             </application>
+             <application>
+            <name>SeaMonkey</name>
+            <application_id>59</application_id>
+            <min_version>2.0a3</min_version>
+            <max_version>2.1a1pre</max_version>
+            <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
+             </application>
+         </compatible_applications>      
+        <all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula></eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/30019/1237088813</thumbnail>
+    <rating>4</rating>
+    <learnmore>https://addons.mozilla.org/addon/10868?src=api</learnmore>
+             <install hash='sha256:84c952b594c2e6482f3f94914740347a424e0d58a349a205aff31c0b1c431f86'
+              os='ALL'>https://addons.mozilla.org/downloads/file/79749/weave_sync-1.0.1-fx+fn+sm.xpi?src=api</install>          
          </addon>
 <addon>
         <name>FireFTP</name>
@@ -268,7 +229,7 @@
              </application>
          </compatible_applications>      
         <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>Darwin</os><os>WINNT</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
         <eula></eula>
     <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/15960/1187953401</thumbnail>
     <rating>5</rating>
@@ -277,64 +238,34 @@
               os='ALL'>https://addons.mozilla.org/downloads/file/71956/fireftp-1.0.7-fx.xpi?src=api</install>          
          </addon>
 <addon>
-        <name>Xmarks Bookmark and Password Sync</name>
+        <name>Reframe It</name>
     <type id='1'>Extension</type>
-    <guid>foxmarks@kei.com</guid>
-    <version>3.4.10</version>
+    <guid>plugin@reframeit.com</guid>
+    <version>2.0.0.20091223</version>
     <status id='4'>Public</status>
     <authors>
-          <author>Xmarks Inc.</author>
+          <author>Brian McKinney</author>
     </authors>      
-    <summary>Xmarks is the #1 bookmarking add-on. Install it on all your computers to keep your bookmarks and (optionally) passwords backed up and synchronized. Xmarks also helps you uncover the best of the web based on what millions of people are bookmarking.</summary>
-    <description>Xmarks is the #1 bookmarking add-on. It takes only a moment to get up and running with Xmarks. After you install the add-on, click on the notification to set up Xmarks and start backing up and synchronizing your bookmarks. Install Xmarks on each computer you use, and it seamlessly integrates with your web browser and keeps your bookmarks safely backed up and in sync.Xmarks will sync across browsers too. Today we support Firefox, Internet Explorer, and Safari (Mac OS). Please visit our website at xmarks.com for details.Secure Password Sync is an optional Xmarks feature. If you&#39;d like to learn more about how it works, visit: http://www.xmarks.com/about/features/secure_password_syncXmarks provides seamless bookmark synchronization between your computers and browsers via our synchronization server.  Your bookmark (and optionally password) data is securely stored and backed up on our servers.Our discovery services help you assess the quality of websites you visit, as well as find similar sites with a single click. For example, when you search on Google or other search engines, we compare your search results against data on our servers in order to recommend sites that have been frequently bookmarked.  Our discovery services are powered by analyzing anonymously and in aggregate the millions of bookmarks on our servers--in this way we are leveraging the wisdom of crowds to powerfully enhance your searching and browsing experience.In order to continuously improve the utility of Xmarks, we may collect certain data such as which features are enabled or disabled, and how our features are being used.  Details may be found in our privacy policy:  http://www.xmarks.com/about/privacyTo learn about many more features of Xmarks, visit our feature pages: http://www.xmarks.com/about/featuresGet the latest news about Xmarks at our blog: http://blog.xmarks.com/Xmarks was formerly known as Foxmarks.</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/2410/1264713479</icon>
+    <summary>Reframe It is a commenting tool that lets people connect and share their thoughts online – right next to the topics they care about – anywhere on the web, without the permission of the site owner.  And the new Version 2.0 makes this easier than ever.</summary>
+    <description>With Reframe It 2.0, you can connect with friends and strangers as you talk about news, sports, political issues, cool websites, funny pictures, where to find the best deal – anything you can find on the web.  Talk about sports teams on their web sites – highlight the scores, drag cool pics into the margin, then leave a public or private comment and share it with your friends through social networks like Twitter and Facebook, or share your comments with friends via e-mail.  Reply to each other to start threaded discussions; leave private notes just for yourself or for a few friends to see; check your feeds to keep track of what your friends and groups are saying – all in real time, whenever you want, wherever you are on the web.Using Reframe It is just like making comments on social networks like Facebook, except you can make comments anywhere on the web, and you can share your comments with anyone.  Just open the margin – you’ll see it at the right side of your browser window – whenever you want to make or read comments, then highlight, comment and share.  Reframe It supports sharing via Facebook, Twitter, Blogger, FriendFeed, Wordpress, RSS, HTML, e-mails and more.  Make friends, join groups, be a part of the conversation.With Reframe It, you can say what you want, where you want.  Forget about asking for forgiveness or permission.</description>
+    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/5677/1262632460</icon>
     <compatible_applications>
         <application>
             <name>Firefox</name>
             <application_id>1</application_id>
             <min_version>3.0</min_version>
-            <max_version>3.6.*</max_version>
+            <max_version>3.7a1pre</max_version>
             <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
              </application>
          </compatible_applications>      
         <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>Darwin</os><os>WINNT</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/19473/1239408898</thumbnail>
+            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
+        <eula>BY CLICKING THE &quot;ACCEPT&quot; BUTTON, YOU AGREE TO BE BOUND BY REFRAME-IT, INC&#39;S (hereinafter REFRAME-IT) TERMS AND CONDITIONS OF USE OF THIS WEB SITE. IF YOU DO NOT WISH TO BE BOUND BY THESE TERMS AND CONDITIONS FOR USING THIS WEB SITE, CLICK THE &quot;DECLINE&quot; BUTTON.rnrn   1. REFRAME-IT shall make a web site accessible to YOU under conditions as set forth herein and as may be imposed by REFRAME-IT from time to time, whereby YOU can access, review, and post materials to the REFRAME-IT Margin/Comment Forum. The data made available to YOU at the web site as compiled by REFRAME-IT remains REFRAME-IT&#39;s property and may neither be copied nor used for the purpose of creating a similar web site and service as provided by REFRAME-IT. Downloading of contents from the web site does not transfer title to the contents or create any intellectual property rights therein to YOU.rn   2. YOU agree REFRAME-IT shall have a permanent, irrevocable, non-exclusive license (with the right to sub-license at REFRAME-IT&#39;S sole discretion) to use any material you post to the REFRAME-IT Margin/Comment Forum to be used in any manner or medium at REFRAME-IT&#39;s sole discretion. YOU further agree that material posted on the REFRAME-IT Margin/Comment Forum is &quot;information provided by another information content provider&quot; within the meaning of 47 U.S.C. § 230.rn   3. YOU agree not to reverse engineer or cause to be reverse engineered the coding, scripts and other programming on REFRAME-IT&#39;s web site for any purpose. YOU agree not to incorporate or cause to be incorporated, in whole or in part, any coding, scripts or other programming on REFRAME-IT&#39;s web site into any other software product. YOU agree not to reproduce, attempt to reproduce, or cause to be reproduced, in whole or in part, the functionality of REFRAME-IT&#39;s web site using any information gained by accessing the site whether or not confidential.rn   4. YOUR access to REFRAME-IT&#39;s web site shall be for the convenience of YOU and REFRAME-IT shall not be responsible for any errors or omissions in the data base at the web site or for interruptions, defects, viruses or damaging elements or from actions by YOU on the basis of data on the web site. REFRAME-IT MAKES NO REPRESENTATION OR WARRANTY WITH RESPECT TO ANY PRODUCT OR INFORMATION CONTAINED ON THIS WEB SITE AND TO THE EXTENT PERMITTED UNDER APPLICABLE LAW THE SITE IS DELIVERED &quot;AS IS&quot;. THE WARRANTY STATED HEREIN IS EXPRESSLY IN LIEU OF ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY EXPRESS OR IMPLIED WARRANTY OF ACCURACY, CORRECTNESS, RELIABILITY, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT AND SUCH WARRANTY CONSTITUTES THE ONLY WARRANTY MADE BY REFRAME-IT WITH RESPECT TO THE SITE AND THE CONTENT THEREOF.rn   5. REFRAME-IT has no obligation to monitor these services, or this self-published content, we reserve the right at all times to remove any information or materials that are unlawful, threatening, abusive, libelous, defamatory, obscene, vulgar, pornographic, profane, indecent or otherwise objectionable to us in our sole discretion and to disclose any information necessary to satisfy the law, regulation, or government request. REFRAME-IT also reserves the right to permanently block any user who violates these terms and conditions.rn   6. IN NO EVENT WILL REFRAME-IT OR ANY OF ITS AFFILIATES, OFFICERS, DIRECTORS, EMPLOYEES, LICENSORS, SUPPLIERS OR DISTRIBUTORS BE LIABLE FOR ANY INDIRECT, SPECIAL, INCIDENTAL, ECONOMIC OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE WEB SITE OR THE CONTENT THEREOF, EVEN IF REFRAME-IT HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN NO EVENT SHALL LIABILITY OF REFRAME-IT OR ANY OF ITS AFFILIATES, OFFICERS, DIRECTORS, EMPLOYEES, LICENSORS, SUPPLIERS OR DISTRIBUTORS EXCEED THE AMOUNT PAID BY YOU, IF ANY, FOR ACCESSING OR USING THIS SITE, OR PURCHASING OR DOWNLOADING INFORMATION FROM THIS WEB SITE, BECAUSE SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES.rn   7. These terms of USE shall be governed by and construed in accordance with the laws of the State Of California, USA. These Terms of Use contain the entire understanding of the parties hereto relating to the use of this Site and superseded any prior written oral agreement or understanding between the parties with respect to this Site and cannot be changed or terminated orally. The invalidity or un-enforceability of any provision of the Terms of Use will not affect the validity or enforceability of any other provision of these Terms of Use. REFRAME-IT reserves to terminate access by YOU to the web site. REFRAME-IT further reserves the right to terminate these terms of use without notice, if, in REFRAME-IT&#39;s sole discretion, YOU fails to comply with any Terms Of Use. Upon termination, YOU agrees to destroy all materials obtained from this web site, as well as copies and related documentation thereof.rnrn</eula>
+    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/40443/1262724717</thumbnail>
     <rating>4</rating>
-    <learnmore>https://addons.mozilla.org/addon/2410?src=api</learnmore>
-             <install hash='sha256:875a7b7e15e88a8e8b625060e2618ccfd13c4dbfec177e25eeed71eeaf099883'
-              os='ALL'>https://addons.mozilla.org/downloads/file/77834/xmarks-3.4.10-fx.xpi?src=api</install>          
-         </addon>
-<addon>
-        <name>Google Shortcuts - All Google Services at a glance</name>
-    <type id='1'>Extension</type>
-    <guid>{5C46D283-ABDE-4dce-B83C-08881401921C}</guid>
-    <version>1.8.5</version>
-    <status id='4'>Public</status>
-    <authors>
-          <author>Soeren Rinne</author>
-    </authors>      
-    <summary>Display all of your Google Services as buttons just next to your addressbar or anywhere you like it.I am currently looking for people who want to write localizations. If you are interested, please visit http://www.babelzilla.org</summary>
-    <description>Display all of your Google Services as buttons just next to your addressbar or anywhere you like it!You can go to settings to change which services should be available for you as buttons.Left click on a button opens the service in the current tab, MIDDLE CLICK opens a new tab.If you like you can change the main appearance from a Toolbar with all buttons you&#39;ve selected to a single Dropdown Menu.If you don&#39;t see any buttons:Add the buttons on menu, view, toolbars, customize! Or install version &gt;1.7.2 which adds Google Shortcuts automatically.The extension is currently available in en-US, de-DE, fr-FR, ca-ES, es-ES, uk-UA, it-IT, tr-TR, hi-IN, pl-PL, ru-RU, zh-CN.</description>
-    <icon>https://addons.mozilla.org/en-US/firefox/images/addon_icon/3576/1263046425</icon>
-    <compatible_applications>
-        <application>
-            <name>Firefox</name>
-            <application_id>1</application_id>
-            <min_version>2.0a1</min_version>
-            <max_version>3.6.*</max_version>
-            <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
-             </application>
-         </compatible_applications>      
-        <all_compatible_os>
-            <os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os><os>Darwin</os><os>WINNT</os><os>ALL</os><os>ALL</os><os>ALL</os><os>ALL</os>        </all_compatible_os>
-        <eula></eula>
-    <thumbnail>https://addons.mozilla.org/en-US/firefox/images/t/38631/1257364588</thumbnail>
-    <rating>5</rating>
-    <learnmore>https://addons.mozilla.org/addon/3576?src=api</learnmore>
-             <install hash='sha256:c6281a13fc6cf9fdefdf2d40eb4b80dd525dc0fa45f8f9e0b8bb0af51a83e60b'
-              os='ALL'>https://addons.mozilla.org/downloads/file/75084/google_shortcuts-1.8.5-fx.xpi?src=api</install>          
+    <learnmore>https://addons.mozilla.org/addon/5677?src=api</learnmore>
+             <install hash='sha256:cecb6299d8fa09578cd0b95825f78c95b82a52cc9efd55a44eb6021f7eaab55b'
+              os='ALL'>https://addons.mozilla.org/downloads/file/73623/reframe_it-2.0.0.20091223-fx.xpi?src=api</install>          
          </addon>
 </addons>
  

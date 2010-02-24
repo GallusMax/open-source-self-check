@@ -1,12 +1,12 @@
 <div id="keypad_icon" >
-	<table width="100%" cellpadding="3" title="selfcheck_button">
+	<table width="100%" cellpadding="3">
 	    <tr>
 	    	<td onclick="show_keypad()">
-	    		<p>manually</p>
-	    		<p>enter</p>
-	    		<p>your id</p>
+	    		<p title="selfcheck_button">manually</p>
+	    		<p title="selfcheck_button">enter</p>
+	    		<p title="selfcheck_button">your id</p>
 	    	</td>
-	    	<td onclick="show_keypad()" style="width:5px;"><img src="images/keypad_icon.gif"/></td>
+	    	<td onclick="show_keypad()" style="width:5px;"><img src="images/keypad_icon.gif" title="selfcheck_button"/></td>
 	    </tr>
 	</table>
 </div>
@@ -17,24 +17,24 @@
 				<td colspan="3" class="keypad_screen"></td>
 			</tr>
 			<tr>
-				<td><div class="keypad_key corners">1</div></td>
-				<td><div class="keypad_key corners">2</div></td>
-				<td><div class="keypad_key corners">3</div></td>
+				<td><div class="keypad_key corners" title="selfcheck_button">1</div></td>
+				<td><div class="keypad_key corners" title="selfcheck_button">2</div></td>
+				<td><div class="keypad_key corners" title="selfcheck_button">3</div></td>
 			</tr>
 			<tr>
-				<td><div class="keypad_key corners">4</div></td>
-				<td><div class="keypad_key corners">5</div></td>
-				<td><div class="keypad_key corners">6</div></td>
+				<td><div class="keypad_key corners" title="selfcheck_button">4</div></td>
+				<td><div class="keypad_key corners" title="selfcheck_button">5</div></td>
+				<td><div class="keypad_key corners" title="selfcheck_button">6</div></td>
 			</tr>
 			<tr>
-				<td><div class="keypad_key corners">7</div></td>
-				<td><div class="keypad_key corners">8</div></td>
-				<td><div class="keypad_key corners">9</div></td>
+				<td><div class="keypad_key corners" title="selfcheck_button">7</div></td>
+				<td><div class="keypad_key corners" title="selfcheck_button">8</div></td>
+				<td><div class="keypad_key corners" title="selfcheck_button">9</div></td>
 			</tr>
 			<tr>
-				<td onclick="delete_keypad_entry();"><div class="keypad_key corners"><span>delete</span></div></td>
-				<td><div class="keypad_key corners">0</div></td>
-				<td><div class="corners"><span onclick="tb_remove();">cancel</span></div></td>
+				<td  onclick="delete_keypad_entry();"><div class="keypad_key corners" title="selfcheck_button"><span>delete</span></div></td>
+				<td><div class="keypad_key corners" title="selfcheck_button">0</div></td>
+				<td><div class="corners" title="selfcheck_button"><span onclick="tb_remove();">cancel</span></div></td>
 			</tr>
 		</table>
 		<div class="prompt_box_border corners" id="ok" onclick="$('#barcode').val($('#TB_ajaxContent .keypad_screen').text());$('#patron_form').submit();tb_remove();" title="selfcheck_button">

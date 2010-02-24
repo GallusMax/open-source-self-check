@@ -1,8 +1,10 @@
-app-global	{972ce4c6-7e08-4474-a285-3208198ce6fd}	rel%{972ce4c6-7e08-4474-a285-3208198ce6fd}	1265741024	
-winreg-app-global	{20a82645-c095-46ed-80e3-08825760534b}	abs%c:\WINDOWS\Microsoft.NET\Framework\v3.5\Windows Presentation Foundation\DotNetAssistantExtension	0	
-app-profile	{DF8E5247-8E0A-4de6-B393-0735A39DFD80}	rel%{DF8E5247-8E0A-4de6-B393-0735A39DFD80}	1265740996	
-app-profile	bmakiosk@brooklynmuseum.org	rel%bmakiosk@brooklynmuseum.org	1265740997	
-app-profile	{20a82645-c095-46ed-80e3-08825760534b}	rel%{20a82645-c095-46ed-80e3-08825760534b}	1265740996	
-app-profile	noise@bootleq	rel%noise@bootleq	1265740996	
-app-profile	{ee56ecf0-6e7a-479a-8162-e123a991c7e7}	rel%{ee56ecf0-6e7a-479a-8162-e123a991c7e7}	1265740995	
-app-profile	{bfe3406c-6f31-4789-86d5-efa50e12c9eb}	rel%{bfe3406c-6f31-4789-86d5-efa50e12c9eb}	1265740996	
+app-global	{972ce4c6-7e08-4474-a285-3208198ce6fd}	rel%{972ce4c6-7e08-4474-a285-3208198ce6fd}	1266502582	
+winreg-app-global	{20a82645-c095-46ed-80e3-08825760534b}	abs%c:\WINDOWS\Microsoft.NET\Framework\v3.5\Windows Presentation Foundation\DotNetAssistantExtension	1252004715	
+winreg-app-global	{000a9d1c-beef-4f90-9363-039d445309b8}	abs%C:\Program Files\Google\Google Gears\Firefox	1257291459	
+winreg-app-global	jqs@sun.com	abs%C:\Program Files\Java\jre6\lib\deploy\jqs\ff	1260478482	
+app-profile	{DF8E5247-8E0A-4de6-B393-0735A39DFD80}	rel%{DF8E5247-8E0A-4de6-B393-0735A39DFD80}	1266502716	
+app-profile	bmakiosk@brooklynmuseum.org	rel%bmakiosk@brooklynmuseum.org	1266502698	
+app-profile	{20a82645-c095-46ed-80e3-08825760534b}	rel%{20a82645-c095-46ed-80e3-08825760534b}	1266502724	
+app-profile	noise@bootleq	rel%noise@bootleq	1266502700	
+app-profile	{ee56ecf0-6e7a-479a-8162-e123a991c7e7}	rel%{ee56ecf0-6e7a-479a-8162-e123a991c7e7}	1266502721	
+app-profile	{bfe3406c-6f31-4789-86d5-efa50e12c9eb}	rel%{bfe3406c-6f31-4789-86d5-efa50e12c9eb}	1266502704	
