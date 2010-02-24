@@ -32,7 +32,7 @@
 				<td><div class="keypad_key corners">9</div></td>
 			</tr>
 			<tr>
-				<td onclick="delete_keypad_entry();"><div class="corners"><span>delete</span></div></td>
+				<td onclick="delete_keypad_entry();"><div class="keypad_key corners"><span>delete</span></div></td>
 				<td><div class="keypad_key corners">0</div></td>
 				<td><div class="corners"><span onclick="tb_remove();">cancel</span></div></td>
 			</tr>
@@ -57,7 +57,9 @@ function show_keypad(){
 		$(this).removeClass('keypad_clicked');
 	});
 	keypad_key.click(function (){
-		$('#TB_ajaxContent  .keypad_screen').append($(this).text());
+		if ($(this).text()!='delete'){
+			$('#TB_ajaxContent  .keypad_screen').append($(this).text());
+		}
 	});
 
 }
