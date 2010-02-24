@@ -58,7 +58,10 @@ function show_keypad(){
 	});
 	keypad_key.click(function (){
 		if ($(this).text()!='delete'){
-			$('#TB_ajaxContent  .keypad_screen').append($(this).text());
+			var keypad_window=$('#TB_ajaxContent .keypad_screen');
+			if (keypad_window.text().length<19){
+				keypad_window.append($(this).text());
+			}
 		}
 	});
 
