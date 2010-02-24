@@ -15,6 +15,8 @@
 			<h2><?php echo $intro_screen_text;?></h2>
 	</div>
 	<div id="response"></div>
+	<a onclick="show_keypad()" style="text-align:right;clear:right">assholes</a>
+
 	<div style="position: absolute;left:-10000px;height:1px;overflow:hidden">
 		<!-- load these images so that they're in the cache -->
 		<img src="images/<?php echo $item_image;?>_item1_big.png"/>
@@ -24,7 +26,7 @@
 		<img src="images/<?php echo $item_image;?>_item2_small.png"/>
 		<?php }
 		//offscreen form for submitting patron barcode ?>
-		<form name="patron" action="processes/account_check.php" method="post">
+		<form id="patron_form" name="patron" action="processes/account_check.php" method="post">
 		<input name="barcode" type="text" id="barcode" value="" autocomplete="off" />
 		</form>
 	</div>
@@ -59,3 +61,7 @@ $(document).ready(function(){
 	});
 });
 </script>
+
+<?php ///////keypad
+include_once('includes/keypad.php');
+?>
