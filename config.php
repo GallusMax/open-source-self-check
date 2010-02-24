@@ -28,6 +28,7 @@ $sip_password='';
 
 
 //========================== Site Rules ==============================
+$allow_manual_userid_entry=true;
 $show_fines=true;
 $show_available_holds=true;
 $allow_email_receipts=false;

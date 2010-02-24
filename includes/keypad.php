@@ -1,3 +1,15 @@
+<div id="keypad_icon" >
+	<table width="100%" cellpadding="3">
+	    <tr>
+	    	<td onclick="show_keypad()">
+	    		<p>manually</p>
+	    		<p>enter</p>
+	    		<p>your id</p>
+	    	</td>
+	    	<td onclick="show_keypad()" style="width:5px"><img src="images/keypad_icon.gif"/></td>
+	    </tr>
+	</table>
+</div>
 <div id="keypad_container">
 	<div class="corners prompt selfcheck_button">
 		<table width="450" cellspacing="0" cellpadding="0" align="center" class="keypad">
@@ -25,7 +37,7 @@
 				<td><div class="corners"><span onclick="tb_remove();">cancel</span></div></td>
 			</tr>
 		</table>
-		<div class="prompt_box_border corners" id="ok" onclick="$('#barcode').val($('#TB_ajaxContent .keypad_screen').text());$('#patron_form').submit();" title="selfcheck_button">
+		<div class="prompt_box_border corners" id="ok" onclick="$('#barcode').val($('#TB_ajaxContent .keypad_screen').text());$('#patron_form').submit();tb_remove();" title="selfcheck_button">
 			<div class="ok_button corners" title="selfcheck_button">
 				<h1 style="color:#333;padding:15px;white-space:nowrap" title="selfcheck_button">OK</h1>
 			</div>
@@ -36,14 +48,15 @@
 function show_keypad(){
 	tb_remove();
 	tb_show($('#keypad_container').html());
+	var keypad_key=$('#TB_ajaxContent .keypad_key');
 	$('.corners').corners();
-	$('#TB_ajaxContent .keypad_key').mousedown(function (){
+	keypad_key.mousedown(function (){
 		$(this).addClass('keypad_clicked');
 	});
-	$('#TB_ajaxContent .keypad_key').mouseup(function (){
+	keypad_key.mouseup(function (){
 		$(this).removeClass('keypad_clicked');
 	});
-	$('#TB_ajaxContent .keypad_key').click(function (){
+	keypad_key.click(function (){
 		$('#TB_ajaxContent  .keypad_screen').append($(this).text());
 	});
 

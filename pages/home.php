@@ -15,8 +15,6 @@
 			<h2><?php echo $intro_screen_text;?></h2>
 	</div>
 	<div id="response"></div>
-	<a onclick="show_keypad()" style="text-align:right;clear:right">assholes</a>
-
 	<div style="position: absolute;left:-10000px;height:1px;overflow:hidden">
 		<!-- load these images so that they're in the cache -->
 		<img src="images/<?php echo $item_image;?>_item1_big.png"/>
@@ -62,6 +60,8 @@ $(document).ready(function(){
 });
 </script>
 
-<?php ///////keypad
-include_once('includes/keypad.php');
+<?php //keypad
+if ($allow_manual_userid_entry) { 
+	include_once('includes/keypad.php');
+}
 ?>
