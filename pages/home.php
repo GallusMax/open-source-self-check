@@ -1,4 +1,9 @@
 <div id="page_content">
+<?php //keypad
+if ($allow_manual_userid_entry) { 
+	include_once('includes/keypad.php');
+}
+?>
 	<div class="banner_title_wrapper">
 		<h2 class="banner_title" >
  		<span style="font-size:.5em">&nbsp;<?php echo $library_name;?></span>
@@ -59,9 +64,3 @@ $(document).ready(function(){
 	});
 });
 </script>
-
-<?php //keypad
-if ($allow_manual_userid_entry) { 
-	include_once('includes/keypad.php');
-}
-?>

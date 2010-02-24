@@ -1,5 +1,5 @@
 <div id="keypad_icon" >
-	<table width="100%" cellpadding="3">
+	<table width="100%" cellpadding="3" title="selfcheck_button">
 	    <tr>
 	    	<td onclick="show_keypad()">
 	    		<p>manually</p>
