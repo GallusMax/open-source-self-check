@@ -38,6 +38,7 @@ if ($allow_manual_userid_entry) {
 $(document).ready(function(){
 	$('#banner').corners();
 	$('form').submit(function(){
+		tb_remove();
 		$barcode=$('#barcode');
 		$("#response").html('<h2 style="color:#4d8b27"> Checking your account please wait. <img src="images/checking_account.gif" /></h2>');
 		$.post("processes/account_check.php", { barcode: $('#barcode').val()},

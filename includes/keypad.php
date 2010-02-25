@@ -32,12 +32,12 @@
 				<td><div class="keypad_key corners" title="selfcheck_button">9</div></td>
 			</tr>
 			<tr>
-				<td  onclick="delete_keypad_entry();"><div class="keypad_key corners" title="selfcheck_button"><span>delete</span></div></td>
+				<td  onclick="delete_keypad_entry();"><div class="keypad_key corners" title="selfcheck_button"><span title="selfcheck_button">delete</span></div></td>
 				<td><div class="keypad_key corners" title="selfcheck_button">0</div></td>
-				<td><div class="corners" title="selfcheck_button"><span onclick="tb_remove();">cancel</span></div></td>
+				<td><div class="corners" title="selfcheck_button"><span title="selfcheck_button" onclick="tb_remove();">cancel</span></div></td>
 			</tr>
 		</table>
-		<div class="prompt_box_border corners" id="ok" onclick="$('#barcode').val($('#TB_ajaxContent .keypad_screen').text());$('#patron_form').submit();tb_remove();" title="selfcheck_button">
+		<div class="prompt_box_border corners" id="ok" onclick="$('#barcode').val($('#TB_ajaxContent .keypad_screen').text());$('#patron_form').submit();" title="selfcheck_button">
 			<div class="ok_button corners" title="selfcheck_button">
 				<h1 style="color:#333;padding:15px;white-space:nowrap" title="selfcheck_button">OK</h1>
 			</div>
