@@ -1,3 +1,5 @@
+<!-- keypad icon -->
+
 <div id="keypad_icon" >
 	<table width="100%" cellpadding="3">
 	    <tr>
@@ -10,6 +12,11 @@
 	    </tr>
 	</table>
 </div>
+
+<!-- end keypad icon -->
+
+<!-- keypad -->
+
 <div id="keypad_container">
 	<div class="corners prompt selfcheck_button">
 		<table width="450" cellspacing="0" cellpadding="0" align="center" class="keypad">
@@ -44,7 +51,13 @@
 		</div>
 	</div>
 </div>
+
+<!-- end keypad -->
+
 <script type="text/javascript">
+
+//keypad functions
+
 function show_keypad(){
 	tb_remove();
 	tb_show($('#keypad_container').html());
@@ -66,10 +79,12 @@ function show_keypad(){
 	});
 
 }
+
 function delete_keypad_entry(){
 	var keypad_window_string=$('#TB_ajaxContent .keypad_screen').text();
 	var keypad_window_string_length=keypad_window_string.length;
 	keypad_window_new_string=keypad_window_string.substr(0,keypad_window_string_length-1);
 	$('#TB_ajaxContent .keypad_screen').text(keypad_window_new_string);
 }	
+
 </script>

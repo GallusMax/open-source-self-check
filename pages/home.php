@@ -1,9 +1,12 @@
 <div id="page_content">
-<?php //keypad
+
+<?php 
+//keypad include
 if ($allow_manual_userid_entry) { 
 	include_once('includes/keypad.php');
 }
 ?>
+
 	<div class="banner_title_wrapper">
 		<h2 class="banner_title" >
  		<span style="font-size:.5em">&nbsp;<?php echo $library_name;?></span>
@@ -19,8 +22,11 @@ if ($allow_manual_userid_entry) {
 			</span>
 			<h2><?php echo $intro_screen_text;?></h2>
 	</div>
-	<div id="response"></div>
+	
+	<div id="response"></div><!-- response container for showing failed login/blocked patron messages -->
+	
 	<div style="position: absolute;left:-10000px;height:1px;overflow:hidden">
+	
 		<!-- load these images so that they're in the cache -->
 		<img src="images/<?php echo $item_image;?>_item1_big.png"/>
 		<img src="images/<?php echo $item_image;?>_item1_small.png"/>
@@ -28,12 +34,15 @@ if ($allow_manual_userid_entry) {
 		<img src="images/<?php echo $item_image;?>_item2_big.png"/>
 		<img src="images/<?php echo $item_image;?>_item2_small.png"/>
 		<?php }
+		
 		//offscreen form for submitting patron barcode ?>
 		<form id="patron_form" name="patron" action="processes/account_check.php" method="post">
 		<input name="barcode" type="text" id="barcode" value="" autocomplete="off" />
 		</form>
+		
 	</div>
 </div>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#banner').corners();
@@ -58,7 +67,7 @@ $(document).ready(function(){
 					$("#page_content").html(data);
 				}
 			}, 1000);
-		},'json');
+		},'json'); //responses from process/account_check.php are expectd to be in json
 		$barcode.val('');
 		$barcode.focus();
 		return false;   
