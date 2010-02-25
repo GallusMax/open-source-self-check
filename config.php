@@ -28,13 +28,13 @@ $sip_password='';
 
 
 //========================== Site Rules ==============================
-$sc_location='';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs
+$sc_location='';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs and the (optional) Mysql logs (see below)
 $allow_manual_userid_entry=true;
 $show_fines=true;
 $show_available_holds=true;
 $allow_email_receipts=false;
 $display_php_errors='off'; //off or on
-$hide_cursor_pointer=false; //hides default cursor pointer -should probably set to true on live self check
+$hide_cursor_pointer=false; //hides default cursor pointer -should probably be set to true on live self check
 
 
 //========================== Logging =================================
@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `self_check_stats` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 )
+
 */
 //====================================================================
 $use_mysql_logging=false;	/* log your selfcheck checkout count by month? 
@@ -157,6 +158,9 @@ $action_balloon_bg_color='#f1cae1'; //background color for action balloons
 		   $allowed_ip[]='192.168.0.4';
 */
 $allowed_ip[]=''; //leave empty if you've already limited access to the self check via your server (Apache, IIS, etc.)
+
+
+
 
 //==================================== Don't edit below this line =======================
 if (!in_array($_SERVER['REMOTE_ADDR'],$allowed_ip) && !empty($allowed_ip[0])){ 
