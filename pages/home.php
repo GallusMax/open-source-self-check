@@ -8,7 +8,7 @@ if ($allow_manual_userid_entry) {
 ?>
 
 	<div class="banner_title_wrapper">
-		<h2 class="banner_title" >
+		<h2 class="banner_title">
  		<span style="font-size:.5em">&nbsp;<?php echo $library_name;?></span>
  		<br /><?php echo $module_name;?>
 		</h2>
