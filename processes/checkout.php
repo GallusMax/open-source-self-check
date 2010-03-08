@@ -164,7 +164,7 @@ if (!empty($action_balloon[$item_type]) && $action_balloon[$item_type]['trigger'
 	 $action_message=$action_balloon[$permanent_location]['action_message'];
 }
 	
-if (!empty($action_message)){
+if (!empty($action_message) && empty($_SESSION['action_'.$item_type])){
 	if (empty($_SESSION['action_balloon_count'])){ 	/*determine which side of the screen to show the action balloon (they'd overlap if consecutive items were to trigger balloons on the same side) */
 		echo "$('.qtip').remove();"; //get rid on any existing balloons
 		$action_balloon_position='target: "leftMiddle", tooltip: "rightMiddle"'; //if no previous action balloons put the balloon on the left
@@ -186,6 +186,7 @@ echo '
 		style: { width:"140px",tip: {corner:"'.$action_balloon_corner.'",color:"'.$action_balloon_bg_color.'" }, border: { width: 1,color:"'.$action_balloon_bg_color.'" ,radius:5},background: "'.$action_balloon_bg_color.'"}
  	});
 	$.dbj_sound.play($("#note"));';
+	$_SESSION['action_'.$item_type]=1;
 } 
 //End Action Balloon
  echo '
