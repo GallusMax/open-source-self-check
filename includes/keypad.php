@@ -19,7 +19,7 @@
 
 <div id="keypad_container">
 	<div class="corners prompt selfcheck_button">
-		<table width="450" cellspacing="0" cellpadding="0" align="center" class="keypad">
+		<table cellspacing="0" cellpadding="0" align="center" class="keypad">
 			<tr>
 				<td colspan="3" class="keypad_screen"></td>
 			</tr>
