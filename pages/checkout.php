@@ -144,7 +144,7 @@ $( "#print" ).click( //receipt print function
 	$( "#print_item_list_div" ).print();
 	return( false );
 }); 
-$( "#email" ).click( //receipt print function
+$( "#email" ).click( //receipt email function
 	function(){
 	$('#print,#no_print').css('visibility','hidden');
 	$('#email').hide();
