@@ -94,9 +94,14 @@
 			</td>
 		</tr>
 	</table>
-	<div class="cko_page_button_border" id="cancel" title="selfcheck_button" onclick="window.location.href='processes/logout.php'">
+	<div class="cko_page_button_border" id="cancel" title="selfcheck_button" onclick="$('#cancel').hide();$('#cancel_thanks').show();window.location.href='processes/logout.php'">
 		<div class="cancel_button" title="selfcheck_button" id="cancel_inner">
 		<h1 title="selfcheck_button">Cancel</h1>
+		</div>
+	</div>
+	<div class="cko_page_button_border thanks_border" id="cancel_thanks">
+		<div class="thanks_button corners">
+				<h1>Thanks</h1>
 		</div>
 	</div>
 <!--  ============= end finish/cancel buttons ============= -->
@@ -130,7 +135,7 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() { 
-$('#print,#print_inner,#print_thanks,#print_thanks_inner,#email,#email_inner,#email_thanks,#email_inner_thanks,#no_print,#no_print_inner,#no_print_thanks,#no_print_inner_thanks,#cancel,#cancel_inner').corners();
+$('#print,#print_inner,#print_thanks,#print_thanks_inner,#email,#email_inner,#email_thanks,#email_inner_thanks,#no_print,#no_print_inner,#no_print_thanks,#no_print_inner_thanks,#cancel,#cancel_inner,#cancel_thanks').corners();
 
 $(".tab").corners("top transparent");
 $("#cko_wrapper").corners("left bottom transparent");
