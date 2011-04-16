@@ -11,11 +11,11 @@ if (isset($_SERVER['QUERY_STRING'])) {
 $page='home';
 //set page for inclusion below
 if (!empty($_GET['page']) && file_exists('pages/'.$_GET['page'].'.php')){
-$page=$_GET['page'];
-$include='pages/'.$page.'.php';
+	$page=$_GET['page'];
+	$include='pages/'.$page.'.php';
 //if there's no page listed go to the home page
 } else {
-header('location:index.php?page='.$page);
+	header('location:index.php?page='.$page);
 }
 
 //header
