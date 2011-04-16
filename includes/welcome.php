@@ -34,6 +34,8 @@
 		<input name="barcode" type="text" id="barcode"  value="" autocomplete="off" />
 		<input name="page" type="hidden" id="page"  value="checkout" />
 	</form>
+<!--  ============= end form for submitting items ============= -->
+
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
