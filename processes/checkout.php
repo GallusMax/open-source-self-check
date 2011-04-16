@@ -149,8 +149,7 @@ echo '
 var item="<tr><td>Title: '.str_replace('"','\"',$title).'</td></tr><tr><td>Call Number: '.str_replace('"','\"',$call_number).'</td></tr><tr><td>Item ID: '.$item_barcode.'</td></tr><tr><td>Date Due: '.$due_date.'</td></tr><tr><td>&nbsp;</td></tr>";
 
 $(document).ready(function(){
-	$("#loading").hide();
-	$("#cancel").hide();
+	$("#loading,#cancel").hide();
 	$("#user_cko_buttons").show();
 	$("#checkout_count").html("'.$_SESSION['checkouts'].'");
 	$("#print_item_list_table").find("tbody").append(item);
