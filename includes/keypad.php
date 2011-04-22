@@ -1,14 +1,14 @@
 <!-- keypad icon -->
 
-<div id="keypad_icon" >
-	<table width="100%" cellpadding="3">
+<div id="keypad_icon">
+	<table width="100%" cellpadding="3" title="selfcheck_button">
 	    <tr>
 	    	<td onclick="show_keypad()">
-	    		<p title="selfcheck_button">manually</p>
-	    		<p title="selfcheck_button">enter</p>
-	    		<p title="selfcheck_button">your id</p>
+	    		<p>manually</p>
+	    		<p>enter</p>
+	    		<p>your id</p>
 	    	</td>
-	    	<td onclick="show_keypad()" style="width:5px;"><img src="images/keypad_icon.gif" title="selfcheck_button"/></td>
+	    	<td onclick="show_keypad()" style="width:5px;"><img src="images/keypad_icon.gif"/></td>
 	    </tr>
 	</table>
 </div>
