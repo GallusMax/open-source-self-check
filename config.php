@@ -5,13 +5,7 @@
 * 	This application provides a method of checking out and renewing materials via a web interface using 3M's SIP2 standard
 * 	Thanks to John Wohlers for his sip2 class -this application would not have come about without it
 *
-* 	This thing is in its infancy having been in use for just a few weeks (as of Feb 6, 2010) and only 
-*	tested on one library system (SirsiDynix Symphony) I know just enough of SIP2 to get it working on our system. 
-*	The limitations of my knowldge will surely become apparant if others attempt to implement it on other 
-*	systems with differing SIP2 configurations. In short, this self-check is very beta. 
-*	In its current state it will surely not suit everyone's needs. I'm making it public at the request 
-*	of several libraries and I'm hoping others find flaws and limitations and make improvements. 
-*	If you do make additions or other customizations that improve or extend the self check's 
+*	If you make additions or other customizations that improve or extend the self check's 
 *	functionality I would love to hear about them.
 *
 *	@author     	Eric Melton <ericmelton@gmail.com>
