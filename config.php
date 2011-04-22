@@ -75,7 +75,7 @@ $already_ckdout_to_you='Item already charged to this user'; //item already out t
 //====================== Wording, SMTP, & Other Variables ==============
 $currency_symbol='$';
 $due_date_format='n/j/Y'; //see http://php.net/manual/en/function.date.php for information on formatting dates
-$inactivity_timeout=4000; //time of inactivity before showing inactive prompt (in milliseconds)
+$inactivity_timeout=40000; //time of inactivity before showing inactive prompt (in milliseconds)
 $patron_id_length=''; //length of patron barcode or other id (leave empty if this varies)
 $online_catalog_url=''; 	/*leave blank if you don't have one or if your catalog does
 							not allow renewals (this is for printing on the paper receipt and 
