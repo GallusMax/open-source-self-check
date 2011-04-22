@@ -19,7 +19,6 @@ $(document).ready(function(){
 	$("#loading").hide();
 	tb_remove(); //hide any existing notices
 	tb_show($('#prompt_box').html());
-	$('.corners').corners();
 	$.dbj_sound.play($('#error'));
 });
 </script>

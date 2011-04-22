@@ -56,9 +56,8 @@ function inactive_notice(){
 	$.doTimeout( 'prompt', <?php echo $inactivity_timeout;?>, function(){ //do the following in <?php echo $inactivity_timeout;?> milliseconds (see config file to set this)
 		tb_remove(); 
 		tb_show($('#idle_timer').html());
-		$('.corners').corners();
 		$.dbj_sound.play($('#error'));
-		countdown_redirect($("#TB_ajaxContent").find("span"));
+		countdown_redirect($("#prompt span"));
 		$.doTimeout( 'count', 21000, function(){ //redirect in 21 seconds
 		window.location.href="processes/logout.php";
 		});

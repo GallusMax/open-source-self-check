@@ -1,12 +1,10 @@
 <!--session timeout prompt -->
-<div id="idle_timer" style="display:none">
-	<div class="corners prompt selfcheck_button">
-		<h1 style="white-space:nowrap" class="selfcheck_button">You've been inactive for <?php echo $inactivity_timeout/1000;?> seconds.<br />Click OK to continue.<br />Otherwise your session will end in <span style="color:#b60606">20</span> seconds.</h1>
-		<div class="prompt_box_border corners" style="padding:5px;margin:10px auto 10px auto;cursor:pointer;width:150px" id="ok" onclick="tb_remove();" title="selfcheck_button">
-			<div class="ok_button corners" title="selfcheck_button">
-				<h1 style="color:#333;padding:25px;white-space:nowrap" title="selfcheck_button">OK</h1>
-			</div>
-		</div>
+<div id="idle_timer">
+	<h1>You've been inactive for <?php echo $inactivity_timeout/1000;?> seconds.</h1>
+	<h1>Click OK to continue.</h1>
+	<h1>Otherwise your session will end in <span style="color:#b60606">20</span> seconds.</h1>
+	<div class="ok_button button" title="selfcheck_button" onclick="tb_remove();">
+		<h1>OK</h1>
 	</div>
 </div>
 <!--end session timeout prompt -->

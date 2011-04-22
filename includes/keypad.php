@@ -62,7 +62,6 @@ function show_keypad(){
 	tb_remove();
 	tb_show($('#keypad_container').html());
 	var keypad_key=$('#TB_ajaxContent .keypad_key');
-	$('.corners').corners();
 	keypad_key.mousedown(function (){
 		$(this).addClass('keypad_clicked');
 	});

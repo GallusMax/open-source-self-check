@@ -5,7 +5,7 @@
  		<br /><?php echo $out_of_order_head;?>
 		</h2>
 	</div>
-	<div class="banner_wrapper" id="banner">
+	<div class="banner_wrapper corners" id="banner">
 			<span id="swap">
 			<img src="images/out_of_order1.png" align="left" class="active" />
 			<img src="images/out_of_order2.png" align="left"/>
@@ -15,7 +15,6 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	$('#banner').corners();
 	$.dbj_sound.play($('#error'));
 	window.setInterval( //do an ACS status request every 30 seconds to see if we're back online
 		function() {
