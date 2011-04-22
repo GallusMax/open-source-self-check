@@ -54,6 +54,7 @@
 
 		</div>
 	</div>
+	
 <!--  ============= finish/cancel buttons ============= -->
 	<table id="cko_buttons" cellpadding="5">
 		<tr>
@@ -97,8 +98,9 @@
 
 </div>
 
-<!--  ============= form for submitting items ============= -->
 <div style="position: absolute;left:-1500px;">
+
+<!--  ============= form for submitting items ============= -->
 	<form id="form">
 		<input name="barcode" type="text" id="barcode" />
 	</form>
@@ -106,7 +108,7 @@
 
 <!--  ============= receipt container ============= -->
 	<div id="print_item_list_div">
-		<table cellpadding="0" cellspacing="0" width="100%" id="print_item_list_table">
+		<table>
 			<tbody>
 				<tr>
 					<td>Checkout Receipt</td>

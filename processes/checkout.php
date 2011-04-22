@@ -96,37 +96,21 @@ if (!empty($checkout['variable']['AJ'][0])){
 	$title=ucwords(TrimByLength($title,45,false));
 }
 
-if ($OK==1){
-	if ($use_mysql_logging){ //the item got checked out. should we load this cko in the stats table in the database?
-		
-		$mysql_connection = mysql_pconnect($dbhostname, $dbusername, $dbpassword) or trigger_error(mysql_error(),E_USER_ERROR); 
-
-		mysql_select_db($database, $mysql_connection);
-		$find_last_month_year_entered=q("select DATE_FORMAT(timestamp, '%m-%Y') from ".$log_table_name." where location='".str_replace("'","\'",$sc_location)."' order by timestamp desc limit 0,1");
+if ($OK!=1){
 	
-			if ($find_last_month_year_entered!=date('m-Y')){
-		
-				mysql_select_db($database, $mysql_connection);
-				q("insert into ".$log_table_name." (count,timestamp,location) values (1,now(),'".str_replace("'","\'",$sc_location)."')");
+	if (($RenewalOk=='Y' OR stripos($response_message,$already_ckdout_to_you)!==false) && empty($_POST['renew'])){ //see if this item is already checked out to this user and show renew prompt if it is
 	
-			} else {
-	
-				mysql_select_db($database, $mysql_connection);
-				q("update ".$log_table_name." set timestamp=now(), count=count+1 where location='".str_replace("'","\'",$sc_location)."' and DATE_FORMAT(timestamp, '%m-%Y')='".$find_last_month_year_entered."'");
-		
-			}
-	}
-} else if (($RenewalOk=='Y' OR stripos($response_message,$already_ckdout_to_you)!==false) && empty($_POST['renew'])){ //see if this item is already checked out to this user and show renew prompt if it is
-
 		include_once('../includes/renew.php');
 		exit;
 	
-} else {
-
+	} else {
+	
 		//the item didn't get caught in any of our checkout exceptions so call the error prompt box
 		include_once('../includes/general_cko_error.php');
 		exit;
 			
+	} 
+
 }
 
 $ptrnmsg = $mysip->msgPatronInformation('charged'); //get checkout count again
