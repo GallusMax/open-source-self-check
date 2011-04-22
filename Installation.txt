@@ -102,7 +102,7 @@ SECURITY
 JAVASCRIPT AND CSS
 ----------------------------
 --Positioning
-	The top margin of .banner_title -used on the home and welcome screens- and the height of #item_list_div 
+	The top margin of .banner_title -used on the home and welcome screens- and the height of #item_list 
 	-used on the checkout screen- are set to suit a 17" monitor with a resolution of 1280 x 1024 -you will need to 		adjust these values to suite your screen size/resolution (see css/selfcheck.css)
 
 ----------------------------

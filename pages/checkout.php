@@ -43,7 +43,7 @@
 			</table>
 			
 <!--  ============= checked out items container ============= -->
-			<div id="item_list_div">
+			<div id="item_list">
 				<table border="0" cellpadding="3" cellspacing="0" align="center">
 					<tbody>
 					</tbody>
@@ -107,7 +107,7 @@
 <!--  ============= end form for submitting items ============= -->
 
 <!--  ============= receipt container ============= -->
-	<div id="print_item_list_div">
+	<div id="print_item_list">
 		<table>
 			<tbody>
 				<tr>
@@ -140,7 +140,7 @@ $(document).ready(function() {
 		$('#no_print,#email').css('visibility','hidden');
 		$(this).hide();
 		$("#print_thanks").show();
-		$( "#print_item_list_div" ).print();
+		$( "#print_item_list" ).print();
 		return( false );
 	}); 
 	
@@ -149,8 +149,8 @@ $(document).ready(function() {
 		$('#print,#no_print').css('visibility','hidden');
 		$(this).hide();
 		$("#email_thanks").show();
-		$( "#print_item_list_div" ).print('email');
-		$.post("processes/email_receipt.php", { receipt:$('#print_item_list_div').html()},
+		$( "#print_item_list" ).print('email');
+		$.post("processes/email_receipt.php", { receipt:$('#print_item_list').html()},
 		function(data){
 			$('body').append(data);
 		});
@@ -176,7 +176,7 @@ $(document).ready(function() {
 		$barcode=$('#barcode');
 		$.post("processes/checkout.php", { barcode: $barcode.val()},
 			function(data){
-				$("#item_list_div table").find('tbody').append(data);
+				$("#item_list table").find('tbody').append(data);
 			});
 		$barcode.val('');
 		$barcode.focus();
@@ -199,7 +199,7 @@ $(document).ready(function() {
 function post_first_item(item){ //post first item function
 	$.post("processes/checkout.php", { barcode:item},
 		function(data){
-			$("#item_list_div table").find('tbody').append(data)
+			$("#item_list table").find('tbody').append(data)
 	});
 	return false;   
 }
@@ -208,7 +208,7 @@ function renew(item){ //renew item function
 	$barcode=$('#barcode');
 	$.post("processes/checkout.php", { barcode:item,renew:'true'},
 		function(data){
-			$("#item_list_div table").find('tbody').append(data)
+			$("#item_list table").find('tbody').append(data)
 		});
 	$barcode.val('');
 	$barcode.focus();
