@@ -4,55 +4,54 @@
 <div class="cko_head">
 	<h1>
 		<span id="swap" style="z-index:1000">
-		<img src="images/<?php echo $item_image;?>_item1_small.png" align="left" class="active" />
-		<?php if ($item_image!='nonbarcoded'){ ?>
-		<img src="images/<?php echo $item_image;?>_item2_small.png" align="left"/>
-		<?php }?>
+			<img src="images/<?php echo $item_image;?>_item1_small.png" align="left" class="active" />
+			<?php if ($item_image!='nonbarcoded'){ ?>
+				<img src="images/<?php echo $item_image;?>_item2_small.png" align="left"/>
+			<?php }?>
 		</span>
-		<span style="font-size:13px;">&nbsp;&nbsp;<?php echo $library_name;?></span><br />&nbsp;<?php echo $module_name;?><br /><br />
+		<span style="font-size:13px;">&nbsp;&nbsp;<?php echo $library_name;?></span><br />&nbsp;<?php echo $module_name;?>
+		<br /><br />
 	</h1>
 </div>
 <div id="wrapper">
 	<div style="text-align:right">
-		<a class="rounded welcome">Welcome <?php echo substr($_SESSION['name'],0,strpos($_SESSION['name'],' '));?>!</a>
-		<a class="rounded tab">
+		<a class="welcome">Welcome <?php echo substr($_SESSION['name'],0,strpos($_SESSION['name'],' '));?>!</a>
+		<a class="tab">
 			Checkouts: <span id="checkout_count"><?php echo $_SESSION['checkouts'];?></span>
 		<?php if ($show_available_holds){?>
-			<span style="color:#fff"> |</span>
+			<span> |</span>
 			Available Holds: <?php echo $_SESSION['available_holds'];?>
 		<?php }
 			if ($show_fines){?>
-			<span style="color:#fff"> |</span>
+			<span> |</span>
 			Fines: <?php echo $_SESSION['fines'];
 			}?>
-			<span style="color:#fff"> |</span>
-			<span<?php if ($_SESSION['overdues']>0){?> style="text-decoration: blink;" <?php }?>>Overdues: <?php echo $_SESSION['overdues'];?></span>
+			<span> |</span>
+			<font <?php if ($_SESSION['overdues']>0){?> style="text-decoration: blink;" <?php }?>>Overdues: <?php echo $_SESSION['overdues'];?></font>
 		</a>
 	</div>
 	<div id="cko_wrapper">
-		<div class="white">
-			<h2 class="item_list_title">Items Checked Out Today</h2>
-			<table border="0" cellpadding="3" cellspacing="0" style="width:100%;font-weight:bold" align="center">
+		<h2>Items Checked Out Today</h2>
+		<table border="0" cellpadding="3" cellspacing="0" class="cko_column_head" align="center">
+			<tbody>
+				<tr>
+					<td>&nbsp;</td>
+					<td style="width:80%">Title</td>
+					<td>Due Date</td>
+				</tr>
+			</tbody>
+		</table>
+		
+<!--  ============= checked out items container ============= -->
+		<div id="item_list">
+			<table border="0" cellpadding="3" cellspacing="0" align="center">
 				<tbody>
-					<tr>
-						<td class="cko_column_head" style="width:25px">&nbsp;</td>
-						<td class="cko_column_head" style="width:80%">Title</td>
-						<td class="cko_column_head">Due Date</td>
-					</tr>
 				</tbody>
 			</table>
-			
-<!--  ============= checked out items container ============= -->
-			<div id="item_list">
-				<table border="0" cellpadding="3" cellspacing="0" align="center">
-					<tbody>
-					</tbody>
-				</table>
-				<div class="loading"><img src="images/checking_account.gif"/></div>
-			</div>
+			<div class="loading"><img src="images/checking_account.gif"/></div>
+		</div>
 <!--  ============= end checked out items container ============= -->
 
-		</div>
 	</div>
 	
 <!--  ============= finish/cancel buttons ============= -->
