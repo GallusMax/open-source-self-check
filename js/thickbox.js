@@ -1,6 +1,6 @@
-function tb_show(content) {//function called when the user clicks on a thickbox link
+function tb_show(content) {
 	$("body").append("<div id='TB_overlay' onclick='tb_remove();'></div><div id='TB_window'><div id='prompt'>"+content+"</div></div>");
-	$("#TB_overlay").addClass("TB_overlayBG");//use background and opacity
+	$("#TB_overlay").addClass("TB_overlayBG");
 	$("#TB_window").css({display:"block"});
 	$("#prompt").center();
 }
