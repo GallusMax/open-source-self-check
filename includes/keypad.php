@@ -60,7 +60,7 @@ function show_keypad(){
 	var keypad_key=$('#prompt .keypad div');
 	keypad_key.click(function (){
 		if (typeof $(this).data('val')!= 'undefined'){
-			var keypad_window=$('#prompt .keypad .keypad_screen');
+			var keypad_window=$('#prompt .keypad_screen');
 			if (keypad_window.text().length<19){
 				keypad_window.append($(this).data('val'));
 			}
