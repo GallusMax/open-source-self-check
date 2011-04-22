@@ -19,7 +19,7 @@
 		</h2>
 </div>
 <div class="cancel_button corners" style="padding:5px;margin:100px auto 0 auto;cursor:pointer;width:200px;" onclick="$('#cancel').hide();$('#cancel_thanks').show();window.location.href='processes/logout.php'" id="cancel" title="selfcheck_button">
-	<h1 title="selfcheck_button">Cancel</h1>
+	<h1>Cancel</h1>
 </div>
 <div class="thanks_button corners" id="cancel_thanks" style="padding:5px;margin:100px auto 0 auto;cursor:pointer;width:200px;display:none">
 	<h1>Thanks</h1>
@@ -40,7 +40,6 @@ $(document).ready(function(){
 	$barcode=$('#barcode');
 	$barcode.val('');
 	$barcode.focus();
-	$('#banner,#cancel,#cancel_thanks').corners();
 	$.dbj_sound.play($('#welcome'));
 	inactive_notice();
 });
