@@ -51,9 +51,7 @@
 <!-- end keypad -->
 
 <script type="text/javascript">
-
 //keypad functions
-
 function show_keypad(){
 	tb_remove();
 	tb_show($('#keypad_container').html());
@@ -66,7 +64,6 @@ function show_keypad(){
 			}
 		}
 	});
-
 }
 
 function delete_keypad_entry(){
@@ -75,5 +72,4 @@ function delete_keypad_entry(){
 	keypad_window_new_string=keypad_window_string.substr(0,keypad_window_string_length-1);
 	$('#prompt .keypad_screen').text(keypad_window_new_string);
 }	
-
 </script>

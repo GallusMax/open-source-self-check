@@ -7,20 +7,20 @@ if ($allow_manual_userid_entry) {
 }
 ?>
 
-	<div class="banner_title_wrapper">
-		<h2 class="banner_title">
- 		<span style="font-size:.5em">&nbsp;<?php echo $library_name;?></span>
- 		<br /><?php echo $module_name;?>
+	<div id="banner_title">
+		<h2>
+			<span>&nbsp;<?php echo $library_name;?></span>
+			<br /><?php echo $module_name;?>
 		</h2>
 	</div>
-	<div class="banner_wrapper corners" id="banner">
-			<span id="swap">
+	<div class="corners" id="banner">
+		<span id="swap">
 			<img src="images/<?php echo $card_image;?>_card1.png" align="left" class="active" />
 			<?php if ($card_image!='magnetic'){ ?>
-			<img src="images/<?php echo $card_image;?>_card2.png" align="left"/>
+				<img src="images/<?php echo $card_image;?>_card2.png" align="left"/>
 			<?php }?>
-			</span>
-			<h2><?php echo $intro_screen_text;?></h2>
+		</span>
+		<h2><?php echo $intro_screen_text;?></h2>
 	</div>
 	
 	<div id="response"></div><!-- response container for showing failed login/blocked patron messages -->

@@ -1,7 +1,7 @@
 <?php 
 /* 	checkout screen */
 ?>
-<div class="cko_head">
+<div id="cko_head">
 	<h1>
 		<span id="swap" style="z-index:1000">
 			<img src="images/<?php echo $item_image;?>_item1_small.png" align="left" class="active" />
@@ -13,8 +13,8 @@
 		<br /><br />
 	</h1>
 </div>
-<div id="wrapper">
-	<div style="text-align:right">
+<div id="cko_wrapper">
+	<div>
 		<a class="welcome">Welcome <?php echo substr($_SESSION['name'],0,strpos($_SESSION['name'],' '));?>!</a>
 		<a class="tab">
 			Checkouts: <span id="checkout_count"><?php echo $_SESSION['checkouts'];?></span>
@@ -30,9 +30,10 @@
 			<font <?php if ($_SESSION['overdues']>0){?> style="text-decoration: blink;" <?php }?>>Overdues: <?php echo $_SESSION['overdues'];?></font>
 		</a>
 	</div>
-	<div id="cko_wrapper">
+	<div id="cko_border">
+	
 		<h2>Items Checked Out Today</h2>
-		<table border="0" cellpadding="3" cellspacing="0" class="cko_column_head" align="center">
+		<table cellpadding="3" cellspacing="0" class="cko_column_head" align="center">
 			<tbody>
 				<tr>
 					<td>&nbsp;</td>
@@ -85,7 +86,7 @@
 			</td>
 		</tr>
 	</table>
-	<div style="width:250px;margin:10px auto 10px auto">
+	<div style="width:250px;margin:10px auto 10px auto" id="pre_cko_buttons">
 		<div class="cancel_button button" title="selfcheck_button" onclick="$(this).hide();$('#cancel_thanks').show();window.location.href='processes/logout.php'">
 			<h1>Cancel</h1>
 		</div>
@@ -171,7 +172,7 @@ $(document).ready(function() {
 	$('#form').submit(function(){
 		tb_remove();
 		inactive_notice();
-		$("#loading").show();
+		$("#item_list .loading").show();
 		$barcode=$('#barcode');
 		$.post("processes/checkout.php", { barcode: $barcode.val()},
 			function(data){

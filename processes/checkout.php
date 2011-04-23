@@ -133,7 +133,7 @@ if (!empty($_SESSION['patron_barcode'])){
 	var item="<tr><td>Title: '.str_replace('"','\"',$title).'</td></tr><tr><td>Call Number: '.str_replace('"','\"',$call_number).'</td></tr><tr><td>Item ID: '.$item_barcode.'</td></tr><tr><td>Date Due: '.$due_date.'</td></tr><tr><td>&nbsp;</td></tr>";
 	
 	$(document).ready(function(){
-		$("#loading,#cancel").hide();
+		$("#item_list .loading,#pre_cko_buttons").hide();
 		$("#cko_buttons").show();
 		$("#checkout_count").html("'.$_SESSION['checkouts'].'");
 		$("#print_item_list table").find("tbody").append(item);
