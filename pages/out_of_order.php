@@ -1,11 +1,11 @@
 <div id="page_content">
-	<div class="banner_title_wrapper">
-		<h2 class="banner_title" >
- 		<span style="font-size:.5em">&nbsp;<?php echo $module_name;?></span>
+	<div id="banner_title">
+		<h2>
+ 		<span>&nbsp;<?php echo $module_name;?></span>
  		<br /><?php echo $out_of_order_head;?>
 		</h2>
 	</div>
-	<div class="banner_wrapper corners" id="banner">
+	<div id="banner" class="corners">
 			<span id="swap">
 			<img src="images/out_of_order1.png" align="left" class="active" />
 			<img src="images/out_of_order2.png" align="left"/>
