@@ -1,37 +1,40 @@
-<div class="banner_title_wrapper">
-	<h2 class="banner_title" style="color:#4d8b27">
-		 <span style="font-size:.5em;">&nbsp;Welcome</span>
+<div id="banner_title">
+	<h2 style="color:#4d8b27">
+		 <span>&nbsp;Welcome</span>
  		<br />
 		<?php echo $_SESSION['name'];?>!
 	</h2>
 </div>
-<div class="banner_wrapper" id="banner">
-		<span id="swap">
-			<img src="images/<?php echo $item_image;?>_item1_big.png" align="left" class="active" />
-			<?php if ($item_image!='nonbarcoded'){ ?>
+
+<div id="banner" class="corners">
+	<span id="swap">
+		<img src="images/<?php echo $item_image;?>_item1_big.png" align="left" class="active" />
+		<?php if ($item_image!='nonbarcoded'){ ?>
 			<img src="images/<?php echo $item_image;?>_item2_big.png" align="left"/>
-			<?php }?>
-		</span>
-		<h2>
+		<?php }?>
+	</span>
+	<h2>
 		<?php echo $welcome_screen_text;?>
 		<br />
 		<span style="font-size:15px;color:#FCFCFC;font-style:italic"><?php echo $welcome_screen_subtext;?></span>
-		</h2>
+	</h2>
 </div>
-<div class="cancel_button corners" style="padding:5px;margin:100px auto 0 auto;cursor:pointer;width:200px;" onclick="$('#cancel').hide();$('#cancel_thanks').show();window.location.href='processes/logout.php'" id="cancel" title="selfcheck_button">
+
+<div class="cancel_button button" style="margin:100px auto 0 auto;" onclick="$('#cancel').hide();$('#cancel_thanks').show();window.location.href='processes/logout.php'" id="cancel" title="selfcheck_button">
 	<h1>Cancel</h1>
 </div>
-<div class="thanks_button corners" id="cancel_thanks" style="padding:5px;margin:100px auto 0 auto;cursor:pointer;width:200px;display:none">
+<div class="thanks_button button" id="cancel_thanks" style="margin:100px auto 0 auto;">
 	<h1>Thanks</h1>
 </div>
-<div style="position: absolute;left:-10000px;">
+
 <!--  ============= form for submitting items ============= -->
+<div style="position: absolute;left:-10000px;">
 	<form id="form" action="index.php?page=checkout" method="get">
 		<input name="barcode" type="text" id="barcode"  value="" autocomplete="off" />
 	</form>
+</div>
 <!--  ============= end form for submitting items ============= -->
 
-</div>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#form').submit(function(){
