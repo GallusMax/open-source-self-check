@@ -16,6 +16,6 @@ $mysip->port = $sip_port;
 $connect=$mysip->connect();
 
 if ($connect) {
-	echo 'online';
+	echo json_encode('online');
 }
 ?>
