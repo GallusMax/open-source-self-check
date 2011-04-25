@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `self_check_stats` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `location` varchar(50) DEFAULT NULL,
   `count` int(11) NOT NULL DEFAULT '0',
+  `sessions` int(11) NOT NULL DEFAULT '0',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 )

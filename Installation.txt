@@ -54,7 +54,7 @@ The self-check plays sounds when a user's account is blocked (because of fines,e
 
 --Click sounds
 	To play sounds when buttons are clicked, the Firefox Portable included in this package has an addon called 'Noise'
-	that is configured to play a sound whenever one of the buttons is clicked (the delay was too long when using the 	method for other sounds). To configure this addon, go into the addon's preferences in Firefox						(tools>addons>Noise>preferences) and be sure that the sound file pointed to under the click event (it should be the 	only one enabled) is pointed to the click.wav file in the sounds folder in the Firefox Portable directory.*
+	that is configured to play a sound whenever one of the buttons is clicked (the delay was too long when using the 	method for other sounds). To configure this addon, go into the addon's preferences in Firefox						(tools>addons>Noise>preferences) and be sure that the sound file pointed to under the click event (it should be the 	only one enabled) is pointed to the click.wav file in the noise folder in the Firefox Portable directory.*
 
 	*An alternative to the above would be to enable your touchscreen monitor's own click sounds if it has such a feature.
 
@@ -102,8 +102,9 @@ SECURITY
 JAVASCRIPT AND CSS
 ----------------------------
 --Positioning
-	The top margin of .banner_title -used on the home and welcome screens- and the height of #item_list 
-	-used on the checkout screen- are set to suit a 17" monitor with a resolution of 1280 x 1024 -you will need to 		adjust these values to suite your screen size/resolution (see css/selfcheck.css)
+	The top margin of #banner -used on the home and welcome screens- and the height of #item_list 
+	-used on the checkout screen- are set to suit a 17" monitor with a resolution of 1280 x 1024 -you will need to 		
+	adjust these values to suite your screen size/resolution (see css/selfcheck.css)
 
 ----------------------------
 RESPONSE MESSAGES

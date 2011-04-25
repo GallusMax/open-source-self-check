@@ -1,0 +1,9 @@
+To update:
+1. Save your current config.php in a new location
+2. Delete all files in your current self check directory
+3. If you use mysql logging run the query below on your logging table
+
+ALTER TABLE `self_check_stats` ADD `sessions` INT NOT NULL DEFAULT '0';
+
+4. Copy all the new version of the self check files to your self check directory
+5. Copy your old config.php back into the self check directory

@@ -17,7 +17,7 @@
 	<div>
 		<a class="welcome">Welcome <?php echo substr($_SESSION['name'],0,strpos($_SESSION['name'],' '));?>!</a>
 		<a class="tab">
-			Checkouts: <span id="checkout_count"><?php echo $_SESSION['checkouts'];?></span>
+			Checkouts: <span id="cko_count"><?php echo $_SESSION['checkouts'];?></span>
 		<?php if ($show_available_holds){?>
 			<span> |</span>
 			Available Holds: <?php echo $_SESSION['available_holds'];?>
@@ -86,7 +86,7 @@
 			</td>
 		</tr>
 	</table>
-	<div style="width:250px;margin:10px auto 10px auto" id="pre_cko_buttons">
+	<div id="pre_cko_buttons">
 		<div class="cancel_button button" title="selfcheck_button" onclick="$(this).hide();$('#cancel_thanks').show();window.location.href='processes/logout.php'">
 			<h1>Cancel</h1>
 		</div>
