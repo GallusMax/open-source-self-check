@@ -1,2 +1,0 @@
-content fullfullscreen jar:chrome/fullfullscreen.jar!/content/
-overlay chrome://browser/content/browser.xul chrome://fullfullscreen/content/fullfullscreen.xul
