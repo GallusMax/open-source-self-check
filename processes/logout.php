@@ -2,7 +2,7 @@
 session_start();
 include_once('../config.php');
 
-if ($use_mysql_logging){ //should we load this cko session in the stats table in the database?
+if ($use_mysql_logging && !empty($_SESSION['checkouts_this_session'])){ //should we load this cko session in the stats table in the database?
 		
 	$mysql_connection = mysql_pconnect($dbhostname, $dbusername, $dbpassword) or trigger_error(mysql_error(),E_USER_ERROR); 
 	

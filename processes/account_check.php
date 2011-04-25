@@ -105,7 +105,6 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 	ob_end_clean(); 
 	
 	echo json_encode($response);
-	
 	exit;
 
 } else {

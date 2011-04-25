@@ -1,4 +1,7 @@
-<div id="prompt_container">
+<?php 
+$uniq_id=uniqid();
+?>
+<div id="prompt_container_<?php echo $uniq_id;?>" class="prompt_container">
 	<h1><?php 
 		if (strlen($response_message)>60){
 			echo wordwrap($response_message, 40, "<br />");
@@ -14,7 +17,7 @@
 $(document).ready(function(){
 	$("#item_list .loading").hide();
 	tb_remove(); //hide any existing notices
-	tb_show($('#prompt_container').html());
+	tb_show($('#prompt_container_<?php echo $uniq_id;?>').html());
 	$.dbj_sound.play($('#error'));
 });
 </script>

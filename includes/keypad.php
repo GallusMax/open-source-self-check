@@ -3,12 +3,12 @@
 <div id="keypad_icon">
 	<table width="100%" cellpadding="3" title="selfcheck_button">
 	    <tr>
-	    	<td onclick="show_keypad()">
+	    	<td onclick="show_keypad()" title="selfcheck_button">
 	    		<p>manually</p>
 	    		<p>enter</p>
 	    		<p>your id</p>
 	    	</td>
-	    	<td onclick="show_keypad()" style="width:5px;"><img src="images/keypad_icon.gif"/></td>
+	    	<td onclick="show_keypad()" style="width:5px;" title="selfcheck_button"><img src="images/keypad_icon.gif"/></td>
 	    </tr>
 	</table>
 </div>
@@ -23,24 +23,24 @@
 			<td colspan="3" class="keypad_screen"></td>
 		</tr>
 		<tr>
-			<td title="selfcheck_button"><div data-val="1">1</div></td>
-			<td title="selfcheck_button"><div data-val="2">2</div></td>
-			<td title="selfcheck_button"><div data-val="3">3</div></td>
+			<td><div data-val="1" title="selfcheck_button">1</div></td>
+			<td><div data-val="2" title="selfcheck_button">2</div></td>
+			<td><div data-val="3" title="selfcheck_button">3</div></td>
 		</tr>
 		<tr>
-			<td title="selfcheck_button"><div data-val="4">4</div></td>
-			<td title="selfcheck_button"><div data-val="5">5</div></td>
-			<td title="selfcheck_button"><div data-val="6">6</div></td>
+			<td><div data-val="4" title="selfcheck_button">4</div></td>
+			<td><div data-val="5" title="selfcheck_button">5</div></td>
+			<td><div data-val="6" title="selfcheck_button">6</div></td>
 		</tr>
 		<tr>
-			<td title="selfcheck_button"><div data-val="7">7</div></td>
-			<td title="selfcheck_button"><div data-val="8">8</div></td>
-			<td title="selfcheck_button"><div data-val="9">9</div></td>
+			<td><div data-val="7" title="selfcheck_button">7</div></td>
+			<td><div data-val="8" title="selfcheck_button">8</div></td>
+			<td><div data-val="9" title="selfcheck_button">9</div></td>
 		</tr>
 		<tr>
-			<td title="selfcheck_button" onclick="delete_keypad_entry();"><div><span>delete</span></div></td>
-			<td title="selfcheck_button"><div data-val="0">0</div></td>
-			<td title="selfcheck_button"><div><span onclick="tb_remove();">cancel</span></div></td>
+			<td onclick="delete_keypad_entry();"><div title="selfcheck_button"><span>delete</span></div></td>
+			<td><div data-val="0" title="selfcheck_button">0</div></td>
+			<td><div title="selfcheck_button"><span onclick="tb_remove();">cancel</span></div></td>
 		</tr>
 	</table>
 	<div onclick="$('#barcode').val($('#prompt .keypad_screen').text());$('#form').submit();" class="ok_button button" title="selfcheck_button" style="width:100%;">

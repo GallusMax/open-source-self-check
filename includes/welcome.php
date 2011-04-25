@@ -29,18 +29,20 @@
 
 <!--  ============= form for submitting items ============= -->
 <div style="position: absolute;left:-10000px;">
-	<form id="form" action="index.php?page=checkout" method="get">
-		<input name="barcode" type="text" id="barcode"  value="" autocomplete="off" />
+	<form id="form" method="get">
+		<input name="barcode" type="text" id="barcode" />
+		<input name="page" type="hidden" id="page"  value="checkout" />
 	</form>
 </div>
 <!--  ============= end form for submitting items ============= -->
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$('#form').submit(function(){
+	$('#form').unbind().submit(function(){
 		inactive_notice();
+		return true;
 	});
-	$barcode=$('#barcode');
+	var $barcode=$('#barcode');
 	$barcode.val('');
 	$barcode.focus();
 	$.dbj_sound.play($('#welcome'));
@@ -50,5 +52,3 @@ $(document).click(function(){
 	inactive_notice();
 });
 </script>
-
-
