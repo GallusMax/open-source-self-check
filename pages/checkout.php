@@ -87,10 +87,10 @@
 		</tr>
 	</table>
 	<div id="pre_cko_buttons">
-		<div class="cancel_button button" title="selfcheck_button" onclick="$(this).hide();$('#cancel_thanks').show();window.location.href='processes/logout.php'">
+		<div class="cancel_button button" title="selfcheck_button">
 			<h1>Cancel</h1>
 		</div>
-		<div class="thanks_button button" id="cancel_thanks">
+		<div class="thanks_button button">
 			<h1>Thanks</h1>
 		</div>
 	</div>
@@ -134,6 +134,15 @@
 
 <script type="text/javascript">
 $(document).ready(function() { 
+	$('#pre_cko_buttons .cancel_button').click(
+		function(){
+			$(this).hide();
+			$('#pre_cko_buttons .thanks_button').show();
+			setTimeout(function(){
+				window.location.href='processes/logout.php'
+			},1000);
+		}
+	);
 	//////////////////receipts
 	$( "#print" ).click( //receipt print function
 		function(){
@@ -141,7 +150,6 @@ $(document).ready(function() {
 		$(this).hide();
 		$("#print_thanks").show();
 		$( "#print_item_list" ).print();
-		return( false );
 	}); 
 	
 	$( "#email" ).click( //receipt email function
@@ -154,19 +162,18 @@ $(document).ready(function() {
 		function(data){
 			$('body').append(data);
 		});
-		return false;   
 	});
 	
 	$("#no_print").click( //no print function
 		function(){
-		$('#print,#email').css('visibility','hidden');
-		$(this).hide();
-		$("#no_print_thanks").show();
-		setTimeout(
-		function(){
-			window.location.href="processes/logout.php";
-			},
-		(1700));  
+			$('#print,#email').css('visibility','hidden');
+			$(this).hide();
+			$("#no_print_thanks").show();
+			setTimeout(
+			function(){
+				window.location.href="processes/logout.php";
+				},
+			(1000));  
 	});
 	//////////////////post checkouts function
 	$('#form').submit(function(){

@@ -11,8 +11,8 @@
 *	@author     	Eric Melton <ericmelton@gmail.com>
 * 	@licence    	http://opensource.org/licenses/gpl-3.0.html
 * 	@copyright  	Eric Melton <ericmelton@gmail.com>
-*	@version    	1.041
-*	last update		April 21, 2010
+*	@version    	1.2
+*	last update		April 25, 2011
 */
 
 //========================== SIP2 =================================
@@ -48,8 +48,7 @@ CREATE TABLE IF NOT EXISTS `self_check_stats` (
 
 */
 //====================================================================
-$use_mysql_logging=false;	/* log your selfcheck checkout count by month? 
-							use the query above to set up the table */
+$use_mysql_logging=false;	/* log your selfcheck checkout count by month? use the query above to set up the table */
 $log_table_name='self_check_stats';
 
 //mysql connection info (ignore this if you're not using mysql logging)

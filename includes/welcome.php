@@ -20,7 +20,7 @@
 	</h2>
 </div>
 
-<div class="cancel_button button" style="margin:100px auto 0 auto;" onclick="$('#cancel').hide();$('#cancel_thanks').show();window.location.href='processes/logout.php'" id="cancel" title="selfcheck_button">
+<div class="cancel_button button" style="margin:100px auto 0 auto;"  id="cancel" title="selfcheck_button">
 	<h1>Cancel</h1>
 </div>
 <div class="thanks_button button" id="cancel_thanks" style="margin:100px auto 0 auto;">
@@ -38,6 +38,15 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	$('#cancel').click(
+		function(){
+			$(this).hide();
+			$('#cancel_thanks').show();
+			setTimeout(function(){
+				window.location.href='processes/logout.php'
+			},1000);
+		}
+	);
 	$('#form').unbind().submit(function(){
 		inactive_notice();
 		return true;
