@@ -23,7 +23,7 @@
 <div class="cancel_button button" style="margin:100px auto 0 auto;"  id="cancel" title="selfcheck_button">
 	<h1>Cancel</h1>
 </div>
-<div class="thanks_button button" id="cancel_thanks" style="margin:100px auto 0 auto;">
+<div class="thanks_button button" style="margin:100px auto 0 auto;">
 	<h1>Thanks</h1>
 </div>
 
@@ -38,25 +38,30 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+
 	$('#cancel').click(
 		function(){
 			$(this).hide();
-			$('#cancel_thanks').show();
+			$('.thanks_button').show();
 			setTimeout(function(){
 				window.location.href='processes/logout.php'
 			},1000);
 		}
 	);
+	
 	$('#form').unbind().submit(function(){
 		inactive_notice();
 		return true;
 	});
+	
 	var $barcode=$('#barcode');
 	$barcode.val('');
 	$barcode.focus();
 	$.dbj_sound.play($('#welcome'));
 	inactive_notice();
+	
 });
+
 $(document).click(function(){
 	inactive_notice();
 });
