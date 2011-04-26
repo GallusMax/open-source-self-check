@@ -11,8 +11,8 @@
 *	@author     	Eric Melton <ericmelton@gmail.com>
 * 	@licence    	http://opensource.org/licenses/gpl-3.0.html
 * 	@copyright  	Eric Melton <ericmelton@gmail.com>
-*	@version    	1.2
-*	last update		April 25, 2011
+*	@version    	1.1
+*	last update		April 26, 2011
 */
 
 //========================== SIP2 =================================
