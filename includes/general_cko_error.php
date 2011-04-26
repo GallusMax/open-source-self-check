@@ -18,6 +18,6 @@ $(document).ready(function(){
 	$("#item_list .loading").hide();
 	tb_remove(); //hide any existing notices
 	tb_show($('#prompt_container_<?php echo $uniq_id;?>').html());
-	$.dbj_sound.play($('#error'));
+	$.dbj_sound.play('<?php echo $error_sound;?>');
 });
 </script>

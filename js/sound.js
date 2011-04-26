@@ -1,3 +1,50 @@
+/*
+  DBJ-SOUND 1.0.3
+  jQuery dbj_sound plugin (no flash, or any other simillar control used)
+  
+  Loosely inspired on code by Joern Zaefferer 
+  (also Jules Gravinese http://www.webveteran.com/ ) 
+  
+  Copyright (c) 2009 Dusan Jovanovic ( http://dbj.org ) 
+  
+  Licensed under the MIT license:
+    http://www.opensource.org/licenses/mit-license.php
+ 
+ ***********************************************************************************   
+  
+  API Crash course:
+  
+  return sound file url from host element
+  host must be valid html element with attribute href present
+  $.dbj_sound.url( host_element )
+ 
+  play a sound as defined by the href of the host_element
+  if looping arg present, then loop
+  $.dbj_sound.play( host_element, looping )
+ 
+  play "forever" a sound as defined by the href of the host_element
+  $.dbj_sound.loop( host_element )
+ 
+  stop a playback of the sound from the href of the host_element
+  $.dbj_sound.stop( host_element )
+  
+  return true if sounds are on and sound defined by href of the host_element
+  is playing
+  $.dbj_sound.playing( host_element )
+  
+  toggle on/off all sounds on the current page, controlled by this plugin
+  $.dbj_sound.enabledisable( host_element )
+ 
+ 1.0.3 addition
+    
+    preload sounds into the local cache
+    $.dbj_sound.jukebox( src1, src2, ... )
+    after this call
+    $.dbj_sound.jukebox.list 
+    contains url's of files cached
+  
+ */
+
 (function($) {
 
     $.dbj_sound = {
@@ -5,7 +52,7 @@
         enabled: true,
         
         url : function ( host_element ) {
-             var url = $(host_element).attr("href") ;
+             var url = host_element;
              if ( "undefined" == typeof(url) ) throw new Error(0xFF,"DBJ-SOUND EXCEPTION: host element invalid or missing a valid HREF attribute") ;
              return url ;
          },
@@ -82,5 +129,18 @@
         }
 
     };
+
+    // 1.0.3 addition
+    // preload sounds into the local cache
+    $.dbj_sound.cache = function() {
+    delete $.dbj_sound.cache.list;
+    $.dbj_sound.cache.list = [];
+    for (var i = 0; i < arguments.length; i++) {
+            $("<embed />").attr("src", arguments[i]);
+            $.dbj_sound.cache.list.push(arguments[i]);
+        }
+    }
+    $.dbj_sound.cache.list = []; // length == 0
+
 
 })(jQuery);

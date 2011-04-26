@@ -57,7 +57,7 @@ $(document).ready(function(){
 	var $barcode=$('#barcode');
 	$barcode.val('');
 	$barcode.focus();
-	$.dbj_sound.play($('#welcome'));
+	$.dbj_sound.play('<?php echo $welcome_sound;?>');
 	inactive_notice();
 	
 });

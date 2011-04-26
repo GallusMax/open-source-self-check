@@ -42,6 +42,7 @@ function swapImages(){
 }
 
 $(document).ready(function() {
+	$.dbj_sound.cache('<?php echo $error_sound;?>','<?php echo $welcome_sound;?>','<?php echo $note_sound;?>'); //cache sounds
 	setInterval('swapImages()', 1000);
 	$('#barcode').focus();
 });
@@ -56,7 +57,7 @@ function inactive_notice(){
 	$.doTimeout( 'prompt', <?php echo $inactivity_timeout;?>, function(){ //do the following in <?php echo $inactivity_timeout;?> milliseconds (see config file to set this)
 		tb_remove(); 
 		tb_show($('#idle_timer').html());
-		$.dbj_sound.play($('#error'));
+		$.dbj_sound.play('<?php echo $error_sound;?>');
 		countdown_redirect($("#prompt span"));
 		$.doTimeout( 'count', 21000, function(){ //redirect in 21 seconds
 		window.location.href="processes/logout.php";

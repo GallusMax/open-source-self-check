@@ -21,14 +21,6 @@ if (!empty($_GET['page']) && file_exists('pages/'.$_GET['page'].'.php')){
 //header
 include_once('includes/header.php');
 
-//sounds
-echo '
-<div style="display:none">
-<a id="error" href="'.$error_sound.'"></a>
-<a id="welcome" href="'.$welcome_sound.'"></a>
-<a id="note" href="'.$note_sound.'"></a>
-</div>';
-
 //include page
 include_once($include);
 

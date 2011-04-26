@@ -48,11 +48,11 @@ $(document).ready(function(){
 					if (data=='out of order'){ //does the response indicate a failed sip2 connection
 						window.location.href='index.php?page=out_of_order';
 					} else if (data=='blocked account'){ //does the response indicate a blocked account
-						$.dbj_sound.play($('#error'));
+						$.dbj_sound.play('<?php echo $error_sound;?>');
 						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There\'s a problem with your account</span>. Please see a circulation clerk.</h2>');
 						setTimeout(function() { $('#error_message').hide(); },10000);
 					} else if (data=='invalid account'){ //does the response indicate an invalid account
-						$.dbj_sound.play($('#error'));
+						$.dbj_sound.play('<?php echo $error_sound;?>');
 						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There was a problem</span>. Please scan your card again.</h2>');
 					setTimeout(function() { $('#error_message').hide(); },10000);
 					} else { //if everything is ok with the patron's account show the welcome screen

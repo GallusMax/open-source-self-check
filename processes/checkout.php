@@ -167,7 +167,7 @@ if (!empty($_SESSION['patron_barcode'])){
 			position: {corner: {'.$action_balloon_position.' }},
 			style: { width:"140px",tip: {corner:"'.$action_balloon_corner.'",color:"'.$action_balloon_bg_color.'" }, border: { width: 1,color:"'.$action_balloon_bg_color.'" ,radius:5},background: "'.$action_balloon_bg_color.'"}
 	 	});
-		$.dbj_sound.play($("#note"));';
+		$.dbj_sound.play("'.$note_sound.'");';
 		$_SESSION['action_'.$item_type]=1;
 	} 
 	//End Action Balloon

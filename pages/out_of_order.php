@@ -15,7 +15,7 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	$.dbj_sound.play($('#error'));
+	$.dbj_sound.play('<?php echo $error_sound;?>');
 	window.setInterval( //do an ACS status request every 30 seconds to see if we're back online
 		function() {
 			$.get("processes/acs_status_check.php",
