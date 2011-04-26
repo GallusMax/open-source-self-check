@@ -5,5 +5,5 @@ To update:
 
 ALTER TABLE `self_check_stats` ADD `sessions` INT NOT NULL DEFAULT '0';
 
-4. Copy all the new version of the self check files to your self check directory
+4. Copy the new self check files to your self check directory
 5. Copy your old config.php back into the self check directory
