@@ -24,7 +24,7 @@ $(document).ready(function(){
 						window.location.href='index.php?page=home';
 					}
 				}
-			)
+			, 'json')
 		}
 	,30000); 
 });
