@@ -142,7 +142,7 @@ if (!empty($_SESSION['patron_barcode'])){
 		$("#item_list .loading,#pre_cko_buttons").hide();
 		$("#cko_buttons").show();
 		$("#cko_count").html("'.$_SESSION['checkouts'].'");
-		$("#print_item_list table").find("tbody").append(item);
+		$("#print_item_list table tbody").append(item);
 		$("#item_list").attr({ scrollTop: $("#item_list").attr("scrollHeight") });
 	';
 	
