@@ -141,7 +141,7 @@ $(document).ready(function() {
 		echo 'receipt_footer="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_footer)).'</td></tr>"';
 	}?>
 	
-	$( "#print" ).click( //receipt print function
+	$("#print").click( //receipt print function
 		function(){
 		$("#print_item_list table tbody").append(receipt_footer);
 		$('#no_print,#email').css('visibility','hidden');
@@ -150,7 +150,7 @@ $(document).ready(function() {
 		$("#print_item_list").print();
 	}); 
 	
-	$( "#email" ).click( //receipt email function
+	$("#email").click( //receipt email function
 		function(){
 		$("#print_item_list table tbody").append(receipt_footer);
 		$('#print,#no_print').css('visibility','hidden');
