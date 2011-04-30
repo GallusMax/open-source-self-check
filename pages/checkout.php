@@ -97,7 +97,6 @@
 <!--  ============= end finish/cancel buttons ============= -->
 
 </div>
-
 <div style="position: absolute;left:-1500px;">
 
 <!--  ============= form for submitting items ============= -->
@@ -110,18 +109,10 @@
 	<div id="print_item_list">
 		<table>
 			<tbody>
-				<tr>
-					<td>Checkout Receipt</td>
-				</tr>
-				<tr>
-					<td><?php echo $library_name;?></td>
-				</tr>
-				<tr>
-					<td style="font-style:italic">Renew your items online:</td>
-				</tr>
-				<tr>
-					<td style="font-style:italic;"><?php echo $online_catalog_url;?></td>
-				</tr>
+				<?php 
+				if (!empty($receipt_header)){
+					echo '<tr><td>'.implode("</td></tr><tr><td>",$receipt_header).'</td></tr>';
+				}?>
 				<tr>
 					<td>&nbsp;</td>
 				</tr>
@@ -144,20 +135,27 @@ $(document).ready(function() {
 		}
 	);
 	//////////////////receipts
+	var receipt_footer;
+	<?php 
+	if (!empty($receipt_footer)){
+		echo 'receipt_footer="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_footer)).'</td></tr>"';
+	}?>
+	
 	$( "#print" ).click( //receipt print function
 		function(){
+		$("#print_item_list table tbody").append(receipt_footer);
 		$('#no_print,#email').css('visibility','hidden');
 		$(this).hide();
 		$("#print_thanks").show();
-		$( "#print_item_list" ).print();
+		$("#print_item_list").print();
 	}); 
 	
 	$( "#email" ).click( //receipt email function
 		function(){
+		$("#print_item_list table tbody").append(receipt_footer);
 		$('#print,#no_print').css('visibility','hidden');
 		$(this).hide();
 		$("#email_thanks").show();
-		$( "#print_item_list" ).print('email');
 		$.post("processes/email_receipt.php", { receipt:$('#print_item_list').html()},
 		function(data){
 			$('body').append(data);

@@ -73,7 +73,7 @@ $inactivity_timeout=40000; //time of inactivity before showing inactive prompt (
 $patron_id_length=''; //length of patron barcode or other id (leave empty if this varies)
 $online_catalog_url=''; 	/*leave blank if you don't have one or if your catalog does
 							not allow renewals (this is for printing on the paper receipt and 
-							sending in the email receipt info about renewing online)*/
+							sending info in the email receipt about renewing online)*/
 							
 //smtp (for emailing receipts)
 $smtp_host="localhost"; 
@@ -94,6 +94,19 @@ $renewal_prompt_text='is already checked out to your account.<br />Would you lik
 $out_of_order_head='Out of Service'; //shown on pages/out_of_order.php
 $out_of_order_text='We are working to fix the problem'; //shown on pages/out_of_order.php
 
+//====================== Paper Receipt ==============
+	//add or remove elements to each of the arrays below to manipulate that piece of the receipt 
+$receipt_header[]='Checkout Receipt';
+$receipt_header[]=$library_name;
+$receipt_footer[]='Renew your items online:';
+$receipt_footer[]=$online_catalog_url;
+	/*place the following in the order you want the elements to appear in the item list on the 
+	paper and email receipts. remove (or comment out) any elements you don't want
+	(elements include: item_barcode, title, due_date, and call_number) */
+$receipt_item_list_elements[]='title';
+$receipt_item_list_elements[]='call_number';
+$receipt_item_list_elements[]='item_barcode';
+$receipt_item_list_elements[]='due_date';
 
 //========================= Sounds & Images ==========================
 	//sounds

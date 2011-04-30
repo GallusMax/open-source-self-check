@@ -40,5 +40,5 @@ setTimeout(
 	function(){
 		window.location.href="processes/logout.php";
 	},
-(1700));
+(1000));
 </script>

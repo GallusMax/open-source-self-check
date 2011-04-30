@@ -1,5 +1,5 @@
 // Create a jquery plugin that prints the given element.
-jQuery.fn.print = function(email){
+jQuery.fn.print = function(){
 	// NOTE: We are trimming the jQuery collection down to the
 	// first element in the collection.
 	if (this.size() > 1){
@@ -64,16 +64,14 @@ jQuery.fn.print = function(email){
  
 	// Print the document.
 	objFrame.focus();
-	if (email!='email') {
 	objFrame.print();
 
 	// Have the frame remove itself in about a minute so that
 	// we don't build up too many of these frames.
 	setTimeout(
 		function(){
-		window.location.href="processes/logout.php";
-			},
-		(1700)
-		);
-	}
+			window.location.href="processes/logout.php";
+		}
+	,1000);
+	
 }

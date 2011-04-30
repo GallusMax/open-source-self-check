@@ -128,8 +128,15 @@ if (!empty($_SESSION['patron_barcode'])){
 	<td class="cko_item" style="width:80%;">'.$title.'</td>
 	<td class="cko_item" id="item_right_'.$item_barcode.'_'.$_SESSION['checkouts_this_session'].'">'.$due_date.'</td>
 	</tr>
-	<script type="text/javascript">
-	var item="<tr><td>Title: '.str_replace('"','\"',$title).'</td></tr><tr><td>Call Number: '.str_replace('"','\"',$call_number).'</td></tr><tr><td>Item ID: '.$item_barcode.'</td></tr><tr><td>Date Due: '.$due_date.'</td></tr><tr><td>&nbsp;</td></tr>";
+	<script type="text/javascript">';
+	//the javascript variables make up the elements of the receipt
+	echo '
+	var title="<tr><td>Title: '.str_replace('"','\"',$title).'</td></tr>";
+	var call_number="<tr><td>Call Number: '.str_replace('"','\"',$call_number).'</td></tr>";
+	var due_date="<tr><td>Date Due: '.$due_date.'</td></tr>";
+	var item_barcode="<tr><td>Item ID: '.$item_barcode.'</td></tr>";
+	
+	var item='.implode('+',$receipt_item_list_elements).'+"<tr><td>&nbsp;</td></tr>";
 	
 	$(document).ready(function(){
 		$("#item_list .loading,#pre_cko_buttons").hide();
