@@ -13,6 +13,7 @@
 		<br /><br />
 	</h1>
 </div>
+
 <div id="cko_wrapper">
 	<div>
 		<a class="welcome">Welcome <?php echo substr($_SESSION['name'],0,strpos($_SESSION['name'],' '));?>!</a>
@@ -97,6 +98,7 @@
 <!--  ============= end finish/cancel buttons ============= -->
 
 </div>
+
 <div style="position: absolute;left:-1500px;">
 
 <!--  ============= form for submitting items ============= -->
