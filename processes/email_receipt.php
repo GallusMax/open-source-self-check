@@ -31,14 +31,10 @@ $mail->From = $email_from_address;//sender addy
 $mail->AddAddress($_SESSION['email']);//recip. email addy
 
 $mail->Subject = $email_subject;
-$mail->Body = str_replace('Title:',"\n\nTitle:",$receipt_text)."\n\n\n\nPlease respond to this email with comments or suggestions regarding the ".$module_name.".";
+$mail->Body = implode("\n",$receipt_header).str_replace('Title:',"\n\nTitle:",$receipt_text)."\n\n".implode("\n",$receipt_footer);
 $mail->WordWrap = 70;
 $mail->Send(); 
 ?>
 <script type="text/javascript">
-setTimeout(
-	function(){
-		window.location.href="processes/logout.php";
-	},
-(1000));
+	window.location.href="processes/logout.php";
 </script>

@@ -111,10 +111,6 @@
 <div id="print_item_list">
 	<table>
 		<tbody>
-			<?php 
-			if (!empty($receipt_header)){
-				echo '<tr><td>'.implode("</td></tr><tr><td>",$receipt_header).'</td></tr>';
-			}?>
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
@@ -136,14 +132,17 @@ $(document).ready(function() {
 	);
 	//////////////////receipts
 	var receipt_footer;
+	var receipt_header;
 	<?php 
 	if (!empty($receipt_footer)){
-		echo 'receipt_footer="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_footer)).'</td></tr>"';
+		echo 'receipt_footer="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_footer)).'</td></tr>";';
+	}
+	if (!empty($receipt_header)){
+		echo 'receipt_header="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_header)).'</td></tr>";';
 	}?>
-	
 	$("#print").click( //receipt print function
 		function(){
-		$("#print_item_list table tbody").append(receipt_footer);
+		$("#print_item_list table tbody").prepend(receipt_header).append(receipt_footer);
 		$('#no_print,#email').css('visibility','hidden');
 		$(this).hide();
 		$("#print_thanks").show();
@@ -159,7 +158,7 @@ $(document).ready(function() {
 		$('#print,#no_print').css('visibility','hidden');
 		$(this).hide();
 		$("#email_thanks").show();
-		$.post("processes/email_receipt.php", { receipt:$('#print_item_list').html()},
+		$.post("processes/email_receipt.php", { receipt:$('#print_item_list').html() },
 		function(data){
 			$('body').append(data);
 		});
