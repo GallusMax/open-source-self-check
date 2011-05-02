@@ -19,26 +19,24 @@
 
 <script type="text/JavaScript">
 function ajaxUpdater(id,url) {
-$('#'+id).load(url);
+	$('#'+id).load(url);
 }
 
 //function to destroy all active qtips
 function destroy_qtips() {
-$('div.qtip[qtip]').each(function()
-               {
-                  if($(this).qtip('api').status.rendered === true)
-                  {
-                    $(this).qtip('destroy');
-                  }
-               })
+	$('div.qtip[qtip]').each(function() {
+		if($(this).qtip('api').status.rendered === true) {
+			$(this).qtip('destroy');
+		 }
+	});
 }
 
 ///////////////////image rotator
 function swapImages(){
-  var $active = $('#swap .active');
-  var $next = ($($active).next().length > 0) ? $($active).next() : $('#swap img:first');
-    $active.hide().removeClass('active');
-    $next.show().addClass('active');
+	var $active = $('#swap .active');
+	var $next = ($($active).next().length > 0) ? $($active).next() : $('#swap img:first');
+	$active.hide().removeClass('active');
+	$next.show().addClass('active');
 }
 
 $(document).ready(function() {
