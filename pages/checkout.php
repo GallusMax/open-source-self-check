@@ -99,31 +99,29 @@
 
 </div>
 
-<div style="position: absolute;left:-1500px;">
-
 <!--  ============= form for submitting items ============= -->
+<div style="position: absolute;left:-1500px;">
 	<form id="form">
 		<input name="barcode" type="text" id="barcode" />
 	</form>
+</div>
 <!--  ============= end form for submitting items ============= -->
 
 <!--  ============= receipt container ============= -->
-	<div id="print_item_list">
-		<table>
-			<tbody>
-				<?php 
-				if (!empty($receipt_header)){
-					echo '<tr><td>'.implode("</td></tr><tr><td>",$receipt_header).'</td></tr>';
-				}?>
-				<tr>
-					<td>&nbsp;</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-<!--  ============= end receipt container ============= -->
-
+<div id="print_item_list">
+	<table>
+		<tbody>
+			<?php 
+			if (!empty($receipt_header)){
+				echo '<tr><td>'.implode("</td></tr><tr><td>",$receipt_header).'</td></tr>';
+			}?>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
+<!--  ============= end receipt container ============= -->
 
 <script type="text/javascript">
 $(document).ready(function() { 
@@ -149,7 +147,10 @@ $(document).ready(function() {
 		$('#no_print,#email').css('visibility','hidden');
 		$(this).hide();
 		$("#print_thanks").show();
-		$("#print_item_list").print();
+		print();
+		setTimeout(function(){
+				window.location.href='processes/logout.php'
+		},1500);
 	}); 
 	
 	$("#email").click( //receipt email function
