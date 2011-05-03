@@ -8,7 +8,7 @@
 *	If you make additions or other customizations that improve or extend the self check's 
 *	functionality I would love to hear about them.
 *
-*	@author     	Eric Melton <ericmelton@gmail.com>
+*	@author     	Eric Melton <ericmelton1@gmail.com>
 * 	@licence    	http://opensource.org/licenses/gpl-3.0.html
 * 	@copyright  	Eric Melton <ericmelton@gmail.com>
 *	@version    	1.1.1
