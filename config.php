@@ -164,8 +164,8 @@ $action_balloon_bg_color='#f1cae1'; //background color for action balloons
 //==================================== Allowed IPs =======================
 /*
 	list each allowed ip on a new line as $allowed_ip[]='IP'; 
-	example: $allowed_ip[]='192.168.0.2';
-		   $allowed_ip[]='192.168.0.4';
+	example: 	$allowed_ip[]='192.168.0.2';
+		   		$allowed_ip[]='192.168.0.4';
 */
 $allowed_ip[]=''; //leave empty if you've already limited access to the self check via your server (Apache, IIS, etc.)
 
