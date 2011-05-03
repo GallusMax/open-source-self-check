@@ -10,7 +10,7 @@
 *
 *	@author     	Eric Melton <ericmelton1@gmail.com>
 * 	@licence    	http://opensource.org/licenses/gpl-3.0.html
-* 	@copyright  	Eric Melton <ericmelton@gmail.com>
+* 	@copyright  	Eric Melton <ericmelton1@gmail.com>
 *	@version    	1.1.1
 *	last update		May 2, 2011
 */
