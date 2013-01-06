@@ -15,14 +15,14 @@
 */
 
 //========================== SIP2 =================================
-$sip_hostname = '127.0.0.1';
-$sip_port = "1"; 
-$sip_login=''; 	//if your SIP2 server does not require a username and password leave these empty
-$sip_password='';
+$sip_hostname = '139.11.40.32';
+$sip_port = "1290"; 
+$sip_login='2280'; 	//if your SIP2 server does not require a username and password leave these empty
+$sip_password='2280';
 
 
 //========================== Site Rules ==============================
-$sc_location='';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs (in Polaris this is required and is the numeric organization ID)
+$sc_location='TestSelfCheck HSU';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs (in Polaris this is required and is the numeric organization ID)
 $allow_manual_userid_entry=false;
 $show_fines=true;
 $show_available_holds=true;
@@ -66,14 +66,15 @@ $dbpassword = "";
 $already_ckdout_to_you='Item already charged to this user'; //item already out to this borrower response
 
 //====================== Wording, SMTP, & Other Variables ==============
-$currency_symbol='$';
+$currency_symbol='EUR';
 $due_date_format='n/j/Y'; //see http://php.net/manual/en/function.date.php for information on formatting dates
 $inactivity_timeout=40000; //time of inactivity before showing inactive prompt (in milliseconds)
 $account_check_timeout=15000; //time of inactivity after patron card scan before showing out of order page (in milliseconds)
-$patron_id_length=; //length of patron barcode or other id (leave empty if this varies)
+$patron_id_length=11; //length of patron barcode or other id (leave empty if this varies)
 $online_catalog_url='http://publiclibrary.gov'; 	/*leave blank if you don't have one or if your catalog does
 							not allow renewals (this is for printing on the paper receipt and 
 							sending in the email receipt info about renewing online)*/
+
 							
 //smtp (for emailing receipts)
 $smtp_host=""; 
@@ -82,7 +83,7 @@ $smtp_username='';
 $smtp_pwd='';
 
 //wording
-$library_name= "Public Library";
+$library_name= "HSU Bibliothek - testbetrieb";
 $module_name='Self-Checkout Station'; //shows on pages/home.php and pages/checkout.php
 $email_from_name=""; //library's email name
 $email_from_address=""; //library's email address

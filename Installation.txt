@@ -1,0 +1,119 @@
+Self-check Installation
+
+----------------------------
+REQUIREMENTS
+----------------------------
+--Browser
+	The self-check was designed for Firefox and looks bad on most everything else. 
+	Ideally, it should be run on the Firefox Portable included with this download.
+
+--OS
+	The Firefox Portable application included with this download is for WINDOWS 
+	(Firefox (Portable or not) for OSX or Linux could likely be set up in the same way).
+
+-Quicktime component for Firefox
+	You may be prompted to install a Quicktime or some other media player component for
+	Firefox when the self-check attempts to load and play the sound files -install whatever
+	you need to get the sounds to play
+
+--PHP
+	You need PHP -duh
+	Sockets need to be enabled (check your phpinfo) see http://php.net/manual/en/book.sockets.php
+	If you don't have access to a server with php installed you could try installing WAMP (assuming
+	you're running Windows) to run and host the self-check on the self-check itself.
+	See http://www.wampserver.com/en/ for more info.
+
+----------------------------
+CONFIGURATION
+----------------------------
+--sip2
+		Configuring your SIP2 server to suit your library's policies is just as important as configuring
+	the self-check!
+		If you have trouble with or see strange behavior on the self-check, check your vendor's SIP2 documentation* 
+	and locate the SIP2 configuration file on your server. In particular, you'll probably want to see that your SIP2 
+	configuration allows checkouts and renewals and also check to see if it is set to require a username and password 
+	and, if so, what those are. If you want your SIP2 to require a username and password, they must 
+	be configured on your SIP2 server as well as entered into the config.php file.
+		Be sure to check your SIP2 server's configuration and documentation for treatment of
+	transactions that could trip up checkouts and renewals. You will want to look, for example, at how your 
+	configuration is set to handle attempted checkouts of items with holds (available or outstanding) or 
+	items already checked out, patrons whose accounts expire before an item's standard due date, and 
+	attempted checkouts on items with checkout fees (e.g. if you charge to checkout DVDs). Your server's configuration
+	settings may also allow you to create a list of items that cannot be checked out via the selfcheck.
+		
+	*I've included SIP2 configuration docs for Symphony, Horizon, Aleph, and Koha (you'll want to make
+	sure they're for the version of those systems that you're currently running).
+	
+--this self-check application
+	see config.php
+
+----------------------------
+SOUNDS
+----------------------------
+The self-check plays sounds when a user's account is blocked (because of fines,etc.), when a user has a successful 'login' and is eligible to checkout, when an action message appears for a checkout, when the screen is about to timeout, when a checkout fails, and when a user clicks a button.
+
+--Click sounds
+	To play sounds when buttons are clicked, the Firefox Portable included in this package has an addon called 'Noise'
+	that is configured to play a sound whenever one of the buttons is clicked (the delay was too long when using the 	method for other sounds). To configure this addon, go into the addon's preferences in Firefox						(tools>addons>Noise>preferences) and be sure that the sound file pointed to under the click event (it should be the 	only one enabled) is pointed to the click.wav file in the noise folder in the Firefox Portable directory.*
+
+	*An alternative to the above would be to enable your touchscreen monitor's own click sounds if it has such a feature.
+
+--All other sounds
+	All sounds EXCEPT those trigged by clicking a button should work out of the box 
+	(a caveat: you may need to install a quicktime or other media component for Firefox to play the embedded sounds -	Firefox will prompt you if you need to install such a component).
+
+----------------------------
+PRINTING
+----------------------------
+--Browser
+	Firefox Portable should come pre-set to suppress the printer dialog box when users print receipts. If you are 		configuring your own Firefox, do the following (in Firefox) to get rid of it:
+	1. type "about:config" in the address bar 
+	2. right click to add a new Boolean preference item named 'print.always_print_silent'
+	3. set value of the newly-added item to 'true'.
+	
+-Printer
+	We are using an Epson receipt printer with a cutter. Firefox should make the receipt shrink to fit whatever printer 
+	paper size you're using.
+	
+----------------------------
+BARCODES/RFID
+----------------------------
+We are using barcodes and barcode scanners but I can't think of any reason you couldn't use RFID
+as long as the reader puts a carriage return on the end of each read to submit the self-check's forms.
+Let me know if you successfully implement RFID and if there were any tricks involved (e.g. how to get the tags'
+security bit 'flipped' if that's how you're security works.
+
+----------------------------
+SECURITY
+----------------------------
+--Self-Check Security
+	Browser-
+	The Firefox Portable application included with this self-check has an addon that makes Firefox open in fullscreen 	(you can toggle the fullscreen with a right click).
+	
+	In fullscreen, borrowers will not be able to minimize, close, or otherwise mess with Firefox. Thus, we haven't 		found it necessary to 'lock down' Firefox beyond having it open in fullscreen. If you decide you need more security 	than this, you can try enabling and configuring the kiosk addon under tools>addons.
+	
+	Access-
+	You'll want to limit who can get to the self check from the internet. You will probably want to do this via your 	server (Apache, IIS, etc.) but you can also enter create a comma delimited list of allowed IPs in the config.php -	computers whose IPs are not in the list will get 	a blank screen.
+	
+--Item Security
+	You're on your own here. The self-check will not automatically sensitize or desensitize magnetically stripped items 	or communicate with a device meant to do so.
+
+----------------------------
+JAVASCRIPT AND CSS
+----------------------------
+--Positioning
+	The top margin of #banner -used on the home and welcome screens- and the height of #item_list 
+	-used on the checkout screen- are set to suit a 17" monitor with a resolution of 1280 x 1024 -you will need to 		
+	adjust these values to suite your screen size/resolution (see css/selfcheck.css)
+
+----------------------------
+RESPONSE MESSAGES
+----------------------------
+You may discover, like we did, that your system gives non-sensical or ambiguous response messages.
+See you system's documentation on how to modify its messages.
+
+----------------------------
+LOGGING
+----------------------------
+I've included a query to set up a simple table in mysql that can hold checkout and renewal counts by month and location.Your SIP2 server may also allow you to turn on logging in its configuration file -this might be the better option as your SIP2 server probably keeps more detailed logs. Check with your ILS vendor to make sure SIP2 transactions get counted as part of your regular circ reports before relying on those reports to reflect self-check activity. Of course, you can also use both.
+
