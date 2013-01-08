@@ -10,7 +10,7 @@ $uniq_id=uniqid();
 		}?>
 	</h1>
 	<div class="ok_button button" title="selfcheck_button">
-		<h1 onclick="tb_remove()">OK</h1>
+		<h1 onclick="HIDEtb_remove()">OK</h1>
 	</div>
 </div>
 <script type="text/javascript">
@@ -18,6 +18,12 @@ $(document).ready(function(){
 	$("#item_list .loading").hide();
 	tb_remove(); //hide any existing notices
 	tb_show($('#prompt_container_<?php echo $uniq_id;?>').html());
-	$.dbj_sound.play('<?php echo $error_sound;?>');
+//	$.dbj_sound.play('<?php echo $error_sound;?>'); // UH silence!
+});
+
+// UH trigger another rfid barcode on user confirm without unsecuring anything
+$(".ok_button").click(function(){
+	tb_remove();
+	$.get("http://localhost:2666/list"); 
 });
 </script>

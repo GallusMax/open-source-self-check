@@ -184,9 +184,11 @@ $(document).ready(function() {
 		$.post("processes/checkout.php", { barcode: $barcode.val()},
 			function(data){
 				$("#item_list table").find('tbody').append(data);
+				// UH code containing AFI_OFF rfid trigger (or not) is included in data!
 			});
 		$barcode.val('');
 		$barcode.focus();
+		// UH allow for another rfid item trigger
 		return false;   
 	});
 

@@ -40,6 +40,8 @@ $(document).ready(function(){
 	$('#form').submit(function(){
 		tb_remove();
 		$barcode=$('#barcode');
+		// UH find out if this is just the 11111 barcode from FKI reader construction!
+		// if('11111'==$barcode.val()) return false;  // ignore ruhebarcode
 		$response=$("#response");
 		$response.html('<h2 style="color:#4d8b27"> Checking your account please wait. <img src="images/checking_account.gif" /></h2>');
 		$.post("processes/account_check.php", { barcode: $barcode.val()},
@@ -48,13 +50,15 @@ $(document).ready(function(){
 					if (data=='out of order'){ //does the response indicate a failed sip2 connection
 						window.location.href='index.php?page=out_of_order';
 					} else if (data=='blocked account'){ //does the response indicate a blocked account
-						$.dbj_sound.play('<?php echo $error_sound;?>');
-						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There\'s a problem with your account</span>. Please see a circulation clerk.</h2>');
-						setTimeout(function() { $('#error_message').hide(); },10000);
+						// $.dbj_sound.play('<?php echo $error_sound;?>'); // no sound
+// localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There\'s a problem with your account</span>. Please see a circulation clerk.</h2>');
+						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">Keine Ausleihe erlaubt</span>. Bitte fragen Sie an der Theke.</h2>');
+												setTimeout(function() { $('#error_message').hide(); },10000);
 					} else if (data=='invalid account'){ //does the response indicate an invalid account
 						$.dbj_sound.play('<?php echo $error_sound;?>');
-						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There was a problem</span>. Please scan your card again.</h2>');
-					setTimeout(function() { $('#error_message').hide(); },10000);
+// localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There was a problem</span>. Please scan your card again.</h2>');
+								$response.html('<h2 id="error_message"> <span style="text-decoration:blink">Karte nicht erkannt</span>. Bitte versuchen Sie es noch einmal.</h2>');
+											setTimeout(function() { $('#error_message').hide(); },10000);
 					} else { //if everything is ok with the patron's account show the welcome screen
 						$("#page_content").html(data);
 					}
