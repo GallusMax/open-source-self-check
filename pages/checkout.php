@@ -131,7 +131,7 @@ var checkin=false;
 var processItem="processes/checkout.php";
 var tx_checkout="<?php echo $tx_checkout?>";
 var tx_checkin="<?php echo $tx_checkin?>";
-var patron_barcode="<?php if (isset($_SESSION['name'])){echo $_SESSION['patron_barcode']; } ?>
+var patron_barcode="<?php if (isset($_SESSION['patron_barcode'])){echo $_SESSION['patron_barcode']; } ?>";
 
 
 <?php if (isset($_GET['checkin'])){ // reuse checkout page for checkin now
@@ -161,22 +161,27 @@ $(document).ready(function() {
 	var receipt_header;
 	<?php 
 	if (!empty($receipt_footer)){
-		echo 'receipt_footer="<hr><tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_footer)).'</td></tr>";';
+		echo 'receipt_footer="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_footer)).'</td></tr>";';
 	}
 	if (!empty($receipt_header)){
-		echo 'receipt_header="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_header)).'</td></tr><hr>";';
+		echo 'receipt_header="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_header)).'</td></tr>";';
 	}?>
 	$("#print").click( //receipt print function
 		function(){
 			$.get("http://localhost:2666/stop"); // no more items
 			//alert($("#print_item_list table tbody").html());
-		if(!checkin)$('#print_item_list table tbody').prepend("<tr><td>Karte Nummer</td><td>"+patron_barcode+"</td></tr>");	
-		$("#print_item_list table tbody").prepend("<tr><td>Datum</td><td>"+<?php date($due_date_format)?>+"</td></tr>");
+		if(checkin) // no patron known - mark this as return bill instead
+			$('#print_item_list table tbody').prepend("<tr><td>zur√ºcºkegebene Medien</td></tr>");
+		else
+			$('#print_item_list table tbody').prepend("<tr><td>Karte Nummer &nbsp;"+patron_barcode+"</td></tr>");
+	
+		$("#print_item_list table tbody").prepend("<tr><td>Datum &nbsp;<?php echo date($due_date_format)?></td></tr>");
 		$("#print_item_list table tbody").prepend(receipt_header).append(receipt_footer);
 		$('#no_print,#email').css('visibility','hidden');
-//		$(this).hide();
+		$(this).hide();
 		$("#print_thanks").show();
-//		print();
+		print();
+//		alert('printing');
 		setTimeout(function(){
 				window.location.href='processes/logout.php'
 		},1500);

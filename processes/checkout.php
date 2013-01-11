@@ -92,7 +92,8 @@ if (!empty($_SESSION['patron_barcode'])){
 			if (stripos($title,'/')!==false){
 				$title=substr($title,0,stripos($title,'/'));
 			} 
-		$title=ucwords(TrimByLength($title,45,false));
+		$title=ucwords(TrimByLength($title,65,false));
+		$shorttitle=ucwords(TrimByLength($title,45,false));
 	}
 	
 	if ($OK!=1){
