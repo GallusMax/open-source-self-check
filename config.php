@@ -30,6 +30,7 @@ $allow_email_receipts=false;
 $display_php_errors='on'; //off or on
 $hide_cursor_pointer=false; //hides default cursor pointer -should probably set to true on live self check
 
+$ruhebarcode='111111'; // read when card is drawn
 
 //========================== Logging =================================
 /*	
@@ -67,11 +68,11 @@ $already_ckdout_to_you='Item already charged to this user'; //item already out t
 
 //====================== Wording, SMTP, & Other Variables ==============
 $currency_symbol='EUR';
-$due_date_format='n/j/Y'; //see http://php.net/manual/en/function.date.php for information on formatting dates
+$due_date_format='j.n.Y'; //see http://php.net/manual/en/function.date.php for information on formatting dates
 $inactivity_timeout=40000; //time of inactivity before showing inactive prompt (in milliseconds)
 $account_check_timeout=15000; //time of inactivity after patron card scan before showing out of order page (in milliseconds)
 $patron_id_length=11; //length of patron barcode or other id (leave empty if this varies)
-$online_catalog_url='http://publiclibrary.gov'; 	/*leave blank if you don't have one or if your catalog does
+$online_catalog_url='http://ub.hsu-hh.de/DB=1/'; 	/*leave blank if you don't have one or if your catalog does
 							not allow renewals (this is for printing on the paper receipt and 
 							sending in the email receipt info about renewing online)*/
 
@@ -83,16 +84,20 @@ $smtp_username='';
 $smtp_pwd='';
 
 //wording
-$library_name= "HSU Bibliothek - testbetrieb";
-$module_name='Self-Checkout Station'; //shows on pages/home.php and pages/checkout.php
+$library_name= "HSU Bibliothek";
+$module_name='Testbetrieb Stapelverbuchung'; //shows on pages/home.php and pages/checkout.php
+$tx_checkout='Ausleihe';
+$tx_checkin='Rücknahme';
 $email_from_name=""; //library's email name
 $email_from_address=""; //library's email address
 $admin_emails=''; //comma delimted list of email addresses that should be notified should the self-check go out of order
-$email_subject='Public Library Self-Checkout Receipt'; //subject of email receipt
+$email_subject='Ausleihquittung'; //subject of email receipt
 $intro_screen_text="Scan your library card's barcode to begin"; //shown on pages/home.php
+$intro_screen_text="Ausleihe? Bitte Ausweis in den Leser stecken"; //shown on pages/home.php
 $welcome_screen_text="Scan an item's barcode to continue";	//shown on includes/welcome.php
 $welcome_screen_subtext="(most barcodes are inside items' front covers)";
 $renewal_prompt_text='is already checked out to your account.<br />Would you like to try to renew it?';
+$renewal_prompt_text='bereits auf Ihrem Konto';
 $out_of_order_head='Out of Service'; //shown on pages/out_of_order.php
 $out_of_order_text='We are working to fix the problem'; //shown on pages/out_of_order.php
 
@@ -107,9 +112,9 @@ $receipt_footer[]=$online_catalog_url;
 /*place the following in the order you want the elements to appear in the item list on the 
 paper and email receipts. remove (or comment out) any elements you don't want included.
 element options include item_barcode, title, due_date, and call_number */
-$receipt_item_list_elements[]='title';
-$receipt_item_list_elements[]='call_number';
 $receipt_item_list_elements[]='item_barcode';
+$receipt_item_list_elements[]='title';
+//$receipt_item_list_elements[]='call_number';
 $receipt_item_list_elements[]='due_date';
 
 //========================= Sounds & Images ==========================

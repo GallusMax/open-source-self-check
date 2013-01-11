@@ -42,9 +42,8 @@ $(document).ready(function(){
 	$('#cancel').click(
 		function(){
 			$(this).hide();
+			$.get("http://localhost:2666/stop"); // no more items
 			$('.thanks_button').show();
-			// stop rfid trigger here
-			 //$.get("http://localhost:2666/stop");
 			setTimeout(function(){
 				window.location.href='processes/logout.php'
 			},1000);

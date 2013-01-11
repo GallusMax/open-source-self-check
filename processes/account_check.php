@@ -104,23 +104,23 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 	
 	session_write_close();
 	
-	if($debug)trigger_error("ob_start()",E_USER_NOTICE);
+//	if($debug)trigger_error("ob_start()",E_USER_NOTICE);
 	
 	//put include file into variable to dump as json back to the jquery script that initiated the call to this page
 	ob_start();
 	include_once( '../includes/welcome.php' );
 	$response = ob_get_contents();
-	if($debug)trigger_error("ob_get_contents {$response}",E_USER_NOTICE);
+//	if($debug)trigger_error("ob_get_contents {$response}",E_USER_NOTICE);
 	ob_end_clean(); 
 
-	if($debug)trigger_error(json_encode($response),E_USER_NOTICE);
+//	if($debug)trigger_error(json_encode($response),E_USER_NOTICE);
 	
 	echo json_encode($response);
 	exit;
 
 } else {
 
-	if($debug)trigger_error("account_check: invalid account",E_USER_NOTICE);
+//	if($debug)trigger_error("account_check: invalid account",E_USER_NOTICE);
 	echo json_encode('invalid account');
 	exit;
 	

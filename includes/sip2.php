@@ -134,7 +134,7 @@ class sip2 {
             /* override default location */
          	$this->_addVarOption('AO', $location);
         }
-//        $this->_addVarOption('AO',$this->AO);
+//        $this->_addVarOption('AO',$this->AO); // UH - double A0?
         $this->_addVarOption('AA',$this->patron);
         $this->_addVarOption('AB',$item);
         $this->_addVarOption('AC',$this->AC);
@@ -146,7 +146,7 @@ class sip2 {
         return $this->_returnMessage();
     }
    
-    function msgCheckin($item, $itmReturnDate, $itmLocation = '', $itmProp = '', $noBlock='N', $cancel = '') {
+    function msgCheckin($item, $itmReturnDate = '', $itmLocation = '', $itmProp = '', $noBlock='N', $cancel = '') {
     /* Checkin an item (09) - untested */
         if ($itmLocation == '') {
             /* If no location is specified, assume the defualt location of the SC, behavior suggested by spec*/
@@ -483,7 +483,7 @@ class sip2 {
         'Online'            => substr($response, 2, 1),
         'Checkin'           => substr($response, 3, 1),  /* is Checkin by the SC allowed ?*/
         'Checkout'          => substr($response, 4, 1),  /* is Checkout by the SC allowed ?*/
-                'Renewal'                       => substr($response, 5, 1),  /* renewal allowed? */
+		'Renewal'           => substr($response, 5, 1),  /* renewal allowed? */
         'PatronUpdate'      => substr($response, 6, 1),  /* is patron status updating by the SC allowed ? (status update ok)*/
         'Offline'           => substr($response, 7, 1),
         'Timeout'           => substr($response, 8, 3),

@@ -9,37 +9,43 @@
 				<img src="images/<?php echo $item_image;?>_item2_small.png" align="left"/>
 			<?php }?>
 		</span>
-		<span style="font-size:13px;">&nbsp;&nbsp;<?php echo $library_name;?></span><br />&nbsp;<?php echo $module_name;?>
+		<span style="font-size:13px;">&nbsp;&nbsp;<?php echo $library_name;?></span><br />&nbsp;<span id="module_name"><?php echo $module_name;?></span>
 		<br /><br />
 	</h1>
 </div>
 
 <div id="cko_wrapper">
 	<div>
-		<a class="welcome">Welcome <?php echo substr($_SESSION['name'],0,strpos($_SESSION['name'],' '));?>!</a>
+		<?php if (isset($_SESSION['name'])){?>
+		<a class="welcome">Ausleihe für <?php echo $_SESSION['name'];?></a>
+		<?php } ?>
 		<a class="tab">
-			Checkouts: <span id="cko_count"><?php echo $_SESSION['checkouts'];?></span>
-		<?php if ($show_available_holds){?>
+		<?php if (isset($_SESSION['checkouts'])){?>
+			Anzahl Ausleihen: <span id="cko_count"><?php echo $_SESSION['checkouts'];?></span>
+		<?php } ?>
+		<?php if (false && $show_available_holds){?>
 			<span> |</span>
 			Available Holds: <?php echo $_SESSION['available_holds'];?>
 		<?php }
-			if ($show_fines){?>
+			if (false && $show_fines){?>
 			<span> |</span>
 			Fines: <?php echo $_SESSION['fines'];
 			}?>
 			<span> |</span>
-			<font <?php if ($_SESSION['overdues']>0){?> style="text-decoration: blink;" <?php }?>>Overdues: <?php echo $_SESSION['overdues'];?></font>
+			<?php if (isset($_SESSION['overdues'])){?>
+			<font <?php if ($_SESSION['overdues']>0){?> style="text-decoration: blink;" <?php }?>>Gemahnt: <?php echo $_SESSION['overdues'];?></font>
+			<?php } ?>
 		</a>
 	</div>
 	<div id="cko_border">
 	
-		<h2>Items Checked Out Today</h2>
+		<h2></h2>
 		<table cellpadding="3" cellspacing="0" class="cko_column_head" align="center">
 			<tbody>
 				<tr>
 					<td>&nbsp;</td>
-					<td style="width:80%">Title</td>
-					<td>Due Date</td>
+					<td style="width:80%">Titel</td>
+					<td>garantierte Leihfrist</td>
 				</tr>
 			</tbody>
 		</table>
@@ -61,28 +67,28 @@
 		<tr>
 			<td>
 				<div class="ok_button button" id="print" title="selfcheck_button">
-					<h1>Print Receipt</h1>
+					<h1>Beleg</h1>
 				</div>
 				<div class="thanks_button button" id="print_thanks">
-					<h1>Thanks</h1>
+					<h1>Abgemeldet</h1>
 				</div>
 			</td>
-			<?php if (!empty($_SESSION['email']) && $allow_email_receipts){?>
+			<?php if (isset($_SESSION['email']) && !empty($_SESSION['email']) && $allow_email_receipts){?>
 			<td>
 				<div class="ok_button button" id="email" title="selfcheck_button">
-					<h1>Email Receipt</h1>
+					<h1>Beleg per Email</h1>
 				</div>
 				<div class="thanks_button button" id="email_thanks">
-					<h1>Thanks</h1>
+					<h1>..ist unterwegs</h1>
 				</div>
 			</td>
 			<?php }?>
 			<td>
 				<div class="ok_button button" id="no_print" title="selfcheck_button">
-					<h1>No Receipt</h1>
+					<h1>Kein Beleg</h1>
 				</div>
 				<div class="thanks_button button corners" id="no_print_thanks">
-					<h1>Thanks</h1>
+					<h1>Danke!</h1>
 				</div>
 			</td>
 		</tr>
@@ -92,7 +98,7 @@
 			<h1>Cancel</h1>
 		</div>
 		<div class="thanks_button button">
-			<h1>Thanks</h1>
+			<h1>Abgemeldet</h1>
 		</div>
 	</div>
 <!--  ============= end finish/cancel buttons ============= -->
@@ -120,10 +126,27 @@
 <!--  ============= end receipt container ============= -->
 
 <script type="text/javascript">
+			
+var checkin=false;
+var processItem="processes/checkout.php";
+var tx_checkout="<?php echo $tx_checkout?>";
+var tx_checkin="<?php echo $tx_checkin?>";
+
+<?php if (isset($_GET['checkin'])){ // reuse checkout page for checkin now
+	echo 'checkin=true; processItem="processes/checkin.php"';
+}?>
+
 $(document).ready(function() { 
+//	alert("ready");
+	
+	if(checkin){
+		$('#module_name').html(tx_checkin); // announce we are checkin in now
+	};
+			
 	$('#pre_cko_buttons .cancel_button').click(
 		function(){
 			$(this).hide();
+			$.get("http://localhost:2666/stop"); // no more items
 			$('#pre_cko_buttons .thanks_button').show();
 			setTimeout(function(){
 				window.location.href='processes/logout.php'
@@ -142,6 +165,8 @@ $(document).ready(function() {
 	}?>
 	$("#print").click( //receipt print function
 		function(){
+			$.get("http://localhost:2666/stop"); // no more items
+			alert($("#print_item_list table tbody").html());
 		$("#print_item_list table tbody").prepend(receipt_header).append(receipt_footer);
 		$('#no_print,#email').css('visibility','hidden');
 		$(this).hide();
@@ -154,6 +179,7 @@ $(document).ready(function() {
 	
 	$("#email").click( //receipt email function
 		function(){
+			$.get("http://localhost:2666/stop"); // no more items
 		$("#print_item_list table tbody").append(receipt_footer);
 		$('#print,#no_print').css('visibility','hidden');
 		$(this).hide();
@@ -166,6 +192,7 @@ $(document).ready(function() {
 	
 	$("#no_print").click( //no print function
 		function(){
+			$.get("http://localhost:2666/stop"); // no more items
 			$('#print,#email').css('visibility','hidden');
 			$(this).hide();
 			$("#no_print_thanks").show();
@@ -177,18 +204,29 @@ $(document).ready(function() {
 	});
 	//////////////////post checkouts function
 	$('#form').submit(function(){
+		$barcode=$('#barcode');
 		tb_remove();
+		if('111111'!=$barcode.val()){
 		inactive_notice();
 		$("#item_list .loading").show();
-		$barcode=$('#barcode');
-		$.post("processes/checkout.php", { barcode: $barcode.val()},
+		$.post(processItem, { barcode: $barcode.val()},
 			function(data){
 				$("#item_list table").find('tbody').append(data);
 				// UH code containing AFI_OFF rfid trigger (or not) is included in data!
 			});
+		}else{ // card was drawn
+			$.get("http://localhost:2666/stop"); // no more items
+			$('#print,#email').css('visibility','hidden');
+			$(this).hide();
+			$("#no_print_thanks").show();
+			setTimeout(
+			function(){
+				window.location.href="processes/logout.php";
+				},
+			(1000));  
+		}
 		$barcode.val('');
 		$barcode.focus();
-		// UH allow for another rfid item trigger
 		return false;   
 	});
 
@@ -201,6 +239,8 @@ $(document).ready(function() {
 	}?>
 	post_first_item('<?php echo $barcode;?>')
 	<?php }?>
+
+	$.get("http://localhost:2666/next"); // trigger next item
 	
 });
 
@@ -209,7 +249,8 @@ function post_first_item(item){ //post first item function
 	$.post("processes/checkout.php", { barcode:item},
 		function(data){
 			$("#item_list table").find('tbody').append(data)
-	});
+			// UH code containing AFI_OFF rfid trigger (or not) is included in data!
+});
 	return false;   
 }
 

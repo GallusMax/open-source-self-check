@@ -21,9 +21,12 @@ if ($allow_manual_userid_entry) {
 			<?php }?>
 		</span>
 		<h2><?php echo $intro_screen_text;?></h2>
-	</div>
+		
+		
+		</div>
 	
 	<div id="response"></div><!-- response container for showing failed login/blocked patron messages -->
+		
 			
 	<!--  ============= form for submitting patron id ============= -->
 	<div style="position: absolute;left:-10000px;height:1px;overflow:hidden">
@@ -33,17 +36,27 @@ if ($allow_manual_userid_entry) {
 	</div>
 	<!--  ============= end form for submitting items ============= -->
 
-</div>
+	<!--  ============= finish/cancel buttons ============= -->
+	<table><tr><td>
+	
+				<div class="ok_button button" id="checkin" title="selfcheck_button">
+					<h1>Rückgabe</h1>
+				</div>
+				</td></tr>
+	</table>
+	</div>
 
 <script type="text/javascript">
 $(document).ready(function(){
+	$.get("http://localhost:2666/stop"); // no more items
+	
 	$('#form').submit(function(){
 		tb_remove();
 		$barcode=$('#barcode');
-		// UH find out if this is just the 11111 barcode from FKI reader construction!
-		// if('11111'==$barcode.val()) return false;  // ignore ruhebarcode
+		// UH find out if this is just the 111111 barcode from FKI reader construction!
+		if('111111'!=$barcode.val()){  // ignore ruhebarcode
 		$response=$("#response");
-		$response.html('<h2 style="color:#4d8b27"> Checking your account please wait. <img src="images/checking_account.gif" /></h2>');
+		$response.html('<h2 style="color:#4d8b27"> Anmeldung.. <img src="images/checking_account.gif" /></h2>');
 		$.post("processes/account_check.php", { barcode: $barcode.val()},
 			function(data){
 				setTimeout(function(){
@@ -55,18 +68,36 @@ $(document).ready(function(){
 						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">Keine Ausleihe erlaubt</span>. Bitte fragen Sie an der Theke.</h2>');
 												setTimeout(function() { $('#error_message').hide(); },10000);
 					} else if (data=='invalid account'){ //does the response indicate an invalid account
-						$.dbj_sound.play('<?php echo $error_sound;?>');
+//						$.dbj_sound.play('<?php echo $error_sound;?>');
 // localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There was a problem</span>. Please scan your card again.</h2>');
 								$response.html('<h2 id="error_message"> <span style="text-decoration:blink">Karte nicht erkannt</span>. Bitte versuchen Sie es noch einmal.</h2>');
 											setTimeout(function() { $('#error_message').hide(); },10000);
 					} else { //if everything is ok with the patron's account show the welcome screen
-						$("#page_content").html(data);
+//						$("#page_content").html(data);
+//						$.get("http://localhost:2666/next"); // call for the first item code
+						window.location.href='index.php?page=checkout'; // jump directly to checkout screen
 					}
 				}, 1000);
 		},'json'); //responses from process/account_check.php are expectd to be in json
+		} // all skipped if '11111' found
 		$barcode.val('');
 		$barcode.focus();
 		return false;   
 	});
+
+	$('#checkin').click(function(){
+		$.post("processes/start_checkin.php", { },
+				function(data){
+					setTimeout(function(){
+						if (data=='out of order'){ //does the response indicate a failed sip2 connection
+							window.location.href='index.php?page=out_of_order';
+						} else  { // SIP is up and running - go to the list of items
+//							$("#page_content").html(data);
+//							$.get("http://localhost:2666/next"); // call for the first item code
+							window.location.href='index.php?page=checkout&checkin=true'; // jump directly to checkout screen, change to checkin view
+						}
+					}, 1000);
+			},'json'); //responses from process/account_check.php are expectd to be in json
+		});
 });
 </script>

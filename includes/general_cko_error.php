@@ -5,12 +5,14 @@ $uniq_id=uniqid();
 	<h1><?php 
 		if (strlen($response_message)>60){
 			echo wordwrap($response_message, 40, "<br />");
+			echo ":<br/><em>".$title."</em>";
 		} else {
 			echo $response_message;
-		}?>
+			echo ":<br/><em>".$title."</em>";
+			}?>
 	</h1>
 	<div class="ok_button button" title="selfcheck_button">
-		<h1 onclick="HIDEtb_remove()">OK</h1>
+		<h1 onclic="tb_remove()">OK</h1>
 	</div>
 </div>
 <script type="text/javascript">
@@ -24,6 +26,6 @@ $(document).ready(function(){
 // UH trigger another rfid barcode on user confirm without unsecuring anything
 $(".ok_button").click(function(){
 	tb_remove();
-	$.get("http://localhost:2666/list"); 
+	$.get("http://localhost:2666/next"); 
 });
 </script>
