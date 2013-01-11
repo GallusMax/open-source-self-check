@@ -84,7 +84,7 @@ $smtp_username='';
 $smtp_pwd='';
 
 //wording
-$library_name= "HSU Bibliothek";
+$library_name= "Bibliothek der Helmut-Schmidt-Universität";
 $module_name='Testbetrieb Stapelverbuchung'; //shows on pages/home.php and pages/checkout.php
 $tx_checkout='Ausleihe';
 $tx_checkin='R√ºcknahme';
@@ -104,9 +104,14 @@ $out_of_order_text='We are working to fix the problem'; //shown on pages/out_of_
 //====================== Paper & Email Receipts ==============
 /* add elements to or remove elements from the header & footer arrays below to manipulate that piece of the receipt.
 the elements will appear on separate lines of the receipt in the order that you place them below */ 
-$receipt_header[]='Checkout Receipt';
+$receipt_header[]='Buchungsbeleg';
 $receipt_header[]=$library_name;
-$receipt_footer[]='Renew your items online:';
+$receipt_footer[]='Automatische Verlängerungen - sofern keine ';
+$receipt_footer[]='Vormerkung erfolgt:';
+$receipt_footer[]='&nbsp;Externe:       21 Tage';
+$receipt_footer[]='&nbsp;Uniangehörige:  3 Monate';
+$receipt_footer[]='keine autom. Verlängerung für Zeitschriften!';
+
 $receipt_footer[]=$online_catalog_url;
 
 /*place the following in the order you want the elements to appear in the item list on the 
