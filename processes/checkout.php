@@ -134,10 +134,10 @@ if (!empty($_SESSION['patron_barcode'])){
 	<script type="text/javascript">';
 	//the javascript variables make up the elements of the receipt
 	echo '
-	var title="<tr><td>Title: '.str_replace('"','\"',$title).'</td></tr>";
-	var call_number="<tr><td>Call Number: '.str_replace('"','\"',$call_number).'</td></tr>";
-	var due_date="<tr><td>Date Due: '.$due_date.'</td></tr>";
-	var item_barcode="<tr><td>Item ID: '.$item_barcode.'</td></tr>";
+	var title="<td>'.str_replace('"','\"',$shorttitle).'</td>";
+	var call_number="<td>'.str_replace('"','\"',$call_number).'</td>";
+	var due_date="<td>'.$due_date.'</td>";
+	var item_barcode="<td>'.$item_barcode.'</td>";
 	
 	var item="<tr>"+'.implode('+',$receipt_item_list_elements).'+"</tr>";
 	
