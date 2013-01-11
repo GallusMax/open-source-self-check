@@ -45,7 +45,7 @@
 				<tr>
 					<td>&nbsp;</td>
 					<td style="width:80%">Titel</td>
-					<td>garantierte Leihfrist</td>
+					<td id="tddue">garantierte Leihfrist</td>
 				</tr>
 			</tbody>
 		</table>
@@ -141,6 +141,7 @@ $(document).ready(function() {
 	
 	if(checkin){
 		$('#module_name').html(tx_checkin); // announce we are checkin in now
+		$('#tddue').html('');
 	};
 			
 	$('#pre_cko_buttons .cancel_button').click(
