@@ -139,7 +139,7 @@ if (!empty($_SESSION['patron_barcode'])){
 	var due_date="<tr><td>Date Due: '.$due_date.'</td></tr>";
 	var item_barcode="<tr><td>Item ID: '.$item_barcode.'</td></tr>";
 	
-	var item='.implode('+',$receipt_item_list_elements).'+"<tr><td>&nbsp;</td></tr>";
+	var item="<tr>"+'.implode('+',$receipt_item_list_elements).'+"</tr>";
 	
 	$(document).ready(function(){ // UH is run on item checkout OK
 		$("#item_list .loading,#pre_cko_buttons").hide();
