@@ -84,7 +84,7 @@ $smtp_username='';
 $smtp_pwd='';
 
 //wording
-$library_name= "Bibliothek der Helmut-Schmidt-Universit둻";
+$library_name= "Bibliothek der Helmut-Schmidt-Universit채t";
 $module_name='Testbetrieb Stapelverbuchung'; //shows on pages/home.php and pages/checkout.php
 $tx_checkout='Ausleihe';
 $tx_checkin='R체cknahme';
@@ -106,11 +106,10 @@ $out_of_order_text='We are working to fix the problem'; //shown on pages/out_of_
 the elements will appear on separate lines of the receipt in the order that you place them below */ 
 $receipt_header[]='Buchungsbeleg';
 $receipt_header[]=$library_name;
-$receipt_footer[]='Automatische Verl둵gerungen - sofern keine ';
-$receipt_footer[]='Vormerkung erfolgt:';
-$receipt_footer[]='&nbsp;Externe:       21 Tage';
-$receipt_footer[]='&nbsp;Uniangeh쉜ige:  3 Monate';
-$receipt_footer[]='keine autom. Verl둵gerung f웦 Zeitschriften!';
+$receipt_footer[]='Automatische Verl채ngerungen - sofern keine Vormerkung erfolgt:';
+$receipt_footer[]='&nbsp;&nbsp;Externe:&nbsp;&nbsp;       21 Tage';
+$receipt_footer[]='&nbsp;&nbsp;Uniangeh철rige:&nbsp;  3 Monate';
+$receipt_footer[]='(keine autom. Verl채ngerung f체r Zeitschriften)';
 
 $receipt_footer[]=$online_catalog_url;
 

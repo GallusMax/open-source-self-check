@@ -45,7 +45,7 @@
 				<tr>
 					<td>&nbsp;</td>
 					<td style="width:80%">Titel</td>
-					<td id="tddue">garantierte Leihfrist</td>
+					<td class="tddue">garantierte Leihfrist</td>
 				</tr>
 			</tbody>
 		</table>
@@ -117,8 +117,8 @@
 <div id="print_item_list">
 	<table>
 		<tbody>
-			<tr>
-				<td>&nbsp;</td>
+			<tr class="underline">
+				<td>MedienId</td><td>Titel</td><td class="tddue">Rückgabe bis</td>
 			</tr>
 		</tbody>
 	</table>
@@ -143,7 +143,7 @@ $(document).ready(function() {
 	
 	if(checkin){
 		$('#module_name').html(tx_checkin); // announce we are checkin in now
-		$('#tddue').html('');
+		$('.tddue').html('');
 	};
 			
 	$('#pre_cko_buttons .cancel_button').click(
@@ -161,21 +161,21 @@ $(document).ready(function() {
 	var receipt_header;
 	<?php 
 	if (!empty($receipt_footer)){
-		echo 'receipt_footer="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_footer)).'</td></tr>";';
+		echo 'receipt_footer="<tr><td/></tr><tr><td colspan=3>'.str_replace("'","\'",implode("</td></tr><tr><td colspan=3>",$receipt_footer)).'</td></tr>";';
 	}
 	if (!empty($receipt_header)){
-		echo 'receipt_header="<tr><td>'.str_replace("'","\'",implode("</td></tr><tr><td>",$receipt_header)).'</td></tr>";';
+		echo 'receipt_header="<tr><td colspan=3>'.str_replace("'","\'",implode("</td></tr><tr><td colspan=3>",$receipt_header)).'</td></tr>";';
 	}?>
 	$("#print").click( //receipt print function
 		function(){
 			$.get("http://localhost:2666/stop"); // no more items
 			//alert($("#print_item_list table tbody").html());
 		if(checkin) // no patron known - mark this as return bill instead
-			$('#print_item_list table tbody').prepend("<tr><td>zurüc�kegebene Medien</td></tr>");
+			$('#print_item_list table tbody').prepend("<tr><td colspan=3>zurückgegebene Medien</td></tr>");
 		else
-			$('#print_item_list table tbody').prepend("<tr><td>Karte Nummer &nbsp;"+patron_barcode+"</td></tr>");
+			$('#print_item_list table tbody').prepend("<tr><td>Karte Nummer</td><td colspan=2>"+patron_barcode+"</td></tr>");
 	
-		$("#print_item_list table tbody").prepend("<tr><td>Datum &nbsp;<?php echo date($due_date_format)?></td></tr>");
+		$("#print_item_list table tbody").prepend("<tr><td colspan=3>Datum &nbsp;<?php echo date($due_date_format) ?></td></tr>");
 		$("#print_item_list table tbody").prepend(receipt_header).append(receipt_footer);
 		$('#no_print,#email').css('visibility','hidden');
 		$(this).hide();

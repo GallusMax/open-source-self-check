@@ -95,7 +95,7 @@ $OK='';
 				$title=substr($title,0,stripos($title,'/'));
 			} 
 		$title=ucwords(TrimByLength($title,65,false));
-		$shorttitle=ucwords(TrimByLength($title,40,false));
+		$shorttitle=ucwords(TrimByLength($title,20,false));
 	}
 	
 	if ($OK!=1){
@@ -138,7 +138,7 @@ $OK='';
 	<script type="text/javascript">';
 	//the javascript variables make up the elements of the receipt
 	echo '
-	var title="<td>'.str_replace('"','\"',$shorttitle).'</td>";
+	var title="<td class=\"print_td\">'.str_replace('"','\"',$shorttitle).'</td>";
 	var call_number="";
 	var due_date="";
 	var item_barcode="<td>'.$item_barcode.'</td>";
