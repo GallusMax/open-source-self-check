@@ -1,5 +1,7 @@
 <?php 
-/* 	checkout screen */
+/* 	checkout / in  screen */
+$_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account_check
+
 ?>
 <div id="cko_head">
 	<h1>
@@ -118,7 +120,7 @@
 	<table>
 		<tbody>
 			<tr class="underline">
-				<td>MedienId</td><td>Titel</td><td class="tddue">Rückgabe bis</td>
+				<td>MedienId</td><td>Titel</td><td class="tddue">Frist</td>
 			</tr>
 		</tbody>
 	</table>
@@ -180,7 +182,7 @@ $(document).ready(function() {
 		$('#no_print,#email').css('visibility','hidden');
 		$(this).hide();
 		$("#print_thanks").show();
-		print();
+		$('#print_item_list').jqprint({debug:1});
 //		alert('printing');
 		setTimeout(function(){
 				window.location.href='processes/logout.php'
@@ -223,6 +225,9 @@ $(document).ready(function() {
 			function(data){
 				$("#item_list table").find('tbody').append(data);
 				// UH code containing AFI_OFF rfid trigger (or not) is included in data!
+				$("#item_list").scrollTop(500);
+				//alert($("#item_list").scrollTop());
+						
 			});
 		}else{ // card was drawn
 			$.get("http://localhost:2666/stop"); // no more items
@@ -268,7 +273,9 @@ function renew(item){ //renew item function
 	$barcode=$('#barcode');
 	$.post("processes/checkout.php", { barcode:item,renew:'true'},
 		function(data){
-			$("#item_list table").find('tbody').append(data)
+		$("#item_list table").find('tbody').append(data);
+		$("#item_list").scrollTop(500);
+		
 		});
 	$barcode.val('');
 	$barcode.focus();

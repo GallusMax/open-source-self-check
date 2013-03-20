@@ -86,6 +86,8 @@ $(document).ready(function(){
 	});
 
 	$('#checkin').click(function(){
+		window.location.href='index.php?page=checkout&checkin=true'; // jump directly to checkout screen, change to checkin view
+/*	
 		$.post("processes/start_checkin.php", { },
 				function(data){
 					setTimeout(function(){
@@ -93,11 +95,11 @@ $(document).ready(function(){
 							window.location.href='index.php?page=out_of_order';
 						} else  { // SIP is up and running - go to the list of items
 //							$("#page_content").html(data);
-//							$.get("http://localhost:2666/next"); // call for the first item code
 							window.location.href='index.php?page=checkout&checkin=true'; // jump directly to checkout screen, change to checkin view
 						}
 					}, 1000);
 			},'json'); //responses from process/account_check.php are expectd to be in json
+*/
 		});
 });
 </script>

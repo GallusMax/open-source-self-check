@@ -17,6 +17,11 @@ $due_date='';
 $action_message='';
 $RenewalOk='';
 $OK='';
+$sc_location="unbekannt";
+$stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known station?
+
+if(!empty($location[$stationIP]))
+	$sc_location=$location[$stationIP];
 
 if (!empty($_SESSION['patron_barcode'])){
 	if (empty($_POST['barcode'])){ //if for some reason the item barcode posted is empty fill in a bunk one
@@ -73,9 +78,9 @@ if (!empty($_SESSION['patron_barcode'])){
 		$response_message=trim($checkout['variable']['AF'][0]);//system response message
 	}
 	//get item info response
-	$iteminfo = $mysip->msgItemInformation($item_barcode);
+//	$iteminfo = $mysip->msgItemInformation($item_barcode);
 	// parse the raw response into an array
-	$item = $mysip->parseItemInfoResponse( $mysip->get_message($iteminfo));
+//	$item = $mysip->parseItemInfoResponse( $mysip->get_message($iteminfo));
 	
 	//put the item info response into variables
 	if (!empty($item['variable']['CR'][0])){
@@ -92,8 +97,9 @@ if (!empty($_SESSION['patron_barcode'])){
 			if (stripos($title,'/')!==false){
 				$title=substr($title,0,stripos($title,'/'));
 			} 
-		$title=ucwords(TrimByLength($title,65,false));
-		$shorttitle=ucwords(TrimByLength($title,45,false));
+//		$title=ucwords(TrimByLength($title,65,false));  // dont..
+		$title=(TrimByLength($title,75,false));
+		$shorttitle=(TrimByLength($title,45,false));
 	}
 	
 	if ($OK!=1){
@@ -116,11 +122,12 @@ if (!empty($_SESSION['patron_barcode'])){
 	//add this item's barcode to the array of barcodes checked out this session
 	$_SESSION['cko_barcodes'][]=$item_barcode;
 	
-	$ptrnmsg = $mysip->msgPatronInformation('charged'); //get checkout count again
+//	$ptrnmsg = $mysip->msgPatronInformation('charged'); //get checkout count again
 	
-	$patron_info = $mysip->parsePatronInfoResponse( $mysip->get_message($ptrnmsg));
+//	$patron_info = $mysip->parsePatronInfoResponse( $mysip->get_message($ptrnmsg));
 	
-	$_SESSION['checkouts']=$patron_info['fixed']['ChargedCount']; //checkouts
+//	$_SESSION['checkouts']=$patron_info['fixed']['ChargedCount']; //checkouts
+	$_SESSION['checkouts']=$_SESSION['checkouts']+1; //checkouts++
 	$_SESSION['checkouts_this_session']=$_SESSION['checkouts_this_session']+1;
 	
 	$due_date=strtotime($checkout['variable']['AH'][0]);

@@ -131,7 +131,7 @@ class sip2 {
             /* override default location */
             $this->_addVarOption('AO',$this->AO);
         } else {
-            /* override default location */
+            /* location from parameter*/
          	$this->_addVarOption('AO', $location);
         }
 //        $this->_addVarOption('AO',$this->AO); // UH - double A0?
@@ -146,7 +146,7 @@ class sip2 {
         return $this->_returnMessage();
     }
    
-    function msgCheckin($item, $itmReturnDate = '', $itmLocation = '', $itmProp = '', $noBlock='N', $cancel = '') {
+    function msgCheckin($item, $location = '', $itmReturnDate = '', $itmLocation = '', $itmProp = '', $noBlock='N', $cancel = '') {
     /* Checkin an item (09) - untested */
         if ($itmLocation == '') {
             /* If no location is specified, assume the defualt location of the SC, behavior suggested by spec*/
@@ -158,7 +158,13 @@ class sip2 {
         $this->_addFixedOption($this->_datestamp(), 18);
         $this->_addFixedOption($this->_datestamp($itmReturnDate), 18);
         $this->_addVarOption('AP',$itmLocation);
-        $this->_addVarOption('AO',$this->AO);
+            if (empty($location)) {
+            /* override default location */
+            $this->_addVarOption('AO',$this->AO);
+        } else {
+            /* override default location */
+         	$this->_addVarOption('AO', $location);
+        }
         $this->_addVarOption('AB',$item);
         $this->_addVarOption('AC',$this->AC);
         $this->_addVarOption('CH',$itmProp, true);

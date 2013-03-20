@@ -83,8 +83,23 @@ $smtp_authentication=false;
 $smtp_username='';
 $smtp_pwd='';
 
+//register known terminals by their IP
+$location['10.199.1.141']='WISO'; // HSU1
+$location['10.166.101.27']='HB'; // HSU2
+$location['10.199.1.140']='ZA'; // HSU3 (ZA rechts)
+$location['10.199.1.139']='ZA'; // HSU4 (ZA links)
+$location['10.199.1.189']='schulung'; // HSU5 
+$location['10.199.1.154']='JURA'; // HSU6
+$location['10.166.101.143']='UHtest';
+$location['139.11.40.135']='UHtestgate';
+
+
 //wording
-$library_name= "Bibliothek der Helmut-Schmidt-Universität";
+$reservedPattern="vorgemerkt"; // this string in the SIP2 AF return message signalizes a reservation
+$tx_returnOK="zurückgenommen";
+$tx_returnReserved="bereits vorgemerkt";
+$tx_already_seen="Medium bereits bearbeitet";
+$library_name= "Bibliothek der Helmut-Schmidt-Universit&auml;t";
 $module_name='Testbetrieb Stapelverbuchung'; //shows on pages/home.php and pages/checkout.php
 $tx_checkout='Ausleihe';
 $tx_checkin='Rücknahme';
@@ -106,10 +121,10 @@ $out_of_order_text='We are working to fix the problem'; //shown on pages/out_of_
 the elements will appear on separate lines of the receipt in the order that you place them below */ 
 $receipt_header[]='Buchungsbeleg';
 $receipt_header[]=$library_name;
-$receipt_footer[]='Automatische Verlängerungen - sofern keine Vormerkung erfolgt:';
+$receipt_footer[]='Automatische Verl&auml;ngerungen - sofern keine Vormerkung erfolgt:';
 $receipt_footer[]='&nbsp;&nbsp;Externe:&nbsp;&nbsp;       21 Tage';
-$receipt_footer[]='&nbsp;&nbsp;Uniangehörige:&nbsp;  3 Monate';
-$receipt_footer[]='(keine autom. Verlängerung für Zeitschriften)';
+$receipt_footer[]='&nbsp;&nbsp;Uniangeh&ouml;rige:&nbsp;  3 Monate';
+$receipt_footer[]='(keine autom. Verl&auml;ngerung für Zeitschriften)';
 
 $receipt_footer[]=$online_catalog_url;
 
