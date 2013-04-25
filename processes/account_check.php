@@ -5,12 +5,34 @@
 session_start();
 include_once('../config.php');
 include_once('../includes/sip2.php');
+include_once('../includes/ldap.php');
 include_once('../includes/json_encode.php');
 
 $debug=0;
+$patronBarcode='';
 
 if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length OR empty($patron_id_length))){ //check that the barcode was posted and matches the length set in config.php 
 
+if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - try resolving a UID
+	$myl=new ldap();
+	$myl->hostname	= $ldap_hostname;
+    $myl->port      = $ldap_port;
+    $myl->binddn 	= $ldap_binddn;
+    $myl->bindpw 	= $ldap_bindpw;
+    $myl->searchbase	= $ldap_searchbase;
+    $myl->filter	= $ldap_filter;
+
+	$res=$myl->getcnfromuid($_POST['barcode']);
+	
+	if(preg_match($patron_id_pattern,$res)) // found!!
+		$patronBarcode=$res;
+	
+}else{ // matches!
+	$patronBarcode=$_POST['barcode'];
+}
+}
+
+if(!empty($patronBarcode)){ // filled - if we found anything
 	$mysip = new sip2;
 
 	// Set host name
@@ -18,7 +40,7 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 	$mysip->port = $sip_port;
 	
 	// Identify a patron
-	$mysip->patron = $_POST['barcode'];
+	$mysip->patron = $patronBarcode;
 	
 	// connect to SIP server
 	$connect = $mysip->connect();
@@ -54,7 +76,7 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 	}
 	
 	//	if($debug)trigger_error("extract and format account information and assign to session variables",E_USER_NOTICE);
-	$_SESSION['patron_barcode']=$_POST['barcode'];
+	$_SESSION['patron_barcode']=$patronBarcode;
 	//if($debug)trigger_error("patron barcode: {$_SESSION['patron_barcode']}",E_USER_NOTICE);
 	
 	$patron_name='';

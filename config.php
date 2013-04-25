@@ -71,7 +71,16 @@ $currency_symbol='EUR';
 $due_date_format='j.n.Y'; //see http://php.net/manual/en/function.date.php for information on formatting dates
 $inactivity_timeout=40000; //time of inactivity before showing inactive prompt (in milliseconds)
 $account_check_timeout=15000; //time of inactivity after patron card scan before showing out of order page (in milliseconds)
-$patron_id_length=11; //length of patron barcode or other id (leave empty if this varies)
+$patron_id_length=''; //length of patron barcode or other id (leave empty if this varies)
+$patron_id_pattern='/0705\d{6}[\dX]{1}/'; // regex pattern matching the patron barcode (leave empty to ignore)
+
+$ldap_hostname		= 	"ads1.library.hsu-hh.de";
+$ldap_port          = 	389; /* default sip2 port for Sirsi */
+$ldap_binddn 		= 	'cn=hitagreader,ou=Technical,ou=HSU HH,dc=library,dc=hsu-hh,dc=de';
+$ldap_bindpw 		= 	'hitagpass';
+$ldap_searchbase	= 	"ou=Library Users,ou=HSU HH,dc=library,dc=hsu-hh,dc=de";
+$ldap_filter		=	'carLicense';
+
 $online_catalog_url='http://ub.hsu-hh.de/DB=1/'; 	/*leave blank if you don't have one or if your catalog does
 							not allow renewals (this is for printing on the paper receipt and 
 							sending in the email receipt info about renewing online)*/
