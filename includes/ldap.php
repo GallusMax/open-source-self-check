@@ -54,7 +54,7 @@ class ldap {
     /* Public variables for configuration */
     public $hostname	= "ads1.library.hsu-hh.de";
     public $port         = 389; /* default sip2 port for Sirsi */
-    public $binddn 		= 'cn=hitagreader,ou=Technical,ou=HSU HH,dc=library,dc=hsu-hh,dc=de';
+    public $binddn 		= 'cn=hitagwriter,ou=Technical,ou=HSU HH,dc=library,dc=hsu-hh,dc=de';
     public $bindpw 		= 'hitagpass';
     public $searchbase	= "ou=Library Users,ou=HSU HH,dc=library,dc=hsu-hh,dc=de";
     public $filter		=	'carLicense';
@@ -109,7 +109,21 @@ class ldap {
     $this->search($uid);
     return $this->getattr('cn');
     }
+
+
+    function addcardtocn($cn,$uid){
+   	if(!$this->lc)$this->connect();
+    	 
+    if(!$this->lc) return false;
+
+    $rdn='cn='.$cn.','.$this->searchbase;
+    //echo $this->binddn;
+    
+    $cardinfo[$this->filter]=$uid; 
+    return ldap_modify($this->lc,$rdn,$cardinfo);
+    }
     
     
 }
     
+?>

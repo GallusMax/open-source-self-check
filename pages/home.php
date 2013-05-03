@@ -38,11 +38,17 @@ if ($allow_manual_userid_entry) {
 
 	<!--  ============= finish/cancel buttons ============= -->
 	<table><tr><td>
-	
+				<div class="ok_button button" id="register" title="selfcheck_button">
+					<h1>Registrieren</h1>
+				</div>
+				</td>
+   <td>
 				<div class="ok_button button" id="checkin" title="selfcheck_button">
 					<h1>Rückgabe</h1>
 				</div>
-				</td></tr>
+				</td>
+
+   </tr>
 	</table>
 	</div>
 
@@ -101,5 +107,9 @@ $(document).ready(function(){
 			},'json'); //responses from process/account_check.php are expectd to be in json
 */
 		});
+
+	$('#register').click(function(){
+		window.location.href='index.php?page=register'; // jump directly to register function
+	  });
 });
 </script>
