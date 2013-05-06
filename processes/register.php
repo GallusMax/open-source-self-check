@@ -17,6 +17,9 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 
 	$_SESSION['cardUID']=$_POST['barcode'];
 
+		//TODO find in rz ldap first!
+	
+	
 	$myl=new ldap();
 	$myl->hostname	= $ldap_hostname;
     $myl->port      = $ldap_port;
@@ -27,7 +30,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 
 	$res=$myl->getcnfromuid($_POST['barcode']);
 	
-	// TODO check the RZ ldap, too
+	
 	
 	if(preg_match($patron_id_pattern,$res)){ // found!!
 		$patronBarcode=$res;
@@ -44,11 +47,20 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 	if('UID'==$_SESSION['state']){ // UID read before, barcode now
 		$patronBarcode=$_POST['barcode'];
 		$_SESSION['barcode']=$patronBarcode;
-		//TODO if barcode in email2library -> change request to RZ
-		
-		
-		
-		// external user: put barcode in ldap
+
+		// TODO check if the barcode has an entry in RZ db
+		$_SESSION['rzuser']=barcode2rzid($_POST['barcode']);
+		if("" != $_SESSION['rzuser']){ // this is a hsu member
+
+			
+			echo json_encode(array('state'=>'done',
+	  		'hint'=>"Die Registrierung unter der RZ Kennung ".$_SESSION['rzuser']." wird an das Rechenzentrum weitergeleitet. Bitte laden Sie Ihre Karte erst dann auf, wenn Sie vom Rechenzentrum eine entsprechende email erhalten haben.",
+	  		'uid'=>$_SESSION['cardUID']));
+			
+			storeresult($_SESSION['cardUID'],$_SESSION['rzuser']);
+	  		exit;
+			
+		}else{	// external user: put barcode in ldap
 		$myl=new ldap();
 		$myl->hostname	= $ldap_hostname;
 	    $myl->port      = $ldap_port;
@@ -61,12 +73,16 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
   		echo json_encode(array('state'=>'done',
   		'hint'=>"Fertig! Diese Karte ist unter ".$_SESSION['barcode']." registriert",
   		'uid'=>$_SESSION['cardUID']));
+
+  		storeresult($_SESSION['cardUID'],$_SESSION['barcode']);
+  		
   		exit;
 		}else{
 		echo json_encode(array('state'=>'fail',
   		'hint'=>"Die Registrierung ist fehlgeschlagen.",
   		'uid'=>$_SESSION['cardUID']));
   		exit;
+		}
 		}
 	}
 } // barcode matches
@@ -79,78 +95,6 @@ if(!empty($patronBarcode)){ // filled - if we found anything
 	exit;
 
 
-	
-//		session_regenerate_id();
-//		session_destroy();
-//		echo json_encode('blocked account');
-	
-	
-	
-	//	if($debug)trigger_error("extract and format account information and assign to session variables",E_USER_NOTICE);
-	$_SESSION['patron_barcode']=$patronBarcode;
-	//if($debug)trigger_error("patron barcode: {$_SESSION['patron_barcode']}",E_USER_NOTICE);
-	
-	$patron_name='';
-	if (!empty($patron_info['variable']['AE'][0])){
-		$patron_name=$patron_info['variable']['AE'][0]; //patron's unformatted name
-		if (strpos($patron_name,',')!==false){
-			$patron_last_name=substr($patron_name, 0, strpos($patron_name,',')); //last name
-			$patron_first_name=substr($patron_name, strpos($patron_name,','),strlen($patron_name)); //first name
-			$patron_name=$patron_first_name.' '.$patron_last_name;
-		}
-		$_SESSION['name']=trim(str_replace(',','',$patron_name)); //patron's formatted name
-	} else {
-		$_SESSION['name']='';
-	}	
-	
-	if (!empty($patron_info['variable']['BE'][0])){
-		$_SESSION['email']=trim($patron_info['variable']['BE'][0]); //patron's email
-	} else {
-		$_SESSION['email']='';
-	}
-	
-	if (!empty($patron_info['fixed']['OverdueCount'])){
-		$_SESSION['overdues']=$patron_info['fixed']['OverdueCount']; //overdues
-	} else {
-		$_SESSION['overdues']=0;
-	}
-	
-	if (!empty($patron_info['fixed']['HoldCount'])){
-		$_SESSION['available_holds']=$patron_info['fixed']['HoldCount']; //holds
-	} else {
-		$_SESSION['available_holds']=0;
-	}
-	
-	if (!empty($patron_info['fixed']['ChargedCount'])){
-		$_SESSION['checkouts']=$patron_info['fixed']['ChargedCount']; //checkouts
-	} else {
-		$_SESSION['checkouts']=0;
-	}
-	
-	if (!empty($patron_info['variable']['BV'][0])){
-		$_SESSION['fines']=$currency_symbol.trim($patron_info['variable']['BV'][0]); //fines
-	} else {
-		$_SESSION['fines']='';
-	}
-	
-	$_SESSION['checkouts_this_session']=0;
-	
-	session_write_close();
-	
-//	if($debug)trigger_error("ob_start()",E_USER_NOTICE);
-	
-	//put include file into variable to dump as json back to the jquery script that initiated the call to this page
-	ob_start();
-	include_once( '../includes/welcome.php' );
-	$response = ob_get_contents();
-//	if($debug)trigger_error("ob_get_contents {$response}",E_USER_NOTICE);
-	ob_end_clean(); 
-
-//	if($debug)trigger_error(json_encode($response),E_USER_NOTICE);
-	
-	echo json_encode($response);
-	exit;
-
 } else { // non-0705 entry read, asuming UID
 	$_SESSION['state']="UID";
 //	if($debug)trigger_error("account_check: invalid account",E_USER_NOTICE);
@@ -158,5 +102,47 @@ if(!empty($patronBarcode)){ // filled - if we found anything
   			'hint'=>'Schritt 2: Identifikation anhand des Barcodes. Stecken Sie dazu Ihre Karte in den Leseschlitz rechts.'));
 		exit;
 	
+}
+
+function storeresult($uid,$cn){
+		
+	$url=	"http://bibweb1.ub.hsu-hh.de:5984/hsuhitag/";
+//	$data=  json_encode(array('_id'=>$uid,'hitaguid'=>$uid,'cn'=>$cn));
+	$data=  json_encode(array('hitaguid'=>$uid,'cn'=>$cn));
+	
+//	http_post_data($url,$data);
+	
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_URL, $url);
+//	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+	$curlres=curl_exec($ch);
+	curl_close($ch);
+}
+
+function barcode2rzid($bar){
+	global $rzuser_host,$rzuser_db,$rzuser_user,$rzuser_pass;
+	
+	$rzdb=mysql_connect($rzuser_host,$rzuser_user,$rzuser_pass);
+	if(!$rzdb) return null;
+	
+	if(!mysql_select_db($rzuser_db)) return null;
+	
+	$query = sprintf("select * from library2rzuser where library_number='%s'",mysql_real_escape_string($bar));
+	
+	$result=mysql_query($query);
+	if(!$result) return mysql_error(); // nichts gefunden
+
+	while ($row = mysql_fetch_assoc($result)) {
+    	$rzuser= $row['rzuser'];
+		return $rzuser;
+	}
+	return null;
+	return "pruefbituser";
+	return $rzuser;
 }
 ?>
