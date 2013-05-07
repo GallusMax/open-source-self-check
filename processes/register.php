@@ -52,16 +52,18 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 		$_SESSION['rzuser']=barcode2rzid($_POST['barcode']);
 		if("" != $_SESSION['rzuser']){ // this is a hsu member
 
-			storeresult($_SESSION['cardUID'],$_SESSION['rzuser'],$_SESSION['barcode']);
+			$storeanswer=storeresult($_SESSION['cardUID'],$_SESSION['rzuser'],$_SESSION['barcode']);
 			
-//			echo json_encode(array('state'=>'done',
-//	  		'hint'=>"Die Registrierung unter der RZ Kennung ".$_SESSION['rzuser']." wird an das Rechenzentrum weitergeleitet. Bitte laden Sie Ihre Karte erst dann auf, wenn Sie vom Rechenzentrum eine entsprechende email erhalten haben.",
-//	  		'uid'=>$_SESSION['cardUID']));
-		$hint='Die Registrierung der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em> ist derzeit noch nicht m&ouml;glich. Bitte versuchen Sie es sp&auml;ter erneut.';
-		echo json_encode(array('state'=>'fail',
-  		'hint'=>$hint,
-  		'uid'=>$_SESSION['cardUID']));
-			
+			if('OK'==substr($storeanswer,0,2)){ // OK: registrierung hat funktioniert, ERROR - eben nicht..	
+				echo json_encode(array('state'=>'done',
+		  		'hint'=>"Die Registrierung unter der RZ Kennung ".$_SESSION['rzuser']." wird an das Rechenzentrum weitergeleitet. ",
+		  		'uid'=>$_SESSION['cardUID']));
+			}else{
+				$hint='Die Registrierung der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em> ist derzeit nicht m&ouml;glich. Bitte versuchen Sie es sp&auml;ter erneut.';
+				echo json_encode(array('state'=>'fail',
+		  		'hint'=>$hint,
+		  		'uid'=>$_SESSION['cardUID']));
+			}			
 	  		exit;
 			
 		}else{	// external user: put barcode in ldap
@@ -139,9 +141,32 @@ function storeresult($uid,$cn,$bar){
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 	$curlres=curl_exec($ch);
+
+	
+// last not least die verwaltung	
+	if($cn!=$bar){ // fuer externe waeren cn und barcode gleich..
+//https://debian.unibw-hamburg.de/CuaYc7t1dpSr/getrfid.php?bibcode=<bibcode>&rfid=<rfidcode>&user=<username>
+		$vdata=array('bibcode'=>$bar,
+			'rfid'=>$uid,
+			'user'=>$cn);
+		$vurl='https://debian.unibw-hamburg.de/CuaYc7t1dpSr/getrfid.php?bibcode='.$bar.'&rfid='.$uid.'&user='.$cn;
+		$vurl='https://debian.unibw-hamburg.de/CuaYc7t1dpSr/getrfid.php';
+		curl_setopt($ch, CURLOPT_URL, $vurl);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $vdata);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+		if(!$curlres=curl_exec($ch))
+			echo 'curl update failed: '.curl_error($ch);
+	}
+	
+	
 	curl_close($ch);
 
 //	echo $curlres;
+return $curlres;
 }
 
 function barcode2rzid($bar){
