@@ -67,14 +67,14 @@ $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account
 <!--  ============= finish/cancel buttons ============= -->
 	<table id="cko_buttons" cellpadding="5">
 		<tr>
-			<td>
+			<!-- td>
 				<div class="ok_button button" id="print" title="selfcheck_button">
 					<h1>Beleg</h1>
 				</div>
 				<div class="thanks_button button" id="print_thanks">
 					<h1>Abgemeldet</h1>
 				</div>
-			</td>
+			</td -->
 			<?php if (isset($_SESSION['email']) && !empty($_SESSION['email']) && $allow_email_receipts){?>
 			<td>
 				<div class="ok_button button" id="email" title="selfcheck_button">
@@ -87,7 +87,7 @@ $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account
 			<?php }?>
 			<td>
 				<div class="ok_button button" id="no_print" title="selfcheck_button">
-					<h1>Kein Beleg</h1>
+					<h1>Abmelden</h1>
 				</div>
 				<div class="thanks_button button corners" id="no_print_thanks">
 					<h1>Danke!</h1>

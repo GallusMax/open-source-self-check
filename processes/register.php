@@ -35,7 +35,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 	if(preg_match($patron_id_pattern,$res)){ // found!!
 		$patronBarcode=$res;
 		$_SESSION['state']='done';
-  		echo json_encode(array('state'=>'done','hint'=>'Fertig! Diese Karte ist bereits registriert und kann im Drucksystem unter der Kennung '.$patronBarcode.' genutzt werden'));
+  		echo json_encode(array('state'=>'done','hint'=>'Fertig! Diese Karte ist bereits registriert.<p>Anmeldekennung: '.$patronBarcode.'.'));
 		exit;		
 	};
 
@@ -52,12 +52,16 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 		$_SESSION['rzuser']=barcode2rzid($_POST['barcode']);
 		if("" != $_SESSION['rzuser']){ // this is a hsu member
 
+			storeresult($_SESSION['cardUID'],$_SESSION['rzuser'],$_SESSION['barcode']);
 			
-			echo json_encode(array('state'=>'done',
-	  		'hint'=>"Die Registrierung unter der RZ Kennung ".$_SESSION['rzuser']." wird an das Rechenzentrum weitergeleitet. Bitte laden Sie Ihre Karte erst dann auf, wenn Sie vom Rechenzentrum eine entsprechende email erhalten haben.",
-	  		'uid'=>$_SESSION['cardUID']));
+//			echo json_encode(array('state'=>'done',
+//	  		'hint'=>"Die Registrierung unter der RZ Kennung ".$_SESSION['rzuser']." wird an das Rechenzentrum weitergeleitet. Bitte laden Sie Ihre Karte erst dann auf, wenn Sie vom Rechenzentrum eine entsprechende email erhalten haben.",
+//	  		'uid'=>$_SESSION['cardUID']));
+		$hint='Die Registrierung der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em> ist derzeit noch nicht m&ouml;glich. Bitte versuchen Sie es sp&auml;ter erneut.';
+		echo json_encode(array('state'=>'fail',
+  		'hint'=>$hint,
+  		'uid'=>$_SESSION['cardUID']));
 			
-			storeresult($_SESSION['cardUID'],$_SESSION['rzuser']);
 	  		exit;
 			
 		}else{	// external user: put barcode in ldap
@@ -74,7 +78,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
   		'hint'=>"Fertig! Diese Karte ist unter ".$_SESSION['barcode']." registriert",
   		'uid'=>$_SESSION['cardUID']));
 
-  		storeresult($_SESSION['cardUID'],$_SESSION['barcode']);
+  		storeresult($_SESSION['cardUID'],$_SESSION['barcode'],$_SESSION['barcode']);
   		
   		exit;
 		}else{
@@ -91,7 +95,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 
 if(!empty($patronBarcode)){ // filled - if we found anything
 	
-  echo "Fertig! Diese Karte ist bereits registriert und kann im Drucksystem unter der Kennung $patronBarcode genutzt werden";
+  echo "Fertig! Diese Karte ist bereits registriert!<p>Verbundene Anmeldekennung: $patronBarcode ";
 	exit;
 
 
@@ -99,20 +103,34 @@ if(!empty($patronBarcode)){ // filled - if we found anything
 	$_SESSION['state']="UID";
 //	if($debug)trigger_error("account_check: invalid account",E_USER_NOTICE);
   		echo json_encode(array('state'=>'UID',
-  			'hint'=>'Schritt 2: Identifikation anhand des Barcodes. Stecken Sie dazu Ihre Karte in den Leseschlitz rechts.'));
+  			'hint'=>'Schritt 2: Identifikation anhand des Barcodes. Stecken Sie dazu Ihre Karte wie gewohnt in den Leseschlitz rechts.'));
 		exit;
 	
 }
 
-function storeresult($uid,$cn){
-		
+function storeresult($uid,$cn,$bar){
+
+//	http_post_data($url,$data); // not installed?
+	
+	$ch = curl_init();
+	
 	$url=	"http://bibweb1.ub.hsu-hh.de:5984/hsuhitag/";
 //	$data=  json_encode(array('_id'=>$uid,'hitaguid'=>$uid,'cn'=>$cn));
 	$data=  json_encode(array('hitaguid'=>$uid,'cn'=>$cn));
+
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, $url.$uid);
+
+	$resjson=curl_exec($ch);
+	$res=json_decode($resjson,true);
+
+	if(isset($res['_rev']))
+		$data=  json_encode(array('_id'=>$uid,'hitaguid'=>$uid,'_rev'=>$res['_rev'],'cn'=>$cn,'bar'=>$bar));
+	else
+		$data=  json_encode(array('_id'=>$uid,'hitaguid'=>$uid,'cn'=>$cn,'bar'=>$bar));
 	
-//	http_post_data($url,$data);
+//	echo $rev;
 	
-	$ch = curl_init();
 
 	curl_setopt($ch, CURLOPT_URL, $url);
 //	curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -122,6 +140,8 @@ function storeresult($uid,$cn){
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 	$curlres=curl_exec($ch);
 	curl_close($ch);
+
+//	echo $curlres;
 }
 
 function barcode2rzid($bar){

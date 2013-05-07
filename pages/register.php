@@ -207,7 +207,7 @@ $(document).ready(function() {
 		$("#item_list .loading").show();
 		$.post(processItem, { barcode: $barcode.val()},
 			function(jsondata){
-			alert(jsondata);
+//			alert(jsondata);
 			var data=JSON.parse(jsondata);
 			if(data.state=="fail"){
 				$('#reg_3').html(data.hint);

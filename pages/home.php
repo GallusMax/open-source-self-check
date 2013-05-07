@@ -37,14 +37,16 @@ if ($allow_manual_userid_entry) {
 	<!--  ============= end form for submitting items ============= -->
 
 	<!--  ============= finish/cancel buttons ============= -->
-	<table><tr><td>
-				<div class="ok_button button" id="register" title="selfcheck_button">
-					<h1>Registrieren</h1>
-				</div>
-				</td>
-   <td>
+	<table><tr>
+	   			<td>
 				<div class="ok_button button" id="checkin" title="selfcheck_button">
 					<h1>Rückgabe</h1>
+				</div>
+				</td>
+		</tr><tr>
+				<td>
+				<div class="ok_button button" id="register" title="selfcheck_button">
+					<h1>Druckkarte registrieren</h1>
 				</div>
 				</td>
 
