@@ -59,7 +59,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 		  		'hint'=>"Die Registrierung unter der RZ Kennung ".$_SESSION['rzuser']." wird an das Rechenzentrum weitergeleitet. ",
 		  		'uid'=>$_SESSION['cardUID']));
 			}else{
-				$hint='Die Registrierung der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em> ist derzeit nicht m&ouml;glich. Bitte versuchen Sie es sp&auml;ter erneut.';
+				$hint='Die Registrierung der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em> ist derzeit nicht m&ouml;glich. '.$storeanswer.' Bitte versuchen Sie es sp&auml;ter erneut.';
 				echo json_encode(array('state'=>'fail',
 		  		'hint'=>$hint,
 		  		'uid'=>$_SESSION['cardUID']));
@@ -110,13 +110,15 @@ if(!empty($patronBarcode)){ // filled - if we found anything
 	
 }
 
+// local record of registered cards
+// PLUS transfer to verwaltung
 function storeresult($uid,$cn,$bar){
 
 //	http_post_data($url,$data); // not installed?
 	
 	$ch = curl_init();
 	
-	$url=	"http://bibweb1.ub.hsu-hh.de:5984/hsuhitag/";
+	$url=	"http://localhost:5984/hsuhitag/";
 //	$data=  json_encode(array('_id'=>$uid,'hitaguid'=>$uid,'cn'=>$cn));
 	$data=  json_encode(array('hitaguid'=>$uid,'cn'=>$cn));
 
@@ -153,11 +155,11 @@ function storeresult($uid,$cn,$bar){
 		$vurl='https://debian.unibw-hamburg.de/CuaYc7t1dpSr/getrfid.php';
 		curl_setopt($ch, CURLOPT_URL, $vurl);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_HEADER, 0);
+//		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $vdata);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
 		if(!$curlres=curl_exec($ch))
 			echo 'curl update failed: '.curl_error($ch);
 	}
