@@ -67,7 +67,7 @@ $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account
 <!--  ============= finish/cancel buttons ============= -->
 	<table id="cko_buttons" cellpadding="5">
 		<tr>
-			<!-- td>
+			<!--  td>
 				<div class="ok_button button" id="print" title="selfcheck_button">
 					<h1>Beleg</h1>
 				</div>
@@ -90,7 +90,7 @@ $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account
 					<h1>Abmelden</h1>
 				</div>
 				<div class="thanks_button button corners" id="no_print_thanks">
-					<h1>Danke!</h1>
+					<h1>Abgemeldet</h1>
 				</div>
 			</td>
 		</tr>
