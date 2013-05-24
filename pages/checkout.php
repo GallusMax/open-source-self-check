@@ -182,7 +182,10 @@ $(document).ready(function() {
 		$('#no_print,#email').css('visibility','hidden');
 		$(this).hide();
 		$("#print_thanks").show();
-		$('#print_item_list').jqprint({debug:1});
+//		alert($('#print_item_list'));
+// setting prefs is not allowed?
+//		prefs.set('print.always_print_silent',true);
+		window.print(false);
 //		alert('printing');
 		setTimeout(function(){
 				window.location.href='processes/logout.php'
