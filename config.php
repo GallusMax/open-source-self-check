@@ -81,6 +81,12 @@ $ldap_bindpw 		= 	'hitagpass';
 $ldap_searchbase	= 	"ou=Library Users,ou=HSU HH,dc=library,dc=hsu-hh,dc=de";
 $ldap_filter		=	'carLicense';
 
+// user/library table
+$rzuser_host = "deldongo.ub.hsu-hh.de";
+$rzuser_db="rzuser_email";
+$rzuser_user = "idpuser";
+$rzuser_pass ="idppass";
+
 $online_catalog_url='http://ub.hsu-hh.de/DB=1/'; 	/*leave blank if you don't have one or if your catalog does
 							not allow renewals (this is for printing on the paper receipt and 
 							sending in the email receipt info about renewing online)*/
@@ -109,7 +115,7 @@ $tx_returnOK="zurückgenommen";
 $tx_returnReserved="bereits vorgemerkt";
 $tx_already_seen="Medium bereits bearbeitet";
 $library_name= "Bibliothek der Helmut-Schmidt-Universit&auml;t";
-$module_name='Testbetrieb Stapelverbuchung'; //shows on pages/home.php and pages/checkout.php
+$module_name=''; //shows on pages/home.php and pages/checkout.php
 $tx_checkout='Ausleihe';
 $tx_checkin='Rücknahme';
 $email_from_name=""; //library's email name

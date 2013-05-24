@@ -17,64 +17,44 @@ $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account
 </div>
 
 <div id="cko_wrapper">
-	<div>
-		<?php if (isset($_SESSION['name'])){?>
-		<a class="welcome">Ausleihe für <?php echo $_SESSION['name'];?></a>
-		<?php } ?>
-		<a class="tab">
-		<?php if (isset($_SESSION['checkouts'])){?>
-			Anzahl Ausleihen: <span id="cko_count"><?php echo $_SESSION['checkouts'];?></span>
-		<?php } ?>
-		<?php if (false && $show_available_holds){?>
-			<span> |</span>
-			Available Holds: <?php echo $_SESSION['available_holds'];?>
-		<?php }
-			if (false && $show_fines){?>
-			<span> |</span>
-			Fines: <?php echo $_SESSION['fines'];
-			}?>
-			<span> |</span>
-			<?php if (isset($_SESSION['overdues'])){?>
-			<font <?php if ($_SESSION['overdues']>0){?> style="text-decoration: blink;" <?php }?>>Gemahnt: <?php echo $_SESSION['overdues'];?></font>
-			<?php } ?>
-		</a>
-	</div>
 	<div id="cko_border">
 	
-		<h2></h2>
-		<table cellpadding="3" cellspacing="0" class="cko_column_head" align="center">
-			<tbody>
-				<tr>
-					<td>&nbsp;</td>
-					<td style="width:80%">Titel</td>
-					<td class="tddue">garantierte Leihfrist</td>
-				</tr>
-			</tbody>
-		</table>
 		
 <!--  ============= checked out items container ============= -->
-		<div id="item_list">
+		<div id="item_list_gone">
 			<table border="0" cellpadding="3" cellspacing="0" align="center">
 				<tbody>
 				</tbody>
 			</table>
-			<div class="loading"><img src="images/checking_account.gif"/></div>
+			<div class="loading" style="visibility:hidden"><img src="images/checking_account.gif"/></div>
 		</div>
 <!--  ============= end checked out items container ============= -->
+
+<div id="reg_1" class="reg_next">
+Schritt 1: Erkennen der RFID Karte. Legen Sie dazu Ihre Karte auf den Leser (((.)))
+</div>
+<div id="reg_2" class="reg_todo">
+Schritt 2: Identifikation anhand des Barcodes.
+</div>
+<div id="reg_3" class="reg_todo">
+						      Fertig! Mit Ihrer Karte finden Sie nun Ihre Druckjobs.
+</div>
+
+
 
 	</div>
 	
 <!--  ============= finish/cancel buttons ============= -->
 	<table id="cko_buttons" cellpadding="5">
 		<tr>
-			<!--  td>
+			<td>
 				<div class="ok_button button" id="print" title="selfcheck_button">
 					<h1>Beleg</h1>
 				</div>
 				<div class="thanks_button button" id="print_thanks">
 					<h1>Abgemeldet</h1>
 				</div>
-			</td -->
+			</td>
 			<?php if (isset($_SESSION['email']) && !empty($_SESSION['email']) && $allow_email_receipts){?>
 			<td>
 				<div class="ok_button button" id="email" title="selfcheck_button">
@@ -87,10 +67,10 @@ $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account
 			<?php }?>
 			<td>
 				<div class="ok_button button" id="no_print" title="selfcheck_button">
-					<h1>Abmelden</h1>
+					<h1>Kein Beleg</h1>
 				</div>
 				<div class="thanks_button button corners" id="no_print_thanks">
-					<h1>Abgemeldet</h1>
+					<h1>Danke!</h1>
 				</div>
 			</td>
 		</tr>
@@ -130,9 +110,10 @@ $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account
 <script type="text/javascript">
 			
 var checkin=false;
-var processItem="processes/checkout.php";
+var processItem="processes/register.php";
 var tx_checkout="<?php echo $tx_checkout?>";
 var tx_checkin="<?php echo $tx_checkin?>";
+var tx_register="Selbstregistrierung einer Kopier/Druckkarte";
 var patron_barcode="<?php if (isset($_SESSION['patron_barcode'])){echo $_SESSION['patron_barcode']; } ?>";
 
 
@@ -146,9 +127,8 @@ $(document).ready(function() {
 	if(checkin){
 		$('#module_name').html(tx_checkin); // announce we are checkin in now
 		$('.tddue').html('');
-	}else{
-		$('#module_name').html(tx_checkout); // announce  checkout
 	};
+		$('#module_name').html(tx_register); 
 			
 	$('#pre_cko_buttons .cancel_button').click(
 		function(){
@@ -184,10 +164,7 @@ $(document).ready(function() {
 		$('#no_print,#email').css('visibility','hidden');
 		$(this).hide();
 		$("#print_thanks").show();
-//		alert($('#print_item_list'));
-// setting prefs is not allowed?
-//		prefs.set('print.always_print_silent',true);
-		window.print(false);
+		$('#print_item_list').jqprint({debug:1});
 //		alert('printing');
 		setTimeout(function(){
 				window.location.href='processes/logout.php'
@@ -222,15 +199,39 @@ $(document).ready(function() {
 	//////////////////post checkouts function
 	$('#form').submit(function(){
 		$barcode=$('#barcode');
+		
+		//	alert($barcode.val());
 		tb_remove();
 		if('111111'!=$barcode.val()){
 		inactive_notice();
 		$("#item_list .loading").show();
 		$.post(processItem, { barcode: $barcode.val()},
-			function(data){
-				$("#item_list table").find('tbody').append(data);
+			function(jsondata){
+//			alert(jsondata);
+			var data=JSON.parse(jsondata);
+			if(data.state=="fail"){
+				$('#reg_3').html(data.hint);
+				$('#reg_3').addClass("reg_fail");			
+				return;
+			}
+
+			if(data.state=="done"){
+				$('#reg_3').html(data.hint);
+				$('#reg_3').addClass("reg_done");			
+				return;
+			}
+
+			if(data.state=="UID"){
+				$('#reg_2').html(data.hint);
+				$('#reg_2').addClass("reg_next");			
+				return;
+			}
+
+//			$('#reg_2').html(data.hint);
+//		 	$('#reg_2').addClass("reg_next");
+			  //$("#item_list table").find('tbody').append(data);
 				// UH code containing AFI_OFF rfid trigger (or not) is included in data!
-				$("#item_list").scrollTop(500);
+				//$("#item_list").scrollTop(500);
 				//alert($("#item_list").scrollTop());
 						
 			});

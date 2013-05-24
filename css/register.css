@@ -1,0 +1,42 @@
+@media screen {
+
+    .reg_todo{
+	height:80px;
+	border:2px solid black;
+	padding:20px;
+	margin:10px;
+	text-align:left;
+	background-color:#CCC;
+//	color:#CCC;
+    }
+    .reg_next{
+	height:80px;
+	border:2px solid black;
+	padding:20px;
+	margin:10px;
+	text-align:left;
+	background-color:#FFF;
+	font-size:20px;
+//	color:#CCC;
+    }
+    .reg_fail{
+	height:80px;
+	border:2px solid black;
+	padding:20px;
+	margin:10px;
+	text-align:left;
+	background-color:#CCC;
+	font-size:20px;
+	color:red;
+    }
+    .reg_done{
+	height:80px;
+	border:2px solid black;
+	padding:20px;
+	margin:10px;
+	text-align:left;
+	font-size:20px;
+	background-color:green;
+	color:#ccc;
+    }
+}
