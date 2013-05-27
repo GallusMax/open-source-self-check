@@ -22,7 +22,7 @@ $sip_password='2280';
 
 
 //========================== Site Rules ==============================
-$sc_location='TestSelfCheck HSU';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs (in Polaris this is required and is the numeric organization ID)
+$sc_location='unknown';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs (in Polaris this is required and is the numeric organization ID)
 $allow_manual_userid_entry=false;
 $show_fines=true;
 $show_available_holds=true;
@@ -99,14 +99,15 @@ $smtp_username='';
 $smtp_pwd='';
 
 //register known terminals by their IP
+//media return can only be done on those stations
 $location['10.199.1.141']='WISO'; // HSU1
 $location['10.166.101.27']='HB'; // HSU2
 $location['10.199.1.140']='ZA'; // HSU3 (ZA rechts)
 $location['10.199.1.139']='ZA'; // HSU4 (ZA links)
 $location['10.199.1.189']='schulung'; // HSU5 
 $location['10.199.1.154']='JURA'; // HSU6
-$location['10.166.101.143']='UHtest';
-$location['139.11.40.135']='UHtestgate';
+//$location['10.166.101.143']='UHtest';
+//$location['139.11.40.135']='vpn_tunnel';
 
 
 //wording
@@ -114,6 +115,7 @@ $reservedPattern="vorgemerkt"; // this string in the SIP2 AF return message sign
 $tx_returnOK="zurückgenommen";
 $tx_returnReserved="bereits vorgemerkt";
 $tx_already_seen="Medium bereits bearbeitet";
+$tx_checkin_refused="Rücknahme nicht erlaubt";
 $library_name= "Bibliothek der Helmut-Schmidt-Universit&auml;t";
 $module_name=''; //shows on pages/home.php and pages/checkout.php
 $tx_checkout='Ausleihe';

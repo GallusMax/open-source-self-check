@@ -5,6 +5,9 @@
 if ($allow_manual_userid_entry) { 
 	include_once('includes/keypad.php');
 }
+
+$stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known station?
+
 ?>
 
 	<div id="banner_title">
@@ -37,13 +40,18 @@ if ($allow_manual_userid_entry) {
 	<!--  ============= end form for submitting items ============= -->
 
 	<!--  ============= finish/cancel buttons ============= -->
-	<table><tr>
+	<table>
+	<?php if(!empty($location[$stationIP])){ // known and configured station for checkin ?>
+	
+		<tr>
 	   			<td>
 				<div class="ok_button button" id="checkin" title="selfcheck_button">
 					<h1>Rückgabe</h1>
 				</div>
 				</td>
-		</tr><tr>
+		</tr>
+	<?php }?>	
+		<tr>
 				<td>
 				<div class="ok_button button" id="register" title="selfcheck_button">
 					<h1>Druckkarte registrieren</h1>

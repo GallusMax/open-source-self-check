@@ -18,11 +18,7 @@ $due_date='';
 $action_message='';
 $RenewalOk='';
 $OK='';
-$sc_location="unbekannt";
-$stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known station?
 
-	if(!empty($location[$stationIP]))
-		$sc_location=$location[$stationIP];
 
 	if (empty($_POST['barcode'])){ //if for some reason the item barcode posted is empty fill in a bunk one
 		$item_barcode='bunk_barcode';
@@ -30,6 +26,11 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 		$item_barcode=$_POST['barcode'];
 	}
 
+$stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known station?
+if(!empty($location[$stationIP])){ // known and configured station for checkin
+
+	$sc_location=$location[$stationIP];
+		
 	$mysip = new sip2;
 	
 	// Set host name
@@ -110,6 +111,11 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 		$response_message=$tx_already_seen;
 	}
 	
+	}else{ // request from unknown station -> refuse checkin!
+		$OK=2;
+		$response_message=$tx_checkin_refused;
+	}
+			
 	if ($OK!=1){
 
 /* 
