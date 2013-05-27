@@ -12,34 +12,39 @@ $debug=0;
 $patronBarcode='';
 
 if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length OR empty($patron_id_length))){ //check that the barcode was posted and matches the length set in config.php 
-
-if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - try resolving a UID
-
-	$_SESSION['cardUID']=$_POST['barcode'];
-
-		//TODO find in rz ldap first!
-	
 	
 	$myl=new ldap();
 	$myl->hostname	= $ldap_hostname;
     $myl->port      = $ldap_port;
-    $myl->binddn 	= $ldap_binddn;
+//    $myl->binddn 	= $ldap_binddn; // use internal binddn
     $myl->bindpw 	= $ldap_bindpw;
-    $myl->searchbase	= $ldap_searchbase;
+    $myl->searchbase	= $ldap_intsearchbase;  // look for internal user
     $myl->filter	= $ldap_filter;
+	
+if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - try resolving a UID
 
-	$res=$myl->getcnfromuid($_POST['barcode']);
+	$_SESSION['cardUID']=$_POST['barcode'];
 	
+    //TODO find in rz ldap first!
+    
+	$res=$myl->getcnfromuid($_POST['barcode']);  
 	
-	
-	if(preg_match($patron_id_pattern,$res)){ // found!!
-		$patronBarcode=$res;
+	if(''!=$res){
 		$_SESSION['state']='done';
-  		echo json_encode(array('state'=>'done','hint'=>'Fertig! Diese Karte ist bereits registriert.<p>Anmeldekennung: '.$patronBarcode.'.'));
+  		echo json_encode(array('state'=>'done','hint'=>'Fertig! Mit dieser Karte finden Sie Ausdrucke der RZ-Kennung <em>'.$res.'</em>.'));
 		exit;		
-	};
+	}else{ // no internal user found, try external
+	    $myl->searchbase	= $ldap_searchbase;  // look for external user
+		$res=$myl->getcnfromuid($_POST['barcode']);  
+	    if(preg_match($patron_id_pattern,$res)){ // found an external user
+			$patronBarcode=$res;
+			$_SESSION['state']='done';
+  			echo json_encode(array('state'=>'done','hint'=>'Fertig! Mit dieser Karte finden Sie <br>Ausdrucke der Bibliothekskennung <em>'.$res.'</em>.'));
+			exit;
+	    }
+	}
 
-}else{ // matches!
+}else{ // matches! we got a barcode (instead a card UID)
 	if(!isset($_SESSION['state'])){ // user did not read the UID before reading the barcode->drawing the card will end the session
   		echo json_encode(array('state'=>'fail','hint'=>'Bitte die Karte zuerst auf den RFID Leser legen!'));
   		exit;
@@ -48,31 +53,31 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 		$patronBarcode=$_POST['barcode'];
 		$_SESSION['barcode']=$patronBarcode;
 
-		// TODO check if the barcode has an entry in RZ db
+		// TODO check if the barcode can be found in RZ entries
 		$_SESSION['rzuser']=barcode2rzid($_POST['barcode']);
 		if("" != $_SESSION['rzuser']){ // this is a hsu member
 
 			$storeanswer=storeresult($_SESSION['cardUID'],$_SESSION['rzuser'],$_SESSION['barcode']);
 			
 			if('OK'==substr($storeanswer,0,2)){ // OK: registrierung hat funktioniert, ERROR - eben nicht..	
+				// TODO pre-fill the (internal) user ldap (as a cache) with the number
+	    		$myl->searchbase = $ldap_intsearchbase;
+				$myl->addcardtocn($_SESSION['rzuser'],$_SESSION['cardUID']); // cache to internal ldap
+	    		
 				echo json_encode(array('state'=>'done',
-		  		'hint'=>"Die Registrierung unter der RZ Kennung ".$_SESSION['rzuser']." wird an das Rechenzentrum weitergeleitet. ",
+		  		'hint'=>'Fertig! Mit dieser Karte finden Sie jetzt Ausdrucke der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em>.',
 		  		'uid'=>$_SESSION['cardUID']));
+
 			}else{
 				$hint='Die Registrierung der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em> ist derzeit nicht m&ouml;glich. '.$storeanswer.' Bitte versuchen Sie es sp&auml;ter erneut.';
 				echo json_encode(array('state'=>'fail',
 		  		'hint'=>$hint,
 		  		'uid'=>$_SESSION['cardUID']));
-			}			
+			}
 	  		exit;
 			
 		}else{	// external user: put barcode in ldap
-		$myl=new ldap();
-		$myl->hostname	= $ldap_hostname;
-	    $myl->port      = $ldap_port;
-//	    $myl->binddn 	= $ldap_binddn; //use default  :-)
-//	    $myl->bindpw 	= $ldap_bindpw;
-	    $myl->searchbase	= $ldap_searchbase;
+	    $myl->searchbase = $ldap_searchbase;
 		
 		if($myl->addcardtocn($_SESSION['barcode'],$_SESSION['cardUID'])){ // register succeeded
 	    

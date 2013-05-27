@@ -80,6 +80,8 @@ $ldap_binddn 		= 	'cn=hitagreader,ou=Technical,ou=HSU HH,dc=library,dc=hsu-hh,dc
 $ldap_bindpw 		= 	'hitagpass';
 $ldap_searchbase	= 	"ou=Library Users,ou=HSU HH,dc=library,dc=hsu-hh,dc=de";
 $ldap_filter		=	'carLicense';
+$ldap_intsearchbase	= 	"ou=Users,ou=HSU HH,dc=library,dc=hsu-hh,dc=de";
+$ldap_intbarcode	=	'generationQualifier';
 
 // user/library table
 $rzuser_host = "deldongo.ub.hsu-hh.de";

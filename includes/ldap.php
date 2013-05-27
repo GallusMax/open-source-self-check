@@ -85,9 +85,9 @@ class ldap {
     }  
     
     function search($string){
-    	if(!$this->lc) return false;
+   		if(!$this->lc)$this->connect();
+	    if(!$this->lc) return false;
 		$this->sres=ldap_search($this->lc,$this->searchbase,$this->filter."=".$string);
-    
     }
     
     function getattr($attr){
@@ -102,9 +102,6 @@ class ldap {
 	}
     
     function getcnfromuid($uid){
-   	if(!$this->lc)$this->connect();
-    	 
-    if(!$this->lc) return false;
 
     $this->search($uid);
     return $this->getattr('cn');
@@ -113,6 +110,7 @@ class ldap {
 
     function addcardtocn($cn,$uid){
    	if(!$this->lc)$this->connect();
+   	$this->connect();
     	 
     if(!$this->lc) return false;
 
