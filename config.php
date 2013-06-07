@@ -108,7 +108,7 @@ $location['10.199.1.140']='ZA'; // HSU3 (ZA rechts)
 $location['10.199.1.139']='ZA'; // HSU4 (ZA links)
 $location['10.199.1.189']='schulung'; // HSU5 
 $location['10.199.1.154']='JURA'; // HSU6
-//$location['10.166.101.143']='UHtest';
+$location['10.166.101.143']='UHtest';
 //$location['139.11.40.135']='vpn_tunnel';
 
 
@@ -118,7 +118,7 @@ $tx_returnOK="zurückgenommen";
 $tx_returnReserved="bereits vorgemerkt";
 $tx_already_seen="Medium bereits bearbeitet";
 $tx_checkin_refused="Rücknahme nicht erlaubt";
-$library_name= "Bibliothek der Helmut-Schmidt-Universit&auml;t";
+$library_name= "Die Bibliothek der Helmut-Schmidt-Universit&auml;t";
 $module_name=''; //shows on pages/home.php and pages/checkout.php
 $tx_checkout='Ausleihe';
 $tx_checkin='Rücknahme';
@@ -162,6 +162,8 @@ $welcome_sound="sounds/welcome.mp3";
 $note_sound="sounds/note.mp3";
 
 	//images  (you need to uncomment one -and only one- line from each group). 
+//$logo_image='bhsu-Logo-small_grau.png';
+$logo_image='Biblogofrei.png';
 /*
 	Keep in mind these are not the image files names -they are just meant to trigger the showing 
 	of the types of images listed here. For further customization, images are loaded in the following files: 
@@ -176,6 +178,7 @@ $card_image='barcoded';
 	//======= group 2: home and checkout page images of book ==
 $item_image='barcoded';
 //$item_image='nonbarcoded';
+$item_image='piled';
 
 
 //======================= Action Balloons =======================

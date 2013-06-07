@@ -62,7 +62,8 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 			if('OK'==substr($storeanswer,0,2)){ // OK: registrierung hat funktioniert, ERROR - eben nicht..	
 				// TODO pre-fill the (internal) user ldap (as a cache) with the number
 	    		$myl->searchbase = $ldap_intsearchbase;
-				$myl->addcardtocn($_SESSION['rzuser'],$_SESSION['cardUID']); // cache to internal ldap
+	    		$myl->filter	= $ldap_filter;
+	    		$myl->addcardtocn($_SESSION['rzuser'],$_SESSION['cardUID']); // cache to internal ldap
 	    		
 				echo json_encode(array('state'=>'done',
 		  		'hint'=>'Fertig! Mit dieser Karte finden Sie jetzt Ausdrucke der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em>.',
@@ -78,7 +79,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 			
 		}else{	// external user: put barcode in ldap
 	    $myl->searchbase = $ldap_searchbase;
-		
+		$myl->filter	= $ldap_filter;
 		if($myl->addcardtocn($_SESSION['barcode'],$_SESSION['cardUID'])){ // register succeeded
 	    
   		echo json_encode(array('state'=>'done',
@@ -176,7 +177,24 @@ function storeresult($uid,$cn,$bar){
 return $curlres;
 }
 
+// new: use ldap attribute for borrower_bar
 function barcode2rzid($bar){
+	global $myl,$ldap_intsearchbase,$ldap_intbarcode;
+
+	$myl->searchbase	= $ldap_intsearchbase;  // look for internal user
+    $myl->filter	= $ldap_intbarcode;		// search with barcode
+	
+	$rzuser=$myl->getcnfromuid($bar);  
+
+	if(''!=$rzuser) return $rzuser;
+	
+	return null;
+	return "pruefbituser";
+	return $rzuser;
+}
+
+// obsolete - uses "old" database
+function barcode2rzid_old($bar){ 
 	global $rzuser_host,$rzuser_db,$rzuser_user,$rzuser_pass;
 	
 	$rzdb=mysql_connect($rzuser_host,$rzuser_user,$rzuser_pass);

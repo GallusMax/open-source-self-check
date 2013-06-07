@@ -9,7 +9,9 @@ if ($allow_manual_userid_entry) {
 $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known station?
 
 ?>
-
+	<div id="fixedlogo">
+		<img src="images/<?php echo $logo_image;?>" />
+	</div>
 	<div id="banner_title">
 		<h2>
 			<span>&nbsp;<?php echo $library_name;?></span>

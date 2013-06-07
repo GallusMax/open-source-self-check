@@ -5,12 +5,6 @@ $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account
 ?>
 <div id="cko_head">
 	<h1>
-		<span id="swap" style="z-index:1000">
-			<img src="images/<?php echo $item_image;?>_item1_small.png" align="left" class="active" />
-			<?php if ($item_image!='nonbarcoded'){ ?>
-				<img src="images/<?php echo $item_image;?>_item2_small.png" align="left"/>
-			<?php }?>
-		</span>
 		<span style="font-size:13px;">&nbsp;&nbsp;<?php echo $library_name;?></span><br />&nbsp;<span id="module_name"><?php echo $module_name;?></span>
 		<br /><br />
 	</h1>

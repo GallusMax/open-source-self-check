@@ -5,7 +5,7 @@ $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account
 ?>
 <div id="cko_head">
 	<h1>
-		<span id="swap" style="z-index:1000">
+		<span id="swap" style="z-index:-1000">
 			<img src="images/<?php echo $item_image;?>_item1_small.png" align="left" class="active" />
 			<?php if ($item_image!='nonbarcoded'){ ?>
 				<img src="images/<?php echo $item_image;?>_item2_small.png" align="left"/>
@@ -176,9 +176,10 @@ $(document).ready(function() {
 			//alert($("#print_item_list table tbody").html());
 		if(checkin) // no patron known - mark this as return bill instead
 			$('#print_item_list table tbody').prepend("<tr><td colspan=3>zurückgegebene Medien</td></tr>");
-		else
+		else{
 			$('#print_item_list table tbody').prepend("<tr><td>Karte Nummer</td><td colspan=2>"+patron_barcode+"</td></tr>");
-	
+			$('#print_tanks h1').val("Karte nicht vergessen!");
+			}
 		$("#print_item_list table tbody").prepend("<tr><td colspan=3>Datum &nbsp;<?php echo date($due_date_format) ?></td></tr>");
 		$("#print_item_list table tbody").prepend(receipt_header).append(receipt_footer);
 		$('#no_print,#email').css('visibility','hidden');
