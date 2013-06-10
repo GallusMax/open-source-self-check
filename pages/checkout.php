@@ -154,6 +154,8 @@ $(document).ready(function() {
 		function(){
 			$(this).hide();
 			$.get("http://localhost:2666/stop"); // no more items
+			if(!checkin) // borrowers card still present
+				$('#pre_cko_buttons .thanks_button').html('<h1>Karte nicht vergessen!</h1>');
 			$('#pre_cko_buttons .thanks_button').show();
 			setTimeout(function(){
 				window.location.href='processes/logout.php'
@@ -178,7 +180,7 @@ $(document).ready(function() {
 			$('#print_item_list table tbody').prepend("<tr><td colspan=3>zurückgegebene Medien</td></tr>");
 		else{
 			$('#print_item_list table tbody').prepend("<tr><td>Karte Nummer</td><td colspan=2>"+patron_barcode+"</td></tr>");
-			$('#print_tanks h1').val("Karte nicht vergessen!");
+			$('#print_thanks h1').html('Karte nicht vergessen!');
 			}
 		$("#print_item_list table tbody").prepend("<tr><td colspan=3>Datum &nbsp;<?php echo date($due_date_format) ?></td></tr>");
 		$("#print_item_list table tbody").prepend(receipt_header).append(receipt_footer);
@@ -212,6 +214,8 @@ $(document).ready(function() {
 		function(){
 			$.get("http://localhost:2666/stop"); // no more items
 			$('#print,#email').css('visibility','hidden');
+			if(!checkin) // the borrower's card stll sticks in the reader
+				$('#no_print_thanks h1').html("Karte nicht vergessen!");
 			$(this).hide();
 			$("#no_print_thanks").show();
 			setTimeout(
