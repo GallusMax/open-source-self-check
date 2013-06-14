@@ -25,13 +25,13 @@ $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account
 <!--  ============= end checked out items container ============= -->
 
 <div id="reg_1" class="reg_next">
-Schritt 1: Erkennen der RFID Karte. Legen Sie dazu Ihre Karte auf den Leser (((.)))
+<img src="images/rfid-icon_80.png" width="80" height="80"/> <p id="step1"> Erkennen der RFID Karte. Legen Sie dazu Ihre Karte auf den Leser</p>
 </div>
 <div id="reg_2" class="reg_todo">
-Schritt 2: Identifikation anhand des Barcodes.
+<p id="step2"> Identifikation anhand des Barcodes.</p>
 </div>
 <div id="reg_3" class="reg_todo">
-						      Fertig! Mit Ihrer Karte finden Sie nun Ihre Druckjobs.
+<p style="padding-left:30px"> Fertig! Mit Ihrer Karte finden Sie nun Ihre Druckjobs.</p>
 </div>
 
 

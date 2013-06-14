@@ -31,7 +31,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 	
 	if(''!=$res){
 		$_SESSION['state']='done';
-  		echo json_encode(array('state'=>'done','hint'=>'Fertig! Mit dieser Karte finden Sie Ausdrucke der RZ-Kennung <em>'.$res.'</em>.'));
+  		echo json_encode(array('state'=>'done','hint'=>'<p id="fin">Fertig! Mit dieser Karte finden Sie Ausdrucke der RZ-Kennung <em>'.$res.'</em>.</p>'));
 		exit;		
 	}else{ // no internal user found, try external
 	    $myl->searchbase	= $ldap_searchbase;  // look for external user
@@ -39,7 +39,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 	    if(preg_match($patron_id_pattern,$res)){ // found an external user
 			$patronBarcode=$res;
 			$_SESSION['state']='done';
-  			echo json_encode(array('state'=>'done','hint'=>'Fertig! Mit dieser Karte finden Sie <br>Ausdrucke der Bibliothekskennung <em>'.$res.'</em>.'));
+  			echo json_encode(array('state'=>'done','hint'=>'<p id="fin">Fertig! Mit dieser Karte finden Sie <br>Ausdrucke der Bibliothekskennung <em>'.$res.'</em>.</p>'));
 			exit;
 	    }
 	}
@@ -111,7 +111,7 @@ if(!empty($patronBarcode)){ // filled - if we found anything
 	$_SESSION['state']="UID";
 //	if($debug)trigger_error("account_check: invalid account",E_USER_NOTICE);
   		echo json_encode(array('state'=>'UID',
-  			'hint'=>'Schritt 2: Identifikation anhand des Barcodes. Stecken Sie dazu Ihre Karte wie gewohnt in den Leseschlitz rechts.'));
+  			'hint'=>'<img src="images/barcoded_card1_80.png"/> <p id="step2">Identifikation anhand des Barcodes. Stecken Sie dazu Ihre Karte wie gewohnt in den Leseschlitz rechts.</p>'));
 		exit;
 	
 }
