@@ -1,6 +1,7 @@
 <?php 
 /* 	checkout / in  screen */
 $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account_check
+if(!isset($_SESSION['state'])){$_SESSION['state']='init';} // state is always defined
 
 ?>
 <div id="cko_head">
@@ -109,7 +110,7 @@ var tx_checkout="<?php echo $tx_checkout?>";
 var tx_checkin="<?php echo $tx_checkin?>";
 var tx_register="Selbstregistrierung einer Kopier/Druckkarte";
 var patron_barcode="<?php if (isset($_SESSION['patron_barcode'])){echo $_SESSION['patron_barcode']; } ?>";
-
+var state="<?php echo $_SESSION['state']; ?>";
 
 <?php if (isset($_GET['checkin'])){ // reuse checkout page for checkin now
 	echo 'checkin=true; processItem="processes/checkin.php"';
@@ -196,13 +197,14 @@ $(document).ready(function() {
 		
 		//	alert($barcode.val());
 		tb_remove();
-		if('111111'!=$barcode.val()){
+		if(('111111'!=$barcode.val())&&('fail'!=state)){
 		inactive_notice();
 		$("#item_list .loading").show();
 		$.post(processItem, { barcode: $barcode.val()},
 			function(jsondata){
 //			alert(jsondata);
 			var data=JSON.parse(jsondata);
+			state=data.state; // remember failure 
 			if(data.state=="fail"){
 				$('#reg_3').html(data.hint);
 				$('#reg_3').addClass("reg_fail");			

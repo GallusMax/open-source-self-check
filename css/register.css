@@ -51,6 +51,8 @@
 	color:red;
 	background-image:url(../images/close.png);
 	background-repeat:no-repeat;
+	background-position:3% 50%;
+	padding-left:75px;
     }
     .reg_done{
 	height:80px;
@@ -64,9 +66,6 @@
 	background-image:url(../images/check.png);
 	background-repeat:no-repeat;
 	background-position:3% 50%;
+	padding-left:75px;
     }
-	#fin {
-	padding-left:70px;
-	padding-top: 10px;
-	}
 }

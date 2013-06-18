@@ -45,8 +45,10 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 	}
 
 }else{ // matches! we got a barcode (instead a card UID)
-	if(!isset($_SESSION['state'])){ // user did not read the UID before reading the barcode->drawing the card will end the session
-  		echo json_encode(array('state'=>'fail','hint'=>'Bitte die Karte zuerst auf den RFID Leser legen!'));
+	if('init'==($_SESSION['state'])){ // user did not read the UID before reading the barcode->drawing the card will end the session
+  		$_SESSION['state']='fail'; // remember to exit with the next entry
+		echo json_encode(array('state'=>'fail',
+  		'hint'=>'Bitte die Karte zuerst auf den RFID Leser legen!'));
   		exit;
 	}
 	if('UID'==$_SESSION['state']){ // UID read before, barcode now
@@ -66,7 +68,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 	    		$myl->addcardtocn($_SESSION['rzuser'],$_SESSION['cardUID']); // cache to internal ldap
 	    		
 				echo json_encode(array('state'=>'done',
-		  		'hint'=>'Fertig! Mit dieser Karte finden Sie jetzt Ausdrucke der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em>.',
+		  		'hint'=>'<p id="fin">Fertig! Mit dieser Karte finden Sie jetzt Ausdrucke der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em>.</p>',
 		  		'uid'=>$_SESSION['cardUID']));
 
 			}else{
@@ -83,7 +85,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 		if($myl->addcardtocn($_SESSION['barcode'],$_SESSION['cardUID'])){ // register succeeded
 	    
   		echo json_encode(array('state'=>'done',
-  		'hint'=>"Fertig! Diese Karte ist unter ".$_SESSION['barcode']." registriert",
+  		'hint'=>'<p id="fin">Fertig! Diese Karte ist unter '.$_SESSION['barcode'].' registriert</p>',
   		'uid'=>$_SESSION['cardUID']));
 
   		storeresult($_SESSION['cardUID'],$_SESSION['barcode'],$_SESSION['barcode']);
@@ -103,7 +105,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 
 if(!empty($patronBarcode)){ // filled - if we found anything
 	
-  echo "Fertig! Diese Karte ist bereits registriert!<p>Verbundene Anmeldekennung: $patronBarcode ";
+  echo '<p id="fin">Fertig! Diese Karte ist bereits registriert!<p>Verbundene Anmeldekennung:'.$patronBarcode.' </p>';
 	exit;
 
 
@@ -194,7 +196,7 @@ function barcode2rzid($bar){
 }
 
 // obsolete - uses "old" database
-function barcode2rzid_old($bar){ 
+function barcode2rzid_mysql($bar){ 
 	global $rzuser_host,$rzuser_db,$rzuser_user,$rzuser_pass;
 	
 	$rzdb=mysql_connect($rzuser_host,$rzuser_user,$rzuser_pass);
