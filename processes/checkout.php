@@ -150,13 +150,13 @@ if (!empty($_SESSION['patron_barcode'])){
 	var item="<tr>"+'.implode('+',$receipt_item_list_elements).'+"</tr>";
 	
 	$(document).ready(function(){ // UH is run on item checkout OK
-		$("#item_list .loading,#pre_cko_buttons").hide();
 		$("#cko_buttons").show();
 		$("#cko_count").html("'.$_SESSION['checkouts'].'");
 		$("#print_item_list table tbody").append(item);
 		$("#item_list").attr({ scrollTop: $("#item_list").attr("scrollHeight") });
 		// here we know that $item_barcode has been charged! so trigger AFI_OFF and the following one
 				$.get("http://localhost:2666/off?'.$item_barcode.'");
+		$("#item_list .loading,#pre_cko_buttons").hide();
 				
 	';
 	

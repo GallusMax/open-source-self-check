@@ -176,13 +176,13 @@ if(!empty($location[$stationIP])){ // known and configured station for checkin
 	var item="<tr>"+'.implode('+',$receipt_item_list_elements).'+"</tr>";
 
 	$(document).ready(function(){ // UH is run on item checkout OK
-		$("#item_list .loading,#pre_cko_buttons").hide();
 		$("#cko_buttons").show();
 		$("#print_item_list table tbody").append(item);
 		$("#item_list").attr({ scrollTop: $("#item_list").attr("scrollHeight") });
 		// here we know that $item_barcode has been charged! so trigger AFI change and the following one
 		$.get("http://localhost:2666/on?'.$item_barcode.'");
-				
+		$("#item_list .loading,#pre_cko_buttons").hide();
+		
 	';
 	
 /*
