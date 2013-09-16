@@ -27,6 +27,7 @@ function getexternaluserbarcode($uid){
 	return $l_res;
 }
 
+// internal users may have a "+" prepended in the ldap entry of their UID
 function getinternaluserbarcode($uid){
 	$myl=$GLOBALS['myl'];
 	$myl->searchbase=$GLOBALS['ldap_intsearchbase'];
@@ -38,10 +39,15 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 
 if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - try resolving a UID
 
+	//rebach special - some like it with leading +	
+	$res=getinternaluserbarcode('+'.$_POST['barcode']);
+	if(preg_match($patron_id_pattern,$res)) // found an internal user (RZ name does not matter here)
+		$patronBarcode=$res;
+	
 	$res=getinternaluserbarcode($_POST['barcode']);
 	if(preg_match($patron_id_pattern,$res)) // found an internal user (RZ name does not matter here)
 		$patronBarcode=$res;
-
+		
 	$res=getexternaluserbarcode($_POST['barcode']);
 	if(preg_match($patron_id_pattern,$res)) // found an external user
 		$patronBarcode=$res;

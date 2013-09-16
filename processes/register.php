@@ -25,9 +25,11 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 
 	$_SESSION['cardUID']=$_POST['barcode'];
 	
-    //TODO find in rz ldap first!
-    
-	$res=$myl->getcnfromuid($_POST['barcode']);  
+    // find in rz ldap first!
+    //rebach special: a prepended '+' 
+	$res=$myl->getcnfromuid('+'.$_POST['barcode']);  
+	if(''==$res) // not found - try without '+'
+		$res=$myl->getcnfromuid($_POST['barcode']);  
 	
 	if(''!=$res){
 		$_SESSION['state']='done';
