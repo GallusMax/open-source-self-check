@@ -1,6 +1,7 @@
 <?php 
 /* 	checkout / in  screen */
 $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account_check
+$stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known station?
 
 ?>
 <div id="cko_head">
@@ -67,6 +68,7 @@ $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account
 <!--  ============= finish/cancel buttons ============= -->
 	<table id="cko_buttons" cellpadding="5">
 		<tr>
+			<?php if(!isset($noprint[$stationIP])){ // configured station without printer ?>
 			<td>
 				<div class="ok_button button" id="print" title="selfcheck_button">
 					<h1>Beleg</h1>
@@ -75,6 +77,9 @@ $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account
 					<h1>..wird gedruckt</h1>
 				</div>
 			</td>
+			<?php }?>	
+			
+			
 			<?php if (isset($_SESSION['email']) && !empty($_SESSION['email']) && $allow_email_receipts){?>
 			<td>
 				<div class="ok_button button" id="email" title="selfcheck_button">

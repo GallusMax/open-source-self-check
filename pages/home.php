@@ -77,6 +77,7 @@ $(document).ready(function(){
 		$response.html('<h2 style="color:#4d8b27"> Anmeldung.. <img src="images/checking_account.gif" /></h2>');
 		$.post("processes/account_check.php", { barcode: $barcode.val()},
 			function(data){
+
 				setTimeout(function(){
 					if (data=='out of order'){ //does the response indicate a failed sip2 connection
 						window.location.href='index.php?page=out_of_order';
@@ -84,12 +85,12 @@ $(document).ready(function(){
 						// $.dbj_sound.play('<?php echo $error_sound;?>'); // no sound
 // localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There\'s a problem with your account</span>. Please see a circulation clerk.</h2>');
 						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">Keine Ausleihe erlaubt</span>. Bitte fragen Sie an der Theke.</h2>');
-												setTimeout(function() { $('#error_message').hide(); },10000);
+												setTimeout(function() { $('#error_message').hide(); },5000);
 					} else if (data=='invalid account'){ //does the response indicate an invalid account
 //						$.dbj_sound.play('<?php echo $error_sound;?>');
 // localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There was a problem</span>. Please scan your card again.</h2>');
 								$response.html('<h2 id="error_message"> <span style="text-decoration:blink">Karte nicht erkannt</span>. Bitte versuchen Sie es noch einmal.</h2>');
-											setTimeout(function() { $('#error_message').hide(); },10000);
+											setTimeout(function() { $('#error_message').hide(); },5000);
 					} else { //if everything is ok with the patron's account show the welcome screen
 //						$("#page_content").html(data);
 //						$.get("http://localhost:2666/next"); // call for the first item code
