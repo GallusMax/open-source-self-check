@@ -18,6 +18,8 @@ if (!empty($_GET['page']) && file_exists('pages/'.$_GET['page'].'.php')){
 	header('location:index.php?page='.$page);
 }
 
+$include='pages/'.$page.'.php'; // UH - $include was left undef 
+
 //header
 include_once('includes/header.php');
 

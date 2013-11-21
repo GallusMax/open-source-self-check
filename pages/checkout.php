@@ -12,15 +12,17 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 				<img src="images/<?php echo $item_image;?>_item2_small.png" align="left"/>
 			<?php }?>
 		</span>
-		<span style="font-size:13px;">&nbsp;&nbsp;<?php echo $library_name;?></span><br />&nbsp;<span id="module_name"><?php echo $module_name;?></span>
+		<span style="font-size:13px;">&nbsp;&nbsp;<?php echo $library_name;?></span>
+		<br />&nbsp;<span id="module_name"><?php echo $module_name;?></span>
 		<br /><br />
 	</h1>
 </div>
+<div id="spinner" ></div>
 
 <div id="cko_wrapper">
 	<div>
 		<?php if (isset($_SESSION['name'])){?>
-		<a class="welcome">Ausleihe für <?php echo $_SESSION['name'];?></a>
+		<a class="welcome">Benutzer-Info für <?php echo $_SESSION['name'];?></a>
 		<?php } ?>
 		<a class="tab">
 		<?php if (isset($_SESSION['checkouts'])){?>
@@ -28,7 +30,7 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 		<?php } ?>
 		<?php if (false && $show_available_holds){?>
 			<span> |</span>
-			Available Holds: <?php echo $_SESSION['available_holds'];?>
+			Vormerkungen: <?php echo $_SESSION['available_holds'];?>
 		<?php }
 			if (false && $show_fines){?>
 			<span> |</span>
@@ -41,7 +43,6 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 		</a>
 	</div>
 	<div id="cko_border">
-	
 		<h2></h2>
 		<table cellpadding="3" cellspacing="0" class="cko_column_head" align="center">
 			<tbody>
@@ -52,6 +53,7 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 				</tr>
 			</tbody>
 		</table>
+		<div class="loading"><img src="images/bitte_warten200.gif"/></div>
 		
 <!--  ============= checked out items container ============= -->
 		<div id="item_list">
@@ -139,7 +141,9 @@ var processItem="processes/checkout.php";
 var tx_checkout="<?php echo $tx_checkout?>";
 var tx_checkin="<?php echo $tx_checkin?>";
 var patron_barcode="<?php if (isset($_SESSION['patron_barcode'])){echo $_SESSION['patron_barcode']; } ?>";
-
+var loadingtimer=null;
+var divspinner = document.getElementById('spinner');
+var spinner=new Spinner();
 
 <?php if (isset($_GET['checkin'])){ // reuse checkout page for checkin now
 	echo 'checkin=true; processItem="processes/checkin.php"';
@@ -235,14 +239,21 @@ $(document).ready(function() {
 		tb_remove();
 		if('111111'!=$barcode.val()){
 		inactive_notice();
-		$("#item_list .loading").show();
+//		$(" .loading").show();
+		spinner.spin(divspinner);
+		clearTimeout(loadingtimer);
 		$.post(processItem, { barcode: $barcode.val()},
 			function(data){
 				$("#item_list table").find('tbody').append(data);
 				// UH code containing AFI_OFF rfid trigger (or not) is included in data!
 				$("#item_list").scrollTop(500);
 				//alert($("#item_list").scrollTop());
-						
+				loadingtimer=setTimeout(
+						function(){
+						$(".loading").hide();
+						spinner.stop();
+						},1500);
+								
 			});
 		}else{ // card was drawn
 			$.get("http://localhost:2666/stop"); // no more items

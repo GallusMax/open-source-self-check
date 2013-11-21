@@ -157,7 +157,6 @@ if (!empty($_SESSION['patron_barcode'])){
 		// here we know that $item_barcode has been charged! so trigger AFI_OFF and the following one
 				$.get("http://localhost:2666/off?'.$item_barcode.'");
 		$("#item_list .loading,#pre_cko_buttons").hide();
-				
 	';
 	
 	//Action Balloon

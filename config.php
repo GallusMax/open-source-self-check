@@ -109,7 +109,7 @@ $location['10.199.1.139']='ZA'; // HSU4 (ZA links)
 $location['10.199.1.191']='ZA'; // HSUx replaced 201310
 $location['10.199.1.192']='schulung'; // HSU5 
 $location['10.199.1.154']='JURA'; // HSU6
-//$location['10.166.101.143']='UHtest';
+$location['10.166.101.143']='UHtest';
 $location['10.166.102.5']='WyseLive';
 //$location['139.11.40.135']='vpn_tunnel';
 
@@ -127,20 +127,24 @@ $tx_already_seen="Medium bereits bearbeitet";
 $tx_checkin_refused="Rücknahme nicht erlaubt";
 $library_name= "Die Bibliothek der Helmut-Schmidt-Universit&auml;t";
 $module_name=''; //shows on pages/home.php and pages/checkout.php
-$tx_checkout='Ausleihe - Stapelverbuchung!';
-$tx_checkin='Rücknahme - Stapelverbuchung!';
+$tx_checkout='Ausleihe - max 6 Medien auf der Markierung ablegen!';
+$tx_checkin='Rücknahme - max 6 Medien auf der Markierung ablegen!';
 $email_from_name=""; //library's email name
 $email_from_address=""; //library's email address
 $admin_emails=''; //comma delimted list of email addresses that should be notified should the self-check go out of order
 $email_subject='Ausleihquittung'; //subject of email receipt
 $intro_screen_text="Scan your library card's barcode to begin"; //shown on pages/home.php
-$intro_screen_text="Ausleihe? Bitte Ausweis in den Leser stecken"; //shown on pages/home.php
+$intro_screen_text="Ausleihe? Bitte Medien auflegen und Ausweis einlesen."; //shown on pages/home.php
 $welcome_screen_text="Scan an item's barcode to continue";	//shown on includes/welcome.php
 $welcome_screen_subtext="(most barcodes are inside items' front covers)";
 $renewal_prompt_text='is already checked out to your account.<br />Would you like to try to renew it?';
 $renewal_prompt_text='bereits auf Ihrem Konto';
 $out_of_order_head='Out of Service'; //shown on pages/out_of_order.php
 $out_of_order_text='We are working to fix the problem'; //shown on pages/out_of_order.php
+$err_account_blocked="There\'s a problem with your account. Please see a circulation clerk.";
+$err_account_blocked="Keine Ausleihe erlaubt. Bitte fragen Sie an der Theke.";
+$err_account_invalid="There was a problem. Please scan your card again.";
+$err_account_invalid="Karte nicht erkannt. Bitte versuchen Sie es noch einmal.";
 
 //====================== Paper & Email Receipts ==============
 /* add elements to or remove elements from the header & footer arrays below to manipulate that piece of the receipt.
@@ -180,6 +184,7 @@ $logo_image='Biblogofrei.png';
 	//======= group 1: home page images of library card =======
 //$card_image='kpl';
 $card_image='barcoded';
+$card_image='rfid';
 //$card_image='magnetic';
 
 	//======= group 2: home and checkout page images of book ==

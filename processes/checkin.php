@@ -182,7 +182,6 @@ if(!empty($location[$stationIP])){ // known and configured station for checkin
 		// here we know that $item_barcode has been charged! so trigger AFI change and the following one
 		$.get("http://localhost:2666/on?'.$item_barcode.'");
 		$("#item_list .loading,#pre_cko_buttons").hide();
-		
 	';
 	
 /*

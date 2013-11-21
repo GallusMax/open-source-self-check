@@ -12,6 +12,8 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 	<div id="fixedlogo">
 		<img src="images/<?php echo $logo_image;?>" />
 	</div>
+	<div id="spinner">
+	</div>
 	<div id="banner_title">
 		<h2>
 			<span>&nbsp;<?php echo $library_name;?></span>
@@ -27,10 +29,11 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 		</span>
 		<h2><?php echo $intro_screen_text;?></h2>
 		
-		
-		</div>
 	
-	<div id="response"></div><!-- response container for showing failed login/blocked patron messages -->
+	<div id="error_message">
+	
+	</div><!-- response container for showing failed login/blocked patron messages -->
+		</div>
 		
 			
 	<!--  ============= form for submitting patron id ============= -->
@@ -67,36 +70,42 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 <script type="text/javascript">
 $(document).ready(function(){
 	$.get("http://localhost:2666/stop"); // no more items
-	
+	var divspinner = document.getElementById('spinner');
+	var spinner = new Spinner();
 	$('#form').submit(function(){
 		tb_remove();
 		$barcode=$('#barcode');
 		// UH find out if this is just the 111111 barcode from FKI reader construction!
 		if('111111'!=$barcode.val()){  // ignore ruhebarcode
-		$response=$("#response");
-		$response.html('<h2 style="color:#4d8b27"> Anmeldung.. <img src="images/checking_account.gif" /></h2>');
+		$response=$("#error_message");
+		$response.html('<h2 style="color:#4d8b27"> Anmeldung.. </h2>');
+		$response.show();
+		spinner.spin(divspinner);
 		$.post("processes/account_check.php", { barcode: $barcode.val()},
 			function(data){
-
 				setTimeout(function(){
 					if (data=='out of order'){ //does the response indicate a failed sip2 connection
 						window.location.href='index.php?page=out_of_order';
 					} else if (data=='blocked account'){ //does the response indicate a blocked account
 						// $.dbj_sound.play('<?php echo $error_sound;?>'); // no sound
 // localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There\'s a problem with your account</span>. Please see a circulation clerk.</h2>');
-						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">Keine Ausleihe erlaubt</span>. Bitte fragen Sie an der Theke.</h2>');
-												setTimeout(function() { $('#error_message').hide(); },5000);
+						$response.html('<h1> <span style="text-decoration:blink">Keine Ausleihe erlaubt</span>. Bitte fragen Sie an der Theke.</h2>');
+						$response.show();
+						setTimeout(function() { $('#error_message').hide(); },5000);
 					} else if (data=='invalid account'){ //does the response indicate an invalid account
 //						$.dbj_sound.play('<?php echo $error_sound;?>');
 // localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There was a problem</span>. Please scan your card again.</h2>');
-								$response.html('<h2 id="error_message"> <span style="text-decoration:blink">Karte nicht erkannt</span>. Bitte versuchen Sie es noch einmal.</h2>');
-											setTimeout(function() { $('#error_message').hide(); },5000);
+								$response.html('<h1> Karte nicht erkannt. Bitte versuchen Sie es noch einmal.</h2>');
+								$response.show();
+								setTimeout(function() { $('#error_message').hide(); },5000);
 					} else { //if everything is ok with the patron's account show the welcome screen
 //						$("#page_content").html(data);
 //						$.get("http://localhost:2666/next"); // call for the first item code
 						window.location.href='index.php?page=checkout'; // jump directly to checkout screen
 					}
 				}, 1000);
+				spinner.stop();
+				
 		},'json'); //responses from process/account_check.php are expectd to be in json
 		} // all skipped if '11111' found
 		$barcode.val('');
