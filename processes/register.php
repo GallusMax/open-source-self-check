@@ -57,7 +57,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 		$patronBarcode=$_POST['barcode'];
 		$_SESSION['barcode']=$patronBarcode;
 
-		// TODO check if the barcode can be found in RZ entries
+		// check if the barcode can be found in RZ entries
 		$_SESSION['rzuser']=barcode2rzid($_POST['barcode']);
 		if("" != $_SESSION['rzuser']){ // this is a hsu member
 
@@ -127,6 +127,31 @@ function storeresult($uid,$cn,$bar){
 //	http_post_data($url,$data); // not installed?
 	
 	$ch = curl_init();
+	$vresult=""; // stores OK or ERROR from verwaltung
+	
+	// last not least die verwaltung	
+	if(($cn!=$bar)){ // fuer externe waeren cn und barcode gleich..
+//https://debian.unibw-hamburg.de/CuaYc7t1dpSr/getrfid.php?bibcode=<bibcode>&rfid=<rfidcode>&user=<username>
+		$vdata=array('bibcode'=>$bar,
+			'rfid'=>$uid,
+			'user'=>$cn);
+		$vurl='https://debian.unibw-hamburg.de/CuaYc7t1dpSr/getrfid.php?bibcode='.$bar.'&rfid='.$uid.'&user='.$cn;
+		$vurl='https://debian.unibw-hamburg.de/CuaYc7t1dpSr/getrfid.php';
+		curl_setopt($ch, CURLOPT_URL, $vurl);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		//		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $vdata);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
+		if(!$curlres=curl_exec($ch))
+			error_log('empty curl update result: '.curl_error($ch));
+
+		$vresult=$curlres;
+//		error_log('stored with '.$vresult);
+	}
+	
 	
 	$url=	"http://localhost:5984/hsuhitag/";
 //	$data=  json_encode(array('_id'=>$uid,'hitaguid'=>$uid,'cn'=>$cn));
@@ -138,13 +163,15 @@ function storeresult($uid,$cn,$bar){
 	$resjson=curl_exec($ch);
 	$res=json_decode($resjson,true);
 
+	$arequest = array('_id'=>$uid,'hitaguid'=>$uid,'cn'=>$cn,'bar'=>$bar);
+
 	if(isset($res['_rev']))
-		$data=  json_encode(array('_id'=>$uid,'hitaguid'=>$uid,'_rev'=>$res['_rev'],'cn'=>$cn,'bar'=>$bar));
-	else
-		$data=  json_encode(array('_id'=>$uid,'hitaguid'=>$uid,'cn'=>$cn,'bar'=>$bar));
-	
-//	echo $rev;
-	
+		$arequest['_rev']=$res['_rev'];
+		// strlen is 0 on NULL or empty string
+	if(0 != strlen($vresult)) // record the result from previous transfer
+		$arequest['stored']=$vresult;
+		
+	$data=  json_encode($arequest);
 
 	curl_setopt($ch, CURLOPT_URL, $url);
 //	curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -155,30 +182,10 @@ function storeresult($uid,$cn,$bar){
 	$curlres=curl_exec($ch);
 
 	
-// last not least die verwaltung	
-	if($cn!=$bar){ // fuer externe waeren cn und barcode gleich..
-//https://debian.unibw-hamburg.de/CuaYc7t1dpSr/getrfid.php?bibcode=<bibcode>&rfid=<rfidcode>&user=<username>
-		$vdata=array('bibcode'=>$bar,
-			'rfid'=>$uid,
-			'user'=>$cn);
-		$vurl='https://debian.unibw-hamburg.de/CuaYc7t1dpSr/getrfid.php?bibcode='.$bar.'&rfid='.$uid.'&user='.$cn;
-		$vurl='https://debian.unibw-hamburg.de/CuaYc7t1dpSr/getrfid.php';
-		curl_setopt($ch, CURLOPT_URL, $vurl);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-//		curl_setopt($ch, CURLOPT_HEADER, 0);
-		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $vdata);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
-		if(!$curlres=curl_exec($ch))
-			echo 'curl update failed: '.curl_error($ch);
-	}
-	
-	
 	curl_close($ch);
 
-//	echo $curlres;
-return $curlres;
+//	echo result from verwaltung
+return $vresult;
 }
 
 // new: use ldap attribute for borrower_bar
