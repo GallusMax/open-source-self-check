@@ -75,11 +75,11 @@ if(!empty($patronBarcode)){ // filled - if we found anything
 		exit;
 	}
 	
-	/*	if(!empty($sip_login)){
+	if(!empty($sip_login)){
 		$sc_login=$mysip->msgLogin($sip_login,$sip_password);
 		$mysip->parseLoginResponse($mysip->get_message($sc_login));
 	}
-	*/
+	
 	// Get patron info response
 	//	$ptrnmsg = $mysip->msgPatronInformation('charged');
 	$ptrnmsg = $mysip->msgPatronInformation('hold');
