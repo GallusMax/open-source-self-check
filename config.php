@@ -17,7 +17,7 @@
 //========================== SIP2 =================================
 $sip_hostname = '139.11.40.32';
 $sip_port = "1290"; 
-$sip_login='2280'; 	//if your SIP2 server does not require a username and password leave these empty
+$sip_login=''; 	//if your SIP2 server does not require a username and password leave these empty
 $sip_password='2280';
 
 
