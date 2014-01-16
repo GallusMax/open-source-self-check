@@ -240,7 +240,7 @@ $(document).ready(function() {
 		if('111111'!=$barcode.val()){
 		inactive_notice();
 //		$(" .loading").show();
-		spinner.spin(divspinner);
+//		spinner.spin(divspinner);
 		clearTimeout(loadingtimer);
 		$.post(processItem, { barcode: $barcode.val()},
 			function(data){
@@ -253,6 +253,10 @@ $(document).ready(function() {
 						$(".loading").hide();
 						spinner.stop();
 						},1500);
+				setTimeout(
+						function(){
+							$(".cko_row").show(100);
+						},200);
 								
 			});
 		}else{ // card was drawn
