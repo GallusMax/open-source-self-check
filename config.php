@@ -16,8 +16,9 @@
 
 //========================== SIP2 =================================
 $sip_hostname = '139.11.40.32';
+$sip_hostname = 'localhost'; // fuer bibt4.pica-prod
 $sip_port = "1290"; 
-$sip_login='2280'; 	//if your SIP2 server does not require a username and password leave these empty
+$sip_login=''; 	//if your SIP2 server does not require a username and password leave these empty
 $sip_password='2280';
 
 
@@ -111,7 +112,7 @@ $location['10.199.1.192']='ZA'; // HSU5
 $location['10.199.1.154']='JURA'; // HSU6
 $location['10.166.101.143']='UHtest';
 $location['10.166.102.5']='WyseLive';
-//$location['139.11.40.135']='vpn_tunnel';
+$location['139.11.40.135']='vpn_tunnel';
 
 // UH some stations do not print at all:
 $noprint['10.166.102.5']='Wyse';
