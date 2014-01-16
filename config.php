@@ -103,7 +103,7 @@ $smtp_pwd='';
 
 //register known terminals by their IP
 //media return can only be done on those stations
-$location['10.199.1.141']='WISO'; // HSU1
+$location['10.199.1.141']='ZA'; // HSU1
 $location['10.166.101.27']='HB'; // HSU2
 $location['10.199.1.140']='ZA'; // HSU3 (ZA rechts)
 $location['10.199.1.139']='ZA'; // HSU4 (ZA links)
