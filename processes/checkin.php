@@ -160,7 +160,7 @@ if(!empty($location[$stationIP])){ // known and configured station for checkin
 
 			
 	echo '
-	<tr>
+	<tr class="cko_row" style="display:none">
 	<td class="cko_item" style="color:#666;width:25px" id="item_left_'.$item_barcode.'_'.$_SESSION['checkouts_this_session'].'">'.$_SESSION['checkouts_this_session'].'. </td>
 	<td class="cko_item" style="width:80%;">'.$title.'</td>
 	<td class="'.$ckoresclass.'" >'.$returnString.'</td>
