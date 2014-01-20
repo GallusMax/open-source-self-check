@@ -691,6 +691,7 @@ class sip2 {
 
     function connect() {
 
+//    	setlocale(LC_ALL, "de_DE.UTF-8"); //UH no effect
         /* Socket Communications  */
         $this->_debugmsg( "SIP2: --- BEGIN SIP communication ---");  
        
@@ -754,12 +755,15 @@ class sip2 {
         foreach ($result['Raw'] as $item) {
             $field = substr($item,0,2);
             $value = substr($item,2);
+            // UH already here the value does not contain utf-8, 
+            // e.g. 0xc3a4 for german umlaut ae has turned to 0xe4
+            
             /* SD returns some odd values on ocassion, Unable to locate the purpose in spec, so I strip from
              * the parsed array. Orig values will remain in ['raw'] element
              */
             $clean = trim($value, "\x00..\x1F");
             if (trim($clean) <> '') {
-                $result[$field][] = $clean;
+                $result[$field][] = utf8_encode($clean);
             }
         }              
         $result['AZ'][] = substr($response,-5);
