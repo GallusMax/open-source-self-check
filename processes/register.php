@@ -153,7 +153,7 @@ function storeresult($uid,$cn,$bar){
 	}
 	
 	
-	$url=	"http://localhost:5984/hsuhitag/";
+	$url=	"http://bibweb1.ub.hsu-hh.de:5984/hsuhitag/";
 //	$data=  json_encode(array('_id'=>$uid,'hitaguid'=>$uid,'cn'=>$cn));
 	$data=  json_encode(array('hitaguid'=>$uid,'cn'=>$cn));
 
