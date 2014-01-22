@@ -127,7 +127,8 @@ function storeresult($uid,$cn,$bar){
 //	http_post_data($url,$data); // not installed?
 	
 	$ch = curl_init();
-	$vresult=""; // stores OK or ERROR from verwaltung
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3); // nach 3s ist schluss
+	$vresult="ERROR timeout"; // stores OK or ERROR from verwaltung
 	
 	// last not least die verwaltung	
 	if(($cn!=$bar)){ // fuer externe waeren cn und barcode gleich..
@@ -145,11 +146,13 @@ function storeresult($uid,$cn,$bar){
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $vdata);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
-		if(!$curlres=curl_exec($ch))
+		if(!$curlres=curl_exec($ch)){
 			error_log('empty curl update result: '.curl_error($ch));
-
-		$vresult=$curlres;
+			$vresult="ERROR timeout";
+		}else{
+			$vresult=$curlres;
 //		error_log('stored with '.$vresult);
+		}
 	}
 	
 	
