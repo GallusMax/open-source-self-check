@@ -109,16 +109,18 @@ $location['10.199.1.140']='ZA'; // HSU3 (ZA rechts)
 $location['10.199.1.139']='ZA'; // HSU4 (ZA links)
 $location['10.199.1.191']='schulung'; // HSU5 replaced 201310
 $location['10.199.1.192']='ZA'; // HSU5 
+$location['10.199.1.160']='ZA'; // HSU5 neue Adresse 
 $location['10.199.1.154']='JURA'; // HSU6
 $location['10.166.101.143']='UHtest';
 $location['10.166.102.5']='WyseLive';
-$location['139.11.40.135']='vpn_tunnel';
+//$location['139.11.40.135']='vpn_tunnel';
 
 // UH some stations do not print at all:
 $noprint['10.166.102.5']='Wyse';
 $noprint['10.166.101.143']='UHtest';
 $noprint['10.199.1.191']='schulung'; // HSU5 replaced 201310
 $noprint['10.199.1.192']='ZA'; // HSU5 
+$noprint['10.199.1.160']='ZA'; // HSU5 
 
 //wording
 $reservedPattern="vorgemerkt"; // this string in the SIP2 AF return message signalizes a reservation
