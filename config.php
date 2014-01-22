@@ -84,12 +84,6 @@ $ldap_filter		=	'carLicense';
 $ldap_intsearchbase	= 	"ou=Users,ou=HSU HH,dc=library,dc=hsu-hh,dc=de";
 $ldap_intbarcode	=	'generationQualifier';
 
-// user/library table
-$rzuser_host = "deldongo.ub.hsu-hh.de";
-$rzuser_db="rzuser_email";
-$rzuser_user = "idpuser";
-$rzuser_pass ="idppass";
-
 $online_catalog_url='http://ub.hsu-hh.de/DB=1/'; 	/*leave blank if you don't have one or if your catalog does
 							not allow renewals (this is for printing on the paper receipt and 
 							sending in the email receipt info about renewing online)*/

@@ -127,7 +127,8 @@ function storeresult($uid,$cn,$bar){
 //	http_post_data($url,$data); // not installed?
 	
 	$ch = curl_init();
-	$vresult=""; // stores OK or ERROR from verwaltung
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3); // nach 3s ist schluss
+	$vresult="ERROR timeout"; // stores OK or ERROR from verwaltung
 	
 	// last not least die verwaltung	
 	if(($cn!=$bar)){ // fuer externe waeren cn und barcode gleich..
@@ -145,11 +146,13 @@ function storeresult($uid,$cn,$bar){
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $vdata);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data'));
-		if(!$curlres=curl_exec($ch))
+		if(!$curlres=curl_exec($ch)){
 			error_log('empty curl update result: '.curl_error($ch));
-
-		$vresult=$curlres;
+			$vresult="ERROR timeout";
+		}else{
+			$vresult=$curlres;
 //		error_log('stored with '.$vresult);
+		}
 	}
 	
 	
@@ -204,26 +207,4 @@ function barcode2rzid($bar){
 	return $rzuser;
 }
 
-// obsolete - uses "old" database
-function barcode2rzid_mysql($bar){ 
-	global $rzuser_host,$rzuser_db,$rzuser_user,$rzuser_pass;
-	
-	$rzdb=mysql_connect($rzuser_host,$rzuser_user,$rzuser_pass);
-	if(!$rzdb) return null;
-	
-	if(!mysql_select_db($rzuser_db)) return null;
-	
-	$query = sprintf("select * from library2rzuser where library_number='%s'",mysql_real_escape_string($bar));
-	
-	$result=mysql_query($query);
-	if(!$result) return mysql_error(); // nichts gefunden
-
-	while ($row = mysql_fetch_assoc($result)) {
-    	$rzuser= $row['rzuser'];
-		return $rzuser;
-	}
-	return null;
-	return "pruefbituser";
-	return $rzuser;
-}
 ?>
