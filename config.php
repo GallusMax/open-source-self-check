@@ -101,6 +101,8 @@ $location['10.199.1.141']='ZA'; // HSU1
 $location['10.166.101.27']='HB'; // HSU2
 $location['10.199.1.140']='ZA'; // HSU3 (ZA rechts)
 $location['10.199.1.139']='ZA'; // HSU4 (ZA links)
+#$location['10.199.1.174']='ZA'; // Wyse ersetzt PC nach Netzteilausfall 22.9.14
+$location['10.199.1.176']='ZA'; // Wyse ersetzt Wyse, der Display dunkel schaltet und RFID unsicher bedient 8.12.14
 $location['10.199.1.191']='schulung'; // HSU5 replaced 201310
 $location['10.199.1.192']='ZA'; // HSU5 
 $location['10.199.1.160']='ZA'; // HSU5 neue Adresse 
@@ -115,6 +117,7 @@ $noprint['10.166.101.143']='UHtest';
 $noprint['10.199.1.191']='schulung'; // HSU5 replaced 201310
 $noprint['10.199.1.192']='ZA'; // HSU5 
 $noprint['10.199.1.160']='ZA'; // HSU5 
+$noprint['10.199.1.176']='ZA'; //  
 
 //wording
 $reservedPattern="vorgemerkt"; // this string in the SIP2 AF return message signalizes a reservation

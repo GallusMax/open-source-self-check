@@ -53,7 +53,7 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 				</tr>
 			</tbody>
 		</table>
-		<div class="loading"><img src="images/bitte_warten200.gif"/></div>
+		<div class="loading"><!-- img src="images/bitte_warten200.gif"/ --></div>
 		
 <!--  ============= checked out items container ============= -->
 		<div id="item_list">
