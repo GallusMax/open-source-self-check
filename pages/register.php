@@ -116,6 +116,16 @@ var state="<?php echo $_SESSION['state']; ?>";
 	echo 'checkin=true; processItem="processes/checkin.php"';
 }?>
 
+function jslogout(elem){
+//	alert(elem);
+		$(elem).hide();
+		$.get("http://localhost:2666/stop"); // no more items
+		$('#pre_cko_buttons .thanks_button').show();
+		setTimeout(function(){
+			window.location.href='processes/logout.php'
+		},1000);
+}
+	
 $(document).ready(function() { 
 //	alert("ready");
 	
@@ -124,17 +134,10 @@ $(document).ready(function() {
 		$('.tddue').html('');
 	};
 		$('#module_name').html(tx_register); 
-			
-	$('#pre_cko_buttons .cancel_button').click(
-		function(){
-			$(this).hide();
-			$.get("http://localhost:2666/stop"); // no more items
-			$('#pre_cko_buttons .thanks_button').show();
-			setTimeout(function(){
-				window.location.href='processes/logout.php'
-			},1000);
-		}
-	);
+
+	$('#pre_cko_buttons .cancel_button').click(function(){jslogout(this)});
+	$('.thanks_button').click(function(){jslogout(this)});
+
 	//////////////////receipts
 	var receipt_footer;
 	var receipt_header;
