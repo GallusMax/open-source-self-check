@@ -81,9 +81,14 @@ $(document).ready(function(){
 		$response.html('<h2 style="color:#4d8b27"> Anmeldung.. </h2>');
 		$response.show();
 		spinner.spin(divspinner);
+		var siptimeout=setTimeout(function(){ // bail out on account_check timeout
+//			alert("sip fail");
+			window.location.href='index.php?page=out_of_order';},8000);
+
 		$.post("processes/account_check.php", { barcode: $barcode.val()},
 			function(data){
-				setTimeout(function(){
+//				setTimeout(function(){
+				clearTimeout(siptimeout); // alles gut
 					if (data=='out of order'){ //does the response indicate a failed sip2 connection
 						window.location.href='index.php?page=out_of_order';
 					} else if (data=='blocked account'){ //does the response indicate a blocked account
@@ -103,7 +108,7 @@ $(document).ready(function(){
 //						$.get("http://localhost:2666/next"); // call for the first item code
 						window.location.href='index.php?page=checkout'; // jump directly to checkout screen
 					}
-				}, 1000);
+//				}, 200);
 				spinner.stop();
 				
 		},'json'); //responses from process/account_check.php are expectd to be in json
