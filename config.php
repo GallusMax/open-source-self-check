@@ -14,13 +14,6 @@
 *	@version    	1.2
 */
 
-//========================== SIP2 =================================
-//$sip_hostname = '139.11.40.32';
-$sip_hostname = 'localhost'; // fuer bibt4.pica-prod - or do a ssh -L1290:localhost:1290 tunneling
-$sip_port = "1290"; 
-$sip_login=''; 	//if your SIP2 server does not require a username and password leave these empty
-$sip_password='2280';
-
 
 //========================== Site Rules ==============================
 $sc_location='unknown';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs (in Polaris this is required and is the numeric organization ID)
@@ -33,31 +26,6 @@ $hide_cursor_pointer=false; //hides default cursor pointer -should probably set 
 
 $ruhebarcode='111111'; // read when card is drawn
 
-//========================== Logging =================================
-/*	
-	use the query below to setup the mysql table (if you change the table name set 
-	the variable $log_table_name below equal to that new table name)
-	
-	CREATE TABLE `self_check_stats`
-	(`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
-	`location` varchar( 50 ) DEFAULT NULL ,
-	`count` int( 11 ) NOT NULL DEFAULT '0',
-	`sessions` int( 11 ) NOT NULL DEFAULT '0',
-	`timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ,
-	PRIMARY KEY ( `id` ));
-	
-*/
-//====================================================================
-$use_mysql_logging=false;	/* log your selfcheck checkout count by month? 
-							use the query above to set up the table */
-$log_table_name='self_check_stats';
-
-//mysql connection info (ignore this if you're not using mysql logging)
-$dbhostname = "localhost:3306";
-$database = "";
-$dbusername = "";
-$dbpassword = "";
-
 //====================== SIP2 Responses  ==============
 /*
 	GET YOUR SYSTEM'S RESPONSE MESSAGES BY ENTERING YOUR SIP2 CONNECTION INFO ABOVE THEN OPENING responses.php 
@@ -67,6 +35,10 @@ $dbpassword = "";
 //====================================================================
 $already_ckdout_to_you='Item already charged to this user'; //item already out to this borrower response
 
+$online_catalog_url='http://ub.hsu-hh.de/DB=1/'; 	/*leave blank if you don't have one or if your catalog does
+							not allow renewals (this is for printing on the paper receipt and 
+							sending in the email receipt info about renewing online)*/
+
 //====================== Wording, SMTP, & Other Variables ==============
 $currency_symbol='EUR';
 $due_date_format='j.n.Y'; //see http://php.net/manual/en/function.date.php for information on formatting dates
@@ -74,50 +46,6 @@ $inactivity_timeout=40000; //time of inactivity before showing inactive prompt (
 $account_check_timeout=15000; //time of inactivity after patron card scan before showing out of order page (in milliseconds)
 $patron_id_length=''; //length of patron barcode or other id (leave empty if this varies)
 $patron_id_pattern='/0705\d{6}[\dX]{1}/'; // regex pattern matching the patron barcode (leave empty to ignore)
-
-$ldap_hostname		= 	"ads1.library.hsu-hh.de";
-$ldap_port          = 	389; /* default sip2 port for Sirsi */
-$ldap_binddn 		= 	'cn=hitagreader,ou=Technical,ou=HSU HH,dc=library,dc=hsu-hh,dc=de';
-$ldap_bindpw 		= 	'hitagpass';
-$ldap_searchbase	= 	"ou=Library Users,ou=HSU HH,dc=library,dc=hsu-hh,dc=de";
-$ldap_filter		=	'carLicense';
-$ldap_intsearchbase	= 	"ou=Users,ou=HSU HH,dc=library,dc=hsu-hh,dc=de";
-$ldap_intbarcode	=	'generationQualifier';
-
-$online_catalog_url='http://ub.hsu-hh.de/DB=1/'; 	/*leave blank if you don't have one or if your catalog does
-							not allow renewals (this is for printing on the paper receipt and 
-							sending in the email receipt info about renewing online)*/
-
-							
-//smtp (for emailing receipts)
-$smtp_host=""; 
-$smtp_authentication=false;
-$smtp_username='';
-$smtp_pwd='';
-
-//register known terminals by their IP
-//media return can only be done on those stations
-$location['10.199.1.141']='ZA'; // HSU1
-$location['10.166.101.27']='HB'; // HSU2
-$location['10.199.1.140']='ZA'; // HSU3 (ZA rechts)
-$location['10.199.1.139']='ZA'; // HSU4 (ZA links)
-#$location['10.199.1.174']='ZA'; // Wyse ersetzt PC nach Netzteilausfall 22.9.14
-$location['10.199.1.176']='ZA'; // Wyse ersetzt Wyse, der Display dunkel schaltet und RFID unsicher bedient 8.12.14
-$location['10.199.1.191']='schulung'; // HSU5 replaced 201310
-$location['10.199.1.192']='ZA'; // HSU5 
-$location['10.199.1.160']='ZA'; // HSU5 neue Adresse 
-$location['10.199.1.154']='JURA'; // HSU6
-$location['10.166.101.143']='UHtest';
-$location['10.166.102.5']='WyseLive';
-//$location['139.11.40.135']='vpn_tunnel';
-
-// UH some stations do not print at all:
-$noprint['10.166.102.5']='Wyse';
-$noprint['10.166.101.143']='UHtest';
-$noprint['10.199.1.191']='schulung'; // HSU5 replaced 201310
-$noprint['10.199.1.192']='ZA'; // HSU5 
-$noprint['10.199.1.160']='ZA'; // HSU5 
-$noprint['10.199.1.176']='ZA'; //  
 
 //wording
 $reservedPattern="vorgemerkt"; // this string in the SIP2 AF return message signalizes a reservation
@@ -221,6 +149,9 @@ $action_balloon_bg_color='#f1cae1'; //background color for action balloons
 //$action_balloon['CD']['action_message']='Please place your CDs inside one of the plastic bags near this station';
 //$action_balloon['CD']['trigger']='permanent location';
 
+// keep installation-specific settings here
+// keep confidential settings out of repository
+include_once("config_local.php");
 
 //==================================== Allowed IPs =======================
 /*
