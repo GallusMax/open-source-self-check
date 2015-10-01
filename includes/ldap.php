@@ -57,6 +57,7 @@ class ldap {
     public $binddn 		= 'cn=hitagwriter,ou=Technical,ou=HSU HH,dc=library,dc=hsu-hh,dc=de';
     public $bindpw 		= 'hitagpass';
     public $searchbase	= "ou=Library Users,ou=HSU HH,dc=library,dc=hsu-hh,dc=de";
+    public $Users	= "ou=Users,ou=HSU HH,dc=library,dc=hsu-hh,dc=de";
     public $filter		=	'carLicense';
 	
 	private $lc=null; // the connection
@@ -100,6 +101,15 @@ class ldap {
 		}
 		return false;
 	}
+
+    function User705Mail($string){
+    	$this->searchbase=$this->Users;
+    	$this->filter='generationQualifier';
+    	$this->search($string);
+		
+		return $this->getattr('mail');
+    }
+    
     
     function getcnfromuid($uid){
 
