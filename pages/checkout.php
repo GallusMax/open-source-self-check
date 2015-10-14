@@ -256,6 +256,7 @@ $(document).ready(function() {
 				setTimeout(
 						function(){
 							$(".cko_row").show(100);
+							$("#item_list").attr({ scrollTop: $("#item_list").attr("scrollHeight") }); // scrollTop AFTER show()
 						},200);
 								
 			});
