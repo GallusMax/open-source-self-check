@@ -18,6 +18,10 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 	</h1>
 </div>
 <div id="spinner" ></div>
+<div id="itemcounter" style="display:none">
+<span id="itemcount" ></span>
+<br>Medien gebucht</br>
+</div>
 
 <div id="cko_wrapper">
 	<div>
