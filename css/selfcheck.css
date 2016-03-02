@@ -300,6 +300,7 @@
 	
 	#cko_count {
 		color: #FFFF66;
+		color:#333;
 	}
 
 	#cko_border h2 {
@@ -355,6 +356,7 @@
 		background-color: #4d8b27;
 		background-color: lightgrey;
 		color: #FFFF66;
+		color: #333;
 		font-size: 118%;
 		font-weight: bold;
 		padding: 5px 7px 4px 7px;
