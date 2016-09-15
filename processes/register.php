@@ -74,7 +74,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 		  		'uid'=>$_SESSION['cardUID']));
 
 			}else{
-				$hint='Die Registrierung der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em> ist derzeit nicht m&ouml;glich. '.$storeanswer.' Bitte versuchen Sie es sp&auml;ter erneut.';
+				$hint='Die Registrierung der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em> ist derzeit nicht m&ouml;glich. '.$storeanswer.' Das Identitymanagement der Uni in Raum 1130 hilft weiter!';
 				echo json_encode(array('state'=>'fail',
 		  		'hint'=>$hint,
 		  		'uid'=>$_SESSION['cardUID']));
