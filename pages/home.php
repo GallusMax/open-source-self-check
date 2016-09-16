@@ -94,13 +94,13 @@ $(document).ready(function(){
 					} else if (data=='blocked account'){ //does the response indicate a blocked account
 						// $.dbj_sound.play('<?php echo $error_sound;?>'); // no sound
 // localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There\'s a problem with your account</span>. Please see a circulation clerk.</h2>');
-						$response.html('<h1> <span style="text-decoration:blink">Keine Ausleihe erlaubt</span>. Bitte fragen Sie an der Theke.</h2>');
+						$response.html('<?php echo $err_account_blocked;?>');
 						$response.show();
 						setTimeout(function() { $('#error_message').hide(); },5000);
 					} else if (data=='invalid account'){ //does the response indicate an invalid account
 //						$.dbj_sound.play('<?php echo $error_sound;?>');
 // localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There was a problem</span>. Please scan your card again.</h2>');
-								$response.html('<h1> Karte nicht erkannt. Bitte versuchen Sie es noch einmal.</h2>');
+								$response.html('<?php echo $err_account_invalid;?>');
 								$response.show();
 								setTimeout(function() { $('#error_message').hide(); },5000);
 					} else { //if everything is ok with the patron's account show the welcome screen

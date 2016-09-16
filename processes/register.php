@@ -13,10 +13,18 @@ $patronBarcode='';
 
 if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length OR empty($patron_id_length))){ //check that the barcode was posted and matches the length set in config.php 
 	
+	$mylt=new ldap();
+ 	$mylt->hostname	= $ldap0_hostname;
+	$mylt->port     = $ldap0_port;
+	$mylt->binddn 	= $ldap0_binddn;
+	$mylt->bindpw 	= $ldap0_bindpw;
+	$mylt->searchbase	= $ldap0_searchbase;
+	$mylt->filter	= $ldap0_filter;
+	
 	$myl=new ldap();
 	$myl->hostname	= $ldap_hostname;
     $myl->port      = $ldap_port;
-//    $myl->binddn 	= $ldap_binddn; // use internal binddn
+    $myl->binddn 	= $ldap_binddn;
     $myl->bindpw 	= $ldap_bindpw;
     $myl->searchbase	= $ldap_intsearchbase;  // look for internal user
     $myl->filter	= $ldap_filter;
@@ -27,9 +35,9 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 	
     // find in rz ldap first!
     //rebach special: a prepended '+' 
-	$res=$myl->getcnfromuid('+'.$_POST['barcode']);  
+	$res=$mylt->getcnfromuid('+'.$_POST['barcode']);  
 	if(''==$res) // not found - try without '+'
-		$res=$myl->getcnfromuid($_POST['barcode']);  
+		$res=$mylt->getcnfromuid($_POST['barcode']);  
 	
 	if(''!=$res){
 		$_SESSION['state']='done';
@@ -115,7 +123,7 @@ if(!empty($patronBarcode)){ // filled - if we found anything
 	$_SESSION['state']="UID";
 //	if($debug)trigger_error("account_check: invalid account",E_USER_NOTICE);
   		echo json_encode(array('state'=>'UID',
-  			'hint'=>'<img src="images/barcoded_card1_80.png"/> <p id="step2">Identifikation anhand des Barcodes. Stecken Sie dazu Ihre Karte wie gewohnt in den Leseschlitz rechts.</p>'));
+  			'hint'=>'<img src="images/barcoded_card1_80.png"/> <p id="step2">Identifikation anhand des Barcodes. Stecken Sie dazu Ihre Karte in den Leseschlitz rechts, Barcode nach hinten.</p>'));
 		exit;
 	
 }
@@ -193,12 +201,9 @@ return $vresult;
 
 // new: use ldap attribute for borrower_bar
 function barcode2rzid($bar){
-	global $myl,$ldap_intsearchbase,$ldap_intbarcode;
-
-	$myl->searchbase	= $ldap_intsearchbase;  // look for internal user
-    $myl->filter	= $ldap_intbarcode;		// search with barcode
+	global $mylt;
 	
-	$rzuser=$myl->getcnfromuid($bar);  
+	$rzuser=$mylt->getcnfromuid($bar);  
 
 	if(''!=$rzuser) return $rzuser;
 	

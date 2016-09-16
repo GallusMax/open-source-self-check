@@ -11,6 +11,14 @@ include_once('../includes/json_encode.php');
 $debug=0;
 $patronBarcode='';
 
+$mylt=new ldap();
+$mylt->hostname	= $ldap0_hostname;
+$mylt->port     = $ldap0_port;
+$mylt->binddn 	= $ldap0_binddn;
+$mylt->bindpw 	= $ldap0_bindpw;
+$mylt->searchbase	= $ldap0_searchbase;
+$mylt->filter	= $ldap0_filter;
+
 $myl=new ldap();
 $myl->hostname	= $ldap_hostname;
 $myl->port      = $ldap_port;
@@ -29,10 +37,10 @@ function getexternaluserbarcode($uid){
 
 // internal users may have a "+" prepended in the ldap entry of their UID
 function getinternaluserbarcode($uid){
-	$myl=$GLOBALS['myl'];
-	$myl->searchbase=$GLOBALS['ldap_intsearchbase'];
-	$myl->search($uid);
-    return $myl->getattr($GLOBALS['ldap_intbarcode']);
+	$mylt=$GLOBALS['mylt'];
+//	$mylt->searchbase=$GLOBALS['ldap0_searchbase'];
+	$mylt->search($uid);
+    return $mylt->getattr($GLOBALS['ldap0_intbarcode']);
 }
 
 if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length OR empty($patron_id_length))){ //check that the barcode was posted and matches the length set in config.php 
