@@ -92,6 +92,8 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 		}else{	// external user: put barcode in ldap
 	    $myl->searchbase = $ldap_searchbase;
 		$myl->filter	= $ldap_filter;
+		$myl->binddn	= $ldap_writedn;
+		$myl->bindpw	= $ldap_writepw;
 		if($myl->addcardtocn($_SESSION['barcode'],$_SESSION['cardUID'])){ // register succeeded
 	    
   		echo json_encode(array('state'=>'done',

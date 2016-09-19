@@ -102,7 +102,7 @@ $(document).ready(function(){
 // localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There was a problem</span>. Please scan your card again.</h2>');
 								$response.html('<?php echo $err_account_invalid;?>');
 								$response.show();
-								setTimeout(function() { $('#error_message').hide(); },5000);
+								setTimeout(function() { $('#error_message').hide(); },10000);
 					} else { //if everything is ok with the patron's account show the welcome screen
 //						$("#page_content").html(data);
 //						$.get("http://localhost:2666/next"); // call for the first item code
