@@ -54,11 +54,10 @@ class ldap {
     /* Public variables for configuration */
     public $hostname	= "ads1.library.hsu-hh.de";
     public $port         = 389; /* default sip2 port for Sirsi */
-    public $binddn 		= 'cn=hitagwriter,ou=Technical,ou=HSU HH,dc=library,dc=hsu-hh,dc=de';
-    public $bindpw 		= 'hitagpass';
-    public $searchbase	= "ou=Library Users,ou=HSU HH,dc=library,dc=hsu-hh,dc=de";
-    public $Users	= "ou=Users,ou=HSU HH,dc=library,dc=hsu-hh,dc=de";
-    public $filter		=	'carLicense';
+    public $binddn 		= 'USER';
+    public $bindpw 		= 'PASSWORD';
+    public $searchbase	= "dc=library,dc=hsu-hh,dc=de";
+    public $filter		= 'AttributeHoldingBarcode';
 	
 	private $lc=null; // the connection
     private $sres=null; // search result

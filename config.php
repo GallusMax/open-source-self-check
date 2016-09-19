@@ -70,9 +70,9 @@ $renewal_prompt_text='bereits auf Ihrem Konto';
 $out_of_order_head='Out of Service'; //shown on pages/out_of_order.php
 $out_of_order_text='We are working to fix the problem'; //shown on pages/out_of_order.php
 $err_account_blocked="There\'s a problem with your account. Please see a circulation clerk.";
-$err_account_blocked="Keine Ausleihe erlaubt. Bitte fragen Sie an der Theke.";
+$err_account_blocked="<h1>Keine Ausleihe erlaubt.</h1><h3>Bitte fragen Sie an der Theke.</h3>";
 $err_account_invalid="There was a problem. Please scan your card again.";
-$err_account_invalid="Karte nicht erkannt. Bitte versuchen Sie es noch einmal.";
+$err_account_invalid="<h1>Karte nicht erkannt.</h1><h3>Bitte Barcodeleser benutzen oder <em>Druckkarte registrieren</em> wählen.</h3>";
 
 //====================== Paper & Email Receipts ==============
 /* add elements to or remove elements from the header & footer arrays below to manipulate that piece of the receipt.
