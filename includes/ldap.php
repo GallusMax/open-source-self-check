@@ -62,7 +62,7 @@ class ldap {
 	private $lc=null; // the connection
     private $sres=null; // search result
     
-        function connect() {
+    function connect() {
 
         /* Socket Communications  */
 //        $this->_debugmsg( "ldap: --- BEGIN LDAP communication ---");  
@@ -75,19 +75,23 @@ class ldap {
         } else {
 //            $this->_debugmsg( "ldap: --- READY ---" );
         } 
-        
-        if(ldap_bind($this->lc,$this->binddn,$this->bindpw)){
+
+		ldap_set_option($this->lc, LDAP_OPT_NETWORK_TIMEOUT, 3);
+
+        if(@ldap_bind($this->lc,$this->binddn,$this->bindpw)){
         	return true;
         }else{
+		syslog(LOG_WARNING,"osself: ldap_bind() timed out");
+		$this->lc=NULL;
         	return false;
         }
         
     }  
     
     function search($string){
-   		if(!$this->lc)$this->connect();
-	    if(!$this->lc) return false;
-		$this->sres=ldap_search($this->lc,$this->searchbase,$this->filter."=".$string);
+    if(!$this->lc)$this->connect();
+    if(!$this->lc) return false;
+    $this->sres=ldap_search($this->lc,$this->searchbase,$this->filter."=".$string);
     }
     
     function getattr($attr){
@@ -105,15 +109,13 @@ class ldap {
     	$this->searchbase=$this->Users;
     	$this->filter='generationQualifier';
     	$this->search($string);
-		
-		return $this->getattr('mail');
+	return $this->getattr('mail');
     }
     
     
     function getcnfromuid($uid){
-
-    $this->search($uid);
-    return $this->getattr('cn');
+        $this->search($uid);
+	return $this->getattr('cn');
     }
 
 

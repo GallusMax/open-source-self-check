@@ -79,6 +79,7 @@ if(!empty($patronBarcode)){ // filled - if we found anything
 	$connect = $mysip->connect();
 	
 	if(!$connect){ //if the connection failed go to the out of order page
+	if($debug)trigger_error("SIP failed, returning out of order, exiting.",E_USER_WARNING);
 		echo json_encode('out of order');
 		exit;
 	}
@@ -96,20 +97,20 @@ if(!empty($patronBarcode)){ // filled - if we found anything
 	$patron_info = $mysip->parsePatronInfoResponse($mysip->get_message($ptrnmsg));
 
 	//	print_r($patron_info);
-	if($debug)trigger_error("patron_info: {$patron_info}",E_USER_NOTICE);
+	//if($debug)trigger_error("patron_info: {$patron_info}",E_USER_NOTICE);
 
 	$mysip->msgEndPatronSession();
 
 	if (strpos($patron_info['fixed']['PatronStatus'],'Y')!== false OR (!empty($patron_info['variable']['BL'][0]) && $patron_info['variable']['BL'][0]!='Y')){ //blocked or non-existent account?
 		session_regenerate_id();
 		session_destroy();
+	if($debug)trigger_error("patron nonexistent or blocked, exiting.",E_USER_NOTICE);
 		echo json_encode('blocked account');
-	if($debug)trigger_error("patron blocked? exiting: {$patron_info['variable']['AE']}",E_USER_NOTICE);
 		exit;
 	}
 	
 	// patron verified here
-	//	if($debug)trigger_error("extract and format account information and assign to session variables",E_USER_NOTICE);
+	if($debug)trigger_error("extract and format account information and assign to session variables",E_USER_NOTICE);
 	$_SESSION['patron_barcode']=$patronBarcode; 
 	//if($debug)trigger_error("patron barcode: {$_SESSION['patron_barcode']}",E_USER_NOTICE);
 	
@@ -175,8 +176,8 @@ if(!empty($patronBarcode)){ // filled - if we found anything
 	exit;
 
 } else {
-
-//	if($debug)trigger_error("account_check: invalid account",E_USER_NOTICE);
+//       syslog(LOG_WARNING, "account_check: invalid account (patron empty)");
+	if($debug)trigger_error("account_check: invalid account (patronBarcode: $patronBarcode)",E_USER_WARNING);
 	echo json_encode('invalid account');
 	exit;
 	

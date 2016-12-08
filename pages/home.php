@@ -87,6 +87,7 @@ $(document).ready(function(){
 
 		$.post("processes/account_check.php", { barcode: $barcode.val()},
 			function(data){
+//			alert(data);
 //				setTimeout(function(){
 				clearTimeout(siptimeout); // alles gut
 					if (data=='out of order'){ //does the response indicate a failed sip2 connection
