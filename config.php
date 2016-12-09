@@ -99,6 +99,9 @@ $receipt_item_list_elements[]='due_date';
 $error_sound="sounds/error.mp3";
 $welcome_sound="sounds/welcome.mp3";
 $note_sound="sounds/note.mp3";
+$error_sound="";
+$welcome_sound="";
+$note_sound="";
 
 	//images  (you need to uncomment one -and only one- line from each group). 
 //$logo_image='bhsu-Logo-small_grau.png';
