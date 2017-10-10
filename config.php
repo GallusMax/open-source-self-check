@@ -154,7 +154,11 @@ $action_balloon_bg_color='#f1cae1'; //background color for action balloons
 
 // keep installation-specific settings in local config file 
 // keep confidential settings out of repository
+// examples:
+//$mail_alert = "alertreceiver@localhost"; // if defined, email a failure alert to this address
 include_once("config_local.php");
+
+
 
 //==================================== Allowed IPs =======================
 /*
