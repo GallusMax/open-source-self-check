@@ -24,7 +24,7 @@ $allow_email_receipts=false;
 $display_php_errors='on'; //off or on
 $hide_cursor_pointer=false; //hides default cursor pointer -should probably set to true on live self check
 
-$ruhebarcode='111111'; // read when card is drawn
+$ruhebarcode='111111'; // bbarcode reader feature: this code is read when card is drawn
 
 //====================== SIP2 Responses  ==============
 /*
@@ -152,7 +152,7 @@ $action_balloon_bg_color='#f1cae1'; //background color for action balloons
 //$action_balloon['CD']['action_message']='Please place your CDs inside one of the plastic bags near this station';
 //$action_balloon['CD']['trigger']='permanent location';
 
-// keep installation-specific settings here
+// keep installation-specific settings in local config file 
 // keep confidential settings out of repository
 include_once("config_local.php");
 

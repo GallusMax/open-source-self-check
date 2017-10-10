@@ -15,11 +15,6 @@
 * @link       
 */
 
-/**
-*  
-*  TODO
-*   - extract configuration
-*/
 
 /**
 * General Usage:
@@ -51,12 +46,14 @@
 
 class ldap {
 
-    /* Public variables for configuration */
-    public $hostname	= "ads1.library.hsu-hh.de";
-    public $port         = 389; /* default sip2 port for Sirsi */
+/** variables for configuration
+*   are set from config_local.php
+*/
+    public $hostname	    = "yourldap.yourdomain.yournet";
+    public $port        = 389; /* default sip2 port for Sirsi */
     public $binddn 		= 'USER';
     public $bindpw 		= 'PASSWORD';
-    public $searchbase	= "dc=library,dc=hsu-hh,dc=de";
+    public $searchbase	= "ou=yourOrg,dc=your,dc=domain,dc=yournet";
     public $filter		= 'AttributeHoldingBarcode';
 	
 	private $lc=null; // the connection

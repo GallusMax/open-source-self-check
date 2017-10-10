@@ -11,6 +11,9 @@ include_once('../includes/json_encode.php');
 $debug=0;
 $patronBarcode='';
 
+// prepare ldap connections as necessary
+// 2 ldap are queried one after the other
+// institution members first, then external users
 $mylt=new ldap();
 $mylt->hostname	= $ldap0_hostname;
 $mylt->port     = $ldap0_port;
@@ -47,7 +50,7 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 
 if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - try resolving a UID
 
-	//rebach special - some like it with leading +	
+	// special issue - some ids have a leading +	
 	$res=getinternaluserbarcode('+'.$_POST['barcode']);
 	if(preg_match($patron_id_pattern,$res)) // found an internal user (RZ name does not matter here)
 		$patronBarcode=$res;
@@ -60,7 +63,7 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 	if(preg_match($patron_id_pattern,$res)) // found an external user
 		$patronBarcode=$res;
 		
-}else{ // matches!
+}else{ // input matches our barcode pattern - forget about ldap!
 	$patronBarcode=$_POST['barcode'];
 }
 }
@@ -97,7 +100,7 @@ if(!empty($patronBarcode)){ // filled - if we found anything
 	$patron_info = $mysip->parsePatronInfoResponse($mysip->get_message($ptrnmsg));
 
 	//	print_r($patron_info);
-	//if($debug)trigger_error("patron_info: {$patron_info}",E_USER_NOTICE);
+	if($debug)trigger_error("patron_info: {$patron_info}",E_USER_NOTICE);
 
 	$mysip->msgEndPatronSession();
 

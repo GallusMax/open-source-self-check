@@ -56,14 +56,7 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 				</td>
 		</tr>
 	<?php }?>	
-		<tr>
-				<td>
-				<div class="ok_button button" id="register" title="selfcheck_button">
-					<h1>Druckkarte registrieren</h1>
-				</div>
-				</td>
 
-   </tr>
 	</table>
 	</div>
 
@@ -94,13 +87,13 @@ $(document).ready(function(){
 						window.location.href='index.php?page=out_of_order';
 					} else if (data=='blocked account'){ //does the response indicate a blocked account
 						// $.dbj_sound.play('<?php echo $error_sound;?>'); // no sound
-// localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There\'s a problem with your account</span>. Please see a circulation clerk.</h2>');
+// TODO: localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There\'s a problem with your account</span>. Please see a circulation clerk.</h2>');
 						$response.html('<?php echo $err_account_blocked;?>');
 						$response.show();
 						setTimeout(function() { $('#error_message').hide(); },5000);
 					} else if (data=='invalid account'){ //does the response indicate an invalid account
 //						$.dbj_sound.play('<?php echo $error_sound;?>');
-// localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There was a problem</span>. Please scan your card again.</h2>');
+// TODO: localize						$response.html('<h2 id="error_message"> <span style="text-decoration:blink">There was a problem</span>. Please scan your card again.</h2>');
 								$response.html('<?php echo $err_account_invalid;?>');
 								$response.show();
 								setTimeout(function() { $('#error_message').hide(); },10000);
@@ -121,23 +114,7 @@ $(document).ready(function(){
 
 	$('#checkin').click(function(){
 		window.location.href='index.php?page=checkout&checkin=true'; // jump directly to checkout screen, change to checkin view
-/*	
-		$.post("processes/start_checkin.php", { },
-				function(data){
-					setTimeout(function(){
-						if (data=='out of order'){ //does the response indicate a failed sip2 connection
-							window.location.href='index.php?page=out_of_order';
-						} else  { // SIP is up and running - go to the list of items
-//							$("#page_content").html(data);
-							window.location.href='index.php?page=checkout&checkin=true'; // jump directly to checkout screen, change to checkin view
-						}
-					}, 1000);
-			},'json'); //responses from process/account_check.php are expectd to be in json
-*/
-		});
+	});
 
-	$('#register').click(function(){
-		window.location.href='index.php?page=register'; // jump directly to register function
-	  });
 });
 </script>
