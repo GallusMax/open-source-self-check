@@ -1,6 +1,6 @@
 Several functional extensions were applied during the past years. Here comes a short list which will be documented in more detail separately.
 
-##Checkin allowed##
+###Checkin allowed###
 
 ##RFID integration##
 
