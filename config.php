@@ -14,6 +14,11 @@
 *	@version    	1.2
 */
 
+/**
+ * local config, including hostnames and passwords is done in config_local.php now
+ * which is included at the bottom of this file
+ * please rename the config_local.php-dist and fill in your sensible data
+ */
 
 //========================== Site Rules ==============================
 $sc_location='unknown';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs (in Polaris this is required and is the numeric organization ID)
@@ -24,7 +29,7 @@ $allow_email_receipts=false;
 $display_php_errors='on'; //off or on
 $hide_cursor_pointer=false; //hides default cursor pointer -should probably set to true on live self check
 
-$ruhebarcode='111111'; // bbarcode reader feature: this code is read when card is drawn
+$ruhebarcode='111111'; // barcode reader feature: this code is read when card is drawn
 
 //====================== SIP2 Responses  ==============
 /*
@@ -152,14 +157,6 @@ $action_balloon_bg_color='#f1cae1'; //background color for action balloons
 //$action_balloon['CD']['action_message']='Please place your CDs inside one of the plastic bags near this station';
 //$action_balloon['CD']['trigger']='permanent location';
 
-// keep installation-specific settings in local config file 
-// keep confidential settings out of repository
-// examples:
-//$mail_alert = "alertreceiver@localhost"; // if defined, email a failure alert to this address
-include_once("config_local.php");
-
-
-
 //==================================== Allowed IPs =======================
 /*
 	list each allowed ip on a new line as $allowed_ip[]='IP'; 
@@ -167,6 +164,11 @@ include_once("config_local.php");
 		   $allowed_ip[]='192.168.0.4';
 */
 $allowed_ip[]=''; //leave empty if you've already limited access to the self check via your server (Apache, IIS, etc.)
+
+//==================================== Local Settings ====================
+// keep installation-specific settings in local config file 
+// keep confidential settings out of repository
+include_once("config_local.php");
 
 //==================================== Don't edit below this line =======================
 if (!in_array($_SERVER['REMOTE_ADDR'],$allowed_ip) && !empty($allowed_ip[0])){ 
