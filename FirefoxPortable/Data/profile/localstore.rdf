@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="chrome://fullfullscreen/content/settings.xul">
+    <NC:persist RDF:resource="chrome://fullfullscreen/content/settings.xul#fullfullscreen-options-dialog"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="chrome://browser/content/browser.xul#sidebar-title"
+                   value="" />
+  <RDF:Description RDF:about="chrome://pimpoflage/content/options.xul#Pimpoflage-options"
+                   lastSelected="Pimpoflage-prefpane" />
+  <RDF:Description RDF:about="chrome://pimpoflage/content/options.xul">
+    <NC:persist RDF:resource="chrome://pimpoflage/content/options.xul#Pimpoflage-options"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="chrome://global/content/console.xul#ConsoleBox"
+                   mode="Warnings" />
+  <RDF:Description RDF:about="chrome://browser/content/preferences/preferences.xul#BrowserPreferences"
+                   screenX="351"
+                   screenY="276"
+                   lastSelected="paneMain" />
+  <RDF:Description RDF:about="about:addons#categories"
+                   last-selected="category-extensions" />
+  <RDF:Description RDF:about="chrome://formhistory/content/FhcPreferences.xul#myTabList"
+                   selectedIndex="3" />
+  <RDF:Description RDF:about="chrome://noise/content/eventsGuide.xul#treecol-enabled"
+                   ordinal="5" />
+  <RDF:Description RDF:about="chrome://fullfullscreen/content/settings.xul#fullfullscreen-options-dialog"
+                   lastSelected="pane0" />
+  <RDF:Description RDF:about="chrome://formhistory/content/FhcPreferences.xul#indexCol"
+                   ordinal="11" />
+  <RDF:Description RDF:about="chrome://browser/content/browser.xul">
+    <NC:persist RDF:resource="chrome://browser/content/browser.xul#main-window"/>
+    <NC:persist RDF:resource="chrome://browser/content/browser.xul#sidebar-box"/>
+    <NC:persist RDF:resource="chrome://browser/content/browser.xul#sidebar-title"/>
+    <NC:persist RDF:resource="chrome://browser/content/browser.xul#toolbar-menubar"/>
+    <NC:persist RDF:resource="chrome://browser/content/browser.xul#addon-bar"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="about:config">
+    <NC:persist RDF:resource="about:config#prefCol"/>
+    <NC:persist RDF:resource="about:config#lockCol"/>
+    <NC:persist RDF:resource="about:config#typeCol"/>
+    <NC:persist RDF:resource="about:config#valueCol"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="about:addons">
+    <NC:persist RDF:resource="about:addons#categories"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="chrome://formhistory/content/FhcPreferences.xul#categoryCol"
+                   ordinal="3" />
+  <RDF:Description RDF:about="chrome://global/content/customizeToolbar.xul#CustomizeToolbarWindow"
+                   width="710"
+                   height="470" />
+  <RDF:Description RDF:about="chrome://noise/content/eventsGuide.xul">
+    <NC:persist RDF:resource="chrome://noise/content/eventsGuide.xul#treecol-name"/>
+    <NC:persist RDF:resource="chrome://noise/content/eventsGuide.xul#treecol-version"/>
+    <NC:persist RDF:resource="chrome://noise/content/eventsGuide.xul#treecol-enabled"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="chrome://formhistory/content/FhcPreferences.xul#descriptionCol"
+                   ordinal="1"
+                   sortDirection="ascending" />
+  <RDF:Description RDF:about="chrome://browser/content/browser.xul#toolbar-menubar"
+                   autohide="false" />
+  <RDF:Description RDF:about="chrome://formhistory/content/FhcPreferences.xul">
+    <NC:persist RDF:resource="chrome://formhistory/content/FhcPreferences.xul#descriptionCol"/>
+    <NC:persist RDF:resource="chrome://formhistory/content/FhcPreferences.xul#categoryCol"/>
+    <NC:persist RDF:resource="chrome://formhistory/content/FhcPreferences.xul#regexpCol"/>
+    <NC:persist RDF:resource="chrome://formhistory/content/FhcPreferences.xul#caseCol"/>
+    <NC:persist RDF:resource="chrome://formhistory/content/FhcPreferences.xul#useforCol"/>
+    <NC:persist RDF:resource="chrome://formhistory/content/FhcPreferences.xul#indexCol"/>
+    <NC:persist RDF:resource="chrome://formhistory/content/FhcPreferences.xul#formhistoryPrefs"/>
+    <NC:persist RDF:resource="chrome://formhistory/content/FhcPreferences.xul#myTabList"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="about:config#prefCol"
+                   ordinal="1"
+                   sortDirection="ascending" />
+  <RDF:Description RDF:about="chrome://browser/content/sanitize.xul#SanitizeDialog"
+                   screenX="676"
+                   screenY="433" />
+  <RDF:Description RDF:about="about:config#lockCol"
+                   ordinal="3" />
+  <RDF:Description RDF:about="about:config#typeCol"
+                   ordinal="5" />
+  <RDF:Description RDF:about="about:config#valueCol"
+                   ordinal="7" />
+  <RDF:Description RDF:about="chrome://noise/content/prefs.xul#treecol-file"
+                   ordinal="5" />
+  <RDF:Description RDF:about="chrome://formhistory/content/FhcPreferences.xul#caseCol"
+                   ordinal="7" />
+  <RDF:Description RDF:about="chrome://formhistory/content/FhcPreferences.xul#useforCol"
+                   ordinal="9" />
+  <RDF:Description RDF:about="chrome://formhistory/content/FhcPreferences.xul#formhistoryPrefs"
+                   lastSelected="misc" />
+  <RDF:Description RDF:about="chrome://browser/content/sanitize.xul#detailsExpander"
+                   class="expander-up" />
+  <RDF:Description RDF:about="chrome://global/content/console.xul">
+    <NC:persist RDF:resource="chrome://global/content/console.xul#ConsoleBox"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="chrome://browser/content/browser.xul#main-window"
+                   width="820"
+                   height="1012"
+                   screenX="4"
+                   screenY="4"
+                   sizemode="maximized" />
+  <RDF:Description RDF:about="chrome://noise/content/prefs.xul#treecol-enabled"
+                   ordinal="7" />
+  <RDF:Description RDF:about="chrome://noise/content/prefs.xul#treecol-name"
+                   ordinal="1" />
+  <RDF:Description RDF:about="chrome://noise/content/prefs.xul#NoisePrefserences"
+                   lastSelected="mappingsPane"
+                   screenX="633"
+                   screenY="255"
+                   width="422"
+                   height="519" />
+  <RDF:Description RDF:about="chrome://formhistory/content/FhcPreferences.xul#regexpCol"
+                   ordinal="5" />
+  <RDF:Description RDF:about="chrome://noise/content/prefs.xul">
+    <NC:persist RDF:resource="chrome://noise/content/prefs.xul#NoisePrefserences"/>
+    <NC:persist RDF:resource="chrome://noise/content/prefs.xul#treecol-name"/>
+    <NC:persist RDF:resource="chrome://noise/content/prefs.xul#treecol-event"/>
+    <NC:persist RDF:resource="chrome://noise/content/prefs.xul#treecol-file"/>
+    <NC:persist RDF:resource="chrome://noise/content/prefs.xul#treecol-enabled"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="chrome://browser/content/sanitize.xul#itemList"
+                   collapsed="false" />
+  <RDF:Description RDF:about="chrome://browser/content/preferences/preferences.xul">
+    <NC:persist RDF:resource="chrome://browser/content/preferences/preferences.xul#BrowserPreferences"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="chrome://noise/content/prefs.xul#treecol-event"
+                   ordinal="3" />
+  <RDF:Description RDF:about="chrome://browser/content/sanitize.xul">
+    <NC:persist RDF:resource="chrome://browser/content/sanitize.xul#detailsExpander"/>
+    <NC:persist RDF:resource="chrome://browser/content/sanitize.xul#itemList"/>
+    <NC:persist RDF:resource="chrome://browser/content/sanitize.xul#SanitizeDialog"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="chrome://browser/content/browser.xul#addon-bar"
+                   currentset="addonbar-closebutton,status4evar-status-widget,status4evar-download-button,status4evar-progress-widget,status-bar"
+                   collapsed="true" />
+  <RDF:Description RDF:about="chrome://noise/content/eventsGuide.xul#treecol-name"
+                   ordinal="1" />
+  <RDF:Description RDF:about="chrome://global/content/customizeToolbar.xul">
+    <NC:persist RDF:resource="chrome://global/content/customizeToolbar.xul#CustomizeToolbarWindow"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="chrome://noise/content/eventsGuide.xul#treecol-version"
+                   ordinal="3" />
+</RDF:RDF>
