@@ -1,0 +1,108 @@
+<?php
+//################ rename to config_local.php and edit as needed
+/**
+* 	Self Check Local Config
+*
+*   purpose: keep installation-specific settings here
+*   host, ports, passwords should not leak into repository
+*   SIP, mysql, LDAP and more login stuff has moved here
+*   
+*/
+
+//========================== SIP2 =================================
+$sip_hostname = 'localhost'; // allows for a tunneled connection like: ssh -L1290:localhost:1290 sip@your.siphost.here
+$sip_port = "1290"; 
+$sip_login=''; 	//if your SIP2 server does not require a username and password leave these empty
+$sip_password='';
+
+//========================== Logging =================================
+/*	
+	use the query below to setup the mysql table (if you change the table name set 
+	the variable $log_table_name below equal to that new table name)
+	
+	CREATE TABLE `self_check_stats`
+	(`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`location` varchar( 50 ) DEFAULT NULL ,
+	`count` int( 11 ) NOT NULL DEFAULT '0',
+	`sessions` int( 11 ) NOT NULL DEFAULT '0',
+	`timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+	PRIMARY KEY ( `id` ));
+	
+*/
+//====================================================================
+$use_mysql_logging=false;	/* log your selfcheck checkout count by month? 
+							use the query above to set up the table */
+$log_table_name='self_check_stats';
+
+//mysql connection info (ignore this if you're not using mysql logging)
+$dbhostname = "localhost:3306";
+$database = "";
+$dbusername = "";
+$dbpassword = "";
+
+//================= 
+/** 
+ * we configure 2 LDAP connections here  
+ * which are queried one after the other with the patron card UID
+ */ 
+$ldap0_hostname		= 	"ldaps://ldaps.example.host";
+$ldap0_port             = 	636; 
+$ldap0_binddn 		= 	'cn=bindName,ou=bindOU,dc=your,dc=domain,dc=de';
+$ldap0_bindpw 		= 	'sfhwoeihfnwwoifhw';
+$ldap0_searchbase	= 	"ou=Users,dc=your,dc=domain,dc=de"; // where are the insitution members
+$ldap0_filter		=	'AttrHoldingUID'; // patron card UID is stored in this attribute
+$ldap0_intbarcode	=	'AttrHoldingBarcode'; // patron account number (held as barcode on card?)
+
+$ldap_hostname		= 	"second.ldap.host";
+$ldap_port              = 	389; 
+$ldap_binddn 		= 	'cn=bindName,ou=bindOU,dc=library,dc=domain,dc=de'; // reading ldap user
+$ldap_bindpw 		= 	'readPassword';
+$ldap_writedn 		= 	'cn=writeDN,ou=Serviceusers,dc=library,dc=domain,dc=de'; // ldap user with write access
+$ldap_writepw 		= 	'writePassword';
+$ldap_searchbase	= 	"ou=Patrons,ou=Library,dc=library,dc=domain,dc=de"; // where are the external users
+$ldap_filter		=	'AttrHoldingUID'; // patron card UID is stored in this attribute
+$ldap_intbarcode	=	'AttrHoldingBarcode'; // patron account number (held as barcode on card?)
+
+/**
+ * an email is sent each time the "out of order" page gets displayed
+ * the name of the failing station is reported
+ * leave unset, if no email alerts are needed
+ */
+//$mail_alert="service@localhost";
+
+//smtp (for emailing receipts)
+$smtp_host=""; 
+$smtp_authentication=false;
+$smtp_username='';
+$smtp_pwd='';
+
+//==================== station specific configurations
+/**
+ * register known terminals by their IP
+ * media return (checkin) can only be done on stations registered here
+ * this helps avoiding media being checked in on unknown stations
+ * while allowing checkout with just a browser
+ * $location[] allows for setting a A0 location response in SIP
+ */
+$location['10.10.1.14']='main desk'; 
+$location['10.10.1.27']='Exit B';
+$location['10.10.1.140']='Faculty Branch';
+
+/**
+ * stations mentioned in $noprint[] do not offer a receipt print button
+ * maybe there is no printer installed..
+ * (which name takes precedence, if one address appears in both lists? 8-)
+ */
+$noprint['10.10.1.44']='Testing';
+$noprint['10.10.10.13']='Staging Lab';
+
+
+//==================================== Allowed IPs =======================
+/*
+	list each allowed ip on a new line as $allowed_ip[]='IP'; 
+	example: $allowed_ip[]='192.168.0.2';
+		   $allowed_ip[]='192.168.0.4';
+*/
+$allowed_ip[]=''; //leave empty if you've already limited access to the self check via your server (Apache, IIS, etc.)
+
+?>

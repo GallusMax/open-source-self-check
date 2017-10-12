@@ -14,15 +14,14 @@
 *	@version    	1.2
 */
 
-//========================== SIP2 =================================
-$sip_hostname = '127.0.0.1';
-$sip_port = "1"; 
-$sip_login=''; 	//if your SIP2 server does not require a username and password leave these empty
-$sip_password='';
-
+/**
+ * local config, including hostnames and passwords is done in config_local.php now
+ * which is included at the bottom of this file
+ * please rename the config_local.php-dist and fill in your sensible data
+ */
 
 //========================== Site Rules ==============================
-$sc_location='';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs (in Polaris this is required and is the numeric organization ID)
+$sc_location='unknown';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs (in Polaris this is required and is the numeric organization ID)
 $allow_manual_userid_entry=false;
 $show_fines=true;
 $show_available_holds=true;
@@ -30,31 +29,7 @@ $allow_email_receipts=false;
 $display_php_errors='on'; //off or on
 $hide_cursor_pointer=false; //hides default cursor pointer -should probably set to true on live self check
 
-
-//========================== Logging =================================
-/*	
-	use the query below to setup the mysql table (if you change the table name set 
-	the variable $log_table_name below equal to that new table name)
-	
-	CREATE TABLE `self_check_stats`
-	(`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
-	`location` varchar( 50 ) DEFAULT NULL ,
-	`count` int( 11 ) NOT NULL DEFAULT '0',
-	`sessions` int( 11 ) NOT NULL DEFAULT '0',
-	`timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ,
-	PRIMARY KEY ( `id` ));
-	
-*/
-//====================================================================
-$use_mysql_logging=false;	/* log your selfcheck checkout count by month? 
-							use the query above to set up the table */
-$log_table_name='self_check_stats';
-
-//mysql connection info (ignore this if you're not using mysql logging)
-$dbhostname = "localhost:3306";
-$database = "";
-$dbusername = "";
-$dbpassword = "";
+$ruhebarcode='111111'; // barcode reader feature: this code is read when card is drawn
 
 //====================== SIP2 Responses  ==============
 /*
@@ -65,50 +40,63 @@ $dbpassword = "";
 //====================================================================
 $already_ckdout_to_you='Item already charged to this user'; //item already out to this borrower response
 
-//====================== Wording, SMTP, & Other Variables ==============
-$currency_symbol='$';
-$due_date_format='n/j/Y'; //see http://php.net/manual/en/function.date.php for information on formatting dates
-$inactivity_timeout=40000; //time of inactivity before showing inactive prompt (in milliseconds)
-$account_check_timeout=15000; //time of inactivity after patron card scan before showing out of order page (in milliseconds)
-$patron_id_length=; //length of patron barcode or other id (leave empty if this varies)
-$online_catalog_url='http://publiclibrary.gov'; 	/*leave blank if you don't have one or if your catalog does
+$online_catalog_url='http://ub.hsu-hh.de/DB=1/'; 	/*leave blank if you don't have one or if your catalog does
 							not allow renewals (this is for printing on the paper receipt and 
 							sending in the email receipt info about renewing online)*/
-							
-//smtp (for emailing receipts)
-$smtp_host=""; 
-$smtp_authentication=false;
-$smtp_username='';
-$smtp_pwd='';
+
+//====================== Wording, SMTP, & Other Variables ==============
+$currency_symbol='EUR';
+$due_date_format='j.n.Y'; //see http://php.net/manual/en/function.date.php for information on formatting dates
+$inactivity_timeout=40000; //time of inactivity before showing inactive prompt (in milliseconds)
+$account_check_timeout=15000; //time of inactivity after patron card scan before showing out of order page (in milliseconds)
+$patron_id_length=''; //length of patron barcode or other id (leave empty if this varies)
+$patron_id_pattern='/0705\d{6}[\dX]{1}/'; // regex pattern matching the patron barcode (leave empty to ignore)
 
 //wording
-$library_name= "Public Library";
-$module_name='Self-Checkout Station'; //shows on pages/home.php and pages/checkout.php
+$reservedPattern="vorgemerkt"; // this string in the SIP2 AF return message signalizes a reservation
+$tx_returnOK="zurückgenommen";
+$tx_returnReserved="bereits vorgemerkt";
+$tx_already_seen="Medium bereits bearbeitet";
+$tx_checkin_refused="Rücknahme nicht erlaubt";
+$library_name= "Die Bibliothek der Helmut-Schmidt-Universit&auml;t";
+$module_name=''; //shows on pages/home.php and pages/checkout.php
+$tx_checkout='Ausleihe - max 6 Medien auf der Markierung ablegen!';
+$tx_checkin='Rücknahme - max 6 Medien auf der Markierung ablegen!';
 $email_from_name=""; //library's email name
 $email_from_address=""; //library's email address
 $admin_emails=''; //comma delimted list of email addresses that should be notified should the self-check go out of order
-$email_subject='Public Library Self-Checkout Receipt'; //subject of email receipt
+$email_subject='Ausleihquittung'; //subject of email receipt
 $intro_screen_text="Scan your library card's barcode to begin"; //shown on pages/home.php
+$intro_screen_text="Ausleihe? Bitte Medien auflegen und Ausweis einlesen."; //shown on pages/home.php
 $welcome_screen_text="Scan an item's barcode to continue";	//shown on includes/welcome.php
 $welcome_screen_subtext="(most barcodes are inside items' front covers)";
 $renewal_prompt_text='is already checked out to your account.<br />Would you like to try to renew it?';
+$renewal_prompt_text='bereits auf Ihrem Konto';
 $out_of_order_head='Out of Service'; //shown on pages/out_of_order.php
 $out_of_order_text='We are working to fix the problem'; //shown on pages/out_of_order.php
+$err_account_blocked="There\'s a problem with your account. Please see a circulation clerk.";
+$err_account_blocked="<h1>Keine Ausleihe erlaubt.</h1><h3>Bitte fragen Sie an der Theke.</h3>";
+$err_account_invalid="There was a problem. Please scan your card again.";
+$err_account_invalid="<h1>Karte nicht erkannt.</h1><h3>Bitte stecken Sie die Karte mit dem Barcode nach hinten in den Leseschlitz.</h3>";
 
 //====================== Paper & Email Receipts ==============
 /* add elements to or remove elements from the header & footer arrays below to manipulate that piece of the receipt.
 the elements will appear on separate lines of the receipt in the order that you place them below */ 
-$receipt_header[]='Checkout Receipt';
+$receipt_header[]='Buchungsbeleg';
 $receipt_header[]=$library_name;
-$receipt_footer[]='Renew your items online:';
+$receipt_footer[]='Automatische Verl&auml;ngerungen - sofern keine Vormerkung erfolgt:';
+$receipt_footer[]='&nbsp;&nbsp;Externe:&nbsp;&nbsp;       21 Tage';
+$receipt_footer[]='&nbsp;&nbsp;Uniangeh&ouml;rige:&nbsp;  3 Monate';
+$receipt_footer[]='(keine autom. Verl&auml;ngerung für Zeitschriften)';
+
 $receipt_footer[]=$online_catalog_url;
 
 /*place the following in the order you want the elements to appear in the item list on the 
 paper and email receipts. remove (or comment out) any elements you don't want included.
 element options include item_barcode, title, due_date, and call_number */
-$receipt_item_list_elements[]='title';
-$receipt_item_list_elements[]='call_number';
 $receipt_item_list_elements[]='item_barcode';
+$receipt_item_list_elements[]='title';
+//$receipt_item_list_elements[]='call_number';
 $receipt_item_list_elements[]='due_date';
 
 //========================= Sounds & Images ==========================
@@ -116,8 +104,13 @@ $receipt_item_list_elements[]='due_date';
 $error_sound="sounds/error.mp3";
 $welcome_sound="sounds/welcome.mp3";
 $note_sound="sounds/note.mp3";
+$error_sound="";
+$welcome_sound="";
+$note_sound="";
 
 	//images  (you need to uncomment one -and only one- line from each group). 
+//$logo_image='bhsu-Logo-small_grau.png';
+$logo_image='Biblogofrei.png';
 /*
 	Keep in mind these are not the image files names -they are just meant to trigger the showing 
 	of the types of images listed here. For further customization, images are loaded in the following files: 
@@ -127,11 +120,13 @@ $note_sound="sounds/note.mp3";
 	//======= group 1: home page images of library card =======
 //$card_image='kpl';
 $card_image='barcoded';
+$card_image='rfid';
 //$card_image='magnetic';
 
 	//======= group 2: home and checkout page images of book ==
 $item_image='barcoded';
 //$item_image='nonbarcoded';
+$item_image='piled';
 
 
 //======================= Action Balloons =======================
@@ -162,7 +157,6 @@ $action_balloon_bg_color='#f1cae1'; //background color for action balloons
 //$action_balloon['CD']['action_message']='Please place your CDs inside one of the plastic bags near this station';
 //$action_balloon['CD']['trigger']='permanent location';
 
-
 //==================================== Allowed IPs =======================
 /*
 	list each allowed ip on a new line as $allowed_ip[]='IP'; 
@@ -170,6 +164,11 @@ $action_balloon_bg_color='#f1cae1'; //background color for action balloons
 		   $allowed_ip[]='192.168.0.4';
 */
 $allowed_ip[]=''; //leave empty if you've already limited access to the self check via your server (Apache, IIS, etc.)
+
+//==================================== Local Settings ====================
+// keep installation-specific settings in local config file 
+// keep confidential settings out of repository
+include_once("config_local.php");
 
 //==================================== Don't edit below this line =======================
 if (!in_array($_SERVER['REMOTE_ADDR'],$allowed_ip) && !empty($allowed_ip[0])){ 

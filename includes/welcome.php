@@ -24,7 +24,7 @@
 	<h1>Cancel</h1>
 </div>
 <div class="thanks_button button" style="margin:100px auto 0 auto;">
-	<h1>Thanks</h1>
+	<h1>Danke</h1>
 </div>
 
 <!--  ============= form for submitting items ============= -->
@@ -42,6 +42,7 @@ $(document).ready(function(){
 	$('#cancel').click(
 		function(){
 			$(this).hide();
+			$.get("http://localhost:2666/stop"); // no more items
 			$('.thanks_button').show();
 			setTimeout(function(){
 				window.location.href='processes/logout.php'
@@ -57,7 +58,9 @@ $(document).ready(function(){
 	var $barcode=$('#barcode');
 	$barcode.val('');
 	$barcode.focus();
-	$.dbj_sound.play('<?php echo $welcome_sound;?>');
+	// start rfid trigger here : 
+	// $.get("http://localhost:2666/list"); // untested.. 
+//	$.dbj_sound.play('<?php echo $welcome_sound;?>'); // please.. dont
 	inactive_notice();
 	
 });

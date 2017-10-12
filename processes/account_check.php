@@ -5,10 +5,70 @@
 session_start();
 include_once('../config.php');
 include_once('../includes/sip2.php');
+include_once('../includes/ldap.php');
 include_once('../includes/json_encode.php');
+
+$debug=0;
+$patronBarcode='';
+
+// prepare ldap connections as necessary
+// 2 ldap are queried one after the other
+// institution members first, then external users
+$mylt=new ldap();
+$mylt->hostname	= $ldap0_hostname;
+$mylt->port     = $ldap0_port;
+$mylt->binddn 	= $ldap0_binddn;
+$mylt->bindpw 	= $ldap0_bindpw;
+$mylt->searchbase	= $ldap0_searchbase;
+$mylt->filter	= $ldap0_filter;
+
+$myl=new ldap();
+$myl->hostname	= $ldap_hostname;
+$myl->port      = $ldap_port;
+$myl->binddn 	= $ldap_binddn;
+$myl->bindpw 	= $ldap_bindpw;
+$myl->searchbase	= $ldap_searchbase;
+$myl->filter	= $ldap_filter;
+
+
+function getexternaluserbarcode($uid){
+	$myl=$GLOBALS['myl'];
+	$myl->searchbase=$GLOBALS['ldap_searchbase'];
+	$l_res=$myl->getcnfromuid($uid);
+	return $l_res;
+}
+
+// internal users may have a "+" prepended in the ldap entry of their UID
+function getinternaluserbarcode($uid){
+	$mylt=$GLOBALS['mylt'];
+//	$mylt->searchbase=$GLOBALS['ldap0_searchbase'];
+	$mylt->search($uid);
+    return $mylt->getattr($GLOBALS['ldap0_intbarcode']);
+}
 
 if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length OR empty($patron_id_length))){ //check that the barcode was posted and matches the length set in config.php 
 
+if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - try resolving a UID
+
+	// special issue - some ids have a leading +	
+	$res=getinternaluserbarcode('+'.$_POST['barcode']);
+	if(preg_match($patron_id_pattern,$res)) // found an internal user (RZ name does not matter here)
+		$patronBarcode=$res;
+	
+	$res=getinternaluserbarcode($_POST['barcode']);
+	if(preg_match($patron_id_pattern,$res)) // found an internal user (RZ name does not matter here)
+		$patronBarcode=$res;
+		
+	$res=getexternaluserbarcode($_POST['barcode']);
+	if(preg_match($patron_id_pattern,$res)) // found an external user
+		$patronBarcode=$res;
+		
+}else{ // input matches our barcode pattern - forget about ldap!
+	$patronBarcode=$_POST['barcode'];
+}
+}
+
+if(!empty($patronBarcode)){ // filled - if we found anything
 	$mysip = new sip2;
 
 	// Set host name
@@ -16,12 +76,13 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 	$mysip->port = $sip_port;
 	
 	// Identify a patron
-	$mysip->patron = $_POST['barcode'];
+	$mysip->patron = $patronBarcode;
 	
 	// connect to SIP server
 	$connect = $mysip->connect();
 	
 	if(!$connect){ //if the connection failed go to the out of order page
+	if($debug)trigger_error("SIP failed, returning out of order, exiting.",E_USER_WARNING);
 		echo json_encode('out of order');
 		exit;
 	}
@@ -30,26 +91,31 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 		$sc_login=$mysip->msgLogin($sip_login,$sip_password);
 		$mysip->parseLoginResponse($mysip->get_message($sc_login));
 	}
-
+	
 	// Get patron info response
-	$ptrnmsg = $mysip->msgPatronInformation('charged');
+	//	$ptrnmsg = $mysip->msgPatronInformation('charged');
+	$ptrnmsg = $mysip->msgPatronInformation('hold');
 
 	// parse the raw response into an array
 	$patron_info = $mysip->parsePatronInfoResponse($mysip->get_message($ptrnmsg));
 
-	//print_r($patron_info);
-	
+	//	print_r($patron_info);
+	if($debug)trigger_error("patron_info: {$patron_info}",E_USER_NOTICE);
+
 	$mysip->msgEndPatronSession();
 
 	if (strpos($patron_info['fixed']['PatronStatus'],'Y')!== false OR (!empty($patron_info['variable']['BL'][0]) && $patron_info['variable']['BL'][0]!='Y')){ //blocked or non-existent account?
 		session_regenerate_id();
 		session_destroy();
+	if($debug)trigger_error("patron nonexistent or blocked, exiting.",E_USER_NOTICE);
 		echo json_encode('blocked account');
 		exit;
 	}
 	
-	//extract and format account information and assign to session variables
-	$_SESSION['patron_barcode']=$_POST['barcode'];
+	// patron verified here
+	if($debug)trigger_error("extract and format account information and assign to session variables",E_USER_NOTICE);
+	$_SESSION['patron_barcode']=$patronBarcode; 
+	//if($debug)trigger_error("patron barcode: {$_SESSION['patron_barcode']}",E_USER_NOTICE);
 	
 	$patron_name='';
 	if (!empty($patron_info['variable']['AE'][0])){
@@ -97,18 +163,24 @@ if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length O
 	$_SESSION['checkouts_this_session']=0;
 	
 	session_write_close();
-
+	
+//	if($debug)trigger_error("ob_start()",E_USER_NOTICE);
+	
 	//put include file into variable to dump as json back to the jquery script that initiated the call to this page
 	ob_start();
 	include_once( '../includes/welcome.php' );
 	$response = ob_get_contents();
+//	if($debug)trigger_error("ob_get_contents {$response}",E_USER_NOTICE);
 	ob_end_clean(); 
+
+//	if($debug)trigger_error(json_encode($response),E_USER_NOTICE);
 	
 	echo json_encode($response);
 	exit;
 
 } else {
-
+//       syslog(LOG_WARNING, "account_check: invalid account (patron empty)");
+	if($debug)trigger_error("account_check: invalid account (patronBarcode: $patronBarcode)",E_USER_WARNING);
 	echo json_encode('invalid account');
 	exit;
 	

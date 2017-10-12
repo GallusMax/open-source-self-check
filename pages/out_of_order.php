@@ -30,3 +30,10 @@ $(document).ready(function(){
 });
 </script>
 
+<?php // let them know..  
+$message="out of order triggered at station ".$_SERVER['REMOTE_ADDR'];
+
+if(isset($mail_alert))
+	mail($mail_alert,'selfcheck alert',$message,null,'-fbibedv@hsuhh.de');
+
+?>

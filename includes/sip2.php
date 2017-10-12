@@ -75,7 +75,7 @@ class sip2 {
    
     /* Terminator s */
     public $fldTerminator = '|';
-    public $msgTerminator = "\r\n";
+    public $msgTerminator = "\r"; //"\r\n"; // UH 
    
     /* Login Variables */
     public $UIDalgorithm = 0;   /* 0    = unencrypted, default */
@@ -86,7 +86,7 @@ class sip2 {
     public $debug        = false;
    
     /* Private variables for building messages */
-    public $AO = '4';
+    public $AO = '';// UH - was '4';
     public $AN = 'SIPCHK';
    
     /* Private variable to hold socket connection */
@@ -131,10 +131,10 @@ class sip2 {
             /* override default location */
             $this->_addVarOption('AO',$this->AO);
         } else {
-            /* override default location */
+            /* location from parameter*/
          	$this->_addVarOption('AO', $location);
         }
-        $this->_addVarOption('AO',$this->AO);
+//        $this->_addVarOption('AO',$this->AO); // UH - double A0?
         $this->_addVarOption('AA',$this->patron);
         $this->_addVarOption('AB',$item);
         $this->_addVarOption('AC',$this->AC);
@@ -146,7 +146,7 @@ class sip2 {
         return $this->_returnMessage();
     }
    
-    function msgCheckin($item, $itmReturnDate, $itmLocation = '', $itmProp = '', $noBlock='N', $cancel = '') {
+    function msgCheckin($item, $location = '', $itmReturnDate = '', $itmLocation = '', $itmProp = '', $noBlock='N', $cancel = '') {
     /* Checkin an item (09) - untested */
         if ($itmLocation == '') {
             /* If no location is specified, assume the defualt location of the SC, behavior suggested by spec*/
@@ -158,7 +158,13 @@ class sip2 {
         $this->_addFixedOption($this->_datestamp(), 18);
         $this->_addFixedOption($this->_datestamp($itmReturnDate), 18);
         $this->_addVarOption('AP',$itmLocation);
-        $this->_addVarOption('AO',$this->AO);
+            if (empty($location)) {
+            /* override default location */
+            $this->_addVarOption('AO',$this->AO);
+        } else {
+            /* override default location */
+         	$this->_addVarOption('AO', $location);
+        }
         $this->_addVarOption('AB',$item);
         $this->_addVarOption('AC',$this->AC);
         $this->_addVarOption('CH',$itmProp, true);
@@ -236,17 +242,18 @@ class sip2 {
         $summary['recall']   = '    Y ';
         $summary['unavail']  = '     Y';
        
-        /* Request patron information */
+        if($this->debug)trigger_error("SIP2 Request patron information",E_USER_NOTICE);
+
         $this->_newMessage('63');
         $this->_addFixedOption($this->language, 3);
         $this->_addFixedOption($this->_datestamp(), 18);
         $this->_addFixedOption(sprintf("%-10s",$summary[$type]), 10);
         $this->_addVarOption('AO',$this->AO);
         $this->_addVarOption('AA',$this->patron);
-        $this->_addVarOption('AC',$this->AC, true);
+        $this->_addVarOption('AC',$this->AC, false);
         $this->_addVarOption('AD',$this->patronpwd, true);
-        $this->_addVarOption('BP',$start, true); /* old function version used padded 5 digits, not sure why */
-        $this->_addVarOption('BQ',$end, true); /* old function version used padded 5 digits, not sure why */
+	//        $this->_addVarOption('BP',$start, true); /* old function version used padded 5 digits, not sure why */
+	//        $this->_addVarOption('BQ',$end, true); /* old function version used padded 5 digits, not sure why */
         return $this->_returnMessage();
     }
 
@@ -482,7 +489,7 @@ class sip2 {
         'Online'            => substr($response, 2, 1),
         'Checkin'           => substr($response, 3, 1),  /* is Checkin by the SC allowed ?*/
         'Checkout'          => substr($response, 4, 1),  /* is Checkout by the SC allowed ?*/
-                'Renewal'                       => substr($response, 5, 1),  /* renewal allowed? */
+		'Renewal'           => substr($response, 5, 1),  /* renewal allowed? */
         'PatronUpdate'      => substr($response, 6, 1),  /* is patron status updating by the SC allowed ? (status update ok)*/
         'Offline'           => substr($response, 7, 1),
         'Timeout'           => substr($response, 8, 3),
@@ -648,17 +655,17 @@ class sip2 {
         $terminator = '';
 
        
-        $this->_debugmsg('SIP2: Sending SIP2 request...');
+        $this->_debugmsg('SIP2: Sending SIP2 request... ' . $message);
         socket_write($this->socket, $message, strlen($message));
 
         $this->_debugmsg('SIP2: Request Sent, Reading response');
 
-        while ($terminator != "\x0D") {
+        while ($terminator != "\x0D") {  // UH - was: 0D
             $nr = socket_recv($this->socket,$terminator,1,0);
             $result = $result . $terminator;
         }
 
-        $this->_debugmsg("SIP2: {$result}");
+        $this->_debugmsg("SIP2: result: {$result}");
 
         /* test message for CRC validity */
         if ($this->_check_crc($result)) {
@@ -675,6 +682,7 @@ class sip2 {
                 $this->get_message($message);
             } else {
                 /* give up */
+                syslog(LOG_ERR,"osself: SIP2: Failed to get valid CRC after {$this->maxretry} retries.");
                 $this->_debugmsg("SIP2: Failed to get valid CRC after {$this->maxretry} retries.");
                 return false;
             }
@@ -684,6 +692,7 @@ class sip2 {
 
     function connect() {
 
+//    	setlocale(LC_ALL, "de_DE.UTF-8"); //UH no effect
         /* Socket Communications  */
         $this->_debugmsg( "SIP2: --- BEGIN SIP communication ---");  
        
@@ -705,6 +714,7 @@ class sip2 {
         /* open a connection to the host */
         $result = socket_connect($this->socket, $address, $this->port);
         if (!$result) {
+            syslog(LOG_ERR,"osself: SIP2: socket_connect() failed. Reason: ($result) " . socket_strerror($result));
             $this->_debugmsg("SIP2: socket_connect() failed.\nReason: ($result) " . socket_strerror($result));
         } else {
             $this->_debugmsg( "SIP2: --- SOCKET READY ---" );
@@ -747,12 +757,15 @@ class sip2 {
         foreach ($result['Raw'] as $item) {
             $field = substr($item,0,2);
             $value = substr($item,2);
+            // UH already here the value does not contain utf-8, 
+            // e.g. 0xc3a4 for german umlaut ae has turned to 0xe4
+            
             /* SD returns some odd values on ocassion, Unable to locate the purpose in spec, so I strip from
              * the parsed array. Orig values will remain in ['raw'] element
              */
             $clean = trim($value, "\x00..\x1F");
             if (trim($clean) <> '') {
-                $result[$field][] = $clean;
+                $result[$field][] = utf8_encode($clean);
             }
         }              
         $result['AZ'][] = substr($response,-5);
@@ -823,7 +836,7 @@ class sip2 {
     /* adds a varaiable length option to the message, and also prevents adding addtional fixed fields */
         if ($optional == true && $value == '') {
             /* skipped */
-            $this->_debugmsg( "SIP2: Skipping optional field {$field}");
+	  if($this->debug)trigger_error("SIP2: Skipping optional field {$field}");
         } else {
             $this->noFixed  = true; /* no more fixed for this message */
             $this->msgBuild .= $field . substr($value, 0, 255) . $this->fldTerminator;

@@ -17,6 +17,11 @@ $due_date='';
 $action_message='';
 $RenewalOk='';
 $OK='';
+$sc_location="unbekannt";
+$stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known station?
+
+if(!empty($location[$stationIP]))
+	$sc_location=$location[$stationIP];
 
 if (!empty($_SESSION['patron_barcode'])){
 	if (empty($_POST['barcode'])){ //if for some reason the item barcode posted is empty fill in a bunk one
@@ -73,9 +78,9 @@ if (!empty($_SESSION['patron_barcode'])){
 		$response_message=trim($checkout['variable']['AF'][0]);//system response message
 	}
 	//get item info response
-	$iteminfo = $mysip->msgItemInformation($item_barcode);
+//	$iteminfo = $mysip->msgItemInformation($item_barcode);
 	// parse the raw response into an array
-	$item = $mysip->parseItemInfoResponse( $mysip->get_message($iteminfo));
+//	$item = $mysip->parseItemInfoResponse( $mysip->get_message($iteminfo));
 	
 	//put the item info response into variables
 	if (!empty($item['variable']['CR'][0])){
@@ -92,14 +97,16 @@ if (!empty($_SESSION['patron_barcode'])){
 			if (stripos($title,'/')!==false){
 				$title=substr($title,0,stripos($title,'/'));
 			} 
-		$title=ucwords(TrimByLength($title,45,false));
+//		$title=ucwords(TrimByLength($title,65,false));  // dont..
+		$title=(TrimByLength($title,75,false));
+		$shorttitle=(TrimByLength($title,45,false));
 	}
 	
 	if ($OK!=1){
 
 		if (((!empty($_SESSION['cko_barcodes']) && in_array($item_barcode,$_SESSION['cko_barcodes'])) OR stripos($response_message,$already_ckdout_to_you)!==false) && empty($_POST['renew'])){ //see if this item is already checked out to this user and show renew prompt if it is
 		
-			include_once('../includes/renew.php');
+			include_once('../includes/renew.php');  // UH - how to silently ignore a second booking?
 			exit;
 		
 		} else {
@@ -115,18 +122,19 @@ if (!empty($_SESSION['patron_barcode'])){
 	//add this item's barcode to the array of barcodes checked out this session
 	$_SESSION['cko_barcodes'][]=$item_barcode;
 	
-	$ptrnmsg = $mysip->msgPatronInformation('charged'); //get checkout count again
+//	$ptrnmsg = $mysip->msgPatronInformation('charged'); //get checkout count again
 	
-	$patron_info = $mysip->parsePatronInfoResponse( $mysip->get_message($ptrnmsg));
+//	$patron_info = $mysip->parsePatronInfoResponse( $mysip->get_message($ptrnmsg));
 	
-	$_SESSION['checkouts']=$patron_info['fixed']['ChargedCount']; //checkouts
+//	$_SESSION['checkouts']=$patron_info['fixed']['ChargedCount']; //checkouts
+	$_SESSION['checkouts']=$_SESSION['checkouts']+1; //checkouts++
 	$_SESSION['checkouts_this_session']=$_SESSION['checkouts_this_session']+1;
 	
 	$due_date=strtotime($checkout['variable']['AH'][0]);
 	$due_date=date($due_date_format, $due_date);
 	
 	echo '
-	<tr>
+	<tr class="cko_row" style="display:none">
 	<td class="cko_item" style="color:#666;width:25px" id="item_left_'.$item_barcode.'_'.$_SESSION['checkouts_this_session'].'">'.$_SESSION['checkouts_this_session'].'. </td>
 	<td class="cko_item" style="width:80%;">'.$title.'</td>
 	<td class="cko_item" id="item_right_'.$item_barcode.'_'.$_SESSION['checkouts_this_session'].'">'.$due_date.'</td>
@@ -134,19 +142,22 @@ if (!empty($_SESSION['patron_barcode'])){
 	<script type="text/javascript">';
 	//the javascript variables make up the elements of the receipt
 	echo '
-	var title="<tr><td>Title: '.str_replace('"','\"',$title).'</td></tr>";
-	var call_number="<tr><td>Call Number: '.str_replace('"','\"',$call_number).'</td></tr>";
-	var due_date="<tr><td>Date Due: '.$due_date.'</td></tr>";
-	var item_barcode="<tr><td>Item ID: '.$item_barcode.'</td></tr>";
+	var title="<td>'.str_replace('"','\"',$shorttitle).'</td>";
+	var call_number="<td>'.str_replace('"','\"',$call_number).'</td>";
+	var due_date="<td>'.$due_date.'</td>";
+	var item_barcode="<td>'.$item_barcode.'</td>";
 	
-	var item='.implode('+',$receipt_item_list_elements).'+"<tr><td>&nbsp;</td></tr>";
+	var item="<tr>"+'.implode('+',$receipt_item_list_elements).'+"</tr>";
 	
-	$(document).ready(function(){
-		$("#item_list .loading,#pre_cko_buttons").hide();
+	$(document).ready(function(){ // UH is run on item checkout OK
 		$("#cko_buttons").show();
 		$("#cko_count").html("'.$_SESSION['checkouts'].'");
+		setTimeout(function(){$("#itemcount").html("'.$_SESSION['checkouts_this_session'].'");$("#itemcounter").show(200)},200);
 		$("#print_item_list table tbody").append(item);
 		$("#item_list").attr({ scrollTop: $("#item_list").attr("scrollHeight") });
+		// here we know that $item_barcode has been charged! so trigger AFI_OFF and the following one
+				$.get("http://localhost:2666/off?'.$item_barcode.'");
+		$("#item_list .loading,#pre_cko_buttons").hide();
 	';
 	
 	//Action Balloon
