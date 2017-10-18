@@ -10,7 +10,7 @@ The Hardware at the desk:
 A PC with a browser, even a ThinClient will do. We use Wyse T50 in some installations.
 Minimum: a barcode reader acting as USB HID, can be used for patron cards and items. Barcodes can be discriminated syntactically.
 
-Optional, for bulk chekout/checkin:
+Optional, for bulk checkout/checkin:
 A RFID Reader which handles reading and (un)locking, we use an OpenSource Java tool named JkbdRF.jar 
 
 Optional, for RFID patron cards:
