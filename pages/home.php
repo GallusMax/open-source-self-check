@@ -83,7 +83,7 @@ $(document).ready(function(){
 		spinner.spin(divspinner);
 		var siptimeout=setTimeout(function(){ // bail out on account_check timeout
 //			alert("sip fail");
-			window.location.href='index.php?page=out_of_order';},8000);
+			window.location.href='index.php?page=out_of_order';},15000); // UH - more seconds before ldap timeout
 
 		$.post("processes/account_check.php", { barcode: $barcode.val()},
 			function(data){

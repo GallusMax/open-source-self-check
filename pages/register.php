@@ -3,6 +3,8 @@
 $_SESSION['checkouts_this_session']=0;  // copied from start_checkin aka account_check
 if(!isset($_SESSION['state'])){$_SESSION['state']='init';} // state is always defined
 
+syslog(LOG_INFO, "register called");
+
 ?>
 <div id="cko_head">
 	<h1>
