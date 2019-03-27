@@ -682,6 +682,7 @@ class sip2 {
                 $this->get_message($message);
             } else {
                 /* give up */
+                syslog(LOG_ERR,"osself: SIP2: Failed to get valid CRC after {$this->maxretry} retries.");
                 $this->_debugmsg("SIP2: Failed to get valid CRC after {$this->maxretry} retries.");
                 return false;
             }
@@ -713,6 +714,7 @@ class sip2 {
         /* open a connection to the host */
         $result = socket_connect($this->socket, $address, $this->port);
         if (!$result) {
+            syslog(LOG_ERR,"osself: SIP2: socket_connect() failed. Reason: ($result) " . socket_strerror($result));
             $this->_debugmsg("SIP2: socket_connect() failed.\nReason: ($result) " . socket_strerror($result));
         } else {
             $this->_debugmsg( "SIP2: --- SOCKET READY ---" );

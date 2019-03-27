@@ -33,6 +33,7 @@ $(document).ready(function(){
 <?php // let them know..
 $message="out of order triggered at station ".$_SERVER['REMOTE_ADDR']." / ".$location[$_SERVER['REMOTE_ADDR']];
 
-mail('bibedv@hsu-bibliothek.de','selfcheck alert',$message,null,'-fbibedv@hsuhh.de');
+if(isset($mail_alert))
+	mail($mail_alert,'selfcheck alert',$message,null,'-fbibedv@hsuhh.de');
 
 ?>
