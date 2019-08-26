@@ -78,7 +78,7 @@ class ldap {
         if(@ldap_bind($this->lc,$this->binddn,$this->bindpw)){
         	return true;
         }else{
-                syslog(LOG_ERR,"osself: ldap_bind($this->hostname) timed out");
+		syslog(LOG_ERR,"osself: ldap_bind($this->hostname) failed: ".$php_errormsg);
 		$this->lc=NULL;
         	return false;
         }

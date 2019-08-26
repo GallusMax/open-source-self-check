@@ -51,6 +51,7 @@ $inactivity_timeout=40000; //time of inactivity before showing inactive prompt (
 $account_check_timeout=15000; //time of inactivity after patron card scan before showing out of order page (in milliseconds)
 $patron_id_length=''; //length of patron barcode or other id (leave empty if this varies)
 $patron_id_pattern='/0705\d{6}[\dX]{1}/'; // regex pattern matching the patron barcode (leave empty to ignore)
+$barcode_pattern='/705\/0\$d{8}/'; // regex pattern matching the barcode (leave empty to ignore)
 
 //wording
 $reservedPattern="vorgemerkt"; // this string in the SIP2 AF return message signalizes a reservation
@@ -83,7 +84,7 @@ $err_account_invalid="<h1>Karte nicht erkannt.</h1><h3>Bitte stecken Sie die Kar
 /* add elements to or remove elements from the header & footer arrays below to manipulate that piece of the receipt.
 the elements will appear on separate lines of the receipt in the order that you place them below */ 
 $receipt_header[]='Buchungsbeleg';
-$receipt_header[]=$library_name;
+$receipt_header[]="<h5>$library_name</h5>";
 $receipt_footer[]='Automatische Verl&auml;ngerungen - sofern keine Vormerkung erfolgt:';
 $receipt_footer[]='&nbsp;&nbsp;Externe:&nbsp;&nbsp;       21 Tage';
 $receipt_footer[]='&nbsp;&nbsp;Uniangeh&ouml;rige:&nbsp;  3 Monate';
