@@ -173,7 +173,7 @@
 	}
 	
 	#banner_title {
-	border:1px solid transparent; // fix for chromium position fail
+	border:1px solid transparent;
 		font-weight:bold;
 		font-size:1.1em;
 		width:768px;
@@ -271,8 +271,8 @@
 
 	/* cko page */
 	#item_list { /*the height and width of the cko list may need adusted to suit your screen size/resolution */
-		height:500px;
-		max-height:500px;
+		height:450px;
+		max-height:450px;
 		overflow-y:auto;
 		overflow-x:hidden;
 }
