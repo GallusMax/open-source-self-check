@@ -752,6 +752,8 @@ class sip2 {
 
     function _parsevariabledata($response, $start) {
 
+  syslog(LOG_DEBUG,"osself: SIP response: ".$response);
+  
         $result = array();
         $result['Raw'] = explode("|", substr($response,$start,-7));
         foreach ($result['Raw'] as $item) {
@@ -765,8 +767,10 @@ class sip2 {
              */
             $clean = trim($value, "\x00..\x1F");
             if (trim($clean) <> '') {
-                $result[$field][] = utf8_encode($clean);
+//                $result[$field][] = utf8_encode($clean); // dont double encode!
+                $result[$field][] = ($clean);
             }
+            
         }              
         $result['AZ'][] = substr($response,-5);
 
