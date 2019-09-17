@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo $library_name;?> - <?php echo $module_name;?></title>
 <script type="text/javascript" src="processes/combine.php?type=javascript&files=jquery.js,sound.js,center.js,thickbox.js,countdown.js,qtip.js,spin.js"></script>
-<link type="text/css" rel="stylesheet" href="processes/combine.php?type=css&files=selfcheck.css,thickbox.css" media="all" />
+<link type="text/css" rel="stylesheet" href="processes/combine.php?type=css&files=selfcheck.css,thickbox.css,register.css" media="all" />
 
 <?php if ($hide_cursor_pointer){?>
 <style type="text/css">
