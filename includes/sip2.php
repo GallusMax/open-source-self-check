@@ -752,7 +752,7 @@ class sip2 {
 
     function _parsevariabledata($response, $start) {
 
-  syslog(LOG_DEBUG,"osself: SIP response: ".$response);
+        $this->_debugmsg("osself: SIP response: ".$response);
   
         $result = array();
         $result['Raw'] = explode("|", substr($response,$start,-7));
