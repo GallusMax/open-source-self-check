@@ -409,12 +409,12 @@
 		margin:0;
 		padding:0;
 		background-color: #FFF;
-		background-image:url('../images/HSUPane1.jpg');
+		background-image:url('../images/HSUPane1k.jpg');
 		//background-repeat:repeat-x;
 		//background-repeat:no-repeat;
 		//background-image:url('../images/Biblogofrei.png');
 		//backgroud-position:120px -220px;
-		background-size:133%;
+		background-size:100%;
 		height:100%;
 		width:100%;
 	}
