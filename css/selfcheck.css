@@ -67,13 +67,13 @@
 	.button {
 		cursor:pointer;
 		width:350px;
-		border:5px solid #333;
+		//border:5px solid #333;
 		-moz-border-radius:8px;
 	}
 
 	.button h1 {
 		text-align:center;
-		color:#333;
+		color:white;
 		padding:25px;
 		white-space:nowrap;
 	}
@@ -105,7 +105,7 @@
 	}
 
 	.ok_button {
-		background-color:#c2ea6d;
+		background-color:#00716A;
 		margin-top:1em;
 	}
 
@@ -164,7 +164,7 @@
 	
 		#fixedlogo{
 		left:100px;
-		top:-200px;
+		top:40px;
 		position:fixed;
 		z-index:-3;
 	}
@@ -409,12 +409,12 @@
 		margin:0;
 		padding:0;
 		background-color: #FFF;
-		background-image:url('../images/gradient.png');
-		background-repeat:repeat-x;
+		background-image:url('../images/HSUPane.jpg');
+		//background-repeat:repeat-x;
 		//background-repeat:no-repeat;
 		//background-image:url('../images/Biblogofrei.png');
 		//backgroud-position:120px -220px;
-		//background-size:200%;
+		background-size:122%;
 		height:100%;
 		width:100%;
 	}
