@@ -56,7 +56,14 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 				</td>
 		</tr>
 	<?php }?>	
+		<tr>
+				<td>
+				<div class="ok_button button" id="register" title="selfcheck_button">
+					<h1>Druckkarte registrieren</h1>
+				</div>
+				</td>
 
+   		</tr>
 	</table>
 	</div>
 
@@ -116,5 +123,8 @@ $(document).ready(function(){
 		window.location.href='index.php?page=checkout&checkin=true'; // jump directly to checkout screen, change to checkin view
 	});
 
+	$('#register').click(function(){
+		window.location.href='index.php?page=register'; // jump directly to register function
+	  });
 });
 </script>
