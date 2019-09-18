@@ -173,6 +173,7 @@
 	}
 	
 	#banner_title {
+		visibility:hidden;
 	border:1px solid transparent;
 		font-weight:bold;
 		font-size:1.1em;
