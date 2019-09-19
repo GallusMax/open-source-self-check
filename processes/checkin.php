@@ -18,6 +18,7 @@ $due_date='';
 $action_message='';
 $RenewalOk='';
 $OK='';
+$Alert='';
 
 
 	if (empty($_POST['barcode'])){ //if for some reason the item barcode posted is empty fill in a bunk one
@@ -67,10 +68,14 @@ if(!empty($location[$stationIP])){ // known and configured station for checkin
 		
 	//put the checkout or renewal response into variables
 	if(!empty($checkin['fixed']['Ok'])){
-		$OK=$checkin['fixed']['Ok'];
+	    $OK=$checkin['fixed']['Ok'];
 	}
-
-//	if (!empty($checkin['fixed']['RenewalOk'])){
+	
+	if(!empty($checkin['fixed']['Alert'])){
+	    $Alert=$checkin['fixed']['Alert'];
+	}
+	
+	//	if (!empty($checkin['fixed']['RenewalOk'])){
 //		$RenewalOk=$checkin['fixed']['RenewalOk'];
 //	}
 
@@ -149,15 +154,16 @@ if(!empty($location[$stationIP])){ // known and configured station for checkin
 
 	
 	$reserved=preg_match('/'.$reservedPattern.'/',$response_message); // true, if "vorgemerkt" appears in SIP response
-	if($reserved)
+	if($reserved || ('Y' == $Alert)){ // fixed Alert field is set
 		$ckoresclass='cko_item cko_item_reserved';
-	else
+		$returnString=$tx_returnReserved;
+	}else{
 		$ckoresclass='cko_item';
+		$returnString=$tx_returnOK;
+	}
 	if(!empty($response_message))
 		$returnString=$response_message;
-	else 
-		$returnString=$tx_returnOK;
-
+	
 			
 	echo '
 	<tr class="cko_row" style="display:none">

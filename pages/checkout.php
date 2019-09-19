@@ -30,18 +30,21 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 		<?php } ?>
 		<a class="tab">
 		<?php if (isset($_SESSION['checkouts'])){?>
+			<span>|</span>
 			Anzahl Ausleihen: <span id="cko_count"><?php echo $_SESSION['checkouts'];?></span>
-		<?php } ?>
-		<?php if (false && $show_available_holds){?>
-			<span> |</span>
-			Vormerkungen: <?php echo $_SESSION['available_holds'];?>
 		<?php }
-			if (false && $show_fines){?>
+        if (isset($_SESSION['available_holds']) && ($_SESSION['available_holds']>0) && $show_available_holds){?>
+			<span> |</span>
+			<span class="cko_item_reserved">
+			Vormerkungen bitte abholen: <?php echo $_SESSION['available_holds'];?>
+			</span>
+		<?php }
+    	if (isset($_SESSION['fines']) && $show_fines){?>
 			<span> |</span>
 			Fines: <?php echo $_SESSION['fines'];
-			}?>
+			}
+		if (isset($_SESSION['overdues']) && $show_overdues){?>
 			<span> |</span>
-			<?php if (isset($_SESSION['overdues'])){?>
 			<font <?php if ($_SESSION['overdues']>0){?> style="text-decoration: blink;" <?php }?>>Gemahnt: <?php echo $_SESSION['overdues'];?></font>
 			<?php } ?>
 		</a>

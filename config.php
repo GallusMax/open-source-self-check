@@ -23,8 +23,9 @@
 //========================== Site Rules ==============================
 $sc_location='unknown';//enter a name for the self-check's location (e.g. 'East Branch') to track transactions in your SIP2 logs (in Polaris this is required and is the numeric organization ID)
 $allow_manual_userid_entry=false;
-$show_fines=true;
+$show_fines=false;
 $show_available_holds=true;
+$show_overdues=false;
 $allow_email_receipts=false;
 $display_php_errors='on'; //off or on
 $hide_cursor_pointer=false; //hides default cursor pointer -should probably set to true on live self check
@@ -56,7 +57,7 @@ $barcode_pattern='/705\/0\$d{8}/'; // regex pattern matching the barcode (leave 
 //wording
 $reservedPattern="vorgemerkt"; // this string in the SIP2 AF return message signalizes a reservation
 $tx_returnOK="zurückgenommen";
-$tx_returnReserved="bereits vorgemerkt";
+$tx_returnReserved="vorgemerkt";
 $tx_already_seen="Medium bereits bearbeitet";
 $tx_checkin_refused="Rücknahme nicht erlaubt";
 $library_name= "Die Bibliothek der Helmut-Schmidt-Universit&auml;t";

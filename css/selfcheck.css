@@ -336,6 +336,7 @@
 
 	.cko_item_reserved {
 		background-color: yellow;
+		color: black;
 	}
 
 	#cko_border {
@@ -373,7 +374,7 @@
 	}
 
 	.tab span {
-		color:#fff;
+//		color:#fff;
 	}
 
 	#cko_wrapper {
