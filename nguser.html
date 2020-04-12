@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="personCtrl">
+
+Kennung: <input type="text" ng-model="inputVal"><br>
+
+<div ng-show=isLbs()>LBS</div>
+<div ng-show=isRfid()>Cardnumber</div>
+<div ng-show=isRz()>RZ</div>
+
+
+<div ng-show=true>
+<br>RZ: {{fullName()}}
+<br>genQual:{{rz.genQual}}
+<div class=alert ng-show=!genQualValid()>LBS Kennung fehlt in trust:  {{rz.genQual}}</div>
+<br>carLic:{{rz.carLic}}
+<br>eType: {{rz.eType}}
+</div>
+
+<div ng-show=true>
+<br>LBS: {{lbs.uid}}
+<br>Grp: {{lbs.Grp}}
+<br>Ablauf: {{lbs.Ablauf}}
+</div>
+
+
+<div class=alert ng-show=genQualDiff()>genQualDiff</div>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+
+var rzresult={cn:"cnname",genQual:"0705443",carLic:"333444",eType:"facu"};
+
+var lbsresult={uid:"0705432",Grp:"20",Ablauf:"20.03.2020"};
+
+app.controller("personCtrl",function($scope) {
+	$scope.rz=rzresult;
+    $scope.lbs=lbsresult;
+//    $scope.rz.genQual=43;
+    $scope.person = {
+        firstName: "John",
+        lastName: "Doe",
+    };
+    $scope.fullName = function() {
+        var x = $scope.rz;
+        return x.cn;
+    };
+    
+    $scope.isLbs=function(){
+    	return $scope.inputVal.startsWith('0705');
+    };
+    $scope.isRfid=function(){
+       	return $scope.inputVal.startsWith('3');
+    };
+    $scope.isRz=function(){
+    	return (!$scope.isLbs() && !$scope.isRfid());
+    };
+    
+    $scope.genQualDiff=function(){
+    	return ($scope.rz.genQual != $scope.lbs.uid);
+    };
+    
+    
+    $scope.genQualValid=function(){
+    	return $scope.rz.genQual.startsWith('0705');
+    };
+
+});
+
+
+</script>
+
+</body>
+</html>
