@@ -15,7 +15,7 @@ $rzcn=$_GET['q'];
 
 //if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length OR empty($patron_id_length))){ //check that the barcode was posted and matches the length set in config.php 
 
-if(true){
+if(!empty($_GET['q'])){
 	$mylt=new ldap();
  	$mylt->hostname	= $ldap0_hostname;
 	$mylt->port     = $ldap0_port;
@@ -34,10 +34,19 @@ if(true){
 
 
     $carlic_pattern='/\d{10}/';
+    $myl->searchbase=$ldap_searchbase; // Library Users
+
+
     if(preg_match($patron_id_pattern,$rzcn)){ // 0705 found
         $mylt->filter="generationQualifier";
 
+        $myl->filter="cn";
+        $myl->search($rzcn); // is a patron barcode here
+        
     }else if(preg_match($carlic_pattern,$rzcn)){ // cardnumber found - resolve to cn
+        $myl->filter="carLicense";
+        $myl->search($rzcn); // is a cardnumber here
+
         $rescn=$mylt->getcnfromuid('+'.$rzcn);  
         if(''==$rescn) // not found - try without '+'
             $rescn=$mylt->getcnfromuid($rzcn);
@@ -50,11 +59,24 @@ if(true){
     $res=$mylt->search($rzcn);
 
     $res= new stdClass;
-    $res->cn=$mylt->getattr('cn');
-    $res->generationQualifier=$mylt->getattr('generationQualifier');
-    $res->employeeType=$mylt->getattr('employeeType');
-    $res->carLicense=$mylt->getattr('carLicense');
+    $res->rz=new stdClass;
+    $res->lbs=new stdClass;
 
+    error_reporting(~E_ALL); // no warning on missing attrs
+
+    $res->rz->cn=$mylt->getattr('cn');
+    $res->rz->generationQualifier=$mylt->getattr('generationQualifier');
+    $res->rz->employeeType=$mylt->getattr('employeeType');
+    $res->rz->carLicense=$mylt->getattr('carLicense');
+    $res->rz->givenName=$mylt->getattr('givenName');
+    $res->rz->sn=$mylt->getattr('sn');
+    $res->rz->displayName=$mylt->getattr('displayName');
+
+    $res->lbs->cn=$myl->getattr('cn');
+    $res->lbs->carLicense=$myl->getattr('carLicense');
+    $res->lbs->givenName=$myl->getattr('givenName');
+    $res->lbs->displayName=$myl->getattr('displayName');
+    
     //    echo "hello";
     //echo json_encode($_SESSION);
     echo json_encode($res);

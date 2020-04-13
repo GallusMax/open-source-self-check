@@ -21,7 +21,8 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 </div>
 
 <div ng-show=true>
-<br>LBS: {{lbs.uid}}
+  <br>LBS: {{lbs.uid}}
+  <br>dn: {{lbs.displayName}}
 <br>Grp: {{lbs.Grp}}
 <br>Ablauf: {{lbs.Ablauf}}
 </div>
@@ -56,7 +57,8 @@ var lbsresult={uid:"0705432",Grp:"20",Ablauf:"20.03.2020"};
       $scope.readnew=function(){
 	    $http.get("processes/userjson.php?q="+$scope.inputVal)
 		.then(function(response){
-		    $scope.rz=response.data;
+		    $scope.rz=response.data.rz;
+		    $scope.lbs=response.data.lbs;
 		    $scope.statcode=response.status;
 		    $scope.stattext=response.statusText;
 		});
