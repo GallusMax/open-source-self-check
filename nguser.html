@@ -5,7 +5,7 @@
 
 <div ng-app="myApp" ng-controller="personCtrl">
 
-Kennung: <input type="text" ng-model="inputVal"><br>
+Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 
 <div ng-show=isLbs()>LBS</div>
 <div ng-show=isRfid()>Cardnumber</div>
@@ -14,10 +14,10 @@ Kennung: <input type="text" ng-model="inputVal"><br>
 
 <div ng-show=true>
 <br>RZ: {{fullName()}}
-<br>genQual:{{rz.genQual}}
-<div class=alert ng-show=!genQualValid()>LBS Kennung fehlt in trust:  {{rz.genQual}}</div>
-<br>carLic:{{rz.carLic}}
-<br>eType: {{rz.eType}}
+<br>generationQualifier:{{rz.generationQualifier}}
+<div class=alert ng-show=!generationQualifierValid()>LBS Kennung fehlt in trust:  {{rz.generationQualifier}}</div>
+<br>carLicense:{{rz.carLicense}}
+<br>employeeType: {{rz.employeeType}}
 </div>
 
 <div ng-show=true>
@@ -27,20 +27,23 @@ Kennung: <input type="text" ng-model="inputVal"><br>
 </div>
 
 
-<div class=alert ng-show=genQualDiff()>genQualDiff</div>
+<div class=alert ng-show=generationQualifierDiff()>generationQualifierDiff</div>
+
+ <br>{{statcode}} ({{stattext}})
+
 </div>
 
 <script>
 var app = angular.module('myApp', []);
 
-var rzresult={cn:"cnname",genQual:"0705443",carLic:"333444",eType:"facu"};
+var rzresult={cn:"cnname",generationQualifier:"0705443",carLicense:"333444",employeeType:"facu"};
 
 var lbsresult={uid:"0705432",Grp:"20",Ablauf:"20.03.2020"};
 
-app.controller("personCtrl",function($scope) {
+  app.controller("personCtrl",function($scope, $http) {
 	$scope.rz=rzresult;
     $scope.lbs=lbsresult;
-//    $scope.rz.genQual=43;
+    $scope.inputVal="enterHere";
     $scope.person = {
         firstName: "John",
         lastName: "Doe",
@@ -49,8 +52,21 @@ app.controller("personCtrl",function($scope) {
         var x = $scope.rz;
         return x.cn;
     };
-    
+
+      $scope.readnew=function(){
+	    $http.get("processes/userjson.php?q="+$scope.inputVal)
+		.then(function(response){
+		    $scope.rz=response.data;
+		    $scope.statcode=response.status;
+		    $scope.stattext=response.statusText;
+		});
+      };
+      
     $scope.isLbs=function(){
+	if($scope.inputVal.startsWith('0705')){
+// 	    $scope.rz.generationQualifier=$scope.inputVal;
+	    return true;
+	}else return false;
     	return $scope.inputVal.startsWith('0705');
     };
     $scope.isRfid=function(){
@@ -60,13 +76,13 @@ app.controller("personCtrl",function($scope) {
     	return (!$scope.isLbs() && !$scope.isRfid());
     };
     
-    $scope.genQualDiff=function(){
-    	return ($scope.rz.genQual != $scope.lbs.uid);
+    $scope.generationQualifierDiff=function(){
+    	return ($scope.rz.generationQualifier != $scope.lbs.uid);
     };
     
     
-    $scope.genQualValid=function(){
-    	return $scope.rz.genQual.startsWith('0705');
+    $scope.generationQualifierValid=function(){
+    	return $scope.rz.generationQualifier.toString.startsWith('0705');
     };
 
 });

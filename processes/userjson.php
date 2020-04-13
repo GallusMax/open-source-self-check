@@ -11,7 +11,7 @@ include_once('../includes/json_encode.php');
 $debug=0;
 $patronBarcode='';
 $_POST['rzcn']='uhahn';
-$rzcn=$_POST['rzcn'];
+$rzcn=$_GET['q'];
 
 //if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length OR empty($patron_id_length))){ //check that the barcode was posted and matches the length set in config.php 
 
@@ -32,21 +32,37 @@ if(true){
     $myl->searchbase	= $ldap_intsearchbase;  // look for internal user
     $myl->filter	= $ldap_filter;
 
-    $mylt->filter="cn";
+
+    $carlic_pattern='/\d{10}/';
+    if(preg_match($patron_id_pattern,$rzcn)){ // 0705 found
+        $mylt->filter="generationQualifier";
+
+    }else if(preg_match($carlic_pattern,$rzcn)){ // cardnumber found - resolve to cn
+        $rescn=$mylt->getcnfromuid('+'.$rzcn);  
+        if(''==$rescn) // not found - try without '+'
+            $rescn=$mylt->getcnfromuid($rzcn);
+        $rzcn = $rescn; // either cn or nothing found
+        $mylt->filter="cn"; // search for retrieved cn
+    }else{ // search for cn
+        $mylt->filter="cn"; 
+    }
+
     $res=$mylt->search($rzcn);
 
     $res= new stdClass;
     $res->cn=$mylt->getattr('cn');
     $res->generationQualifier=$mylt->getattr('generationQualifier');
     $res->employeeType=$mylt->getattr('employeeType');
-    
+    $res->carLicense=$mylt->getattr('carLicense');
+
     //    echo "hello";
     //echo json_encode($_SESSION);
     echo json_encode($res);
    
     exit;
-    
-if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - try resolving a UID
+
+
+    if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - try resolving a UID
 
 	$_SESSION['cardUID']=$_POST['barcode'];
     
@@ -86,13 +102,14 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 		$_SESSION['rzuser']=barcode2rzid($_POST['barcode']);
 		if("" != $_SESSION['rzuser']){ // this is a hsu member
 
+            /*            
 			$storeanswer=storeresult($_SESSION['cardUID'],$_SESSION['rzuser'],$_SESSION['barcode']);
 			
 			if('OK'==substr($storeanswer,0,2)){ // OK: registrierung hat funktioniert, ERROR - eben nicht..	
 				// TODO pre-fill the (internal) user ldap (as a cache) with the number
 	    		$myl->searchbase = $ldap_intsearchbase;
 	    		$myl->filter	= $ldap_filter;
-	    		$myl->addcardtocn($_SESSION['rzuser'],$_SESSION['cardUID']); // cache to internal ldap
+                //	    		$myl->addcardtocn($_SESSION['rzuser'],$_SESSION['cardUID']); // cache to internal ldap
 	    		
 				echo json_encode(array('state'=>'done',
 		  		'hint'=>'<p id="fin">Fertig! Mit dieser Karte finden Sie jetzt Ausdrucke der RZ-Kennung <em>'.$_SESSION['rzuser'].'</em>.</p>',
@@ -105,13 +122,15 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
 		  		'uid'=>$_SESSION['cardUID']));
 			}
 	  		exit;
-			
+			*/
+            
 		}else{	// external user: put barcode in ldap
 	    $myl->searchbase = $ldap_searchbase;
 		$myl->filter	= $ldap_filter;
 		$myl->binddn	= $ldap_writedn;
 		$myl->bindpw	= $ldap_writepw;
-		if($myl->addcardtocn($_SESSION['barcode'],$_SESSION['cardUID'])){ // register succeeded
+        /*
+        if($myl->addcardtocn($_SESSION['barcode'],$_SESSION['cardUID'])){ // register succeeded
 	    
   		echo json_encode(array('state'=>'done',
   		'hint'=>'<p id="fin">Fertig! Diese Karte ist unter '.$_SESSION['barcode'].' registriert</p>',
@@ -126,6 +145,9 @@ if(!preg_match($patron_id_pattern,$_POST['barcode'])){ // not a patron code - tr
   		'uid'=>$_SESSION['cardUID']));
   		exit;
 		}
+        */
+
+        
 		}
 	}
 } // barcode matches
