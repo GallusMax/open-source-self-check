@@ -70,12 +70,14 @@ if(!empty($_GET['q'])){
     $res->rz->carLicense=$mylt->getattr('carLicense');
     $res->rz->givenName=$mylt->getattr('givenName');
     $res->rz->sn=$mylt->getattr('sn');
+    $res->rz->mail=$mylt->getattr('mail');
     $res->rz->displayName=$mylt->getattr('displayName');
 
     $res->lbs->cn=$myl->getattr('cn');
     $res->lbs->carLicense=$myl->getattr('carLicense');
     $res->lbs->givenName=$myl->getattr('givenName');
     $res->lbs->displayName=$myl->getattr('displayName');
+    $res->lbs->mail=$myl->getattr('mail');
     
     //    echo "hello";
     //echo json_encode($_SESSION);

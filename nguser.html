@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+</head>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <body>
@@ -14,15 +17,17 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 
 <div ng-show=true>
 <br>RZ: {{fullName()}}
-<br>generationQualifier:{{rz.generationQualifier}}
+     <br>generationQualifier: {{genQual()}}
 <div class=alert ng-show=!generationQualifierValid()>LBS Kennung fehlt in trust:  {{rz.generationQualifier}}</div>
 <br>carLicense:{{rz.carLicense}}
 <br>employeeType: {{rz.employeeType}}
+<br>mail: {{rz.mail}}
 </div>
 
 <div ng-show=true>
-  <br>LBS: {{lbs.uid}}
+  <br>LBS: {{lbs.cn}}
   <br>dn: {{lbs.displayName}}
+  <br>mail: {{lbs.mail}}
 <br>Grp: {{lbs.Grp}}
 <br>Ablauf: {{lbs.Ablauf}}
 </div>
@@ -31,30 +36,50 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 <div class=alert ng-show=generationQualifierDiff()>generationQualifierDiff</div>
 
  <br>{{statcode}} ({{stattext}})
-
+<div ng-show=done>done</div>
 </div>
 
 <script>
 var app = angular.module('myApp', []);
 
-var rzresult={cn:"cnname",generationQualifier:"0705443",carLicense:"333444",employeeType:"facu"};
+var rzresult={cn:"init",generationQualifier:"0705443",carLicense:"333444",employeeType:"facu"};
 
 var lbsresult={uid:"0705432",Grp:"20",Ablauf:"20.03.2020"};
 
   app.controller("personCtrl",function($scope, $http) {
-	$scope.rz=rzresult;
-    $scope.lbs=lbsresult;
-    $scope.inputVal="enterHere";
-    $scope.person = {
-        firstName: "John",
-        lastName: "Doe",
-    };
-    $scope.fullName = function() {
-        var x = $scope.rz;
-        return x.cn;
+	  //	  $scope.done=false;
+	  $scope.rz={};
+	  $scope.lbs={};
+	  $scope.inputVal="";
+
+	  $scope.fullName = function() {
+	      var x = $scope.rz;
+	      return x.cn;
+	  };
+
+    $scope.genQual=function(){
+	
+	if(!$scope.lbs.cn && $scope.generationQualifierValid()){ // check with retrieved patron code
+	    $scope.lbs.Grp="second request";
+	    $scope.done=true; // only once?
+	    $http.get("processes/userjson.php?q="+$scope.rz.generationQualifier)
+		.then(function(response){
+			$scope.lbs=response.data.lbs;
+			$scope.statcode=response.status;
+			$scope.stattext=response.statusText;
+		    });
+	}
+	
+	$scope.lbs.Ablauf="request2";
+
+	return $scope.rz.generationQualifier;
     };
 
       $scope.readnew=function(){
+
+	  if(2 < $scope.inputVal.length){ // no id below 3 chars
+	$scope.lbs.Grp = "request1";
+
 	    $http.get("processes/userjson.php?q="+$scope.inputVal)
 		.then(function(response){
 		    $scope.rz=response.data.rz;
@@ -62,6 +87,8 @@ var lbsresult={uid:"0705432",Grp:"20",Ablauf:"20.03.2020"};
 		    $scope.statcode=response.status;
 		    $scope.stattext=response.statusText;
 		});
+	
+	  }
       };
       
     $scope.isLbs=function(){
@@ -79,12 +106,13 @@ var lbsresult={uid:"0705432",Grp:"20",Ablauf:"20.03.2020"};
     };
     
     $scope.generationQualifierDiff=function(){
-    	return ($scope.rz.generationQualifier != $scope.lbs.uid);
+return ($scope.rz.generationQualifier != $scope.lbs.cn);
     };
+
     
-    
-    $scope.generationQualifierValid=function(){
-    	return $scope.rz.generationQualifier.toString.startsWith('0705');
+$scope.generationQualifierValid=function(){
+if($scope.rz.generationQualifier)
+    	return $scope.rz.generationQualifier.startsWith('0705');
     };
 
 });
