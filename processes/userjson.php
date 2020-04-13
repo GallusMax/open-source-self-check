@@ -26,43 +26,49 @@ if(!empty($_GET['q'])){
 	
 	$myl=new ldap();
 	$myl->hostname	= $ldap_hostname;
-    $myl->port      = $ldap_port;
-    $myl->binddn 	= $ldap_binddn;
-    $myl->bindpw 	= $ldap_bindpw;
-    $myl->searchbase	= $ldap_intsearchbase;  // look for internal user
-    $myl->filter	= $ldap_filter;
+	$myl->port      = $ldap_port;
+	$myl->binddn 	= $ldap_binddn;
+	$myl->bindpw 	= $ldap_bindpw;
+	$myl->searchbase	= $ldap_intsearchbase;  // look for internal user
+	$myl->filter	= $ldap_filter;
 
 
-    $carlic_pattern='/\d{10}/';
+    $carlic_pattern='/\d{8,10}/';
+    $rz_pattern='/[a-z]\w{2,}/';
     $myl->searchbase=$ldap_searchbase; // Library Users
 
 
-    if(preg_match($patron_id_pattern,$rzcn)){ // 0705 found
+    if(preg_match($patron_id_pattern,$rzcn)){ // 0705 patron barcodefound
         $mylt->filter="generationQualifier";
-
+        $res=$mylt->search($rzcn);
+        
         $myl->filter="cn";
-        $myl->search($rzcn); // is a patron barcode here
+        $myl->search($rzcn);
         
     }else if(preg_match($carlic_pattern,$rzcn)){ // cardnumber found - resolve to cn
         $myl->filter="carLicense";
         $myl->search($rzcn); // is a cardnumber here
 
-        $rescn=$mylt->getcnfromuid('+'.$rzcn);  
-        if(''==$rescn) // not found - try without '+'
-            $rescn=$mylt->getcnfromuid($rzcn);
-        $rzcn = $rescn; // either cn or nothing found
-        $mylt->filter="cn"; // search for retrieved cn
-    }else{ // search for cn
-        $mylt->filter="cn"; 
-    }
+        $mylt->filter='carLicense';
+        $res=$mylt->search('+'.$rzcn);
+        //$rescn=$mylt->getcnfromuid('+'.$rzcn);  
+        if(!$mylt->getattr('cn')) // not found - try without '+'
+            //$rescn=$mylt->getcnfromuid($rzcn);
+            $res=$mylt->search($rzcn);
+	
+    }else // search for cn
+        if(preg_match($rz_pattern,$rzcn)){ // only valid id (>2)
+            $mylt->filter="cn"; 
+            $res=$mylt->search($rzcn);
+	}
+	
 
-    $res=$mylt->search($rzcn);
 
     $res= new stdClass;
     $res->rz=new stdClass;
     $res->lbs=new stdClass;
 
-    error_reporting(~E_ALL); // no warning on missing attrs
+	//    error_reporting(~E_ALL); // no warning on missing attrs
 
     $res->rz->cn=$mylt->getattr('cn');
     $res->rz->generationQualifier=$mylt->getattr('generationQualifier');
