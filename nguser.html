@@ -40,14 +40,18 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 </div>
 
 <script>
-var app = angular.module('myApp', []);
-
-var rzresult={cn:"init",generationQualifier:"0705443",carLicense:"333444",employeeType:"facu"};
-
-var lbsresult={uid:"0705432",Grp:"20",Ablauf:"20.03.2020"};
+  var lbspattern=/0705\d{6}[\dxX]/;
+  var carlicpattern=/\d{8-10}/;
+  var rzpattern=/[a-z]\w{2,}/;
+  
+  var app = angular.module('myApp', []);
+  
+  var rzresult={cn:"init",generationQualifier:"0705443",carLicense:"333444",employeeType:"facu"};
+  
+  var lbsresult={uid:"0705432",Grp:"20",Ablauf:"20.03.2020"};
 
   app.controller("personCtrl",function($scope, $http) {
-	  //	  $scope.done=false;
+      	  $scope.done=false;
 	  $scope.rz={};
 	  $scope.lbs={};
 	  $scope.inputVal="";
@@ -59,9 +63,11 @@ var lbsresult={uid:"0705432",Grp:"20",Ablauf:"20.03.2020"};
 
     $scope.genQual=function(){
 	
-	if(!$scope.lbs.cn && $scope.generationQualifierValid()){ // check with retrieved patron code
+	if(!$scope.done && !$scope.lbs.cn && $scope.generationQualifierValid()){ // check with retrieved patron code
 	    $scope.lbs.Grp="second request";
 	    $scope.done=true; // only once?
+//	return $scope.rz.generationQualifier;
+
 	    $http.get("processes/userjson.php?q="+$scope.rz.generationQualifier)
 		.then(function(response){
 			$scope.lbs=response.data.lbs;
@@ -78,7 +84,8 @@ var lbsresult={uid:"0705432",Grp:"20",Ablauf:"20.03.2020"};
       $scope.readnew=function(){
 
 	  if(2 < $scope.inputVal.length){ // no id below 3 chars
-	$scope.lbs.Grp = "request1";
+	      $scope.lbs.Grp = "request1";
+	      $scope.done=false;
 
 	    $http.get("processes/userjson.php?q="+$scope.inputVal)
 		.then(function(response){
@@ -91,32 +98,30 @@ var lbsresult={uid:"0705432",Grp:"20",Ablauf:"20.03.2020"};
 	  }
       };
       
-    $scope.isLbs=function(){
-	if($scope.inputVal.startsWith('0705')){
-// 	    $scope.rz.generationQualifier=$scope.inputVal;
-	    return true;
-	}else return false;
-    	return $scope.inputVal.startsWith('0705');
-    };
-    $scope.isRfid=function(){
-       	return $scope.inputVal.startsWith('3');
-    };
-    $scope.isRz=function(){
-    	return (!$scope.isLbs() && !$scope.isRfid());
-    };
+      $scope.isLbs=function(){
+	  return lbspattern.test($scope.inputVal);
+      };
+
+      $scope.isRfid=function(){
+	  return carlicpattern.test($scope.inputVal);
+      };
+      
+      $scope.isRz=function(){
+	  return rzpattern.test($scope.inputVal);
+      };
     
-    $scope.generationQualifierDiff=function(){
-return ($scope.rz.generationQualifier != $scope.lbs.cn);
-    };
+      $scope.generationQualifierDiff=function(){
+	  return ($scope.rz.generationQualifier != $scope.lbs.cn);
+      };
 
     
-$scope.generationQualifierValid=function(){
-if($scope.rz.generationQualifier)
-    	return $scope.rz.generationQualifier.startsWith('0705');
-    };
+      $scope.generationQualifierValid=function(){
+	  if($scope.rz.generationQualifier)
+	      return $scope.rz.generationQualifier.startsWith('0705');
+	  else return false;
+      };
 
-});
-
+  });
 
 </script>
 
