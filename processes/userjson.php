@@ -68,7 +68,7 @@ if(!empty($_GET['q'])){
     $res->rz=new stdClass;
     $res->lbs=new stdClass;
 
-    //	    error_reporting(~E_ALL); // no warning on missing attrs
+    	    error_reporting(~E_ALL); // no warning on missing attrs
 
     $res->rz->cn=$mylt->getattr('cn');
     $res->rz->generationQualifier=$mylt->getattr('generationQualifier');
