@@ -17,7 +17,8 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 
 <div ng-show=true>
 <br>RZ: {{fullName()}}
-     <br>generationQualifier: {{genQual()}}
+<br>dn: {{rz.displayName}}
+<br>generationQualifier: {{genQual()}}
 <div class=alert ng-show=!generationQualifierValid()>LBS Kennung fehlt in trust:  {{rz.generationQualifier}}</div>
 <br>carLicense:{{rz.carLicense}}
 <br>employeeType: {{rz.employeeType}}
@@ -27,6 +28,7 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 <div ng-show=true>
   <br>LBS: {{lbs.cn}}
   <br>dn: {{lbs.displayName}}
+<br>carLicense:{{lbs.carLicense}}
   <br>mail: {{lbs.mail}}
 <br>Grp: {{lbs.Grp}}
 <br>Ablauf: {{lbs.Ablauf}}

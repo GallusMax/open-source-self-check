@@ -68,26 +68,27 @@ if(!empty($_GET['q'])){
     $res->rz=new stdClass;
     $res->lbs=new stdClass;
 
-	    error_reporting(~E_ALL); // no warning on missing attrs
+    //	    error_reporting(~E_ALL); // no warning on missing attrs
 
     $res->rz->cn=$mylt->getattr('cn');
     $res->rz->generationQualifier=$mylt->getattr('generationQualifier');
     $res->rz->employeeType=$mylt->getattr('employeeType');
     $res->rz->carLicense=$mylt->getattr('carLicense');
-    $res->rz->givenName=$mylt->getattr('givenName');
-    $res->rz->sn=$mylt->getattr('sn');
+    $res->rz->givenName=utf8_encode($mylt->getattr('givenName'));
+    $res->rz->sn=utf8_encode($mylt->getattr('sn'));
     $res->rz->mail=$mylt->getattr('mail');
-    $res->rz->displayName=$mylt->getattr('displayName');
+    $res->rz->displayName=utf8_encode($mylt->getattr('displayName'));
 
     $res->lbs->cn=$myl->getattr('cn');
     $res->lbs->carLicense=$myl->getattr('carLicense');
-    $res->lbs->givenName=$myl->getattr('givenName');
-    $res->lbs->displayName=$myl->getattr('displayName');
+    $res->lbs->givenName=utf8_encode($myl->getattr('givenName'));
+    $res->lbs->displayName=utf8_encode($myl->getattr('displayName'));
     $res->lbs->mail=$myl->getattr('mail');
     
-    //    echo "hello";
+    //echo "after getattr ".var_dump($res->rz);
     //echo json_encode($_SESSION);
-    echo json_encode($res);
+    echo json_encode($res,JSON_UNESCAPED_UNICODE);
+    //echo json_encode($res);
    
     exit;
 
