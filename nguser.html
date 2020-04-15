@@ -6,6 +6,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <body>
 
+  <style>
+    div {font:SansSerif;}
+    .hint {background-color:yellow;}
+    .alert {background-color:red;}
+    th {padding:1em;
+	   width:15em;}
+    th.col2 {width:3em;}
+  </style>
+  
 <div ng-app="myApp" ng-controller="personCtrl">
 
 Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
@@ -14,6 +23,19 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 <div ng-show=isRfid()>Cardnumber</div>
 <div ng-show=isRz()>RZ</div>
 
+
+<table border>
+  <tr><th>RZ</th><th class="col2 "></th><th>ldap</th></tr>
+
+  <tr><td>{{rz.cn}}</td><td></td><td><input type="text" ng-model="lbs.cn" ng-blur=freshLdap()></td></tr>
+  <tr><td>{{rz.displayName}}</td><td></td><td>{{lbs.displayName}}</td></tr>
+  <tr ng-show=generationQualifierDiff()><td>{{rz.generationQualifier}}</td><td></td><td>{{lbs.cn}}</td></tr>
+  <tr ng-show=generationQualifierDiff()><td class="hint">LBS Kennung fehlerhaft?</td></tr>
+  <tr><td>{{rz.carLicense}}</td><td ng-class={hint:carLicDiff()}></td><td>{{lbs.carLicense}}</td></tr>
+  <tr><td>{{rz.mail}}</td><td></td><td>{{lbs.mail}}</td></tr>
+  <tr><td>{{rz.employeeType}}</td><td></td><td></td></tr>
+
+</table>
 
 <div ng-show=true>
 <br>RZ: {{fullName()}}
@@ -26,7 +48,7 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 </div>
 
 <div ng-show=true>
-  <br>LBS: {{lbs.cn}}
+  <br>LBS: {{lbs.cn}} <input type="text" ng-model="lbs.cn" />
   <br>dn: {{lbs.displayName}}
 <br>carLicense:{{lbs.carLicense}}
   <br>mail: {{lbs.mail}}
@@ -63,8 +85,16 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 	      return x.cn;
 	  };
 
+      $scope.freshLdap=function(){
+          $http.get("processes/userjson.php?q="+$scope.lbs.cn)
+              .then(function(response){
+                  $scope.lbs=response.data.lbs;
+                  $scope.statcode=response.status;
+                  $scope.stattext=response.statusText;
+              });	  
+      }
+      
     $scope.genQual=function(){
-	
 	if(!$scope.done && !$scope.lbs.cn && $scope.generationQualifierValid()){ // check with retrieved patron code
 	    $scope.lbs.Grp="second request";
 	    $scope.done=true; // only once?
@@ -112,8 +142,16 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 	  return rzpattern.test($scope.inputVal);
       };
     
+      $scope.carLicDiff=function(){
+	  if($scope.lbs.carLicense)
+	      return ($scope.rz.carLicense != $scope.lbs.carLicense);
+	  else return false;
+      };
+
       $scope.generationQualifierDiff=function(){
-	  return ($scope.rz.generationQualifier != $scope.lbs.cn);
+	  if($scope.rz.generationQualifier)
+	      return ($scope.rz.generationQualifier != $scope.lbs.cn);
+	  else return false;
       };
 
     
