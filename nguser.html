@@ -27,12 +27,12 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 <table border>
   <tr><th>RZ</th><th class="col2 "></th><th>ldap</th></tr>
 
-  <tr><td>{{rz.cn}}</td><td></td><td><input type="text" ng-model="lbs.cn" ng-blur=freshLdap()></td></tr>
-  <tr><td>{{rz.displayName}}</td><td></td><td>{{lbs.displayName}}</td></tr>
-  <tr ng-show=generationQualifierDiff()><td>{{rz.generationQualifier}}</td><td></td><td>{{lbs.cn}}</td></tr>
+  <tr><td>{{rz.cn}}</td><td></td><td><input type="text" ng-model="bib.cn" ng-blur=freshLdap()></td></tr>
+  <tr><td>{{rz.displayName}}</td><td></td><td>{{bib.displayName}}</td></tr>
+  <tr ng-show=generationQualifierDiff()><td>{{rz.generationQualifier}}</td><td></td><td>{{bib.cn}}</td></tr>
   <tr ng-show=generationQualifierDiff()><td class="hint">LBS Kennung fehlerhaft?</td></tr>
-  <tr><td>{{rz.carLicense}}</td><td ng-class={hint:carLicDiff()}></td><td>{{lbs.carLicense}}</td></tr>
-  <tr><td>{{rz.mail}}</td><td></td><td>{{lbs.mail}}</td></tr>
+  <tr><td>{{rz.carLicense}}</td><td ng-class={hint:carLicDiff()}></td><td>{{bib.carLicense}}</td></tr>
+  <tr><td>{{rz.mail}}</td><td></td><td>{{bib.mail}}</td></tr>
   <tr><td>{{rz.employeeType}}</td><td></td><td></td></tr>
 
 </table>
@@ -48,12 +48,12 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 </div>
 
 <div ng-show=true>
-  <br>LBS: {{lbs.cn}} <input type="text" ng-model="lbs.cn" />
-  <br>dn: {{lbs.displayName}}
-<br>carLicense:{{lbs.carLicense}}
-  <br>mail: {{lbs.mail}}
-<br>Grp: {{lbs.Grp}}
-<br>Ablauf: {{lbs.Ablauf}}
+  <br>LBS: {{bib.cn}} <input type="text" ng-model="bib.cn" />
+  <br>dn: {{bib.displayName}}
+<br>carLicense:{{bib.carLicense}}
+  <br>mail: {{bib.mail}}
+<br>Grp: {{bib.Grp}}
+<br>Ablauf: {{bib.Ablauf}}
 </div>
 
 
@@ -77,7 +77,8 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
   app.controller("personCtrl",function($scope, $http) {
       	  $scope.done=false;
 	  $scope.rz={};
-	  $scope.lbs={};
+	  $scope.bib={};
+	  $scope.lbs4={};
 	  $scope.inputVal="";
 
 	  $scope.fullName = function() {
@@ -86,29 +87,29 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 	  };
 
       $scope.freshLdap=function(){
-          $http.get("processes/userjson.php?q="+$scope.lbs.cn)
+          $http.get("processes/userjson.php?q="+$scope.bib.cn)
               .then(function(response){
-                  $scope.lbs=response.data.lbs;
+                  $scope.bib=response.data.bib;
                   $scope.statcode=response.status;
                   $scope.stattext=response.statusText;
               });	  
       }
       
     $scope.genQual=function(){
-	if(!$scope.done && !$scope.lbs.cn && $scope.generationQualifierValid()){ // check with retrieved patron code
-	    $scope.lbs.Grp="second request";
+	if(!$scope.done && !$scope.bib.cn && $scope.generationQualifierValid()){ // check with retrieved patron code
+	    $scope.bib.Grp="second request";
 	    $scope.done=true; // only once?
 //	return $scope.rz.generationQualifier;
 
 	    $http.get("processes/userjson.php?q="+$scope.rz.generationQualifier)
 		.then(function(response){
-			$scope.lbs=response.data.lbs;
+			$scope.bib=response.data.bib;
 			$scope.statcode=response.status;
 			$scope.stattext=response.statusText;
 		    });
 	}
 	
-	$scope.lbs.Ablauf="request2";
+	$scope.bib.Ablauf="request2";
 
 	return $scope.rz.generationQualifier;
     };
@@ -116,13 +117,13 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
       $scope.readnew=function(){
 
 	  if(2 < $scope.inputVal.length){ // no id below 3 chars
-	      $scope.lbs.Grp = "request1";
+	      $scope.bib.Grp = "request1";
 	      $scope.done=false;
 
 	    $http.get("processes/userjson.php?q="+$scope.inputVal)
 		.then(function(response){
 		    $scope.rz=response.data.rz;
-		    $scope.lbs=response.data.lbs;
+		    $scope.bib=response.data.bib;
 		    $scope.statcode=response.status;
 		    $scope.stattext=response.statusText;
 		});
@@ -143,14 +144,14 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
       };
     
       $scope.carLicDiff=function(){
-	  if($scope.lbs.carLicense)
-	      return ($scope.rz.carLicense != $scope.lbs.carLicense);
+	  if($scope.bib.carLicense)
+	      return ($scope.rz.carLicense != $scope.bib.carLicense);
 	  else return false;
       };
 
       $scope.generationQualifierDiff=function(){
 	  if($scope.rz.generationQualifier)
-	      return ($scope.rz.generationQualifier != $scope.lbs.cn);
+	      return ($scope.rz.generationQualifier != $scope.bib.cn);
 	  else return false;
       };
 

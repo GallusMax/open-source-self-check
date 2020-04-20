@@ -66,7 +66,7 @@ if(!empty($_GET['q'])){
 
     $res= new stdClass;
     $res->rz=new stdClass;
-    $res->lbs=new stdClass;
+    $res->bib=new stdClass;
 
     	    error_reporting(~E_ALL); // no warning on missing attrs
 
@@ -79,11 +79,11 @@ if(!empty($_GET['q'])){
     $res->rz->mail=$mylt->getattr('mail');
     $res->rz->displayName=utf8_encode($mylt->getattr('displayName'));
 
-    $res->lbs->cn=$myl->getattr('cn');
-    $res->lbs->carLicense=$myl->getattr('carLicense');
-    $res->lbs->givenName=utf8_encode($myl->getattr('givenName'));
-    $res->lbs->displayName=utf8_encode($myl->getattr('displayName'));
-    $res->lbs->mail=$myl->getattr('mail');
+    $res->bib->cn=$myl->getattr('cn');
+    $res->bib->carLicense=$myl->getattr('carLicense');
+    $res->bib->givenName=utf8_encode($myl->getattr('givenName'));
+    $res->bib->displayName=utf8_encode($myl->getattr('displayName'));
+    $res->bib->mail=$myl->getattr('mail');
     
     //echo "after getattr ".var_dump($res->rz);
     //echo json_encode($_SESSION);
