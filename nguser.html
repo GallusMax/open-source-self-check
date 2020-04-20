@@ -25,15 +25,15 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 
 
 <table border>
-  <tr><th>RZ</th><th class="col2 "></th><th>ldap</th></tr>
+  <tr><th>RZ</th><th class="col2 "></th><th>ldap</th><th>LBS</th></tr>
 
-  <tr><td>{{rz.cn}}</td><td></td><td><input type="text" ng-model="bib.cn" ng-blur=freshLdap()></td></tr>
-  <tr><td>{{rz.displayName}}</td><td></td><td>{{bib.displayName}}</td></tr>
+  <tr><td>{{rz.cn}}</td><td></td><td><input type="text" ng-model="bib.cn" ng-blur=freshBib(bib.cn)></td></tr>
+  <tr><td>{{rz.displayName}}</td><td></td><td>{{bib.displayName}}</td><td>{{lbs4.displayName}}</td></tr>
   <tr ng-show=generationQualifierDiff()><td>{{rz.generationQualifier}}</td><td></td><td>{{bib.cn}}</td></tr>
   <tr ng-show=generationQualifierDiff()><td class="hint">LBS Kennung fehlerhaft?</td></tr>
   <tr><td>{{rz.carLicense}}</td><td ng-class={hint:carLicDiff()}></td><td>{{bib.carLicense}}</td></tr>
-  <tr><td>{{rz.mail}}</td><td></td><td>{{bib.mail}}</td></tr>
-  <tr><td>{{rz.employeeType}}</td><td></td><td></td></tr>
+  <tr><td>{{rz.mail}}</td><td></td><td>{{bib.mail}}</td><td>{{lbs4.mail}}</td></tr>
+  <tr><td>{{rz.employeeType}}</td><td></td><td></td><td>{{lbs4.grp}}</td></tr>
 
 </table>
 
@@ -86,10 +86,24 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 	      return x.cn;
 	  };
 
+      $scope.freshBib=function(query){
+	  $scope.freshLdap();
+	  $scope.freshLBS(query);
+      }
+      
       $scope.freshLdap=function(){
           $http.get("processes/userjson.php?q="+$scope.bib.cn)
               .then(function(response){
                   $scope.bib=response.data.bib;
+                  $scope.statcode=response.status;
+                  $scope.stattext=response.statusText;
+              });	  
+      }
+
+      $scope.freshLBS=function(query){
+          $http.get("https://bibweb2.ub.hsu-hh.de/cgi-bin/signatur-dev/borjson.cgi?q="+query)
+              .then(function(response){
+                  $scope.lbs4=response.data.lbs4;
                   $scope.statcode=response.status;
                   $scope.stattext=response.statusText;
               });	  
@@ -106,7 +120,9 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 			$scope.bib=response.data.bib;
 			$scope.statcode=response.status;
 			$scope.stattext=response.statusText;
-		    });
+		});
+
+	    $scope.freshLBS($scope.rz.generationQualifier);
 	}
 	
 	$scope.bib.Ablauf="request2";
@@ -118,6 +134,7 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 
 	  if(2 < $scope.inputVal.length){ // no id below 3 chars
 	      $scope.bib.Grp = "request1";
+	      $scope.lbs4={};
 	      $scope.done=false;
 
 	    $http.get("processes/userjson.php?q="+$scope.inputVal)
