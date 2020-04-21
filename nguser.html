@@ -95,12 +95,30 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 	  };
 
       $scope.freshBib=function(query){
-	  $scope.freshLdap();
+	  $scope.freshLdap(query);
 	  $scope.freshLBS(query);
       }
       
-      $scope.freshLdap=function(){
-          $http.get("processes/userjson.php?q="+$scope.bib.cn)
+      $scope.freshRz=function(query){
+          $http({url:"processes/userjson.php",
+		 data:"q="+query,
+		 method:"POST",
+		 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+		})
+              .then(function(response){
+                  $scope.rz=response.data.rz;
+                  $scope.bib=response.data.bib;
+                  $scope.statcode=response.status;
+                  $scope.stattext=response.statusText;
+              });	  
+      }
+
+      $scope.freshLdap=function(query){
+          $http({url:"processes/userjson.php",
+		 data:"q="+query,
+		 method:"POST",
+		 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+		})
               .then(function(response){
                   $scope.bib=response.data.bib;
                   $scope.statcode=response.status;
@@ -128,16 +146,8 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 	if(!$scope.done && !$scope.bib.cn && $scope.generationQualifierValid()){ // check with retrieved patron code
 	    $scope.bib.Grp="second request";
 	    $scope.done=true; // only once?
-//	return $scope.rz.generationQualifier;
 
-	    $http.get("processes/userjson.php?q="+$scope.rz.generationQualifier)
-		.then(function(response){
-			$scope.bib=response.data.bib;
-			$scope.statcode=response.status;
-			$scope.stattext=response.statusText;
-		});
-
-	    $scope.freshLBS($scope.rz.generationQualifier);
+	    $scope.freshBib($scope.rz.generationQualifier);
 	}
 	
 	$scope.bib.Ablauf="request2";
@@ -152,14 +162,10 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 	      $scope.lbs4={};
 	      $scope.done=false;
 
-	    $http.get("processes/userjson.php?q="+$scope.inputVal)
-		.then(function(response){
-		    $scope.rz=response.data.rz;
-		    $scope.bib=response.data.bib;
-		    $scope.statcode=response.status;
-		    $scope.stattext=response.statusText;
-		});
-	
+	      $scope.freshRz($scope.inputVal);
+	      if($scope.isLbs()){
+		  $scope.freshLBS($scope.inputVal)
+	      }
 	  }
       };
       

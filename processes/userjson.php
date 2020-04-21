@@ -11,11 +11,11 @@ include_once('../includes/json_encode.php');
 $debug=0;
 $patronBarcode='';
 $_POST['rzcn']='uhahn';
-$rzcn=$_GET['q'];
+$rzcn=$_POST['q'];
 
 //if (!empty($_POST['barcode']) && (strlen($_POST['barcode'])==$patron_id_length OR empty($patron_id_length))){ //check that the barcode was posted and matches the length set in config.php 
 
-if(!empty($_GET['q'])){
+if(!empty($rzcn)){
 	$mylt=new ldap();
  	$mylt->hostname	= $ldap0_hostname;
 	$mylt->port     = $ldap0_port;
