@@ -48,12 +48,20 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 </div>
 
 <div ng-show=true>
-  <br>LBS: {{bib.cn}} <input type="text" ng-model="bib.cn" />
+  <br>ldap: <input type="text" ng-model="bib.cn" />
   <br>dn: {{bib.displayName}}
 <br>carLicense:{{bib.carLicense}}
   <br>mail: {{bib.mail}}
-<br>Grp: {{bib.Grp}}
+<br>Request: {{bib.Grp}}
 <br>Ablauf: {{bib.Ablauf}}
+</div>
+
+<div ng-show=true>
+  <br>LBS: <input type="text" ng-model="lbs4.cn" />
+  <br>dn: {{lbs4.displayName}}
+  <br>mail: {{lbs4.mail}}
+<br>Grp: {{lbs4.grp}}
+<br>Ablauf: {{lbs4.ablauf}}
 </div>
 
 
