@@ -101,7 +101,14 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
       }
 
       $scope.freshLBS=function(query){
-          $http.get("https://bibweb2.ub.hsu-hh.de/cgi-bin/signatur-dev/borjson.cgi?q="+query)
+	  var jsq={"q":query,"jsonp2":"value2"};
+	  jsq="debu=22&q="+query;
+          $http({url:"https://bibweb2.ub.hsu-hh.de/cgi-bin/signatur-dev/borjson.cgi",
+		 data:jsq,
+		 method:'POST',
+		 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+//		 paramSerializer:'$httpParamSerializerJQLike'
+		})
               .then(function(response){
                   $scope.lbs4=response.data.lbs4;
                   $scope.statcode=response.status;
