@@ -13,6 +13,7 @@
     th {padding:1em;
 	   width:15em;}
     th.col2 {width:3em;}
+    .input {font-weight: bold;}
   </style>
   
 <div ng-app="myApp" ng-controller="personCtrl">
@@ -27,27 +28,30 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 <table border>
   <tr><th>RZ</th><th class="col2 "></th><th>ldap</th><th>LBS</th></tr>
 
-  <tr><td>{{rz.cn}}</td><td></td><td><input type="text" ng-model="bib.cn" ng-blur=freshBib(bib.cn)></td></tr>
+  <tr><td ng-class={input:isRz()}>{{rz.cn}}</td><td></td><td ng-class={input:isLbs()}><input type="text" ng-model="bib.cn" ng-blur=freshBib(bib.cn)></td></tr>
   <tr><td>{{rz.displayName}}</td><td></td><td>{{bib.displayName}}</td><td>{{lbs4.displayName}}</td></tr>
   <tr ng-show=generationQualifierDiff()><td>{{rz.generationQualifier}}</td><td></td><td>{{bib.cn}}</td></tr>
   <tr ng-show=generationQualifierDiff()><td class="hint">LBS Kennung fehlerhaft?</td></tr>
-  <tr><td>{{rz.carLicense}}</td><td ng-class={hint:carLicDiff()}></td><td>{{bib.carLicense}}</td></tr>
+  <tr><td ng-class={input:isRfid()}>{{rz.carLicense}}</td><td ng-class={hint:carLicDiff()}></td><td>{{bib.carLicense}}</td></tr>
   <tr><td>{{rz.mail}}</td><td></td><td>{{bib.mail}}</td><td>{{lbs4.mail}}</td></tr>
   <tr><td>{{rz.employeeType}}</td><td></td><td></td><td>{{lbs4.grp}}</td></tr>
 
 </table>
 
-<div ng-show=true>
+<div class=alert ng-show=!generationQualifierValid()>LBS Kennung fehlt in trust:  {{rz.generationQualifier}}</div>
+<div class=alert ng-show=generationQualifierDiff()>generationQualifierDiff</div>
+
+<input type="checkbox" ng-model="debug" />
+<div ng-show=debug>
 <br>RZ: {{fullName()}}
 <br>dn: {{rz.displayName}}
 <br>generationQualifier: {{genQual()}}
-<div class=alert ng-show=!generationQualifierValid()>LBS Kennung fehlt in trust:  {{rz.generationQualifier}}</div>
 <br>carLicense:{{rz.carLicense}}
 <br>employeeType: {{rz.employeeType}}
 <br>mail: {{rz.mail}}
 </div>
 
-<div ng-show=true>
+<div ng-show=debug>
   <br>ldap: <input type="text" ng-model="bib.cn" />
   <br>dn: {{bib.displayName}}
 <br>carLicense:{{bib.carLicense}}
@@ -56,24 +60,24 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
 <br>Ablauf: {{bib.Ablauf}}
 </div>
 
-<div ng-show=true>
+<div ng-show=debug>
   <br>LBS: <input type="text" ng-model="lbs4.cn" />
   <br>dn: {{lbs4.displayName}}
   <br>mail: {{lbs4.mail}}
 <br>Grp: {{lbs4.grp}}
 <br>Ablauf: {{lbs4.ablauf}}
-</div>
-
-
-<div class=alert ng-show=generationQualifierDiff()>generationQualifierDiff</div>
 
  <br>{{statcode}} ({{stattext}})
 <div ng-show=done>done</div>
 </div>
 
+
+
+</div>
+
 <script>
   var lbspattern=/0705\d{6}[\dxX]/;
-  var carlicpattern=/\d{8-10}/;
+  var carlicpattern=/[1-9]\d{7,9}/;
   var rzpattern=/[a-z]\w{2,}/;
   
   var app = angular.module('myApp', []);
@@ -83,7 +87,8 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
   var lbsresult={uid:"0705432",Grp:"20",Ablauf:"20.03.2020"};
 
   app.controller("personCtrl",function($scope, $http) {
-      	  $scope.done=false;
+      $scope.debug=0;
+      $scope.done=false;
 	  $scope.rz={};
 	  $scope.bib={};
 	  $scope.lbs4={};
