@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
@@ -18,28 +19,30 @@
   
 <div ng-app="myApp" ng-controller="personCtrl">
 
-Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()"><br>
+Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
 
-<div ng-show=isLbs()>LBS</div>
-<div ng-show=isRfid()>Cardnumber</div>
-<div ng-show=isRz()>RZ</div>
+<span ng-show=isLbs()>erkannt: LBS</span>
+<span ng-show=isRfid()>erkannt: Cardnumber</span>
+<span ng-show=isRz()>erkannt: RZ</span>
 
 
-<table border>
+<table class="w3-table w3-bordered w3-striped">
   <tr><th>RZ</th><th class="col2 "></th><th>ldap</th><th>LBS</th></tr>
 
   <tr><td ng-class={input:isRz()}>{{rz.cn}}</td><td></td><td ng-class={input:isLbs()}><input type="text" ng-model="bib.cn" ng-blur=freshBib(bib.cn)></td></tr>
   <tr><td>{{rz.displayName}}</td><td></td><td>{{bib.displayName}}</td><td>{{lbs4.displayName}}</td></tr>
-  <tr ng-show=generationQualifierDiff()><td>{{rz.generationQualifier}}</td><td></td><td>{{bib.cn}}</td></tr>
-  <tr ng-show=generationQualifierDiff()><td class="hint">LBS Kennung fehlerhaft?</td></tr>
+  <tr ng-show=generationQualifierDiff()><td>{{rz.generationQualifier}}</td><td ng-class={hint:generationQualifierDiff()}></td><td>{{bib.cn}}</td></tr>
+  <tr ng-show=generationQualifierDiff()><td class="hint">LBS Kennung unterschiedlich</td></tr>
   <tr><td ng-class={input:isRfid()}>{{rz.carLicense}}</td><td ng-class={hint:carLicDiff()}></td><td>{{bib.carLicense}}</td></tr>
   <tr><td>{{rz.mail}}</td><td></td><td>{{bib.mail}}</td><td>{{lbs4.mail}}</td></tr>
   <tr><td>{{rz.employeeType}}</td><td></td><td></td><td>{{lbs4.grp}}</td></tr>
 
 </table>
 
-<div class=alert ng-show=!generationQualifierValid()>LBS Kennung fehlt in trust:  {{rz.generationQualifier}}</div>
-<div class=alert ng-show=generationQualifierDiff()>generationQualifierDiff</div>
+<ul>
+<li class=alert ng-show= !generationQualifierValid()>LBS Kennung fehlt in trust</li>
+<li class=alert ng-show=generationQualifierDiff()>generationQualifier</li>
+</ul>
 
 <input type="checkbox" ng-model="debug" />
 <div ng-show=debug>
