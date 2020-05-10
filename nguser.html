@@ -137,7 +137,7 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
       $scope.freshLBS=function(query){
 	  var jsq={"q":query,"jsonp2":"value2"};
 	  jsq="debu=22&q="+query;
-          $http({url:"https://bibweb2.ub.hsu-hh.de/cgi-bin/signatur-dev/borjson.cgi",
+          $http({url:"https://intranet.ub.hsu-hh.de/cgi-bin/signatur-dev/borjson.cgi",
 		 data:jsq,
 		 method:'POST',
 		 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
