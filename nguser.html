@@ -45,6 +45,7 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
 <li class=alert ng-show= !generationQualifierValid()>LBS Kennung ungültig in trust</li>
 <li class=alert ng-show=false  generationQualifierDiff())>generationQualifier</li>
 <li class=alert ng-show=isLocked()>Benutzer gesperrt: Status {{lbs4.status}}</li>
+<li class=alert ng-show=lbsMiss()>Benutzernummer nicht im LBS: {{rz.generationQualifier}}</li>
 </ul>
 
 <input type="checkbox" ng-model="debug" />
