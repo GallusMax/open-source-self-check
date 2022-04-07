@@ -198,7 +198,7 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
       };
 
       $scope.generationQualifierDiff=function(){
-	  if($scope.rz.generationQualifier)
+	  if($scope.rz.generationQualifier && $scope.bib.cn) // only if both are present
 	      return ($scope.rz.generationQualifier != $scope.bib.cn);
 	  else return false;
       };
