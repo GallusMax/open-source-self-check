@@ -30,7 +30,7 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
 <table class="w3-table w3-bordered w3-striped">
   <tr><th>RZ</th><th class="col2 "></th><th>ldap</th><th>LBS</th></tr>
 
-  <tr><td ng-class={input:isRz()}>{{rz.cn}}</td><td></td><td ng-class={input:isLbs()}><input type="text" ng-model="bib.cn" ng-blur=freshBib(bib.cn)></td></tr>
+  <tr><td ng-class={input:isRz()}>{{rz.cn}}</td><td></td><td ng-class={input:isLbs()}><input type="text" ng-model="bib.cn" ng-blur=freshBib(bib.cn)></td><td>{{lbs4.cn}}</td></td></tr>
   <tr><td>{{rz.displayName}}</td><td></td><td>{{bib.displayName}}</td><td>{{lbs4.displayName}}</td></tr>
   <tr ng-show=generationQualifierDiff()><td>{{rz.generationQualifier}}</td><td ng-class={hint:generationQualifierDiff()}></td><td>{{bib.cn}}</td></tr>
   <tr ng-show=generationQualifierDiff()><td></td><td></td><td class="hint">LDAP Eintrag?</td><td class="hint" ng-show=lbsMiss()>LBS Eintrag?</td></tr>
