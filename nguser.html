@@ -83,9 +83,9 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
 </div>
 
 <script>
-  var lbspattern=/0705\d{6}[\dxX]/;
-  var carlicpattern=/[1-9]\d{7,9}/;
-  var rzpattern=/[a-z]\w{2,}/;
+  var lbspattern=/^0705\d{6}[\dxX]/;
+  var carlicpattern=/^[1-9]{1}\d{7,9}/;
+  var rzpattern=/^[a-z]\w{2,}/;
   
   var app = angular.module('myApp', []);
   
