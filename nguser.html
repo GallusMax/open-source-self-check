@@ -20,7 +20,7 @@
 <div ng-app="myApp" ng-controller="personCtrl">
 
 <h2>Benutzeranfrage</h2>
-Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
+Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
 
 <span ng-show=isLbs()>erkannt: LBS</span>
 <span ng-show=isRfid()>erkannt: Cardnumber</span>
@@ -30,7 +30,7 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
 <table class="w3-table w3-bordered w3-striped">
   <tr><th>RZ</th><th class="col2 "></th><th>ldap</th><th>LBS</th></tr>
 
-  <tr><td ng-class={input:isRz()}>{{rz.cn}}</td><td></td><td ng-class={input:isLbs()}><input type="text" ng-model="bib.cn" ng-blur=freshBib(bib.cn)></td></tr>
+  <tr><td ng-class={input:isRz()}>{{rz.cn}}</td><td></td><td ng-class={input:isLbs()}><input type="text" ng-model="bib.cn" ng-blur=freshBib(bib.cn)></td><td>{{lbs4.cn}}</td></td></tr>
   <tr><td>{{rz.displayName}}</td><td></td><td>{{bib.displayName}}</td><td>{{lbs4.displayName}}</td></tr>
   <tr ng-show=generationQualifierDiff()><td>{{rz.generationQualifier}}</td><td ng-class={hint:generationQualifierDiff()}></td><td>{{bib.cn}}</td></tr>
   <tr ng-show=generationQualifierDiff()><td></td><td></td><td class="hint">LDAP Eintrag?</td><td class="hint" ng-show=lbsMiss()>LBS Eintrag?</td></tr>
@@ -83,9 +83,9 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
 </div>
 
 <script>
-  var lbspattern=/0705\d{6}[\dxX]/;
-  var carlicpattern=/[1-9]\d{7,9}/;
-  var rzpattern=/[a-z]\w{2,}/;
+  var lbspattern=/^0705\d{6}[\dxX]/;
+  var carlicpattern=/^[1-9]{1}\d{7,9}/;
+  var rzpattern=/^[a-z]\w{2,}/;
   
   var app = angular.module('myApp', []);
   
@@ -112,6 +112,7 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
       }
       
       $scope.freshRz=function(query){
+      if($scope.isLbs(query)) query=query.toUpperCase();
           $http({url:"processes/userjson.php",
 		 data:"q="+query,
 		 method:"POST",
@@ -127,7 +128,7 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
 
       $scope.freshLdap=function(query){
           $http({url:"processes/userjson.php",
-		 data:"q="+query,
+		 data:"q="+query.toUpperCase(),
 		 method:"POST",
 		 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 		})
@@ -200,7 +201,7 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
       };
 
       $scope.generationQualifierDiff=function(){
-	  if($scope.rz.generationQualifier)
+	  if($scope.rz.generationQualifier && $scope.bib.cn) // only if both are present
 	      return ($scope.rz.generationQualifier != $scope.bib.cn);
 	  else return false;
       };
@@ -224,7 +225,6 @@ Kennung: <input type="text" ng-model="inputVal" ng-change="readnew()">
 	      return false;
 	  else
 	      return true;
-	  
       };
 
   });
