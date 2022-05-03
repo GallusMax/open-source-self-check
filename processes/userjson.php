@@ -39,7 +39,7 @@ if(!empty($rzcn)){ // skip on empty input
 	$myl->filter	= $ldap_filter;
 
 
-    $carlic_pattern='/\d{8,10}/';
+    $carlic_pattern='/[\dA-F]{8,14}/';
     $rz_pattern='/[a-z]\w{2,}/';
     $myl->searchbase=$ldap_searchbase; // Library Users
 
