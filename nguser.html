@@ -31,7 +31,7 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
 <table class="w3-table w3-bordered w3-striped">
   <tr><th>RZ</th><th class="col2 "></th><th>ldap</th><th>LBS</th></tr>
 
-  <tr><td ng-class={input:isRz()}>{{rz.cn}}</td><td></td><td ng-class={input:isLbs()}><input type="text" ng-model="bib.cn" ng-blur=freshBib(bib.cn)></td><td>{{lbs4.cn}}</td></td></tr>
+  <tr><td ng-class={input:isRz()}>{{rz.cn}}</td><td></td><td ng-class={input:isLbs()}><input type="text" ng-model="bib.cn" ng-blur="freshBib(bib.cn)"></td><td>{{lbs4.cn}}</td></td></tr>
   <tr><td>{{rz.displayName}}</td><td></td><td>{{bib.displayName}}</td><td>{{lbs4.displayName}}</td></tr>
   <tr ng-show=generationQualifierDiff()><td>{{rz.generationQualifier}}</td><td ng-class={hint:generationQualifierDiff()}></td><td>{{bib.cn}}</td></tr>
   <tr ng-show=generationQualifierDiff()><td></td><td></td><td class="hint">LDAP Eintrag?</td><td class="hint" ng-show=lbsMiss()>LBS Eintrag?</td></tr>
@@ -73,7 +73,7 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
   <br>dn: {{lbs4.displayName}}
   <br>mail: {{lbs4.mail}}
 <br>Grp: {{lbs4.grp}}
-<br>Ablauf: {{lbs4.ablauf}}
+<br>Ablauf: {{lbs4.Ablauf}}
 
  <br>{{statcode}} ({{stattext}})
 <div ng-show=done>done</div>
@@ -109,15 +109,13 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
 	  };
 
       $scope.freshBib=function(query){
+//	  $scope.lbs4.Ablauf="freshBib "+query;
 	  $scope.freshLdap(query);
-      if($scope.bib.cn && 0<$scope.bib.cn.length){
-        $scope.freshLBS($scope.bib.cn)
-      }else{
-        $scope.freshLBS(query);
-      }
+//          $scope.freshLBS(query);
       }
       
       $scope.freshRz=function(query){
+	  $scope.bib.done=false;;
       if($scope.isLbs(query)) query=query.toUpperCase();
           $http({url:"processes/userjson.php",
 		 data:"q="+query,
@@ -127,12 +125,15 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
               .then(function(response){
                   $scope.rz=response.data.rz;
                   $scope.bib=response.data.bib;
+		  $scope.bib.done=true;
                   $scope.statcode=response.status;
                   $scope.stattext=response.statusText;
+		  if($scope.bib.cn)$scope.freshLBS($scope.bib.cn);
               });	  
       }
 
       $scope.freshLdap=function(query){
+	  $scope.bib.done=false;
           $http({url:"processes/userjson.php",
 		 data:"q="+query.toUpperCase(),
 		 method:"POST",
@@ -140,12 +141,16 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
 		})
               .then(function(response){
                   $scope.bib=response.data.bib;
+		  $scope.bib.done=true;
                   $scope.statcode=response.status;
                   $scope.stattext=response.statusText;
+//		  $scope.lbs4.Ablauf="response Ldap "+$scope.bib.cn;
+		  if($scope.bib.cn)$scope.freshLBS($scope.bib.cn);
               });	  
       }
 
       $scope.freshLBS=function(query){
+//	  $scope.lbs4.Ablauf="in freshLBS "+query;
 	  var jsq={"q":query,"jsonp2":"value2"};
 	  jsq="debu=22&q="+query;
           $http({url:"https://intranet.ub.hsu-hh.de/cgi-bin/signatur-dev/borjson.cgi",
@@ -169,7 +174,7 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
 	    $scope.freshBib($scope.rz.generationQualifier);
 	}
 	
-	$scope.bib.Ablauf="request2";
+//	$scope.bib.Ablauf="request2 genQual "+$scope.bib.cn
 
 	return $scope.rz.generationQualifier;
     };
@@ -182,13 +187,8 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
 	      $scope.done=false;
 
 	      $scope.freshRz($scope.inputVal);
-	      if($scope.isLbs()){
-		  $scope.freshLBS($scope.inputVal)
-          }
 
-		  if($scope.bib.cn && 0<$scope.bib.cn.length){
-		  $scope.freshLBS($scope.bib.cn)
-	      }
+	      $scope.genQual();
 	  }
       };
       
