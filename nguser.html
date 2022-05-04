@@ -110,7 +110,11 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
 
       $scope.freshBib=function(query){
 	  $scope.freshLdap(query);
-	  $scope.freshLBS(query);
+      if($scope.bib.cn && 0<$scope.bib.cn.length){
+        $scope.freshLBS($scope.bib.cn)
+      }else{
+        $scope.freshLBS(query);
+      }
       }
       
       $scope.freshRz=function(query){
