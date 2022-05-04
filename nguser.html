@@ -180,6 +180,9 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
 	      $scope.freshRz($scope.inputVal);
 	      if($scope.isLbs()){
 		  $scope.freshLBS($scope.inputVal)
+
+		  if($scope.bib.cn){
+		  $scope.freshLBS($scope.bib.cn)
 	      }
 	  }
       };
