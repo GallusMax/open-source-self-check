@@ -181,7 +181,7 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
 	      if($scope.isLbs()){
 		  $scope.freshLBS($scope.inputVal)
 
-		  if($scope.bib.cn){
+		  if(!$scope.bib.cn && 0<$scope.bib.cn.length){
 		  $scope.freshLBS($scope.bib.cn)
 	      }
 	  }
