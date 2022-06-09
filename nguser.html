@@ -86,7 +86,7 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
 <script>
   var lbspattern=/^0705\d{6}[\dxX]/;
   var carlicpattern=/^[1-9]{1}\d{7,9}/;
-  var mifarepattern=/^04[0-9A-F]{12}/;
+  var mifarepattern=/^\d{16}/;
   var rzpattern=/^[a-z]\w{2,}/;
   
   var app = angular.module('myApp', []);
