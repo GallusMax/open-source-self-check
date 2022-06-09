@@ -47,6 +47,7 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
 <li class=alert ng-show=false  generationQualifierDiff())>generationQualifier</li>
 <li class=alert ng-show=isLocked()>Benutzer gesperrt: Status {{lbs4.status}}</li>
 <li class=alert ng-show=lbsMiss()>Benutzernummer nicht im LBS: {{rz.generationQualifier}}</li>
+<li class=hint ng-show=!stillHitag()>Karte noch nicht auf Mifare umgestellt: Chipkartenstelle aufsuchen!</li>
 </ul>
 
 <input type="checkbox" ng-model="debug" />
@@ -204,6 +205,10 @@ Kennung: <input autofocus type="text" ng-model="inputVal" ng-change="readnew()">
 	  return carlicpattern.test($scope.inputVal);
       };
       
+      $scope.stillHitag=function(){
+	  return carlicpattern.test($scope.rz.carLicense);
+      };
+
       $scope.isMifare=function(){
 	  return mifarepattern.test($scope.inputVal);
       };
