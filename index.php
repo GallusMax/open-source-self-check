@@ -104,7 +104,7 @@ reject();
 
 
 function islbs($user){
-$lbs_pattern='/0705\d{6}[0-9xX]{1}/';
+$lbs_pattern='/0705\d{6}[\dxX]/';
 return preg_match($lbs_pattern,$user);
 }
 
