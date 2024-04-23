@@ -116,6 +116,12 @@ class ldap {
     }
 
 
+    function getuidfromcn($cn){
+        $this->search($cn);
+	return $this->getattr('generationQualifier');
+    }
+
+
     function addcardtocn($cn,$uid){
    	if(!$this->lc)$this->connect();
    	$this->connect();
