@@ -1,5 +1,5 @@
 <?php
-// external auth for lbs linux
+// external auth for lbs linux ab 2.13.7
 // credentials delivered as http basic auth
 // answered as application/json
 
@@ -44,7 +44,7 @@ if(2 == count($a_userPass)){ # user AND password are sent
 
 
 function userbind($user, $pass){
-if(isrz($user)){
+if(isrz($user)){ # look up lbsuid from ldap
 $userbinddn="cn=$user,ou=Users,ou=HSU HH,dc=trust,dc=unibw-hamburg,dc=de";
 $mylt=new ldap();
 	  global $ldap0_hostname;
@@ -60,7 +60,7 @@ syslog(LOG_DEBUG,"ldap0_hostname ".$ldap0_hostname);
 	$mylt->filter	= $ldap0_filter;
 
 $lbsuid=$mylt->getuidfromcn($user);
-     
+
 if(''!=$lbsuid){
      syslog(LOG_DEBUG,"lbsAuth: user".$user." accepting uid".$lbsuid);
 	accept($lbsuid);
@@ -71,13 +71,40 @@ if(''!=$lbsuid){
 }
 
 
+if(islbs($user)){ # lbsuid equals $user
+global $ldap_searchbase;
+$userbinddn="cn=$user,".$ldap_searchbase;
+$mylt=new ldap();
+	  global $ldap_hostname;
+syslog(LOG_DEBUG,"ldap_hostname ".$ldap_hostname);
+	$mylt->hostname	= $ldap_hostname;
+	  global $ldap_port;
+	$mylt->port     = $ldap_port;
+	$mylt->binddn 	= $userbinddn;
+	$mylt->bindpw 	= $pass;
+	  global $ldap_searchbase;
+	$mylt->searchbase	= $ldap_searchbase;
+	  global $ldap_filter;
+	$mylt->filter	= $ldap_filter;
+
+$lbsuid=$mylt->getcnfromuid($user);
+
+if(''!=$lbsuid){
+     syslog(LOG_DEBUG,"lbsAuth: user".$user." accepting uid".$lbsuid);
+	accept($lbsuid);
+}else{
+     syslog(LOG_DEBUG,"lbsAuth: user".$user." rejecting empty uid");
+	reject();
+}
+}
+
 syslog(LOG_DEBUG,"lbsAuth: user".$user." unchecked, rejecting not_found");
 reject();
 }
 
 
 function islbs($user){
-$lbs_pattern='/0705\n{6}[0-9xX]/';
+$lbs_pattern='/0705\d{6}[0-9xX]{1}/';
 return preg_match($lbs_pattern,$user);
 }
 
