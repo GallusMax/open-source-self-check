@@ -9,8 +9,6 @@ include_once('includes/ldap.php');
 
          header('Content-Type: application/json; charset=utf-8');
 
-$sharedsecret="myTopSecretTemporary";
-
 $headersgot=getallheaders();
 
 if(0 != strcmp($sharedsecret, $headersgot["Client-Authorization"])){ ## shared secret not sent: unauthorized client?
