@@ -17,4 +17,5 @@ Anything that could ease an attack is seen as sensitive
 * ldap addresses
 * ldap Attribute Names
 * ldap Search Bases
+* the shared secret
   
