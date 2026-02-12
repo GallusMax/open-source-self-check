@@ -18,4 +18,5 @@ An RFID HID device, reading the UID off the local cards, we use programmable rea
 
 ## Changelog
 See Wiki
++ 2026-02 Feature: login with QRCode, Authentication with Shibboleth SSO
 + 2026-01 PHP8-fix: replace calls to each() , which are no longer supported

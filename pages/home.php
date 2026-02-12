@@ -14,6 +14,9 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 	</div>
 	<div id="spinner">
 	</div>
+
+	<div id="authqr"></div>
+
 	<div id="banner_title">
 		<h2>
 			<span>&nbsp;<?php echo $library_name;?></span>
@@ -59,6 +62,16 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 
 	</table>
 	</div>
+
+<?php if(isset($pipe[$_SERVER['REMOTE_ADDR']])): ?>
+<script type="text/javascript">
+// only initialized, if configured for station
+var qrauthurl="<?= $qrauthurl ?>";
+var pipebase="<?= $pipe[$_SERVER['REMOTE_ADDR']] ?>";
+var authqr=new QRCode("authqr");
+var newpiperate = <?= $newpiperate ?>; // new pipe after n ms
+</script>
+<?php endif ?>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -109,12 +122,49 @@ $(document).ready(function(){
 		} // all skipped if '11111' found
 		$barcode.val('');
 		$barcode.focus();
-		return false;   
+		askpipe();
+		return false;
 	});
 
 	$('#checkin').click(function(){
 		window.location.href='index.php?page=checkout&checkin=true'; // jump directly to checkout screen, change to checkin view
 	});
 
+	askpipe();
+
 });
+
+function newqrauth(){
+	 //TODO: do nothing, if undefined
+	 var nextpipe='';
+	 msnow=Date.now();
+	 seconds=Math.floor(msnow/1000/100); // ? use newpiperate
+	 nextpipe=window.btoa(pipebase + seconds.toString());
+	 authqr.makeCode(qrauthurl+"?loc="+nextpipe);
+	 return nextpipe;
+}
+
+function askpipe(){
+	if(typeof pipebase === "undefined") return; // do nothing, if undefined
+
+    pipetimeout=setTimeout(function () {
+        askpipe();
+    },newpiperate);
+	nextpipe=newqrauth();
+    $.get("processes/pipe.php?loc="+nextpipe,
+        function(data) {
+        clearTimeout(pipetimeout); // pipe has been used
+//	alert(data);
+	if("timed_out" == data){
+//	alert(data);
+//	    askpipe();
+	}else
+// TODO: configurable filter for patronId?
+	if("PATRONPREFIX" == data.substring(0,4)){ // keep anything but patronId from LBS
+            $('#barcode').val(data.substring(0,11));
+	    }else
+	    $('#barcode').val('111111');
+        $('#form').submit();
+        });
+}
 </script>

@@ -165,6 +165,21 @@ $action_balloon_bg_color='#f1cae1'; //background color for action balloons
 */
 $allowed_ip[]=''; //leave empty if you've already limited access to the self check via your server (Apache, IIS, etc.)
 
+//==================================== QRCode Login ====================
+// QRCode login is an experimental feature that allows users to scan a QRCode from their mobile device to log in to the self check.
+// To enable QRCode login, fill the array $pipe[IPaddress]=<station key> below.
+// all this is best overridden in config_local.php
+
+// stations allowed for QR login
+#$pipe['10.10.10.10']='anySecretForStation10';
+#$pipe['10.10.10.42']='anySecretForStation42';
+
+// and related local parameters
+#$pipepath='/opt/<path to pipes>';  // file system location accessible for www-data
+#$qrauthurl='<URL to SSO secured login page>'; // external URL behind SSO, providing patronId
+#$newpiperate=200000; // milliseconds before new pipe is generated
+
+
 //==================================== Local Settings ====================
 // keep installation-specific settings in local config file 
 // keep confidential settings out of repository
