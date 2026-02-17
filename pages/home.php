@@ -56,9 +56,14 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 	
 		<tr>
 	   			<td>
-				<div class="ok_button button" id="checkin" title="selfcheck_button">
-					<h1>Rückgabe</h1>
-				</div>
+                <div id="pre_cko_buttons">
+                    <div class="ok_button button" id="checkin" title="selfcheck_button">
+                        <h1>Rückgabe</h1>
+                    </div>
+                    <div class="thanks_button button" id="checkincommit">
+                        <h1>Rückgabe</h1>
+                    </div>
+                </div>
 				</td>
 		</tr>
 	<?php }?>	
@@ -142,6 +147,8 @@ $(document).ready(function(){
 	});
 
 	$('#checkin').click(function(){
+	    $('#checkin').hide();
+	    $('#checkincommit').show();
 		window.location.href='index.php?page=checkout&checkin=true'; // jump directly to checkout screen, change to checkin view
 	});
 
