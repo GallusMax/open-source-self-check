@@ -5,15 +5,18 @@
 if ($allow_manual_userid_entry) { 
 	include_once('includes/keypad.php');
 }
-
 $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known station?
 
 ?>
 	<div id="fixedlogo">
 		<img src="images/<?php echo $logo_image;?>" />
-	</div>
+		
+		</div>
 	<div id="spinner">
 	</div>
+
+	<div id="authqr"></div>
+
 	<div id="banner_title">
 		<h2>
 			<span>&nbsp;<?php echo $library_name;?></span>
@@ -27,7 +30,10 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 				<img src="images/<?php echo $card_image;?>_card2.png" align="left"/>
 			<?php }?>
 		</span>
-		<h2><?php echo $intro_screen_text;?></h2>
+		<h2><?php
+			echo $intro_screen_text;
+			if(isset($pipe[$_SERVER['REMOTE_ADDR']])) echo $intro_screen_text_new; 
+		?></h2>
 		
 	
 	<div id="error_message">
@@ -56,9 +62,31 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 				</td>
 		</tr>
 	<?php }?>	
+		<tr>
+				<td>
+                <div id="pre_cko_buttons">
+    				<div class="ok_button button" id="register" title="selfcheck_button">
+	    				<h1>Chipkarte registrieren</h1>
+	    			</div>
+                    <div class="thanks_button button" id="registercommit">
+                        <h1>Chipkarte registrieren</h1>
+                    </div>
+                </div>
+				</td>
 
+   		</tr>
 	</table>
 	</div>
+
+<?php if(isset($pipe[$_SERVER['REMOTE_ADDR']])): ?>
+<script type="text/javascript">
+// only initialized, if configured for station
+var qrauthurl="<?= $qrauthurl ?>";
+var pipebase="<?= $pipe[$_SERVER['REMOTE_ADDR']] ?>";
+var authqr=new QRCode("authqr");
+var newpiperate = <?= $newpiperate ?>; // new pipe after n ms
+</script>
+<?php endif ?>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -76,7 +104,7 @@ $(document).ready(function(){
 		spinner.spin(divspinner);
 		var siptimeout=setTimeout(function(){ // bail out on account_check timeout
 //			alert("sip fail");
-			window.location.href='index.php?page=out_of_order';},8000);
+			window.location.href='index.php?page=out_of_order';},15000); // UH - more seconds before ldap timeout
 
 		$.post("processes/account_check.php", { barcode: $barcode.val()},
 			function(data){
@@ -109,6 +137,7 @@ $(document).ready(function(){
 		} // all skipped if '11111' found
 		$barcode.val('');
 		$barcode.focus();
+		askpipe();
 		return false;   
 	});
 
@@ -116,5 +145,42 @@ $(document).ready(function(){
 		window.location.href='index.php?page=checkout&checkin=true'; // jump directly to checkout screen, change to checkin view
 	});
 
+	askpipe();
+
 });
+
+function newqrauth(){
+	 //TODO: do nothing, if undefined
+	 var nextpipe='';
+	 msnow=Date.now();
+	 seconds=Math.floor(msnow/1000/20); // ? use newpiperate
+	 nextpipe=window.btoa(pipebase + seconds.toString());
+	 authqr.makeCode(qrauthurl+"?loc="+nextpipe);
+	 return nextpipe;
+}
+
+function askpipe(){
+	if(typeof pipebase === "undefined") return; // do nothing, if undefined
+
+    pipetimeout=setTimeout(function () {
+//        askpipe();
+        window.location.href='index.php?page=home';
+        },newpiperate);
+	nextpipe=newqrauth();
+    $.get("processes/pipe.php?loc="+nextpipe,
+        function(data) {
+        clearTimeout(pipetimeout); // pipe has been used
+//	alert(data);
+	if("timed_out" == data){
+//	alert(data);
+//	    askpipe();
+	}else
+
+	if("0705" == data.substring(0,4)){ // keep anything else from LBS
+            $('#barcode').val(data.substring(0,11));
+	    }else
+	    $('#barcode').val('111111');
+        $('#form').submit();
+        });
+}
 </script>
