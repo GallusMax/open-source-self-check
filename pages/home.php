@@ -5,12 +5,13 @@
 if ($allow_manual_userid_entry) { 
 	include_once('includes/keypad.php');
 }
+
 $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known station?
 
 ?>
 	<div id="fixedlogo">
 		<img src="images/<?php echo $logo_image;?>" />
-		
+
 		</div>
 	<div id="spinner">
 	</div>
@@ -32,7 +33,7 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 		</span>
 		<h2><?php
 			echo $intro_screen_text;
-			if(isset($pipe[$_SERVER['REMOTE_ADDR']])) echo $intro_screen_text_new; 
+			if(isset($pipe[$_SERVER['REMOTE_ADDR']])) echo $intro_screen_text_new;
 		?></h2>
 		
 	
@@ -67,19 +68,7 @@ $stationIP=$_SERVER['REMOTE_ADDR']; // does the request come from a known statio
 				</td>
 		</tr>
 	<?php }?>	
-		<tr>
-				<td>
-                <div id="pre_cko_buttons">
-    				<div class="ok_button button" id="register" title="selfcheck_button">
-	    				<h1>Chipkarte registrieren</h1>
-	    			</div>
-                    <div class="thanks_button button" id="registercommit">
-                        <h1>Chipkarte registrieren</h1>
-                    </div>
-                </div>
-				</td>
 
-   		</tr>
 	</table>
 	</div>
 
@@ -109,7 +98,7 @@ $(document).ready(function(){
 		spinner.spin(divspinner);
 		var siptimeout=setTimeout(function(){ // bail out on account_check timeout
 //			alert("sip fail");
-			window.location.href='index.php?page=out_of_order';},15000); // UH - more seconds before ldap timeout
+			window.location.href='index.php?page=out_of_order';},8000);
 
 		$.post("processes/account_check.php", { barcode: $barcode.val()},
 			function(data){
@@ -143,7 +132,7 @@ $(document).ready(function(){
 		$barcode.val('');
 		$barcode.focus();
 		askpipe();
-		return false;   
+		return false;
 	});
 
 	$('#checkin').click(function(){

@@ -48,7 +48,7 @@
 	
 	// Determine last modification date of the files
 	$lastmodified = 0;
-	while (list(,$element) = each($elements)) {
+	foreach($elements as $element) {
 		$path = realpath($base . '/' . $element);
 	
 		if (($type == 'javascript' && substr($path, -3) != '.js') || 
@@ -124,7 +124,7 @@
 		// Get contents of the files
 		$contents = '';
 		reset($elements);
-		while (list(,$element) = each($elements)) {
+		foreach($elements as $element) {
 			$path = realpath($base . '/' . $element);
 			$contents .= "\n\n" . file_get_contents($path);
 		}

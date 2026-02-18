@@ -16,3 +16,7 @@ A RFID Reader which handles reading and (un)locking, we use an OpenSource Java t
 Optional, for RFID patron cards:
 An RFID HID device, reading the UID off the local cards, we use programmable readers TWN4 Mifare NFC USB
 
+## Changelog
+See Wiki
++ 2026-02 Feature: login with QRCode, Authentication with Shibboleth SSO
++ 2026-01 PHP8-fix: replace calls to each() , which are no longer supported
